@@ -1,7 +1,41 @@
 body {
     font-family: 'Hammersmith One', sans-serif;
-    background-color: #161616;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.light-mode {
+    --background-color: #fffbfb;
+    --text-color: #161616;
+
+    --hover-color: #0078D6;
+    --hover-background-color: #cae8ff;
+}
+
+.dark-mode {
+    --background-color: #161616;
+    --text-color: #ffffff;
+
+    --hover-color: #99d3ff;
+    --hover-background-color: #262626;
+}
+
+.floating-button {
+    background-color: var(--background-color);
+}
+
+body.light-mode .display-1,
+body.light-mode .brand {
+    color: #161616;
+}
+
+.nav-link {
+    background-color: var(--background-color);
+}
+
+.nav-link:hover {
+    background-color: var(--hover-background-color);
+    color: var(--hover-color);
 }
 
 .hero {
@@ -38,17 +72,18 @@ body {
     width: 50px; 
     height: 50px;
     border-radius: 50%;
-    background-color: #161616; /* Background inicial para modo oscuro */
-    color: white; 
+    background-color: var(--background-color); /* Background inicial para modo oscuro */
+    color: var(--text-color); 
     border: none; 
     cursor: pointer; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px var(--hover-color);
     z-index: 1001; 
 }
 
-.floating-button img {
-    width: 25px; 
+#themeIcon {
+    width: 25px;
     height: 25px;
+    margin: auto;
 }
 
 #typewriter1 {
@@ -110,26 +145,4 @@ body {
         padding-left: 0; 
     }
 
-}
-
-/* Modo claro */
-body.light-mode {
-    background-color: white;
-}
-
-body.light-mode .floating-button {
-    background-color: white;
-}
-
-body.light-mode .display-1,
-body.light-mode .brand {
-    color: #161616;
-}
-
-body.light-mode .nav-link {
-    background-color: #ffffff;
-}
-body.light-mode .nav-link:hover {
-    background-color: #cae8ff;
-    color: #0078D6;
 }
