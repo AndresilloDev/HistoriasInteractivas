@@ -1,0 +1,62 @@
+section .wave {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url(../resources/img/blueWave.png);
+    background-size: 1000px 100px;
+    filter: brightness(1.5);
+}
+
+section .wave.wave1 {
+    animation: animate 27s linear infinite;
+    z-index: 1000;
+    opacity: 0.7;
+    animation-delay: -12s;
+    filter: brightness(1.3); 
+}
+
+section .wave.wave2 {
+    animation: animate2 15s linear infinite;
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 10px;
+    filter: brightness(1.1);
+}
+
+section .wave.wave3 {
+    animation: animate 20s linear infinite;
+    z-index: 998;
+    opacity: 0.7;
+    animation-delay: -12s;
+    bottom: 15px;
+    filter: brightness(0.9);
+}
+
+section .wave.wave4 {
+    animation: animate2 10s linear infinite;
+    z-index: 997;
+    opacity: 0.5;
+    animation-delay: -12s;
+    bottom: 20px;
+    filter: brightness(0.7);
+}
+
+@keyframes animate {
+    0% {
+        background-position-x: 0px;
+    }
+    100% {
+        background-position-x: -1000px;
+    }
+}
+
+@keyframes animate2 {
+    0% {
+        background-position-x: 0px;
+    }
+    100% {
+        background-position-x: -1000px;
+    }
+}
