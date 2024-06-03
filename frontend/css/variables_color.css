@@ -1,0 +1,25 @@
+:root {
+    --default-text-color: #ffffff;
+    --default-nav-item-color: #0078D6;
+    --default-nav-item-hover-color: #95d0fd;
+    --default-nav-item-border-color: #0078D6;
+    --default-nav-item-background-color: #252525;
+    --default-dropdown-menu-background-color: #333;
+    --default-dropdown-item-color: #ffffff;
+}
+
+.light-mode {
+    --mode-background-color: #fffbfb;
+    --mode-text-color: #161616;
+
+    --mode-hover-color: #0078D6;
+    --mode-hover-background-color: #cae8ff;
+}
+
+.dark-mode {
+    --mode-background-color: #161616;
+    --mode-text-color: #ffffff;
+
+    --mode-hover-color: #99d3ff;
+    --mode-hover-background-color: #262626;
+}

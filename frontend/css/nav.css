@@ -1,3 +1,5 @@
+@import url('variables_color.css');
+
 .navbar {
     background-color: transparent;
     padding: 1rem 1rem;
@@ -6,28 +8,28 @@
 .brand {
     font-family: 'Hammersmith One', sans-serif;
     text-decoration: none;
-    color: white;
+    color: var(--mode-text-color);
     font-size: 2.5em;
 }
 
 .nav-link,
 .dropdown-item {
-    color: #0078D6;
+    color: var(--default-nav-item-color);
     font-family: 'Noto Sans JP', sans-serif;
-    border-color: #0078D6;
+    border-color: var(--default-nav-item-border-color);
 }
 
 .nav-link:hover{
-    color: #95d0fd;
-    background-color: #252525;
+    color: var(--default-nav-item-hover-color);
+    background-color: var(--default-nav-item-background-color);
 }
 
 .dropdown-menu {
-    background-color: #333;
+    background-color: var(--default-dropdown-menu-background-color);
     border: none;
     border-radius: 10px;
 }
 
 .dropdown-item {
-    color: white;
+    color: var(--default-dropdown-item-color);
 }

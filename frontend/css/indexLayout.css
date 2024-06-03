@@ -1,41 +1,22 @@
+@import url('variables_color.css');
+
 body {
     font-family: 'Hammersmith One', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-}
-
-.light-mode {
-    --background-color: #fffbfb;
-    --text-color: #161616;
-
-    --hover-color: #0078D6;
-    --hover-background-color: #cae8ff;
-}
-
-.dark-mode {
-    --background-color: #161616;
-    --text-color: #ffffff;
-
-    --hover-color: #99d3ff;
-    --hover-background-color: #262626;
+    background-color: var(--mode-background-color);
+    color: var(--mode-text-color);
 }
 
 .floating-button {
-    background-color: var(--background-color);
-}
-
-body.light-mode .display-1,
-body.light-mode .brand {
-    color: #161616;
+    background-color: var(--mode-background-color);
 }
 
 .nav-link {
-    background-color: var(--background-color);
+    background-color: var(--mode-background-color);
 }
 
 .nav-link:hover {
-    background-color: var(--hover-background-color);
-    color: var(--hover-color);
+    background-color: var(--mode-hover-background-color);
+    color: var(--mode-hover-color);
 }
 
 .hero {
@@ -72,11 +53,11 @@ body.light-mode .brand {
     width: 50px; 
     height: 50px;
     border-radius: 50%;
-    background-color: var(--background-color); /* Background inicial para modo oscuro */
-    color: var(--text-color); 
+    background-color: var(--mode-background-color);
+    color: var(--mode-text-color); 
     border: none; 
     cursor: pointer; 
-    box-shadow: 0 2px 5px var(--hover-color);
+    box-shadow: 0 2px 5px var(--mode-hover-color);
     z-index: 1001; 
 }
 
