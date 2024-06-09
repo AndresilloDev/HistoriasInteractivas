@@ -206,7 +206,6 @@ input:-webkit-autofill {
     .label_name {
         font-size: 0.8rem;
         margin-left: 0.5rem;
-        height: fit-content;
     }
     
     .login {
