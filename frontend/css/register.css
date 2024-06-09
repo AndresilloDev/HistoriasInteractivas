@@ -98,7 +98,7 @@ input:-webkit-autofill {
 
 .input:focus + .label_name,
 .input:not(:placeholder-shown) + .label_name {
-    transform: translateY(-50%) scale(.9);
+    transform: translateY(-67%) scale(.9);
     background-color: var(--mode-card-color);
 }
 
@@ -197,6 +197,12 @@ input:-webkit-autofill {
         font-size:small;
     }
 
+    .input:focus + .label_name,
+    .input:not(:placeholder-shown) + .label_name {
+        transform: translateY(-60%) scale(.9);
+        background-color: var(--mode-card-color);
+    }
+
 }
 @media (max-width: 768px) {
     .card {
@@ -216,10 +222,17 @@ input:-webkit-autofill {
     .label_name {
         font-size: 0.8rem;
         margin-left: 0.5rem;
+        height: fit-content;
     }
     
     .login {
         height: 38px;
         border-radius: 5px;
+    }
+
+    .input:focus + .label_name,
+    .input:not(:placeholder-shown) + .label_name {
+        transform: translateY(-70%) scale(.9);
+        background-color: var(--mode-card-color);
     }
 }
