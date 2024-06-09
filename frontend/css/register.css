@@ -29,7 +29,6 @@ body {
 
 .hero {
     display: flex;
-    padding-top: 6rem;
     justify-content: center;
 }
 
@@ -45,14 +44,13 @@ body {
     text-align: left;
     padding-left: 1rem;
     padding-top: 1rem;
-    padding-bottom: 1.7rem;
 }
 
 form{
     font-family: 'Noto Sans JP', sans-serif;
     display: grid;
     grid-template-areas: "label" "input" "login";
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 .label {
@@ -60,7 +58,6 @@ form{
     display: grid;
     grid-template-areas: "input";
     width: 100%;
-    padding-bottom: 2rem;
 }
 
 .input {
@@ -83,7 +80,6 @@ input:-webkit-autofill {
 .label_name {
     grid-area: input;
     z-index: 100;
-    width: max-content;
     margin-left: 1rem;
     margin-top: 0.2rem;
     padding: 0 .7rem;
@@ -94,6 +90,10 @@ input:-webkit-autofill {
     transition: .3s;
     transform-origin: center left;
     color: var(--mode-hover-color);
+
+    width: max-content;
+    margin-right: 1rem;
+    box-sizing: border-box;
 }
 
 .input:focus + .label_name,
@@ -104,9 +104,9 @@ input:-webkit-autofill {
 
 .login {
     display: block;
-    margin: 0 auto;
+    margin: 0.6rem auto;
     width: 100%;
-    height: 40px;
+    height: 50px;
     border-radius: 10px;
     border: var(--mode-hover-color);
     background-color: var(--mode-hover-color);
@@ -147,6 +147,16 @@ input:-webkit-autofill {
     padding-top: 0.8rem;
 }
 
+.verification-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.verify-button{
+    font-size:medium;
+}
+
 @media (max-width: 1200px) {
     .card-title {
         font-size: 3rem;
@@ -161,7 +171,8 @@ input:-webkit-autofill {
     }
     
     .login {
-        height: 50px;
+        height: 52px;
+        border-radius: 10px;
     }
 }
 @media (max-width: 992px) {
@@ -178,7 +189,12 @@ input:-webkit-autofill {
     }
     
     .login {
-        height: 30px;
+        height: 48px;
+        border-radius: 7px;
+    }
+
+    .verify-button{
+        font-size:small;
     }
 
 }
@@ -203,6 +219,7 @@ input:-webkit-autofill {
     }
     
     .login {
-        height: 25px;
+        height: 38px;
+        border-radius: 5px;
     }
 }
