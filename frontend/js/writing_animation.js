@@ -16,7 +16,7 @@ const data = [
     }
 ];
 
-function typewriterEffect(elementId, words, colors, delay = 0) {
+function typewriterEffect(elementId, words, colors) {
     const element = document.getElementById(elementId);
     let currentWordIndex = 0;
     let currentCharIndex = 0;
@@ -51,9 +51,9 @@ function typewriterEffect(elementId, words, colors, delay = 0) {
         }
     }
 
-    setTimeout(type, delay);
+    type();
 }
 
 data.forEach(item => {
-    typewriterEffect(item.elementId, item.words, item.colors, Math.random() * 2000);
+    typewriterEffect(item.elementId, item.words, item.colors);
 });

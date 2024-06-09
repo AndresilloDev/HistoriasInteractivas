@@ -12,16 +12,20 @@
     font-size: 2.5em;
 }
 
+.brand:hover {
+    color: var(--mode-hover-color);
+}
+
 .nav-link,
 .dropdown-item {
     color: var(--default-nav-item-color);
     font-family: 'Noto Sans JP', sans-serif;
-    border-color: var(--default-nav-item-border-color);
+    border-color: var(--mode-hover-color);
 }
 
 .nav-link:hover{
     color: var(--default-nav-item-hover-color);
-    background-color: var(--default-nav-item-background-color);
+    background-color: var(--mode-hover-color);
 }
 
 .dropdown-menu {

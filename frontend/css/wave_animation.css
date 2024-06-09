@@ -1,9 +1,16 @@
-section .wave {
-    position: fixed;
+section .waves-container {
+    position: sticky;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: url(../resources/img/blueWave.png);
+}
+
+section .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: url(../resources/img/wave.png);
     background-size: 1500px 100px;
     filter: brightness(1.5);
 }

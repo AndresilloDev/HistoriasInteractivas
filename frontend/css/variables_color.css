@@ -1,25 +1,50 @@
 :root {
-    --default-text-color: #ffffff;
-    --default-nav-item-color: #0078D6;
-    --default-nav-item-hover-color: #95d0fd;
-    --default-nav-item-border-color: #0078D6;
-    --default-nav-item-background-color: #252525;
-    --default-dropdown-menu-background-color: #333;
-    --default-dropdown-item-color: #ffffff;
+    /* Colores base */
+    --primary-100: #6800FF ;   /* Morado primario */
+    --primary-200: #6c35de;   /* Morado más claro */
+    --primary-300: #ffc7ff;   /* Tono pastel de morado */
+    --accent-100: #cb80ff;    /* Color de acento (lila) */
+    --accent-200: #373737;    /* Gris oscuro para contraste */
+
+    /* Colores de texto */
+    --text-100: #ffffff;     /* Blanco (para fondos oscuros) */
+    --text-200: #121217;     /* Color de fondo oscuro */
+
+    /* Colores de fondo */
+    --bg-100: #121217;       /* Fondo oscuro */
+    --bg-200: #342a45;       /* Morado medio */
+    --bg-300: #ffffff;       /* Blanco */
+    --bg-400: #000920;       /* Morado oscuro */
 }
 
+/* Modo claro */
 .light-mode {
-    --mode-background-color: #fffbfb;
-    --mode-text-color: #161616;
-
-    --mode-hover-color: #0078D6;
-    --mode-hover-background-color: #cae8ff;
+    --mode-background-color: var(--bg-300);
+    --mode-text-color: var(--text-200);
+    --mode-hover-color: var(--primary-100);
+    --mode-hover-background-color: var(--primary-300);
+    --mode-shadow-color: rgba(0, 0, 0, 0.2);
+    --mode-card-color: var(--bg-300);
 }
 
+/* Modo oscuro */
 .dark-mode {
-    --mode-background-color: #161616;
-    --mode-text-color: #ffffff;
+    --mode-background-color: var(--bg-100);
+    --mode-text-color: var(--text-100);    
+    --mode-hover-color: var(--primary-200);
+    --mode-hover-background-color: var(--bg-200);
+    --mode-shadow-color: rgba(255, 255, 255, 0.2);
+    --mode-card-color: var(--bg-400);
+}
 
-    --mode-hover-color: #99d3ff;
-    --mode-hover-background-color: #262626;
+
+/* Colores por defecto para elementos de navegación */
+:root {
+    --default-text-color: var(--text-100);
+    --default-nav-item-color: var(--primary-200);
+    --default-nav-item-hover-color: var(--accent-100);
+    --default-nav-item-border-color: var(--primary-100);
+    --default-nav-item-background-color: var(--bg-200);
+    --default-dropdown-menu-background-color: var(--bg-200);
+    --default-dropdown-item-color: var(--text-100);
 }
