@@ -91,7 +91,7 @@ form{
 
 .input:focus + .label_name,
 .input:not(:placeholder-shown) + .label_name {
-    transform: translateY(-50%) scale(.7);
+    transform: translateY(-50%) scale(.9);
     background-color: var(--mode-card-color);
 }
 
@@ -181,7 +181,7 @@ form{
     }
     
     .card-title {
-        font-size: 1.5rem;
+        font-size: 2rem;
         padding-bottom: 2rem;
     }
     
