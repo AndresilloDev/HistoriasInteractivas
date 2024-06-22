@@ -1,6 +1,6 @@
 package mx.edu.utez.historiasinteractivas.model;
 
-public class Usuario {
+public class Users {
 
     private String email;
     private int user_type;
@@ -11,12 +11,12 @@ public class Usuario {
     private String password;
     private String user;
     private boolean status;
-    public Usuario() {
+    public Users() {
     }
     //
 
 
-    public Usuario(String email, int user_type, String token, String name, String first_last_name, String last_last_name, String password, String user, boolean status) {
+    public Users(String email, int user_type, String token, String name, String first_last_name, String last_last_name, String password, String user, boolean status) {
         this.email = email;
         this.user_type = user_type;
         this.token = token;
@@ -28,7 +28,7 @@ public class Usuario {
         this.status = status;
     }
 
-    public Usuario(String email, String user, String password, String last_last_name, String first_last_name, String name, String token) {
+    public Users(String email, String user, String password, String last_last_name, String first_last_name, String name, String token) {
         this.email = email;
         this.user = user;
         this.password = password;
@@ -38,7 +38,7 @@ public class Usuario {
         this.token = token;
     }
 
-    public Usuario(String password, String email) {
+    public Users(String password, String email) {
         this.password = password;
         this.email = email;
     }

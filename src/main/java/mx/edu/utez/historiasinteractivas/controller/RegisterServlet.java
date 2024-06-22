@@ -6,7 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
-import mx.edu.utez.historiasinteractivas.model.Usuario;
+import mx.edu.utez.historiasinteractivas.model.Users;
+
 
 import java.io.IOException;
 
@@ -29,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else {
             UsuarioDao usuarioDao = new UsuarioDao();
-            Usuario usuario = new Usuario(email, token, name, first_last_name, last_last_name, password, user);
+            Users usuario = new Users(email, token, name, first_last_name, last_last_name, password, user);
             if (usuarioDao.insert(usuario)) {
                 resp.sendRedirect("index.jsp");
             } else {

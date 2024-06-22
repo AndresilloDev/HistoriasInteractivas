@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
-import mx.edu.utez.historiasinteractivas.model.Usuario;
+import mx.edu.utez.historiasinteractivas.model.Users;
 
 import java.io.IOException;
 
@@ -15,22 +15,29 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int code = (int) (Math.random() * 999999);
 
-        // Obtener parámetros del form
+        //Conseguimos la info del formulario
+        //donde los inputs se llamen asi:
         String email = req.getParameter("email");
-        String password  = req.getParameter("password");
+        String password = req.getParameter("password");
 
+        UsuarioDao dao = new UsuarioDao();
 
-        UsuarioDao usuarioDao = new UsuarioDao();
-        Usuario usuario = new Usuario(email, password);
+        //Si el usuario esta vacio
+        Users usr = dao.getOne(email, password);
+            if(usr.getEmail() == null){
+                //Es porque no existe en la base de datos
+                System.out.println("El usuario " + email + " No existe en la BD");
 
-        if (usuarioDao.existsUser(usuario)){ //La función verifica si existe el usuario
-            resp.sendRedirect("index.jsp");
-        } else {
-            req.setAttribute("errorMessage", "No existe la cuenta");
-        }
+                HttpSession session = req.getSession();
+                session.setAttribute("mensaje","El usuario no existe en la BD");
 
+                resp.sendRedirect("login.jsp");
+            }else{
+                //Si existe en la base de datos
+                System.out.println("El usuario " + email + " Si esta en la BD");
+                resp.sendRedirect("index.jsp");
+            }
     }
 
     @Override
