@@ -18,9 +18,11 @@ public class RegisterServlet extends HttpServlet {
         int code = (int) (Math.random() * 999999);
 
         // Obtener parámetros del form
-        String user = req.getParameter("user");
-        String name = req.getParameter("name");
         String email = req.getParameter("email");
+        String name = req.getParameter("name");
+        String first_last_name = req.getParameter("first_last_name");
+        String last_last_name = req.getParameter("last_last_name");
+        String user = req.getParameter("user");
         int verification_code = Integer.parseInt(req.getParameter("verification_code"));
         String password = req.getParameter("password");
         String confirm_password = req.getParameter("confirm_password");
@@ -32,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else {
             UsuarioDao usuarioDao = new UsuarioDao();
-            Usuario usuario = new Usuario(user, name, password, email);
+            Usuario usuario = new Usuario(email, name, first_last_name, last_last_name, password, user);
 
             //usuarioDao.insert(usuario);
 
