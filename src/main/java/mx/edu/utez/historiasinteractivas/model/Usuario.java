@@ -10,6 +10,7 @@ public class Usuario {
     private String user;
     public Usuario() {
     }
+    //
 
     public Usuario(String email, String name, String first_last_name, String last_last_name, String password, String user) {
         this.email = email;

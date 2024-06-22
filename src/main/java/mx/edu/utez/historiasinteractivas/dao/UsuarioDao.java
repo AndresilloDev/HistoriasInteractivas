@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class UsuarioDao {
     //CRUD para usuario
-    //Read para un usuario
+    //Read para un usuario.
     public Usuario getOne(String email, String name, String first_last_name, String last_last_name, String password, String user) {
         Usuario usuario = new Usuario();
         String query = "select * from Usuario where email = ? and name = ? and first_last_name = ? and last_last_name = ? and password = ? and user = ?;";

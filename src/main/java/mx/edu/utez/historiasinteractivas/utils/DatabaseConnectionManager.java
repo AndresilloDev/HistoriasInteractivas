@@ -25,7 +25,7 @@ public class DatabaseConnectionManager {
         // La neta, no se porque no jala, seguire haciendo pruebas en mi compu y les aviso cuando funcione xd
         // AVISO | el nombre de la base de datos es "historiasinteractivasDB" y la base de datos esta en el drive
         // por si la quieren descargar y usar, sera un bloc de notas, para poder modificarla y que puedan descargar
-        // la más reciente con los cambios hechos.
+        // la más reciente con los cambios hechos..
 
 
         config.setJdbcUrl(JDBC_URL);

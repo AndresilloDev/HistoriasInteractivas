@@ -36,7 +36,7 @@ public class RegisterServlet extends HttpServlet {
             UsuarioDao usuarioDao = new UsuarioDao();
             Usuario usuario = new Usuario(email, name, first_last_name, last_last_name, password, user);
 
-            //usuarioDao.insert(usuario);
+            //usuarioDao.insert(usuario);.
 
             resp.sendRedirect("index.jsp");
         }
