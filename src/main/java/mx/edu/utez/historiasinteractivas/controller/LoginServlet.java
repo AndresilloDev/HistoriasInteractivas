@@ -18,12 +18,12 @@ public class LoginServlet extends HttpServlet {
         int code = (int) (Math.random() * 999999);
 
         // Obtener parámetros del form
-        String user = req.getParameter("user");
+        String email = req.getParameter("email");
         String password  = req.getParameter("password");
 
 
         UsuarioDao usuarioDao = new UsuarioDao();
-        Usuario usuario = new Usuario(user, password);
+        Usuario usuario = new Usuario(email, password);
 
         if (usuarioDao.existsUser(usuario)){ //La función verifica si existe el usuario
             resp.sendRedirect("index.jsp");

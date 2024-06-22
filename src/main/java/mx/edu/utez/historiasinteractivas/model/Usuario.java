@@ -3,27 +3,44 @@ package mx.edu.utez.historiasinteractivas.model;
 public class Usuario {
 
     private String email;
+    private int user_type;
+    private String token;
     private String name;
     private String first_last_name;
     private String last_last_name;
     private String password;
     private String user;
+    private boolean status;
     public Usuario() {
     }
     //
 
-    public Usuario(String email, String name, String first_last_name, String last_last_name, String password, String user) {
+
+    public Usuario(String email, int user_type, String token, String name, String first_last_name, String last_last_name, String password, String user, boolean status) {
         this.email = email;
+        this.user_type = user_type;
+        this.token = token;
         this.name = name;
         this.first_last_name = first_last_name;
         this.last_last_name = last_last_name;
         this.password = password;
         this.user = user;
+        this.status = status;
     }
 
-    public Usuario(String user, String password) {
+    public Usuario(String email, String user, String password, String last_last_name, String first_last_name, String name, String token) {
+        this.email = email;
         this.user = user;
         this.password = password;
+        this.last_last_name = last_last_name;
+        this.first_last_name = first_last_name;
+        this.name = name;
+        this.token = token;
+    }
+
+    public Usuario(String password, String email) {
+        this.password = password;
+        this.email = email;
     }
 
     public String getEmail() {
@@ -32,6 +49,22 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(int user_type) {
+        this.user_type = user_type;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getName() {
@@ -72,5 +105,13 @@ public class Usuario {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
