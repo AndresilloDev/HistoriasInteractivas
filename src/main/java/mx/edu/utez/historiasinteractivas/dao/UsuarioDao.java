@@ -23,8 +23,8 @@ public class UsuarioDao {
             ps.getResultSet();
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                usuario.setNombre(rs.getString("nombre"));
-                usuario.setContra(rs.getString("contra"));
+                usuario.setName(rs.getString("nombre"));
+                usuario.setPassword(rs.getString("contra"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -35,5 +35,9 @@ public class UsuarioDao {
     public String insert(Usuario user){
 
         return "";
+    }
+
+    public boolean existsUser(Usuario user) {
+        return true;
     }
 }

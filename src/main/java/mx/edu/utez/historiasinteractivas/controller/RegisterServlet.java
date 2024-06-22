@@ -11,11 +11,11 @@ import mx.edu.utez.historiasinteractivas.model.Usuario;
 
 import java.io.IOException;
 
-@WebServlet(name="RegisterServlet", value="/register")
+@WebServlet(name = "RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int code = (int) (Math.random()*999999);
+        int code = (int) (Math.random() * 999999);
 
         // Obtener parámetros del form
         String user = req.getParameter("user");
@@ -23,14 +23,21 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         int verification_code = Integer.parseInt(req.getParameter("verification_code"));
         String password = req.getParameter("password");
-        String confirm_password = req.getParameter("password");
+        String confirm_password = req.getParameter("confirm_password");
 
-        confirm_code(verification_code, resp);
+        // confirm_code(verification_code, resp);
 
-        UsuarioDao usuarioDao = new UsuarioDao();
-        Usuario usuario = new Usuario(user, name, email);
+        if (!password.equals(confirm_password)) {
+            req.setAttribute("errorMessage", "¡Las contraseñas no coinciden!");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
+        } else {
+            UsuarioDao usuarioDao = new UsuarioDao();
+            Usuario usuario = new Usuario(user, name, password, email);
 
-        usuarioDao.insert(usuario);
+            //usuarioDao.insert(usuario);
+
+            resp.sendRedirect("index.jsp");
+        }
 
     }
 

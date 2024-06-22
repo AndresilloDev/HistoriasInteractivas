@@ -57,7 +57,7 @@
                             </label>
 
                             <label class="label">
-                                <input name="password" type="password" placeholder=" " class="input" required>
+                                <input name="confirm_password" type="password" placeholder=" " class="input" required>
                                 <span class="label_name">Confirmar contraseña</span>
                             </label>
 

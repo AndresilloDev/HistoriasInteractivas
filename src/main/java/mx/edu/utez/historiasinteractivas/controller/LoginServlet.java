@@ -15,22 +15,22 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int code = (int) (Math.random() * 999999);
+
         // Obtener parámetros del form
-        String nombre = req.getParameter("nombre");
-        String contra = req.getParameter("contra");
+        String user = req.getParameter("user");
+        String password  = req.getParameter("password");
+
 
         UsuarioDao usuarioDao = new UsuarioDao();
-        Usuario usuario = usuarioDao.getOne(nombre, contra);
+        Usuario usuario = new Usuario(user, password);
 
-        if (usuario == null) {
-            System.out.println("Usuario incorrecto cuh");
-            HttpSession session = req.getSession();
-            session.setAttribute("mensaje", "Usuario incorrecto cuh");
-            resp.sendRedirect("/login");
+        if (usuarioDao.existsUser(usuario)){ //La función verifica si existe el usuario
+            resp.sendRedirect("index.jsp");
         } else {
-            System.out.printf("Login válido");
-            req.getSession().setAttribute("usuario", usuario);
+            req.setAttribute("errorMessage", "No existe la cuenta");
         }
+
     }
 
     @Override
