@@ -5,9 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
-import mx.edu.utez.historiasinteractivas.model.Users;
 
 import java.io.IOException;
 
@@ -23,21 +21,22 @@ public class LoginServlet extends HttpServlet {
 
         UsuarioDao dao = new UsuarioDao();
 
-        //Si el usuario esta vacio
-        Users usr = dao.getOne(email, password);
-            if(usr.getEmail() == null){
-                //Es porque no existe en la base de datos
-                System.out.println("El usuario " + email + " No existe en la BD");
+        //Se verifica si el usuario existe
+        if(dao.existsUser(email, password)){
+            //Si existe en la base de datos
+            System.out.println("El usuario " + email + " Si esta en la BD");
+            resp.sendRedirect("index.jsp");
 
-                HttpSession session = req.getSession();
-                session.setAttribute("mensaje","El usuario no existe en la BD");
+        }else{
+            //Es porque no existe en la base de datos
+            System.out.println("El usuario " + email + " No existe en la BD");
 
-                resp.sendRedirect("login.jsp");
-            }else{
-                //Si existe en la base de datos
-                System.out.println("El usuario " + email + " Si esta en la BD");
-                resp.sendRedirect("index.jsp");
-            }
+            //HttpSession session = req.getSession();
+            //session.setAttribute("mensaje","El usuario no existe en la BD");
+
+            resp.sendRedirect("login.jsp");
+
+        }
     }
 
     @Override

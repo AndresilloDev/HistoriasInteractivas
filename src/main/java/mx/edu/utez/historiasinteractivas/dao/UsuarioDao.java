@@ -4,10 +4,7 @@ package mx.edu.utez.historiasinteractivas.dao;
 import mx.edu.utez.historiasinteractivas.model.Users;
 import mx.edu.utez.historiasinteractivas.utils.DatabaseConnectionManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UsuarioDao {
 
@@ -53,7 +50,23 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public boolean existsUser(Users user) {
-        return true;
+    public boolean existsUser(String email, String password) {
+        String query ="call seekUser(?,?)";
+        try {
+            Connection con = DatabaseConnectionManager.getConnection();
+            CallableStatement stmt = con.prepareCall(query);
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            stmt.execute();
+            final ResultSet rs = stmt.getResultSet();
+            if (rs.next()) {
+                return rs.getBoolean("status");
+                //uwu
+                //hombres >>> mujeres
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 }

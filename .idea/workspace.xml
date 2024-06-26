@@ -10,13 +10,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Erikitirijiyo commit, aun no funciona la bd, pero en teoria ya estan todos los datos necesarios :D">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/model/Users.java" afterDir="false" />
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Erikitirijiyo commit, ya esta conectada a la base de datos, algo bien, se termino lo de inicio de sesión y se modifico el jsp de login (email), faltaria la pagina para redirigir cuando el inicio de sesión es exitoso.&#10;// nota // como la base de datos, no tiene datos, no tendria que redirigir a ninguna otra pagina.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/RegisterServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/model/Usuario.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -175,8 +172,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="jdk-21.0.2-temurin-21.0.2-4caba194b151-7da56cdf" />
       </set>
     </attachedChunks>
   </component>
@@ -198,6 +194,12 @@
       <workItem from="1719070498136" duration="6568000" />
       <workItem from="1719089132180" duration="162000" />
       <workItem from="1719089642073" duration="3394000" />
+      <workItem from="1719096831870" duration="7000" />
+      <workItem from="1719253659139" duration="600000" />
+      <workItem from="1719259790032" duration="1174000" />
+      <workItem from="1719297299233" duration="4518000" />
+      <workItem from="1719349680383" duration="2165000" />
+      <workItem from="1719353706856" duration="1401000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -215,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719078887960</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Erikitirijiyo commit, ya esta conectada a la base de datos, algo bien, se termino lo de inicio de sesión y se modifico el jsp de login (email), faltaria la pagina para redirigir cuando el inicio de sesión es exitoso.&#10;// nota // como la base de datos, no tiene datos, no tendria que redirigir a ninguna otra pagina.">
+      <option name="closed" value="true" />
+      <created>1719096776523</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1719096776523</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,7 +234,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="Erikitirijiyo commit, aun no funciona la bd, pero en teoria ya estan todos los datos necesarios :D" />
-    <option name="LAST_COMMIT_MESSAGE" value="Erikitirijiyo commit, aun no funciona la bd, pero en teoria ya estan todos los datos necesarios :D" />
+    <MESSAGE value="Erikitirijiyo commit, ya esta conectada a la base de datos, algo bien, se termino lo de inicio de sesión y se modifico el jsp de login (email), faltaria la pagina para redirigir cuando el inicio de sesión es exitoso.&#10;// nota // como la base de datos, no tiene datos, no tendria que redirigir a ninguna otra pagina." />
+    <option name="LAST_COMMIT_MESSAGE" value="Erikitirijiyo commit, ya esta conectada a la base de datos, algo bien, se termino lo de inicio de sesión y se modifico el jsp de login (email), faltaria la pagina para redirigir cuando el inicio de sesión es exitoso.&#10;// nota // como la base de datos, no tiene datos, no tendria que redirigir a ninguna otra pagina." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
