@@ -50,7 +50,8 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public boolean existsUser(String email, String password) {
+    public Users existsUser(String email, String password) {
+        Users usuario = new Users();
         String query ="call seekUser(?,?)";
         try {
             Connection con = DatabaseConnectionManager.getConnection();
@@ -60,13 +61,12 @@ public class UsuarioDao {
             stmt.execute();
             final ResultSet rs = stmt.getResultSet();
             if (rs.next()) {
-                return rs.getBoolean("status");
-                //uwu
-                //hombres >>> mujeres
+                usuario.setStatus(rs.getBoolean("status"));
+                usuario.setUser_type(rs.getInt("user_type"));
             }
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
-        return false;
+        return usuario;
     }
 }

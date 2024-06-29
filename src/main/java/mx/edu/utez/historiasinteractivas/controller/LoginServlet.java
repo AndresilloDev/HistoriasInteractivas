@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
+import mx.edu.utez.historiasinteractivas.model.Users;
 
 import java.io.IOException;
 
@@ -19,21 +20,19 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
+        //Se extrae si el usuario existe y su tipo de usuario
         UsuarioDao dao = new UsuarioDao();
+        Users user = dao.existsUser(email, password);
 
-        //Se verifica si el usuario existe
-        if(dao.existsUser(email, password)){
-            //Si existe en la base de datos
-            System.out.println("El usuario " + email + " Si esta en la BD");
-            resp.sendRedirect("index.jsp");
+        if(user.isStatus() ){ //Se verifica si el usuario existe
+            if(user.getUser_type() == 1) { //El usuario es un npc
+                resp.sendRedirect("index.jsp");
 
-        }else{
-            //Es porque no existe en la base de datos
-            System.out.println("El usuario " + email + " No existe en la BD");
+            } else if(user.getUser_type() == 2){ //El usuario es premium
+                resp.sendRedirect("paginaNoCreadaParaAdministrador");
 
-            //HttpSession session = req.getSession();
-            //session.setAttribute("mensaje","El usuario no existe en la BD");
-
+            }
+        }else{ // El usuario no existe o no escribio bien su usuario y contraseña
             resp.sendRedirect("login.jsp");
 
         }
