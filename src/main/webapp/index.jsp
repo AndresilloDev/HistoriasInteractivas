@@ -14,13 +14,20 @@
 
 <body class="light-mode">
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand">
+<nav class="navbar navbar-expand" id="navbarSection">
     <div class="container-fluid">
         <a class="brand" href="index.jsp">LOGO</a>
-        <div class="justify-content-end" id="navbarNav">
+        <div class="justify-content-end">
             <ul class="navbar-nav">
-                <li class="nav-item" id="loginButton">
-                    <a class="nav-link btn btn-outline-primary rounded-pill" href="login.jsp"> <img src="resources/img/userIcon.png" height=25px class=""> Acceder</a>
+                <li class="nav-item" id="navThemeButton">
+                    <button id="themeButton">
+                        <img id="themeIcon" src="resources/img/moon_icon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
+                    </button>
+                </li>
+                <li class="nav-item" id="navLoginButton">
+                    <a class="nav-link btn rounded-pill" href="login.jsp" id="loginButton">
+                        <img src="resources/img/userIcon.png" id="loginIcon" alt="iconoAcceder"> Acceder
+                    </a>
                 </li>
                 <li class="nav-item dropdown" id="profileDropdown" style="display: none;">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,36 +44,34 @@
     </div>
 </nav>
 
-<button id="themeSwitch" class="floating-button">
-    <img id="themeIcon" src="resources/img/moon_icon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
-</button>
-
 <!-- TITLE -->
-<section class="hero">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 text-center text-md-start">
-                <h1 class="display-1 fw-bold">Historias Interactivas</h1>
-                <div class="login-div">
-                    <a href="login.jsp" class="mt-3">¡Crea una historia!</a>
-                </div>
+<section class="hero" id="sectionOne">
+    <div class="row">
+        <div class="col-md-7 text-center text-md-start">
+            <h1 class="display-1 fw-bold" id="title">Historias Interactivas</h1>
+            <a href="login.jsp" class="mt-3" id="createHistoryButton">¡Crea una historia!</a>
+        </div>
+        <div class="col-md-5">
+            <div class="animated-text">
+                <span id="typewriter1"></span>
+                <span id="typewriter2"></span>
+                <span id="typewriter3"></span>
             </div>
-            <div class="col-md-6 text-left">
-                <div class="animated-text">
-                    <span id="typewriter1"></span>
-                    <span id="typewriter2"></span>
-                    <span id="typewriter3"></span>
-                </div>
-            </div>
-            <div class="row justify-content-center" id="div-search">
-                <input  id="search" class="col-md-10 text-left" placeholder="Ingrese el link de la historia" type="text">
-            </div>
+        </div>
+        <div class="row justify-content-center" id="div-search">
+            <input  id="search" class="col-md-10 text-left" placeholder="Ingrese el link de la historia" type="text">
         </div>
     </div>
 </section>
 
 <!-- WAVES ANIMATION -->
-<section class="waves-container">
+
+<section class="waves-container1">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+</section>
+<section class="waves-container2" style="rotate: 180deg">
     <div class="wave wave1"></div>
     <div class="wave wave2"></div>
     <div class="wave wave3"></div>

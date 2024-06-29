@@ -1,11 +1,24 @@
-section .waves-container {
-    position: sticky;
+.waves-container1 {
+    padding-top: 10vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /*para la versioon logeada poner position relative
+    position: relative:
+    */
+}
+
+.waves-container2 {
+    display: none;
+    /*En la version logeada quitar el display none*/
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
 }
 
-section .wave {
+.wave {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -15,7 +28,7 @@ section .wave {
     filter: brightness(1.5);
 }
 
-section .wave.wave1 {
+.wave.wave1 {
     animation: animate 35s linear infinite;
     z-index: 1000;
     animation-delay: -12s;
@@ -23,7 +36,7 @@ section .wave.wave1 {
     height: 100px;
 }
 
-section .wave.wave2 {
+.wave.wave2 {
     animation: animate2 10s linear infinite;
     z-index: 999;
     bottom: 10px;
@@ -31,7 +44,7 @@ section .wave.wave2 {
     height: 110px;
 }
 
-section .wave.wave3 {
+.wave.wave3 {
     animation: animate 15s linear infinite;
     z-index: 998;
     animation-delay: -12s;
@@ -42,7 +55,7 @@ section .wave.wave3 {
 
 @keyframes animate {
     0% {
-        background-position-x: 0px;
+        background-position-x: 0;
     }
     100% {
         background-position-x: -1500px;
@@ -51,7 +64,7 @@ section .wave.wave3 {
 
 @keyframes animate2 {
     0% {
-        background-position-x: 0px;
+        background-position-x: 0;
     }
     100% {
         background-position-x: -1500px;
