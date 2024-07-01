@@ -61,14 +61,13 @@
                 <span id="typewriter3"></span>
             </div>
         </div>
-        <div class="row justify-content-center" id="div-search">
-            <input  id="search" class="col-md-10 text-left" placeholder="Ingrese el link de la historia" type="text">
-        </div>
+    </div>
+    <div class="row justify-content-center" id="div-search">
+        <input  id="search" class="col-md-10 text-left" placeholder="Ingrese el link de la historia" type="text">
     </div>
 </section>
 
 <!-- WAVES ANIMATION -->
-
 <section class="waves-container1">
     <div class="wave wave1"></div>
     <div class="wave wave2"></div>

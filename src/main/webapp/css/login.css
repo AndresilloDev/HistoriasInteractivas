@@ -1,25 +1,22 @@
 @import url('variables_color.css');
-
 body {
     font-family: 'Hammersmith One', sans-serif;
     background-color: var(--mode-background-color);
     color: var(--mode-text-color);
 }
-
 #card {
     background-color: var(--mode-card-color);
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 40vw;
+    width: 50vw;
+    z-index: 1003;
 }
-
 #card-title {
     text-align: center;
     font-size: 4vw;
     padding-inline: 2vw;
     padding-top: 2vw;
 }
-
 form{
     font-family: 'Noto Sans JP', sans-serif;
     display: grid;
@@ -28,15 +25,12 @@ form{
     padding-top: 2vw;
     padding-bottom: 2vw;
 }
-
 .label {
-    /*margin: 15px auto;*/
     display: grid;
     grid-template-areas: "input";
     width: 100%;
     padding-bottom: 2.2rem;
 }
-
 .input {
     grid-area: input;
     width: 100%;
@@ -47,13 +41,11 @@ form{
     background-color: var(--mode-card-color);
     color: var(--mode-text-color);
 }
-
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px var(--mode-card-color) inset;
     box-shadow: 0 0 0 1000px var(--mode-card-color) inset;
     -webkit-text-fill-color: var(--mode-text-color) !important;
 }
-
 .label_name {
     grid-area: input;
     z-index: 100;
@@ -68,14 +60,12 @@ input:-webkit-autofill {
     font-size: 1.2vw;
     padding: 0.5vw;
 }
-
 .input:focus + .label_name,
 .input:not(:placeholder-shown) + .label_name {
     transform: translateY(-55%) scale(.9);
     background-color: var(--mode-card-color);
     height:min-content;
 }
-
 .login {
     display: block;
     margin-bottom: 0.8rem;
@@ -88,12 +78,10 @@ input:-webkit-autofill {
     transition: 0.2s;
     font-size: 1.5vw;
 }
-
 .login:hover {
     box-shadow: 2px 4px 8px var(--mode-shadow-color);
     transition: box-shadow 0.3s ease;
 }
-
 .forgot {
     color: var(--mode-text-color);
     text-decoration: none;
@@ -104,7 +92,6 @@ input:-webkit-autofill {
     transition: .3s;
     cursor: pointer;
 }
-
 .register {
     color: var(--mode-text-color);
     text-decoration: none;
@@ -115,17 +102,13 @@ input:-webkit-autofill {
     transition: .3s;
     cursor: pointer;
 }
-
 .text-end {
     padding-top: 0.8rem;
 }
-
 @media (0px <= width <= 767px) {
-
     #card-title {
         font-size: 8vw;
     }
-
     #card {
         width: 100vw;
         height: 100vh;
@@ -133,29 +116,23 @@ input:-webkit-autofill {
         border-color: transparent;
         box-shadow: none;
     }
-
     .input {
         background-color: transparent;
     }
-
     .label_name {
         font-size: 3.5vw;
     }
-
     .input:focus + .label_name,
     .input:not(:placeholder-shown) + .label_name {
         background-color: var(--mode-background-color);
         transform: translateY(-55%) scale(.7);
     }
-
     .login {
         font-size: 4vw;
     }
-
     .forgot {
         font-size: 3.5vw;
     }
-
     .register {
         font-size: 3.5vw;
     }

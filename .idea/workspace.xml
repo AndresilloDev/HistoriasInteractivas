@@ -10,11 +10,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Agregue algunos bugs para poder solucionarlos despues">
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Login corregido">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/RegisterServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/css/index_layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/index_layout.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/nav.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/nav.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/register.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/wave_animation.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/wave_animation.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +37,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LogFilters">
@@ -203,7 +222,7 @@
       <workItem from="1719353706856" duration="1401000" />
       <workItem from="1719799202897" duration="958000" />
       <workItem from="1719800453720" duration="85000" />
-      <workItem from="1719800712432" duration="1739000" />
+      <workItem from="1719800712432" duration="5358000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -229,7 +248,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719096776523</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Login corregido">
+      <option name="closed" value="true" />
+      <created>1719802538329</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1719802538329</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +277,8 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="Erikitirijiyo commit, aun no funciona la bd, pero en teoria ya estan todos los datos necesarios :D" />
     <MESSAGE value="Erikitirijiyo commit, ya esta conectada a la base de datos, algo bien, se termino lo de inicio de sesión y se modifico el jsp de login (email), faltaria la pagina para redirigir cuando el inicio de sesión es exitoso.&#10;// nota // como la base de datos, no tiene datos, no tendria que redirigir a ninguna otra pagina." />
-    <option name="LAST_COMMIT_MESSAGE" value="Erikitirijiyo commit, ya esta conectada a la base de datos, algo bien, se termino lo de inicio de sesión y se modifico el jsp de login (email), faltaria la pagina para redirigir cuando el inicio de sesión es exitoso.&#10;// nota // como la base de datos, no tiene datos, no tendria que redirigir a ninguna otra pagina." />
+    <MESSAGE value="Login corregido" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login corregido" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

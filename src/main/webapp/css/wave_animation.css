@@ -8,7 +8,6 @@
     position: relative:
     */
 }
-
 .waves-container2 {
     display: none;
     /*En la version logeada quitar el display none*/
@@ -17,7 +16,6 @@
     left: 0;
     width: 100%;
 }
-
 .wave {
     position: absolute;
     bottom: 0;
@@ -27,7 +25,6 @@
     background-size: 1500px 100px;
     filter: brightness(1.5);
 }
-
 .wave.wave1 {
     animation: animate 35s linear infinite;
     z-index: 1000;
@@ -35,7 +32,6 @@
     filter: brightness(1.3); 
     height: 100px;
 }
-
 .wave.wave2 {
     animation: animate2 10s linear infinite;
     z-index: 999;
@@ -43,7 +39,6 @@
     filter: brightness(1.1);
     height: 110px;
 }
-
 .wave.wave3 {
     animation: animate 15s linear infinite;
     z-index: 998;
@@ -52,7 +47,6 @@
     filter: brightness(0.9);
     height: 120px;
 }
-
 @keyframes animate {
     0% {
         background-position-x: 0;
@@ -61,7 +55,6 @@
         background-position-x: -1500px;
     }
 }
-
 @keyframes animate2 {
     0% {
         background-position-x: 0;

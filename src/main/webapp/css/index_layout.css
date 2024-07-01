@@ -1,21 +1,17 @@
 @import url('variables_color.css');
-
 body {
     font-family: 'Hammersmith One', sans-serif;
     background-color: var(--mode-background-color);
     color: var(--mode-text-color);
 }
-
 #sectionOne {
     padding: 5vh 8vw;
     position: relative;
 }
-
 .word {
     display: block;
     font-size: 8vw;
 }
-
 #createHistoryButton {
     background-color: var(--mode-hover-color);
     color: var(--mode-background-color);
@@ -29,19 +25,15 @@ body {
     font-size: 2vw;
 
 }
-
 #createHistoryButton:hover {
     box-shadow: 2px 4px 8px var(--mode-shadow-color);
     transition: box-shadow 0.3s ease;
 }
-
-
 .hero .animated-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
 #typewriter1{
     font-size: 6vw;
     padding-left: 2rem;
@@ -54,12 +46,10 @@ body {
     font-size: 6vw;
     padding-left: 2rem;
 }
-
 #div-search {
     padding-top: 2vh;
     margin: auto 0;
 }
-
 #search {
     z-index: 1001;
     background-color: var(--mode-background-color);
@@ -73,43 +63,35 @@ body {
     box-shadow: 0 4px 8px var(--mode-shadow-color);
     font-family: 'Noto Sans JP',sans-serif;
 }
-
 #search:focus {
     outline: none;
     box-shadow: 0 6px 12px var(--mode-shadow-color);
     border-color: var(--mode-hover-color);
 }
-
 #search::placeholder {
     color: var(--mode-text-color);
     opacity: 0.7;
 }
-
 /*Media queries*/
 @media (0px <= width <= 767px) {
-
     #createHistoryButton {
         display: none;
     }
-
     #sectionOne {
         padding: 15vh 2vw;
     }
     .word {
         font-size: 16vw;
     }
-
     #search {
         text-align: center;
         font-size: 4vw;
     }
-
     #typewriter1{
         padding: 1vh;
         padding-left: 0;
         margin: auto;
     }
-
     #typewriter2{
         padding: 1.7vw;
         padding-left: 0;

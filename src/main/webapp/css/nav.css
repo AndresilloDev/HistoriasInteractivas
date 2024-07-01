@@ -9,21 +9,16 @@
     text-decoration: none;
     font-size: 3rem;
 }
-
 .brand:hover {
     color: var(--mode-hover-color);
     transition: 0.3s ease;
 }
-
-/*Boton para acceder*/
 #navLoginButton {
     padding: 0.3rem 0.5rem;
 }
-
 #navLoginButton:hover{
     background-color: transparent;
 }
-
 #loginButton {
     color: var(--mode-hover-color);
     border-color: var(--mode-hover-color);
@@ -31,17 +26,13 @@
     font-size: 1rem;
     padding: 0.3rem 0.5rem;
 }
-
 #loginIcon {
     width: 1.5rem;
     height: 1.5rem;
 }
-
-/*Boton para cambiar el tema*/
 #navThemeButton {
     padding: 0.3rem 0.5rem;
 }
-
 #themeButton {
     background-color: var(--mode-background-color);
     border-color: var(--mode-hover-color);
@@ -49,35 +40,28 @@
     border-radius: 50%;
     padding: 0.3rem 0.35rem;
 }
-
 #themeIcon {
     width: 1.5rem;
     height: 1.5rem;
 }
-
 /*Media queries*/
 @media (768px <= width <= 1200px) {
     #navbarSection {
         padding: 0.8rem 0.8rem;
     }
-
     .brand {
         font-size: 2.5rem;
     }
-
     #loginButton {
         font-size: 1rem;
     }
-
     #loginIcon {
         width: 1.3rem;
         height: 1.3rem;
     }
-
     #themeButton {
         padding: 0.3rem 0.4rem;
     }
-
     #themeIcon {
         width: 1.3rem;
         height: 1.3rem;
@@ -88,24 +72,19 @@
     #navbarSection {
         padding: 0.5rem 0.5rem;
     }
-
     .brand {
         font-size: 2rem;
     }
-
     #loginButton {
         font-size: 0.8rem;
     }
-
     #loginIcon {
         width: 1.2rem;
         height: 1.2rem;
     }
-
     #themeButton {
         padding: 0.2rem 0.4rem;
     }
-
     #themeIcon {
         width: 1.2rem;
         height: 1.2rem;
