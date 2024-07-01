@@ -28,26 +28,24 @@
   </div>
 </nav>
 
-    <div class="row justify-content-center py-5">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-4">
-        <div class="card mx-auto" id="card">
-            <h1 class="card-title text-left" id="card-title">Iniciar Sesión</h1>
-            <form id="loginForm" action="login" method="post" autocomplete="off">
-              <label class="label">
-                <input name="email" type="text" placeholder=" " class="input" required>
-                <span class="label_name">Correo electrónico o Usuario</span>
-              </label>
-              <label class="label">
-                <input name="password" type="password" placeholder=" " class="input" required>
-                <span class="label_name">Contraseña</span>
-                <span class="text-end"><a href="#" class="forgot">¿Olvidaste tu contraseña?</a></span>
-              </label>
-              <button id="login-button" class="login" type="submit">Iniciar sesión</button>
-              <span class="text-end"><a href="register.jsp" class="register">¿No tienes cuenta? Regístrate</a></span>
-            </form>
-        </div>
-      </div>
-    </div>
+<div class="row mx-0 justify-content-center">
+  <div class="card" id="card">
+    <h1 class="card-title text-left" id="card-title">Iniciar Sesión</h1>
+    <form id="loginForm" action="login" method="post" autocomplete="off">
+      <label class="label">
+        <input name="email" type="text" placeholder=" " class="input" required>
+        <span class="label_name">Correo electrónico o Usuario</span>
+      </label>
+      <label class="label">
+        <input name="password" type="password" placeholder=" " class="input" required>
+        <span class="label_name">Contraseña</span>
+        <span class="text-end"><a href="#" class="forgot">¿Olvidaste tu contraseña?</a></span>
+      </label>
+      <button id="login-button" class="login" type="submit">Iniciar sesión</button>
+      <span class="text-end"><a href="register.jsp" class="register">¿No tienes cuenta? Regístrate</a></span>
+    </form>
+  </div>
+</div>
 
 <section class="waves-container">
   <div class="wave wave1" style="position: fixed"></div>

@@ -10,27 +10,31 @@ body {
     background-color: var(--mode-card-color);
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 40vw;
 }
 
 #card-title {
-    font-size: 50%;
-    text-align: left;
-    padding: 2vw;
+    text-align: center;
+    font-size: 4vw;
+    padding-inline: 2vw;
+    padding-top: 2vw;
 }
 
 form{
     font-family: 'Noto Sans JP', sans-serif;
     display: grid;
     grid-template-areas: "label" "input" "login";
-    padding: 1rem;
+    padding: 4vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
 }
 
 .label {
-    margin: 15px auto;
+    /*margin: 15px auto;*/
     display: grid;
     grid-template-areas: "input";
     width: 100%;
-    padding-bottom: 2rem;
+    padding-bottom: 2.2rem;
 }
 
 .input {
@@ -39,7 +43,7 @@ form{
     font: inherit;
     border-radius: 10px;
     border: 2px solid var(--mode-hover-color);
-    padding: .7rem 1.5rem;
+    padding: 0.7vw 1vw;
     background-color: var(--mode-card-color);
     color: var(--mode-text-color);
 }
@@ -54,138 +58,105 @@ input:-webkit-autofill {
     grid-area: input;
     z-index: 100;
     width: max-content;
-    margin-left: 1rem;
-    margin-top: 0.2rem;
-    padding: 0 .7rem;
-    align-items: center;
-    height: 80%;
+    height:auto;
+    margin-left: 1.5vw;
     display: flex;
     align-items: center;
     transition: .3s;
     transform-origin: center left;
-    color: var(--mode-hover-color);
+    color: var(--mode-text-color);
+    font-size: 1.2vw;
+    padding: 0.5vw;
 }
 
 .input:focus + .label_name,
 .input:not(:placeholder-shown) + .label_name {
-    transform: translateY(-67%) scale(.9);
+    transform: translateY(-55%) scale(.9);
     background-color: var(--mode-card-color);
+    height:min-content;
 }
 
 .login {
     display: block;
-    margin: 0 auto;
-    width: 100%;
-    height: 40px;
-    border-radius: 10px;
+    margin-bottom: 0.8rem;
+    padding: 0.5vw 2.5vw;
+    border-radius: 0.5rem;
     border: var(--mode-hover-color);
     background-color: var(--mode-hover-color);
-    opacity: 0.8;
     cursor: pointer;
-    color: var(--mode-background-color);
+    color: white;
     transition: 0.2s;
+    font-size: 1.5vw;
 }
 
 .login:hover {
-    background-color: var(--mode-hover-color);
-    opacity: 1;
+    box-shadow: 2px 4px 8px var(--mode-shadow-color);
+    transition: box-shadow 0.3s ease;
 }
 
 .forgot {
-    color: var(--mode-hover-color);
+    color: var(--mode-text-color);
     text-decoration: none;
-    opacity: 0.7;
+    font-size: 1.2vw;
 }
 .forgot:hover {
     color: var(--mode-hover-color);
-    opacity: 1;
+    transition: .3s;
     cursor: pointer;
 }
 
 .register {
-    color: var(--mode-hover-color);
+    color: var(--mode-text-color);
     text-decoration: none;
-    opacity: 0.7;
+    font-size: 1.2vw;
 }
 .register:hover {
     color: var(--mode-hover-color);
-    opacity: 1;
+    transition: .3s;
     cursor: pointer;
 }
 
 .text-end {
     padding-top: 0.8rem;
 }
-/*
-@media (max-width: 1200px) {
-    .card-title {
-        font-size: 3rem;
-    }
-    
-    .input {
-        font-size: 1.1rem;
-    }
-    
-    .label_name {
-        font-size: 1.1rem;
-    }
-    
-    .login {
-        height: 50px;
-    }
-}
-@media (max-width: 992px) {
 
-    .card-title {
-        font-size: 2rem;
+@media (0px <= width <= 767px) {
+
+    #card-title {
+        font-size: 8vw;
     }
-    
+
+    #card {
+        width: 100vw;
+        height: 100vh;
+        background-color: transparent;
+        border-color: transparent;
+        box-shadow: none;
+    }
+
     .input {
-        font-size: 0.9rem;
+        background-color: transparent;
     }
-    
+
     .label_name {
-        font-size: 0.9rem;
-    }
-    
-    .login {
-        height: 30px;
+        font-size: 3.5vw;
     }
 
     .input:focus + .label_name,
     .input:not(:placeholder-shown) + .label_name {
-        transform: translateY(-60%) scale(.9);
-        background-color: var(--mode-card-color);
+        background-color: var(--mode-background-color);
+        transform: translateY(-55%) scale(.7);
     }
 
-}
-@media (max-width: 768px) {
-    .card {
-        padding: 1rem;
-    }
-    
-    .card-title {
-        font-size: 2rem;
-        padding-bottom: 2rem;
-    }
-    
-    .input {
-        font-size: 0.8rem;
-        padding: 0.5rem 1rem;
-    }
-    
-    .label_name {
-        font-size: 0.8rem;
-        margin-left: 0.5rem;
-    }
-    
     .login {
-        height: 25px;
+        font-size: 4vw;
     }
-    
-    .input:focus + .label_name,
-    .input:not(:placeholder-shown) + .label_name {
-        transform: translateY(-70%) scale(.9);
-        background-color: var(--mode-card-color);
+
+    .forgot {
+        font-size: 3.5vw;
     }
-}*/
+
+    .register {
+        font-size: 3.5vw;
+    }
+}

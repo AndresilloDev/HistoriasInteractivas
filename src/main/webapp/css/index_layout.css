@@ -31,7 +31,7 @@ body {
 }
 
 #createHistoryButton:hover {
-    box-shadow: 1px 7px 7px var(--mode-shadow-color);
+    box-shadow: 2px 4px 8px var(--mode-shadow-color);
     transition: box-shadow 0.3s ease;
 }
 
