@@ -6,46 +6,16 @@ body {
     color: var(--mode-text-color);
 }
 
-.floating-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--mode-background-color);
-    color: var(--mode-text-color);
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 2px 5px var(--mode-hover-color);
-    z-index: 1001; 
-}
-
-#themeIcon {
-    width: 25px;
-    height: 25px;
-    margin: auto;
-}
-
-.hero {
-    display: flex;
-    padding-top: 6rem;
-    justify-content: center;
-}
-
-.card {
-    z-index: 1001; 
+#card {
     background-color: var(--mode-card-color);
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.card-title {
-    font-size: 2.5rem;
+#card-title {
+    font-size: 50%;
     text-align: left;
-    padding-left: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1.7rem;
+    padding: 2vw;
 }
 
 form{
@@ -75,8 +45,8 @@ form{
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px var(--mode-card-color) inset;
-    box-shadow: 0 0 0px 1000px var(--mode-card-color) inset;
+    -webkit-box-shadow: 0 0 0 1000px var(--mode-card-color) inset;
+    box-shadow: 0 0 0 1000px var(--mode-card-color) inset;
     -webkit-text-fill-color: var(--mode-text-color) !important;
 }
 
@@ -146,7 +116,7 @@ input:-webkit-autofill {
 .text-end {
     padding-top: 0.8rem;
 }
-
+/*
 @media (max-width: 1200px) {
     .card-title {
         font-size: 3rem;
@@ -165,6 +135,7 @@ input:-webkit-autofill {
     }
 }
 @media (max-width: 992px) {
+
     .card-title {
         font-size: 2rem;
     }
@@ -217,4 +188,4 @@ input:-webkit-autofill {
         transform: translateY(-70%) scale(.9);
         background-color: var(--mode-card-color);
     }
-}
+}*/

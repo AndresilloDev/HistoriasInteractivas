@@ -48,7 +48,10 @@
 <section class="hero" id="sectionOne">
     <div class="row">
         <div class="col-md-7 text-center text-md-start">
-            <h1 class="display-1 fw-bold" id="title">Historias Interactivas</h1>
+            <h1 class="display-1 fw-bold" id="title">
+                <span class="word">Historias</span>
+                <span class="word">Interactivas</span>
+            </h1>
             <a href="login.jsp" class="mt-3" id="createHistoryButton">¡Crea una historia!</a>
         </div>
         <div class="col-md-5">

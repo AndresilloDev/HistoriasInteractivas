@@ -12,23 +12,26 @@
   <link rel="stylesheet" href="css/wave_animation.css">
 </head>
 <body class="light-mode">
-<nav class="navbar navbar-expand">
+
+<nav class="navbar navbar-expand" id="navbarSection">
   <div class="container-fluid">
     <a class="brand" href="index.jsp">LOGO</a>
+    <div class="justify-content-end">
+      <ul class="navbar-nav">
+        <li class="nav-item" id="navThemeButton">
+          <button id="themeButton">
+            <img id="themeIcon" src="resources/img/moon_icon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
-<button id="themeSwitch" class="floating-button">
-  <img id="themeIcon" src="resources/img/moon_icon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
-</button>
-
-<section class="hero">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card mx-auto">
-          <div class="card-body">
-            <h1 class="card-title text-left">Iniciar Sesión</h1>
+    <div class="row justify-content-center py-5">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+        <div class="card mx-auto" id="card">
+            <h1 class="card-title text-left" id="card-title">Iniciar Sesión</h1>
             <form id="loginForm" action="login" method="post" autocomplete="off">
               <label class="label">
                 <input name="email" type="text" placeholder=" " class="input" required>
@@ -42,17 +45,14 @@
               <button id="login-button" class="login" type="submit">Iniciar sesión</button>
               <span class="text-end"><a href="register.jsp" class="register">¿No tienes cuenta? Regístrate</a></span>
             </form>
-          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
 <section class="waves-container">
-  <div class="wave wave1"></div>
-  <div class="wave wave2"></div>
-  <div class="wave wave3"></div>
+  <div class="wave wave1" style="position: fixed"></div>
+  <div class="wave wave2" style="position: fixed"></div>
+  <div class="wave wave3" style="position: fixed"></div>
 </section>
 
 <script src="js/fake_authentication.js"></script>
