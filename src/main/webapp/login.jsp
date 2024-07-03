@@ -39,7 +39,7 @@
             <label class="label">
                 <input name="password" type="password" placeholder=" " class="input" required>
                 <span class="label_name">Contraseña</span>
-                <span class="text-end"><a href="#" class="forgot">¿Olvidaste tu contraseña?</a></span>
+                <span class="text-end"><a href="recover_password.jsp" class="forgot">¿Olvidaste tu contraseña?</a></span>
             </label>
             <button id="login-button" class="login" type="submit">Iniciar sesión</button>
             <span class="text-end"><a href="register.jsp" class="register">¿No tienes cuenta? Regístrate</a></span>
