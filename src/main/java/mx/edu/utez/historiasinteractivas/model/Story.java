@@ -2,7 +2,7 @@ package mx.edu.utez.historiasinteractivas.model;
 import java.util.Date;
 import java.sql.Blob;
 
-public class Historys {
+public class Story {
     private int id_history;
     private String email_user;
     private String history_title;

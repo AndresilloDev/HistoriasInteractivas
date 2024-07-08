@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
-import mx.edu.utez.historiasinteractivas.model.Users;
+import mx.edu.utez.historiasinteractivas.model.User;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class ChangePasswordServlet extends HttpServlet {
         String confirm_new_password = req.getParameter("confirm_new_password");
 
         UsuarioDao dao = new UsuarioDao();
-        Users usuario = dao.getUserFromEmailANDToken(email, token);
+        User usuario = dao.getUserFromEmailANDToken(email, token);
 
         if (usuario.getToken()!=null && !usuario.getToken().equals(token)) { //Se verifica que el token es correcto
             req.setAttribute("errorMessage", "¡El token no es correcto!");

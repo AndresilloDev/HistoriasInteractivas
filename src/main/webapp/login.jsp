@@ -33,7 +33,7 @@
         <h1 class="card-title text-left" id="card-title">Iniciar Sesión</h1>
         <form id="loginForm" action="login" method="post" autocomplete="off">
             <label class="label">
-                <input name="email" type="text" placeholder=" " class="input" required>
+                <input name="user" type="text" placeholder=" " class="input" required>
                 <span class="label_name">Correo electrónico o Usuario</span>
             </label>
             <label class="label">

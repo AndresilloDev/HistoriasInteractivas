@@ -1,6 +1,6 @@
 package mx.edu.utez.historiasinteractivas.model;
 import java.sql.Blob;
-public class Nodes {
+public class Node {
     private int id_node;
     private int id_history;
     private String node_name;

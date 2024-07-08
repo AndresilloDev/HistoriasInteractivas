@@ -1,44 +1,45 @@
 package mx.edu.utez.historiasinteractivas.model;
 
-public class Users {
+public class User {
 
+    private String id_user;
+    private String user;
     private String email;
     private int user_type;
     private String token;
     private String name;
-    private String first_last_name;
-    private String last_last_name;
+    private String paternalSurname;
+    private String maternalSurname;
     private String password;
-    private String user;
     private boolean status;
-    public Users() {
+    public User() {
     }
     //
 
 
-    public Users(String email, int user_type, String token, String name, String first_last_name, String last_last_name, String password, String user, boolean status) {
+    public User(String email, int user_type, String token, String name, String paternalSurname, String maternalSurname, String password, String user, boolean status) {
         this.email = email;
         this.user_type = user_type;
         this.token = token;
         this.name = name;
-        this.first_last_name = first_last_name;
-        this.last_last_name = last_last_name;
+        this.paternalSurname = paternalSurname;
+        this.maternalSurname = maternalSurname;
         this.password = password;
         this.user = user;
         this.status = status;
     }
 
-    public Users(String email, String user, String password, String last_last_name, String first_last_name, String name, String token) {
+    public User(String email, String user, String password, String maternalSurname, String paternalSurname, String name, String token) {
         this.email = email;
         this.user = user;
         this.password = password;
-        this.last_last_name = last_last_name;
-        this.first_last_name = first_last_name;
+        this.maternalSurname = maternalSurname;
+        this.paternalSurname = paternalSurname;
         this.name = name;
         this.token = token;
     }
 
-    public Users(String password, String email) {
+    public User(String password, String email) {
         this.password = password;
         this.email = email;
     }
@@ -75,20 +76,20 @@ public class Users {
         this.name = name;
     }
 
-    public String getFirst_last_name() {
-        return first_last_name;
+    public String getPaternalSurname() {
+        return paternalSurname;
     }
 
-    public void setFirst_last_name(String first_last_name) {
-        this.first_last_name = first_last_name;
+    public void setPaternalSurname(String paternalSurname) {
+        this.paternalSurname = paternalSurname;
     }
 
-    public String getLast_last_name() {
-        return last_last_name;
+    public String getMaternalSurname() {
+        return maternalSurname;
     }
 
-    public void setLast_last_name(String last_last_name) {
-        this.last_last_name = last_last_name;
+    public void setMaternalSurname(String maternalSurname) {
+        this.maternalSurname = maternalSurname;
     }
 
     public String getPassword() {
@@ -113,5 +114,13 @@ public class Users {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(String id_user) {
+        this.id_user = id_user;
     }
 }

@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
-import mx.edu.utez.historiasinteractivas.model.Users;
+import mx.edu.utez.historiasinteractivas.model.User;
 
 import java.io.IOException;
 
@@ -17,18 +17,18 @@ public class LoginServlet extends HttpServlet {
 
         //Conseguimos la info del formulario
         //donde los inputs se llamen asi:
-        String email = req.getParameter("email");
+        String user = req.getParameter("user");
         String password = req.getParameter("password");
 
         //Se extrae si el usuario existe y su tipo de usuario
         UsuarioDao dao = new UsuarioDao();
-        Users user = dao.existsUser(email, password);
+        User u = dao.existsUser(user, password);
 
-        if(user.isStatus() ){ //Se verifica si el usuario existe
-            if(user.getUser_type() == 1) { //El usuario es un npc
+        if(u.isStatus() ){ //Se verifica si el usuario existe
+            if(u.getUser_type() == 1) { //El usuario es un npc
                 resp.sendRedirect("index.jsp");
 
-            } else if(user.getUser_type() == 2){ //El usuario es premium
+            } else if(u.getUser_type() == 2){ //El usuario es premium
                 resp.sendRedirect("paginaNoCreadaParaAdministrador");
 
             }
