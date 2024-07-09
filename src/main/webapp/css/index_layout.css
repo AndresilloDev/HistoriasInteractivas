@@ -5,29 +5,39 @@ body {
     color: var(--mode-text-color);
 }
 #sectionOne {
-    padding: 5vh 8vw;
+    padding: 15vh 10vw;
     position: relative;
 }
 .word {
     display: block;
-    font-size: 8vw;
+    font-size: 7vw;
 }
-#createHistoryButton {
+.button.btn {
+    position: relative;
+    display: inline-block;
+    border-radius: 25px;
     background-color: var(--mode-hover-color);
     color: var(--mode-background-color);
     text-decoration: none;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    transition: box-shadow 0.3s ease;
-    font-family: 'Noto Sans JP',sans-serif;
-    font-size: 2vw;
-
+    transition: all 0.3s ease;
+    overflow: hidden;
+    height: fit-content;
+    width: fit-content;
+    padding-right: 5%;
+    padding-left: 3%;
 }
-#createHistoryButton:hover {
-    box-shadow: 2px 4px 8px var(--mode-shadow-color);
-    transition: box-shadow 0.3s ease;
+.button.btn svg {
+    position: absolute;
+    top: 50%;
+    right: 9%;
+    transform: translateY(-50%);
+    fill: none;
+    stroke: var(--mode-background-color);
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+.button.btn:hover svg {
+    right: 6%;
 }
 .hero .animated-text {
     display: flex;
@@ -35,33 +45,28 @@ body {
     justify-content: center;
 }
 #typewriter1{
-    font-size: 6vw;
+    font-size: 5vw;
     padding-left: 2rem;
 }
 #typewriter2{
-    font-size: 6vw;
+    font-size: 5vw;
     padding-left: 8rem;
 }
 #typewriter3{
-    font-size: 6vw;
+    font-size: 5vw;
     padding-left: 2rem;
-}
-#div-search {
-    padding-top: 2vh;
-    margin: auto 0;
 }
 #search {
     z-index: 1001;
     background-color: var(--mode-background-color);
-    backdrop-filter: blur(0px);
     color: var(--mode-text-color);
     border: 2px solid var(--mode-hover-color);
     border-radius: 5vw;
-    padding: 0.5vw  3vw;
-    font-size: 2vw;
-    width: 100%;
+    font-size: 1rem;
+    width: 50%;
     box-shadow: 0 4px 8px var(--mode-shadow-color);
     font-family: 'Noto Sans JP',sans-serif;
+    text-align: center;
 }
 #search:focus {
     outline: none;
@@ -84,8 +89,9 @@ body {
         font-size: 16vw;
     }
     #search {
-        text-align: center;
-        font-size: 4vw;
+        width: 100%;
+        padding: 0 0;
+        border-radius: 20px;
     }
     #typewriter1{
         padding: 1vh;
@@ -102,4 +108,28 @@ body {
         padding-left: 0;
         margin: auto;
     }
+    .search-input{
+        display: flex;
+        justify-content: center;
+    }
+}
+.search-icon {
+    z-index: 1001;
+    margin-left: 1cap;
+}
+.button {
+    background-color: var(--mode-background-color);
+    border-color: var(--mode-hover-color);
+    border: 2px solid var(--mode-hover-color);
+    border-radius: 5vw;
+    box-shadow: 0 4px 8px var(--mode-shadow-color);
+    font-family: 'Noto Sans JP',sans-serif;
+    transition: all 0.3s;
+    color: var(--mode-text-color);
+}
+.button:hover {
+    background-color: var(--mode-hover-color);
+    border-color: var(--mode-hover-color);
+    transition: all 0.3s;
+    color: white;
 }

@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
@@ -52,7 +52,16 @@
                 <span class="word">Historias</span>
                 <span class="word">Interactivas</span>
             </h1>
-            <a href="login.jsp" class="mt-3" id="createHistoryButton">¡Crea una historia!</a>
+            <div class="row">
+                <div class="search-input position-relative">
+                    <form method="get" id="search-form">
+                        <fieldset>
+                            <input type="search" id="search" placeholder="Escribe el codigo" maxlength="20" class="pt-1 pb-1 mb-4">
+                            <input class="button pt-1 pb-1 mb-4" type="submit" value="Buscar"/>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="col-md-5">
             <div class="animated-text">
@@ -61,9 +70,6 @@
                 <span id="typewriter3"></span>
             </div>
         </div>
-    </div>
-    <div class="row justify-content-center" id="div-search">
-        <input  id="search" class="col-md-10 text-left" placeholder="Ingrese el link de la historia" type="text">
     </div>
 </section>
 

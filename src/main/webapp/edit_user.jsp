@@ -29,37 +29,41 @@
 </nav>
 
 <div class="container d-flex justify-content-center align-items-center">
-    <div class="row border rounded-4 p-3 shadow box-area">
+    <div class="row p-3 shadow box-area">
         <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
-            <div class="featured-image mb-3">
-                <img alt="featured_image" src="resources/img/icon-256x256.png" class="img-fluid" style="width: 250px; filter: brightness(10);">
-            </div>
+            <label class="featured-image mb-3">
+                <img alt="user_picture" src="resources/img/userIcon.png" class="img-fluid" style="width: 250px;"/>
+            </label>
+            <input type="file" name="user_picture"/>
         </div>
-        <div class="col-md-6 right-box">
-            <div class="row align-items-center">
-                <div class="header-text mb-4">
-                    <h1>Inicia sesión</h1>
-                </div>
-                <form action="login" method="post" autocomplete="off">
+        <div class="col-md-6">
+            <div class="row align-items-center" style="padding-top: calc(8%)">
+                <form action="edit_user" method="post" autocomplete="off" enctype="multipart/form-data">
                     <label class="label">
-                        <input name="email" type="text" placeholder=" " class="input input-group mb-3 fs-6" required>
-                        <span class="label_name fs-6">Correo electrónico o Usuario</span>
+                        <input disabled value="user" type="text" placeholder=" " class="input input-group mb-4 fs-6" required style="color: rgb(115, 115, 115);">
+                        <span class="label_name fs-6">Correo electroníco</span>
                     </label>
                     <label class="label">
-                        <input name="password" type="password" placeholder=" " class="input input-group mb-1 fs-6" required>
-                        <span class="label_name fs-6">Contraseña</span>
+                        <input name="user" type="text" placeholder=" " class="input input-group mb-4 fs-6" required>
+                        <span class="label_name fs-6">Nombre de usuario</span>
                     </label>
-                    <div class="input-group mb-3 d-flex justify-content-end">
-                        <small><a href="#">¿Olvidaste tu contraseña?</a></small>
-                    </div>
+                    <label class="label">
+                        <input name="name" type="text" placeholder=" " class="input input-group mb-4 fs-6" required>
+                        <span class="label_name fs-6">Nombre</span>
+                    </label>
+                    <label class="label">
+                        <input name="paternal_name" type="text" placeholder=" " class="input input-group mb-4 fs-6" required>
+                        <span class="label_name fs-6">Apellido paterno</span>
+                    </label>
+                    <label class="label">
+                        <input name="maternal_name" type="text" placeholder=" " class="input input-group mb-4 fs-6" required>
+                        <span class="label_name fs-6">Apellido materno</span>
+                    </label>
                     <div class="button-container mb-3">
-                        <span class="mas">Iniciar sesión</span>
-                        <button id='work' type="submit" name="login">Iniciar sesión</button>
+                        <span class="mas">Actualizar información</span>
+                        <button type="submit" name="update_Information">Actualizar información</button>
                     </div>
                 </form>
-                <div class="input-group mb-3 d-flex justify-content-end">
-                    <small><a href="register.jsp">¿No tienes una cuenta? registrate</a></small>
-                </div>
             </div>
         </div>
     </div>

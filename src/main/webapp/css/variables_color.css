@@ -30,7 +30,7 @@
 /* Modo oscuro */
 .dark-mode {
     --mode-background-color: var(--bg-100);
-    --mode-text-color: var(--text-100);    
+    --mode-text-color: var(--text-100);
     --mode-hover-color: var(--primary-200);
     --mode-hover-background-color: var(--bg-200);
     --mode-shadow-color: rgba(255, 255, 255, 0.2);
