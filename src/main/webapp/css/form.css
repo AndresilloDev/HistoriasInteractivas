@@ -216,3 +216,13 @@ small a:hover{
     -webkit-appearance: none;
     margin: 0;
 }
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+    background-color: var(--mode-hover-color);
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid var(--mode-hover-color);
+}

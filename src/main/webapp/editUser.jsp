@@ -30,16 +30,18 @@
 </nav>
 
 <div class="container d-flex justify-content-center align-items-center">
-    <div class="row p-3 shadow box-area">
-        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
-            <label class="featured-image mb-3">
-                <img alt="userPicture" src="resources/img/userIcon.png" class="img-fluid" style="width: 100px; height: 100px"/>
-            </label>
-            <input type="file" name="userPicture"/>
-        </div>
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <div class="row align-items-center" style="padding-top: calc(8%)">
+    <div class="row p-3 shadow box-area" style="width: 700px;">
+        <div class="col-md-12">
+            <div class="row align-items-center">
                 <form action="editUser" method="post" autocomplete="off" enctype="multipart/form-data">
+                    <div class="d-flex justify-content-center align-items-center mb-2">
+                        <img alt="userPicture" id="img" src="resources/img/userIcon.png" class="img-fluid" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover"/>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center mb-4">
+                        <label for="userPicture" class="custom-file-upload">Subir foto</label>
+                        <input type="file" name="userPicture" id="userPicture" accept="image/*" style="display: none"/>
+                    </div>
+
                     <label class="label">
                         <input disabled value="aqui va el correo de usuario obtenido" type="email" placeholder=" " class="input input-group mb-4 fs-6" required style="color: rgb(115, 115, 115);">
                         <span class="labelName fs-6">Correo electroníco</span>
@@ -78,5 +80,6 @@
 
 <script src="js/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/editUser.js"></script>
 </body>
 </html>
