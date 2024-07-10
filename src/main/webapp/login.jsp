@@ -16,7 +16,7 @@
 <body class="light-mode">
 <nav class="navbar navbar-expand" id="navbarSection">
     <div class="container-fluid">
-        <a class="brand" href="index.jsp"><img id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
+        <a class="brand" href="index.jsp"><img alt="logo" id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
         <div class="justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item" id="navThemeButton">
@@ -36,7 +36,7 @@
                 <img alt="featured_image" src="https://cdni.iconscout.com/illustration/premium/thumb/login-10299071-8333958.png" class="img-fluid">
             </div>
         </div>
-        <div class="col-md-6 right-box">
+        <div class="col-md-6 right-box d-flex justify-content-center align-items-center">
             <div class="row align-items-center">
                 <div class="header-text mb-4">
                     <h1>Inicia sesión</h1>

@@ -16,7 +16,7 @@
 <body class="light-mode">
 <nav class="navbar navbar-expand" id="navbarSection">
     <div class="container-fluid">
-        <a class="brand" href="index.jsp"><img id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
+        <a class="brand" href="index.jsp"><img alt="logo" id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
         <div class="justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item" id="navThemeButton">
@@ -37,7 +37,7 @@
             </label>
             <input type="file" name="userPicture"/>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div class="row align-items-center" style="padding-top: calc(8%)">
                 <form action="editUser" method="post" autocomplete="off" enctype="multipart/form-data">
                     <label class="label">

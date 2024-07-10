@@ -16,7 +16,7 @@
 <body class="light-mode">
 <nav class="navbar navbar-expand" id="navbarSection">
     <div class="container-fluid">
-        <a class="brand" href="index.jsp"><img id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
+        <a class="brand" href="index.jsp"><img alt="logo" id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
         <div class="justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item" id="navThemeButton">
@@ -33,11 +33,11 @@
     <div class="row p-3 shadow box-area">
         <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
             <div class="featured-image mb-3">
-                <img alt="featuredImage" src="https://app.dubbpie.com/assets/images/login-img.png" class="img-fluid";>
+                <img alt="featuredImage" src="https://app.dubbpie.com/assets/images/login-img.png" class="img-fluid">
             </div>
         </div>
 
-        <div class="col-md-6 right-box">
+        <div class="col-md-6 right-box d-flex justify-content-center align-items-center">
             <div class="row align-items-center">
                 <div class="header-text mb-4">
                     <h1>Registrate</h1>
