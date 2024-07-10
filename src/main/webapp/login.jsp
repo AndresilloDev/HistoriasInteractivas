@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/form.css">
-    <link rel="stylesheet" href="css/wave_animation.css">
+    <link rel="stylesheet" href="css/waveAnimation.css">
 </head>
 
 <body class="light-mode">
 <nav class="navbar navbar-expand" id="navbarSection">
     <div class="container-fluid">
-        <a class="brand" href="index.jsp">LOGO</a>
+        <a class="brand" href="index.jsp"><img id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
         <div class="justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item" id="navThemeButton">
                     <button id="themeButton">
-                        <img id="themeIcon" src="resources/img/moon_icon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
+                        <img id="themeIcon" src="resources/icons/moonIcon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
                     </button>
                 </li>
             </ul>
@@ -29,10 +29,10 @@
 </nav>
 
 <div class="container d-flex justify-content-center align-items-center">
-    <div class="row border rounded-4 p-3 shadow box-area">
-        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
+    <div class="row p-3 shadow box-area">
+        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background-color: blueviolet;">
             <div class="featured-image mb-3">
-                <img alt="featured_image" src="resources/img/icon-256x256.png" class="img-fluid" style="width: 250px; filter: brightness(10);">
+                <img alt="featured_image" src="https://cdni.iconscout.com/illustration/premium/thumb/login-10299071-8333958.png" class="img-fluid">
             </div>
         </div>
         <div class="col-md-6 right-box">
@@ -42,15 +42,15 @@
                 </div>
                 <form action="login" method="post" autocomplete="off">
                     <label class="label">
-                        <input name="email" type="text" placeholder=" " class="input input-group mb-3 fs-6" required>
-                        <span class="label_name fs-6">Correo electrónico o Usuario</span>
+                        <input name="user" type="text" placeholder=" " class="input input-group mb-3 fs-6" required>
+                        <span class="labelName fs-6">Correo electrónico o Usuario</span>
                     </label>
                     <label class="label">
                         <input name="password" type="password" placeholder=" " class="input input-group mb-1 fs-6" required>
-                        <span class="label_name fs-6">Contraseña</span>
+                        <span class="labelName fs-6">Contraseña</span>
                     </label>
                     <div class="input-group mb-3 d-flex justify-content-end">
-                        <small><a href="#">¿Olvidaste tu contraseña?</a></small>
+                        <small><a href="recoverPassword.jsp">¿Olvidaste tu contraseña?</a></small>
                     </div>
                     <div class="button-container mb-3">
                         <span class="mas">Iniciar sesión</span>
@@ -58,7 +58,7 @@
                     </div>
                 </form>
                 <div class="input-group mb-3 d-flex justify-content-end">
-                    <small><a href="register.jsp">¿No tienes una cuenta? registrate</a></small>
+                    <small><a href="register.jsp">¿No tienes una cuenta? Registrate</a></small>
                 </div>
             </div>
         </div>
@@ -71,7 +71,7 @@
     <div class="wave wave3" style="position: fixed"></div>
 </section>
 
-<script src="js/theme_switch.js"></script>
+<script src="js/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-@import url('variables_color.css');
+@import url('variablesColor.css');
 body {
     font-family: 'Hammersmith One', sans-serif;
     background-color: var(--mode-background-color);
@@ -118,18 +118,17 @@ body {
     margin-left: 1cap;
 }
 .button {
-    background-color: var(--mode-background-color);
-    border-color: var(--mode-hover-color);
-    border: 2px solid var(--mode-hover-color);
+    background-color: var(--mode-hover-color);
+    border-color: transparent;
     border-radius: 5vw;
+    color: white;
     box-shadow: 0 4px 8px var(--mode-shadow-color);
     font-family: 'Noto Sans JP',sans-serif;
     transition: all 0.3s;
-    color: var(--mode-text-color);
 }
 .button:hover {
     background-color: var(--mode-hover-color);
-    border-color: var(--mode-hover-color);
     transition: all 0.3s;
     color: white;
+    box-shadow: 0 6px 12px var(--mode-shadow-color);
 }

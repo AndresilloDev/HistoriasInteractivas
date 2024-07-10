@@ -1,4 +1,4 @@
-@import url('variables_color.css');
+@import url('variablesColor.css');
 
 body{
     font-family: 'Hammersmith One', sans-serif;
@@ -68,7 +68,7 @@ input:-webkit-autofill {
     -webkit-text-fill-color: var(--mode-text-color) !important;
 }
 
-.label_name {
+.labelName {
     grid-area: input;
     z-index: 100;
     width: fit-content;
@@ -80,8 +80,8 @@ input:-webkit-autofill {
     margin-left: 10px;
 }
 
-.input:focus + .label_name,
-.input:not(:placeholder-shown) + .label_name {
+.input:focus + .labelName,
+.input:not(:placeholder-shown) + .labelName {
     transform: translateY(-60%) scale(.9);
     background-color: var(--mode-card-color);
     height: fit-content;
@@ -190,4 +190,29 @@ small a:hover{
         -webkit-mask-position: 0 0;
         mask-position: 0 0;
     }
+}
+
+
+/*OTP FORM VERIFICATION CODE*/
+.otp-input {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    font-size: 1.5rem;
+    text-align: center;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    background-color: var(--mode-background-color);
+    color: var(--mode-text-color);
+}
+.otp-input:focus {
+    outline: none;
+    border-color: transparent;
+    background-color: var(--mode-background-color);
+}
+
+.otp-input::-webkit-outer-spin-button,
+.otp-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

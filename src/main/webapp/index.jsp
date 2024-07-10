@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
@@ -8,20 +9,20 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/index_layout.css">
-    <link rel="stylesheet" href="css/wave_animation.css">
+    <link rel="stylesheet" href="css/indexLayout.css">
+    <link rel="stylesheet" href="css/waveAnimation.css">
 </head>
 
 <body class="light-mode">
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand" id="navbarSection">
     <div class="container-fluid">
-        <a class="brand" href="index.jsp">LOGO</a>
+        <a class="brand" href="index.jsp"><img id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
         <div class="justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item" id="navThemeButton">
                     <button id="themeButton">
-                        <img id="themeIcon" src="resources/img/moon_icon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
+                        <img id="themeIcon" src="resources/icons/moonIcon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
                     </button>
                 </li>
                 <li class="nav-item" id="navLoginButton">
@@ -86,8 +87,8 @@
 </section>
 
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="js/fake_authentication.js"></script>
-<script src="js/writing_animation.js"></script>
-<script src="js/theme_switch.js"></script>
+<script src="js/searchStory.js"></script>
+<script src="js/writingAnimation.js"></script>
+<script src="js/themeSwitch.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-@import url('variables_color.css');
+@import url('variablesColor.css');
 
 #navbarSection {
     padding: 1rem 1rem;
@@ -8,6 +8,10 @@
     color: var(--mode-text-color);
     text-decoration: none;
     font-size: 3rem;
+}
+#logo{
+    width:3rem;
+    padding-bottom: 5px;
 }
 .brand:hover {
     color: var(--mode-hover-color);
@@ -52,6 +56,10 @@
     .brand {
         font-size: 2.5rem;
     }
+    #logo{
+        width:2.5rem;
+        padding-bottom: 5px;
+    }
     #loginButton {
         font-size: 1rem;
     }
@@ -74,6 +82,10 @@
     }
     .brand {
         font-size: 2rem;
+    }
+    #logo{
+        width:2rem;
+        padding-bottom: 5px;
     }
     #loginButton {
         font-size: 0.8rem;

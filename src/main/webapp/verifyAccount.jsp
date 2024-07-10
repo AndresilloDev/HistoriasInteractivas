@@ -15,7 +15,7 @@
 <body class="light-mode">
 <nav class="navbar navbar-expand" id="navbarSection">
     <div class="container-fluid">
-        <a class="brand" href="index.jsp">LOGO</a>
+        <a class="brand" href="index.jsp"><img id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
         <div class="justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item" id="navThemeButton">
@@ -29,35 +29,24 @@
 </nav>
 
 <div class="container d-flex justify-content-center align-items-center">
-    <div class="row p-3 shadow box-area">
-        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
-            <div class="featured-image mb-3">
-                <img alt="featured_picture" src="resources/img/icon-256x256.png" class="img-fluid" style="width: 250px; filter: brightness(10);">
+    <div class="row p-3 shadow box-area" style="width: 500px;">
+        <div class="col-12 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/9094/9094128.png" width="100px" alt="Verificar cuenta">
+            <div class="header-text mb-2 mt-4">
+                <h1>Verifica tu cuenta</h1>
             </div>
+            <p class="fs-6 mb-4 " style="font-family: Noto Sans JP, sans-serif; text-align: center;">Ingresa el código de verificación que te enviamos a tu correo electrónico.</p>
         </div>
-
-        <div class="col-md-6 right-box">
-            <div class="row align-items-center">
-                <div class="header-text mb-4">
-                    <h1>Restablecer contraseña</h1>
-                </div>
-
-                <form action="verify_email" method="post" autocomplete="off">
-                    <label class="label">
-                        <input name="email" type="text" placeholder=" " class="input input-group mb-3 fs-6" required>
-                        <span class="label_name fs-6">Correo electrónico o Usuario</span>
-                    </label>
-                    <div class="button-container mb-3">
-                        <span class="mas">Enviar verificación</span>
-                        <button type="submit" name="send_verification">Enviar verificación</button>
-                    </div>
-                </form>
-
-                <div class="input-group mb-3 d-flex justify-content-end">
-                    <small><a href="register.jsp">¿No tienes una cuenta? registrate</a></small>
-                </div>
+        <form id="otpForm">
+            <div class="d-flex justify-content-center mb-4">
+                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -69,5 +58,6 @@
 
 <script src="js/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/otpFormVerifyAccount.js"></script>
 </body>
 </html>
