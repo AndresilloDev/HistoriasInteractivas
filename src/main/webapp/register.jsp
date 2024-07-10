@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
+    <link rel="stylesheet" href="css/themeSwitch.css">
 </head>
 
 <body class="light-mode">
@@ -30,7 +31,7 @@
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area">
-        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background-color: blueviolet;">
+        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
             <div class="featured-image mb-3">
                 <img alt="featuredImage" src="https://app.dubbpie.com/assets/images/login-img.png" class="img-fluid";>
             </div>

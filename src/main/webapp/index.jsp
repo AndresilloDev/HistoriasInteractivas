@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/indexLayout.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
+    <link rel="stylesheet" href="css/themeSwitch.css">
 </head>
 
 <body class="light-mode">
