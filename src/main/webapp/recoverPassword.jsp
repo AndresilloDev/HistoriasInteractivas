@@ -13,5 +13,7 @@
 </head>
 <body>
 
+<jsp:include page="components/navComponent/nav.jsp" />
+
 </body>
 </html>

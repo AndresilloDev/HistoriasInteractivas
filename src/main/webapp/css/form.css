@@ -109,7 +109,7 @@ small a:hover{
     background-color: var(--mode-hover-color);
 }
 
-/* NEW BUTTON SYLE */
+/* NEW BUTTON SYLE
 .button-container {
     position: relative;
     width: 100%;
@@ -190,7 +190,7 @@ small a:hover{
         -webkit-mask-position: 0 0;
         mask-position: 0 0;
     }
-}
+}*/
 
 
 /*OTP FORM VERIFICATION CODE*/
@@ -225,4 +225,20 @@ small a:hover{
     cursor: pointer;
     border-radius: 10px;
     border: 1px solid var(--mode-hover-color);
+}
+
+.button {
+    background-color: var(--mode-hover-color);
+    border-color: transparent;
+    border-radius: 5vw;
+    color: white;
+    box-shadow: 0 4px 8px var(--mode-shadow-color);
+    font-family: 'Noto Sans JP',sans-serif;
+    transition: all 0.3s;
+}
+.button:hover {
+    background-color: var(--mode-hover-color);
+    transition: all 0.3s;
+    color: white;
+    box-shadow: 0 6px 12px var(--mode-shadow-color);
 }

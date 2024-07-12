@@ -7,27 +7,14 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="components/navComponent/nav.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
 </head>
 
 <body class="light-mode">
-<nav class="navbar navbar-expand" id="navbarSection">
-    <div class="container-fluid">
-        <a class="brand" href="index.jsp"><img alt="logo" id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
-        <div class="justify-content-end">
-            <ul class="navbar-nav">
-                <li class="nav-item" id="navThemeButton">
-                    <button id="themeButton">
-                        <img id="themeIcon" src="resources/icons/moonIcon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="components/navComponent/nav.jsp" />
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area" style="width: 700px;">
@@ -62,10 +49,7 @@
                         <input name="maternalName" type="text" placeholder=" " class="input input-group mb-4 fs-6" required>
                         <span class="labelName fs-6">Apellido materno</span>
                     </label>
-                    <div class="button-container mb-3">
-                        <span class="mas">Actualizar información</span>
-                        <button type="submit" name="updateInformation">Actualizar información</button>
-                    </div>
+                    <input class="button pt-1 pb-1 mb-2" type="submit" value="Actualiza tu informacion" name="updateInformation"/>
                 </form>
             </div>
         </div>
@@ -78,7 +62,7 @@
     <div class="wave wave3" style="position: fixed"></div>
 </section>
 
-<script src="js/themeSwitch.js"></script>
+<script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/editUser.js"></script>
 </body>

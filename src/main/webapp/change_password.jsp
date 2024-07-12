@@ -7,33 +7,20 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="components/navComponent/nav.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
 </head>
 
 <body class="light-mode">
-<nav class="navbar navbar-expand" id="navbarSection">
-    <div class="container-fluid">
-        <a class="brand" href="index.jsp">LOGO</a>
-        <div class="justify-content-end">
-            <ul class="navbar-nav">
-                <li class="nav-item" id="navThemeButton">
-                    <button id="themeButton">
-                        <img id="themeIcon" src="resources/icons/moonIcon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="components/navComponent/nav.jsp" />
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area">
         <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
             <div class="featured-image mb-3">
-                <img alt="featured_picture" src="resources/img/icon-256x256.png" class="img-fluid" style="width: 250px; filter: brightness(10);">
+                <img alt="featured_picture" src="CAMBIAR" class="img-fluid" style="width: 250px; filter: brightness(10);">
             </div>
         </div>
 
@@ -68,7 +55,7 @@
     <div class="wave wave3" style="position: fixed"></div>
 </section>
 
-<script src="js/themeSwitch.js"></script>
+<script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

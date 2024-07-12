@@ -7,27 +7,14 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="components/navComponent/nav.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
 </head>
 
 <body class="light-mode">
-<nav class="navbar navbar-expand" id="navbarSection">
-    <div class="container-fluid">
-        <a class="brand" href="index.jsp"><img id="logo" src="resources/img/logoHistoriasInteractivas.png"> STORY</a>
-        <div class="justify-content-end">
-            <ul class="navbar-nav">
-                <li class="nav-item" id="navThemeButton">
-                    <button id="themeButton">
-                        <img id="themeIcon" src="resources/icons/moonIcon.png" style="filter: invert(0); padding: 0 0 0 2px;" alt="Switch Theme">
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="components/navComponent/nav.jsp" />
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area" style="width: 500px;">
@@ -40,12 +27,12 @@
         </div>
         <form id="otpForm">
             <div class="d-flex justify-content-center mb-4">
-                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
-                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
-                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
-                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
-                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
-                <input type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input name="num1" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input name="num2" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input name="num3" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input name="num4" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input name="num5" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
+                <input name="num6" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
             </div>
         </form>
     </div>
@@ -57,7 +44,7 @@
     <div class="wave wave3" style="position: fixed"></div>
 </section>
 
-<script src="js/themeSwitch.js"></script>
+<script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/otpFormVerifyAccount.js"></script>
 </body>

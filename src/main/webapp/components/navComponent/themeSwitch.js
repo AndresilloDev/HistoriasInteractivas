@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const themeButton = document.getElementById('themeButton');
     const themeIcon = document.getElementById('themeIcon');
+    const loginIcon = document.getElementById('loginIcon');
     const body = document.body;
 
     // Cargar el tema al iniciar la página (en AMBOS archivos)
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             themeIcon.style.filter = 'invert(1)';
             themeIcon.style.padding = '0 0 0 0';
             localStorage.setItem('theme', 'dark');
+            loginIcon.style.filter = 'brightness(0);';
         } else {
             body.classList.remove('dark-mode');
             body.classList.add('light-mode');
@@ -32,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
             themeIcon.style.filter = 'invert(0)';
             themeIcon.style.padding = '0 0 0 2px';
             localStorage.setItem('theme', 'light');
+            loginIcon.style.filter = 'brightness(1000);';
         }
     }
 });
