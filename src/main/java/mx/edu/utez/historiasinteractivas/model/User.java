@@ -16,32 +16,23 @@ public class User {
     }
     //
 
-
-    public User(String email, int user_type, String token, String name, String paternalSurname, String maternalSurname, String password, String user, boolean status) {
+    //Constructor para registro de usuario
+    public User(String email, int user_type, String name, String paternalSurname, String maternalSurname, String password, String user) {
         this.email = email;
         this.user_type = user_type;
-        this.token = token;
         this.name = name;
         this.paternalSurname = paternalSurname;
         this.maternalSurname = maternalSurname;
         this.password = password;
         this.user = user;
-        this.status = status;
+        this.status = true;
     }
 
-    public User(String email, String user, String password, String maternalSurname, String paternalSurname, String name, String token) {
-        this.email = email;
-        this.user = user;
-        this.password = password;
-        this.maternalSurname = maternalSurname;
-        this.paternalSurname = paternalSurname;
-        this.name = name;
-        this.token = token;
-    }
-
-    public User(String password, String email) {
+    //Constructor para el login
+    public User(String email, String password) {
         this.password = password;
         this.email = email;
+        this.user = email;
     }
 
     public String getEmail() {
