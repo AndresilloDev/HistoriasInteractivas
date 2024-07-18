@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
 import mx.edu.utez.historiasinteractivas.model.User;
 
@@ -15,26 +16,37 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //Conseguimos la info del formulario
-        //donde los inputs se llamen asi:
+        //Obtener los parámetros del formulario
         String user = req.getParameter("user");
         String password = req.getParameter("password");
+        User usuario = new User(user, password);
 
-        //Se extrae si el usuario existe y su tipo de usuario
+        //Se obtiene el usuario si existe
         UsuarioDao dao = new UsuarioDao();
-        User u = dao.existsUser(user, password);
+        User u = dao.getUser(usuario);
 
-        if(u.isStatus() ){ //Se verifica si el usuario existe
-            if(u.getUser_type() == 1) { //El usuario es un npc
+        if (u != null && u.isStatus()) { // El usuario existe y está activo
+            System.out.println("Pasado la primera prueba");
+            System.out.println(u.getUser_type());
+
+            // Guardar usuario en la sesión
+            HttpSession session = req.getSession();
+            session.setAttribute("user", u);
+
+            // El usuario es un creador de historias
+            if (u.getUser_type() == 0) {
+                System.out.println("userNomra");
                 resp.sendRedirect("index.jsp");
 
-            } else if(u.getUser_type() == 2){ //El usuario es premium
-                resp.sendRedirect("paginaNoCreadaParaAdministrador");
-
+            // El usuario es un administrador
+            } else if (u.getUser_type() == 1) {
+                System.out.println("Admin");
+                resp.sendRedirect("paginaNoCreadaParaAdministrador.jsp");
             }
-        }else{ // El usuario no existe o no escribio bien su usuario y contraseña
-            resp.sendRedirect("login.jsp");
 
+        } else { // El usuario no existe o las credenciales son incorrectas
+            System.out.println("ohno");
+            resp.sendRedirect("login.jsp");
         }
     }
 

@@ -31,7 +31,7 @@
                 <form action="login" method="post" autocomplete="off">
                     <label class="label">
                         <input name="user" type="text" placeholder=" " class="input input-group mb-3 fs-6" required>
-                        <span class="labelName fs-6">Correo electrónico o Usuario</span>
+                        <span class="labelName fs-6">Correo electrónico o usuario</span>
                     </label>
                     <label class="label">
                         <input name="password" type="password" placeholder=" " class="input input-group mb-1 fs-6" required>
