@@ -25,7 +25,7 @@
             </div>
             <p class="fs-6 mb-4 " style="font-family: Noto Sans JP, sans-serif; text-align: center;">Ingresa el código de verificación que te enviamos a tu correo electrónico.</p>
         </div>
-        <form id="otpForm">
+        <form id="otpForm" method="post" action="verifyAccount">
             <div class="d-flex justify-content-center mb-4">
                 <input name="num1" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
                 <input name="num2" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
