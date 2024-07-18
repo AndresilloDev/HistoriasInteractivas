@@ -19,7 +19,7 @@
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area" style="width: 500px;">
         <div class="col-12 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
-            <img src="https://cdn-icons-png.flaticon.com/512/9094/9094128.png" width="100px" alt="Verificar cuenta">
+            <img src="resources/img/featuredImageVerifyAccount.png" width="256" alt="Verificar cuenta">
             <div class="header-text mb-2 mt-4">
                 <h1>Verifica tu cuenta</h1>
             </div>

@@ -30,9 +30,12 @@
                 </div>
                 <form action="recoverPassword" method="post" autocomplete="off">
                     <label class="label">
-                        <input name="email" type="email" placeholder=" " class="input input-group mb-3 fs-6" required>
+                        <input name="email" type="email" placeholder=" " class="input input-group mb-1 fs-6" required>
                         <span class="labelName fs-6">Correo electrónico</span>
                     </label>
+                    <div class="input-group mb-3 d-flex justify-content-end">
+                        <small><a href="login.jsp">Ir a iniciar sesión</a></small>
+                    </div>
                     <input class="button pt-1 pb-1 mb-2" type="submit" value="Enviar verificación" name="recoverPassword"/>
                 </form>
                 <div class="input-group mb-3 d-flex justify-content-end">
