@@ -1,19 +1,11 @@
 .waves-container1 {
-    padding-top: 10vh;
-    position: fixed;
+    position: initial;
     bottom: 0;
     left: 0;
     width: 100%;
-    /*para la versioon logeada poner position relative
-    position: relative:
-    */
 }
 .waves-container2 {
-    display: none;
-    /*En la version logeada quitar el display none*/
     position: relative;
-    bottom: 0;
-    left: 0;
     width: 100%;
 }
 .wave {

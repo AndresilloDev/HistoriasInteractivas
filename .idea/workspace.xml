@@ -10,22 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Creado el componente nav">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/dragItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/change_password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/change_password.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/form.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/form.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/nav.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/editUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/waveAnimation.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/waveAnimation.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/themeSwitch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/recoverPassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/recoverPassword.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/img/animation_sprite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/img/fakeUser.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/img/icon-256x256.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/verifyAccount.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/verifyAccount.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

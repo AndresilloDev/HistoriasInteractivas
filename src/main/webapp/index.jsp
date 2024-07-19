@@ -16,49 +16,55 @@
 
 <body class="light-mode">
 
-<!-- NAVBAR -->
-<jsp:include page="components/navComponent/nav.jsp" />
+<div class="scroll-container">
+    <section class="one">
+        <!-- NAVBAR -->
+        <jsp:include page="components/navComponent/nav.jsp" />
 
-<!-- TITLE -->
-<section class="hero" id="sectionOne">
-    <div class="row">
-        <div class="col-md-7 text-center text-md-start">
-            <h1 class="display-1 fw-bold" id="title">
-                <span class="word">Historias</span>
-                <span class="word">Interactivas</span>
-            </h1>
+        <section class="hero">
             <div class="row">
-                <div class="search-input position-relative">
-                    <form method="get" id="search-form">
-                        <fieldset>
-                            <input name="storyCode" type="search" id="search" placeholder="Escribe el codigo" maxlength="20" class="pt-1 pb-1 mb-4">
-                            <input class="button pt-1 pb-1 mb-4" type="submit" value="Buscar" name="searchStory"/>
-                        </fieldset>
-                    </form>
+                <div class="col-md-7 text-center text-md-start">
+                    <h1 class="display-1 fw-bold" id="title">
+                        <span class="word">Historias</span>
+                        <span class="word">Interactivas</span>
+                    </h1>
+                    <div class="row">
+                        <div class="search-input position-relative">
+                            <form method="get" id="search-form">
+                                <fieldset>
+                                    <input name="storyCode" type="search" id="search" placeholder="Escribe el codigo" maxlength="20" class="pt-1 pb-1 mb-4">
+                                    <input class="button pt-1 pb-1 mb-4" type="submit" value="Buscar" name="searchStory"/>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="animated-text">
+                        <span id="typewriter1"></span>
+                        <span id="typewriter2"></span>
+                        <span id="typewriter3"></span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-5">
-            <div class="animated-text">
-                <span id="typewriter1"></span>
-                <span id="typewriter2"></span>
-                <span id="typewriter3"></span>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<!-- WAVES ANIMATION -->
-<section class="waves-container1">
-    <div class="wave wave1"></div>
-    <div class="wave wave2"></div>
-    <div class="wave wave3"></div>
-</section>
-<section class="waves-container2" style="rotate: 180deg">
-    <div class="wave wave1"></div>
-    <div class="wave wave2"></div>
-    <div class="wave wave3"></div>
-</section>
+        <!-- WAVES ANIMATION -->
+        <section class="waves-container1">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+        </section>
+    </section>
+
+    <section class="two">
+        <section class="waves-container2" style="rotate: 180deg">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+        </section>
+    </section>
+</div>
 
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="js/searchStory.js"></script>

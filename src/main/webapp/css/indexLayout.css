@@ -4,7 +4,21 @@ body {
     background-color: var(--mode-background-color);
     color: var(--mode-text-color);
 }
-#sectionOne {
+.scroll-container{
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+.one{
+    height: 100vh;
+    scroll-snap-align: start;
+    position: relative;
+}
+.two{
+    height: 100vh;
+    scroll-snap-align: start;
+}
+.hero {
     padding: 15vh 10vw;
     position: relative;
 }
