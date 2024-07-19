@@ -24,7 +24,7 @@
         <section class="hero">
             <div class="row">
                 <div class="col-md-7 text-center text-md-start">
-                    <h1 class="display-1 fw-bold" id="title">
+                    <h1 class="fw-bold">
                         <span class="word">Historias</span>
                         <span class="word">Interactivas</span>
                     </h1>
@@ -49,7 +49,6 @@
             </div>
         </section>
 
-        <!-- WAVES ANIMATION -->
         <section class="waves-container1">
             <div class="wave wave1"></div>
             <div class="wave wave2"></div>
@@ -58,11 +57,58 @@
     </section>
 
     <section class="two">
-        <section class="waves-container2" style="rotate: 180deg">
+        <section class="waves-container2" style="rotate: 180deg; padding-top: 200px;">
             <div class="wave wave1"></div>
             <div class="wave wave2"></div>
             <div class="wave wave3"></div>
         </section>
+        <h1 class="display-1 fw-bold mb-3 text-center">Tus historias</h1>
+        <div class="container mb-4 text-left">
+            <h2 class="display-4">Publicas</h2>
+            <div class="row">
+                <div class="card-container">
+                    <div class="line"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mb-4 text-left">
+            <h2 class="display-4">Restringidas</h2>
+            <div class="row">
+                <div class="card-container">
+                    <div class="line"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mb-4 text-left" style="padding-bottom: 100px">
+            <h2 class="display-4">Borradores</h2>
+            <div class="row">
+                <div class="card-container">
+                    <div class="line"></div>
+                    <div class="card"></div>
+                </div>
+            </div>
+        </div>
+
     </section>
 </div>
 
