@@ -6,9 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
 import mx.edu.utez.historiasinteractivas.model.User;
-
+import mx.edu.utez.historiasinteractivas.utils.GenerationCode;
+import mx.edu.utez.historiasinteractivas.utils.GmailSenderVerify;
 
 import java.io.IOException;
 
@@ -16,39 +16,52 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Obtener parámetros del form
+        // Obtener parámetros del formulario
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        String confirm_password = req.getParameter("confirmPassword");
+        String confirmPassword = req.getParameter("confirmPassword");
 
-        UsuarioDao usuarioDao = new UsuarioDao();
-        User usuario = new User(password, email);
+        System.out.println("Datos recibidos: email=" + email + ", password=" + password);
 
-        if (usuarioDao.existsUser(usuario)) {
-            System.out.println("usuario ya registrado");
-            req.setAttribute("errorMessage", "El usuario ya está registrado");
-            req.getRequestDispatcher("register.jsp").forward(req, resp);
-            return; // Salir del método después de reenviar
-        }
-
-        if (!password.equals(confirm_password)) {
-            System.out.println("bruh");
+        // Verificar que las contraseñas coincidan
+        if (!password.equals(confirmPassword)) {
+            System.out.println("Las contraseñas no coinciden");
             req.setAttribute("errorMessage", "¡Las contraseñas no coinciden!");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
-        } else {
-            try{
-                if (usuarioDao.insert(usuario)) {
-                    HttpSession session = req.getSession();
-                    session.setAttribute("user", usuario); // Guardar usuario en la sesión
-                    resp.sendRedirect("index.jsp");
-                } else {
-                    req.setAttribute("errorMessage", "¡Error al registrar el usuario!");
-                    req.getRequestDispatcher("register.jsp").forward(req, resp);
-                }
-            } catch (Exception e){
-                req.setAttribute("errorMessage", "Ha ocurrido un error, vuelva a intentarlo más tarde");
-                req.getRequestDispatcher("register.jsp").forward(req, resp);
-            }
+            return;
         }
+
+        // Crear el usuario
+        User usuario = new User(email, 1, email, "", "", password, email); // Ajusta los parámetros según tu lógica
+
+        // Generar el código de verificación y enviarlo por correo electrónico
+        try {
+            System.out.println("Generando código de verificación");
+            String verificationCode = GenerationCode.generateVerificationCode();
+            GmailSenderVerify verification = new GmailSenderVerify();
+            verification.sendVerificationEmail(email, verificationCode);
+
+            // Guardar el usuario y el código de verificación en la sesión
+            HttpSession session = req.getSession();
+            session.setAttribute("user", usuario);
+            session.setAttribute("verificationCode", verificationCode);
+
+            System.out.println("Redirigiendo a verifyAccount.jsp");
+            resp.sendRedirect("verifyAccount.jsp");
+        } catch (Exception e) {
+            System.out.println("Error al enviar el correo: " + e.getMessage());
+            req.setAttribute("errorMessage", "¡Error al enviar el correo de verificación!");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
+        }
+    }
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
     }
 }
