@@ -34,6 +34,9 @@
                 <input name="num5" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
                 <input name="num6" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
             </div>
+            <div class="d-flex justify-content-center mb-4">
+                <button type="submit" class="btn btn-primary">Verificar</button>
+            </div>
         </form>
     </div>
 </div>
