@@ -58,6 +58,8 @@
         </section>
     </section>
 
+    <c:choose>
+    <c:when test="${not empty sessionScope.user}">
     <section class="two">
         <section class="waves-container2" style="rotate: 180deg; padding-top: 200px;">
             <div class="wave wave1"></div>
@@ -123,6 +125,9 @@
         </div>
 
     </section>
+
+    </c:when>
+    </c:choose>
 </div>
 
 <div class="overlay" id="overlay">

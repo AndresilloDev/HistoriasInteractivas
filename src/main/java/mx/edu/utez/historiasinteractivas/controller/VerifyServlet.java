@@ -38,7 +38,6 @@ public class VerifyServlet extends HttpServlet {
                 if (usuarioDao.insert(user)) {
                     System.out.println("Usuario registrado correctamente");
                     session.removeAttribute("verificationCode"); // Remover el código de la sesión
-                    session.removeAttribute("user"); // Remover el usuario de la sesión
                     resp.sendRedirect("index.jsp"); // Redirigir a index
                 } else {
                     System.out.println("Error al registrar el usuario");
