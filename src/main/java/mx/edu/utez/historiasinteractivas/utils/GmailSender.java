@@ -12,6 +12,9 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.AddressException;
+import mx.edu.utez.historiasinteractivas.model.User;
 import org.apache.commons.codec.binary.Base64;
 import jakarta.mail.Session;
 import jakarta.mail.internet.InternetAddress;
@@ -73,22 +76,31 @@ public class GmailSender {
             }
         }
     }
-    public static void main(String[] args) throws Exception {
-        new GmailSender().sendMail("dericklagunes@utez.edu.mx","A new message",
-                "<h1>" +
-                        "Contreras Cortez Cesar Emilio" +
-                        "<br>" +
-                        "García Quiroz Gaspar Andres" +
-                        "<br>" +
-                        "Jimenez Ureña Angel Sebastian" +
-                        "<br>" +
-                        "Garcia Segura Fernanda Gabriela" +
-                        "<br>" +
-                        "Gutierrez Garcia Christopher" +
-                        "<br>" +
-                        "Teja Carvajal Erick Humberto" +
-                        "</h1>"
-        );
-    }
+    public void sendEmailRecoverPassword(User u, String link) throws Exception {
+        Properties props = new Properties();
+        Session session = Session.getDefaultInstance(props, null);
+        MimeMessage email = new MimeMessage(session);
+        email.setFrom(new InternetAddress(FROM));
+        email.addRecipient(TO, new InternetAddress(u.getEmail()));
+        email.setSubject("Cambiar contraseña");
+        email.setContent("Link hacia la página para el cambio de contraseña: " + link, "text/html; charset=utf-8");
 
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        email.writeTo(buffer);
+        byte[] rawMessageBytes = buffer.toByteArray();
+        String encodedEmail = Base64.encodeBase64URLSafeString(rawMessageBytes);
+        Message msg = new Message();
+        msg.setRaw(encodedEmail);
+
+        try {
+            service.users().messages().send("me", msg).execute();
+        } catch (GoogleJsonResponseException e) {
+            GoogleJsonError error = e.getDetails();
+            if (error.getCode() == 403) {
+                System.err.println("No se pudo enviar el mensaje: " + e.getDetails());
+            } else {
+                throw e;
+            }
+        }
+    }
 }

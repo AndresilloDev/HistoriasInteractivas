@@ -34,32 +34,6 @@ public class UsuarioDao {
         return false;
     }
 
-
-    public boolean updateUserPassword(User u, String newPassword){
-        boolean flag = false;
-        String query = "call updatePassword(?,?)";
-        try {
-            Connection con = DatabaseConnectionManager.getConnection();
-            CallableStatement stmt = con.prepareCall(query);
-            stmt.setString(1, u.getUser());
-            stmt.setString(2, newPassword);
-            stmt.execute();
-            try (ResultSet rs = stmt.getResultSet()) {
-                if (rs.next()) {
-                    // El procedimiento devuelve true si se logró la actualización, false en caso contrario
-                    //De todas formas por ahora siempre devuelve false, que dios ampare al valiente que logre resolver el problema
-
-                    flag = true;
-                    // Para cuando funcione
-                    // flag = rs.getBoolean("p_success");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return flag;
-    }
-
     public User getUser(User u) {
         User usuario = null;
         String sql = "SELECT * FROM USERS WHERE (email = ? OR user = ?) AND password = SHA2(?, 256)";
@@ -92,8 +66,7 @@ public class UsuarioDao {
     }
 
     public boolean existsUser(User u) {
-        User usuario = null;
-        String sql = "SELECT * FROM USERS WHERE (email = ? OR user = ?) AND password = SHA2(?, 256)";
+        String sql = "SELECT * FROM USERS WHERE email = ? OR user = ?";
 
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement statement = con.prepareStatement(sql)) {
@@ -101,13 +74,78 @@ public class UsuarioDao {
             // Establecer los parámetros de entrada
             statement.setString(1, u.getEmail());
             statement.setString(2, u.getEmail());
-            statement.setString(3, u.getPassword());
 
             // Ejecutar la consulta
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
                     return true;
                 }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean saveChangePasswordToken(User u, String token){
+        String sql = "UPDATE users SET change_password_token = ? WHERE email = ?";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            // Establecer los parámetros de entrada
+            stmt.setString(1, token);
+            stmt.setString(2, u.getEmail());
+
+            // Ejecutar la inserción
+            int affectedRows = stmt.executeUpdate();
+            System.out.println("Affected rows: " + affectedRows);
+
+            // Verificar si se insertó una fila
+            if (affectedRows > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public String getPasswordToken(User user) {
+        String sql = "Select change_password_token from users where email = ?";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement statement = con.prepareStatement(sql)) {
+
+            // Establecer los parámetros de entrada
+            statement.setString(1, user.getEmail());
+
+            // Ejecutar la consulta
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("change_password_token");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public boolean updatePassword(User u, String password){
+        String sql = "UPDATE users SET password = sha2(?,256) WHERE email = ?";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            // Establecer los parámetros de entrada
+            stmt.setString(1, password);
+            stmt.setString(2, u.getEmail());
+
+            // Ejecutar la inserción
+            int affectedRows = stmt.executeUpdate();
+            System.out.println("Affected rows: " + affectedRows);
+
+            // Verificar si se insertó una fila
+            if (affectedRows > 0) {
+                return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();

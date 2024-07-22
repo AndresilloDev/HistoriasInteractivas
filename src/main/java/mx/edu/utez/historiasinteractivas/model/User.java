@@ -35,6 +35,12 @@ public class User {
         this.user = email;
     }
 
+    //Constructor para la recuperación de contraseña
+    public User(String email) {
+        this.email = email;
+        this.user = email;
+    }
+
     public String getEmail() {
         return email;
     }
