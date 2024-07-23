@@ -1,11 +1,11 @@
 package mx.edu.utez.historiasinteractivas.dao;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import mx.edu.utez.historiasinteractivas.model.User;
 import mx.edu.utez.historiasinteractivas.utils.DatabaseConnectionManager;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDao {
 
@@ -87,7 +87,7 @@ public class UsuarioDao {
         return false;
     }
 
-    public boolean saveChangePasswordToken(User u, String token){
+    public boolean saveChangePasswordToken(User u, String token) {
         String sql = "UPDATE users SET change_password_token = ? WHERE email = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -130,7 +130,7 @@ public class UsuarioDao {
         return "";
     }
 
-    public boolean updatePassword(User u, String password){
+    public boolean updatePassword(User u, String password) {
         String sql = "UPDATE users SET password = sha2(?,256) WHERE email = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -151,5 +151,72 @@ public class UsuarioDao {
             e.printStackTrace();
         }
         return false;
+    }
+
+
+    public List<User> getAllUsers() {
+        List<User> usuarios = new ArrayList<>();
+        String sql = "SELECT * FROM USERS";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement statement = con.prepareStatement(sql);
+             ResultSet rs = statement.executeQuery()) {
+
+            while (rs.next()) {
+                User usuario = new User();
+                usuario.setEmail(rs.getString("email"));
+                usuario.setUser(rs.getString("user"));
+                usuario.setName(rs.getString("name"));
+                usuario.setPaternalSurname(rs.getString("paternal_surname"));
+                usuario.setMaternalSurname(rs.getString("maternal_surname"));
+                usuario.setStatus(rs.getBoolean("status"));
+                usuario.setUser_type(rs.getBoolean("admin") ? 1 : 0);
+                usuarios.add(usuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuarios;
+    }
+
+    public User findUserByEmail(String email) {
+        User usuario = null;
+        String sql = "SELECT * FROM USERS WHERE email = ?";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement statement = con.prepareStatement(sql)) {
+
+            statement.setString(1, email);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    usuario = new User();
+                    usuario.setEmail(rs.getString("email"));
+                    usuario.setUser(rs.getString("user"));
+                    usuario.setName(rs.getString("name"));
+                    usuario.setPaternalSurname(rs.getString("paternal_surname"));
+                    usuario.setMaternalSurname(rs.getString("maternal_surname"));
+                    usuario.setStatus(rs.getBoolean("status"));
+                    usuario.setUser_type(rs.getBoolean("admin") ? 1 : 0);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuario;
+    }
+
+    public boolean disableUserByEmail(String email) {
+        boolean resultado = false;
+        String sql = "UPDATE USERS SET status = false WHERE email = ?";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+
+            int affectedRows = stmt.executeUpdate();
+            resultado = affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultado;
     }
 }
