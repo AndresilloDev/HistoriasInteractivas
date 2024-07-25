@@ -20,7 +20,7 @@
     <div class="row p-3 shadow box-area" style="width: 700px;">
         <div class="col-md-12">
             <div class="row align-items-center">
-                <form action="editUser" method="post" autocomplete="off" enctype="multipart/form-data">
+                <form action="EditUserServlet" method="post" autocomplete="off">
                     <div class="d-flex justify-content-center align-items-center mb-2">
                         <img alt="userPicture" id="img" src="resources/img/userIcon.png" class="img-fluid" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover"/>
                     </div>
@@ -30,26 +30,27 @@
                     </div>
 
                     <label class="label">
-                        <input disabled value="aqui va el correo de usuario obtenido" type="email" placeholder=" " class="input input-group mb-4 fs-6" required style="color: rgb(115, 115, 115);">
+                        <input name="email" type="hidden" value="${user.email}">
+                        <input type="text" value="${user.email}" placeholder=" " class="input input-group mb-4 fs-6" disabled style="color: rgb(115, 115, 115);">
                         <span class="labelName fs-6">Correo electroníco</span>
                     </label>
                     <label class="label">
-                        <input name="user" type="text" placeholder=" " class="input input-group mb-4 fs-6" required>
+                        <input name="user" type="text" placeholder=" " class="input input-group mb-4 fs-6" value="${user.user}" required>
                         <span class="labelName fs-6">Nombre de usuario</span>
                     </label>
                     <label class="label">
-                        <input name="name" type="text" placeholder=" " class="input input-group mb-4 fs-6" required>
+                        <input name="name" type="text" placeholder=" " class="input input-group mb-4 fs-6" value="${user.name}" required>
                         <span class="labelName fs-6">Nombre</span>
                     </label>
                     <label class="label">
-                        <input name="paternalName" type="text" placeholder=" " class="input input-group mb-4 fs-6" required>
+                        <input name="paternalName" type="text" placeholder=" " class="input input-group mb-4 fs-6" value="${user.paternalSurname}" required>
                         <span class="labelName fs-6">Apellido paterno</span>
                     </label>
                     <label class="label">
-                        <input name="maternalName" type="text" placeholder=" " class="input input-group mb-4 fs-6" required>
+                        <input name="maternalName" type="text" placeholder=" " class="input input-group mb-4 fs-6" value="${user.maternalSurname}" required>
                         <span class="labelName fs-6">Apellido materno</span>
                     </label>
-                    <input class="button pt-1 pb-1 mb-2" type="submit" value="Actualiza tu informacion" name="updateInformation"/>
+                    <input class="button pt-1 pb-1 mb-2" type="submit" value="Actualiza tu información" name="updateInformation"/>
                 </form>
             </div>
         </div>
