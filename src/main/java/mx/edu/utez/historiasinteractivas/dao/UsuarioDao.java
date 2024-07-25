@@ -219,4 +219,24 @@ public class UsuarioDao {
         }
         return resultado;
     }
+    public boolean updateUser(User u) {
+        String sql = "UPDATE users SET user = ?, name = ?, paternal_surname = ?, maternal_surname = ? WHERE email = ?";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            // Establecer los parámetros de entrada
+            stmt.setString(1, u.getUser());
+            stmt.setString(2, u.getName());
+            stmt.setString(3, u.getPaternalSurname());
+            stmt.setString(4, u.getMaternalSurname());
+            stmt.setString(5, u.getEmail());
+
+            // Ejecutar la actualización
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
