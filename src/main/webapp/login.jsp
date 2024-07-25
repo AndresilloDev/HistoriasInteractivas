@@ -1,11 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    session = request.getSession(false);
-    if(session != null && session.getAttribute("user") != null) {
-        response.sendRedirect("index.jsp");
-        return;
-    }
-%>
 
 <!DOCTYPE html>
 <html lang="es-MX">
@@ -20,7 +13,13 @@
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
 </head>
-
+<%
+    session = request.getSession(false);
+    if(session != null && session.getAttribute("user") != null) {
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
 
