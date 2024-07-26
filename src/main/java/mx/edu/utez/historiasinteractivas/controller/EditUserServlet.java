@@ -4,22 +4,23 @@ import mx.edu.utez.historiasinteractivas.model.User;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 @WebServlet("/EditUserServlet")
+@MultipartConfig
 public class EditUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
-        // Ver todos los parámetros recibidos para depuración
-        request.getParameterMap().forEach((key, value) -> {
-            System.out.println("Parameter Name: " + key + ", Value: " + String.join(", ", value));
-        });
 
         String email = request.getParameter("email");
         String user = request.getParameter("user");
@@ -27,15 +28,26 @@ public class EditUserServlet extends HttpServlet {
         String paternalName = request.getParameter("paternalName");
         String maternalName = request.getParameter("maternalName");
 
-        // Imprimir valores para depuración
-        System.out.println("Email: " + email);
-        System.out.println("User: " + user);
-        System.out.println("Name: " + name);
-        System.out.println("Paternal Name: " + paternalName);
-        System.out.println("Maternal Name: " + maternalName);
+        Part filePart = request.getPart("userPicture");
+        String profilePicture = null;
 
-        if (email == null || user == null || name == null || paternalName == null || maternalName == null) {
-            System.out.println("Algunos parámetros son nulos. Verificar el formulario y la solicitud.");
+        if (filePart != null && filePart.getSubmittedFileName() != null && !filePart.getSubmittedFileName().isEmpty()) {
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            String uploadDir = getServletContext().getRealPath("") + File.separator + "uploads";
+            File uploadDirFile = new File(uploadDir);
+            if (!uploadDirFile.exists()) {
+                uploadDirFile.mkdirs();
+            }
+            String filePath = uploadDir + File.separator + fileName;
+            filePart.write(filePath);
+            System.out.println("Archivo guardado en: " + filePath);
+            profilePicture = "uploads/" + fileName;
+        }
+
+        UsuarioDao usuarioDao = new UsuarioDao();
+        User existingUser = usuarioDao.findUserByEmail(email);
+
+        if (existingUser == null) {
             response.sendRedirect("profile.jsp?updateSuccess=false");
             return;
         }
@@ -47,13 +59,18 @@ public class EditUserServlet extends HttpServlet {
         updatedUser.setPaternalSurname(paternalName);
         updatedUser.setMaternalSurname(maternalName);
 
-        UsuarioDao usuarioDao = new UsuarioDao();
+        if (profilePicture != null) {
+            updatedUser.setProfilePicture(profilePicture);
+        } else {
+            updatedUser.setProfilePicture(existingUser.getProfilePicture());
+        }
+
         boolean isUpdated = usuarioDao.updateUser(updatedUser);
 
         if (isUpdated) {
-            response.sendRedirect("profile.jsp?updateSuccess=true");
+            response.sendRedirect("index.jsp");
         } else {
-            response.sendRedirect("profile.jsp?updateSuccess=false");
+            response.sendRedirect("login.jsp");
         }
     }
 }

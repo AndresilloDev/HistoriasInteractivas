@@ -10,6 +10,7 @@ public class User {
     private String name;
     private String paternalSurname;
     private String maternalSurname;
+    private String profilePicture;
     private String password;
     private boolean status;
     public User() {
@@ -111,6 +112,14 @@ public class User {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public String getId_user() {
