@@ -24,7 +24,7 @@
             <form action="AdminUsersServlet" method="post">
                 <input type="hidden" name="action" value="buscar">
                 <label for="emailSearch" class="form-label">Correo electrónico:</label>
-                <input type="email" name="email" id="emailSearch" class="form-control" required>
+                <input type="email" name="email" id="emailSearch" maxlength="50" class="form-control" required>
                 <button type="submit" class="btn btn-primary mt-2">Buscar Usuario</button>
             </form>
         </div>
@@ -32,7 +32,7 @@
             <form action="AdminUsersServlet" method="post" onsubmit="return confirm('¿Estás seguro de que quieres deshabilitar este usuario?');">
                 <input type="hidden" name="action" value="deshabilitar">
                 <label for="emailDisable" class="form-label">Correo electrónico:</label>
-                <input type="email" name="email" id="emailDisable" class="form-control" required>
+                <input type="email" name="email" id="emailDisable" maxlength="50" class="form-control" required>
                 <button type="submit" class="btn btn-danger mt-2">Deshabilitar Usuario</button>
             </form>
         </div>

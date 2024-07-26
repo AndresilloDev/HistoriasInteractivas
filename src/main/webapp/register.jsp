@@ -32,15 +32,15 @@
 
                 <form action="register" method="post" autocomplete="off">
                     <label class="label">
-                        <input name="email" type="email" placeholder=" " class="input input-group mb-3 fs-6" required>
+                        <input id="email" name="email" type="email" placeholder=" " maxlength="50" class="input input-group mb-3 fs-6" required>
                         <span class="labelName fs-6">Correo electrónico</span>
                     </label>
                     <label class="label">
-                        <input name="password" type="password" placeholder=" " class="input input-group mb-3 fs-6" required>
+                        <input name="password" type="password" placeholder=" " maxlength="50" class="input input-group mb-3 fs-6" required>
                         <span class="labelName fs-6">Contraseña</span>
                     </label>
                     <label class="label">
-                        <input name="confirmPassword" type="password" placeholder=" " class="input input-group mb-3 fs-6" required>
+                        <input name="confirmPassword" type="password" placeholder=" " maxlength="50" class="input input-group mb-3 fs-6" required>
                         <span class="labelName fs-6">Confirmar contraseña</span>
                     </label>
                     <input class="button pt-1 pb-1 mb-2" type="submit" value="Registrate" name="register"/>
@@ -62,6 +62,7 @@
 
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/register.js"></script>
 </body>
 </html>
 
