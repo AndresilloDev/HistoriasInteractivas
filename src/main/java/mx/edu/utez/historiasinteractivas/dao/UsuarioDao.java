@@ -154,6 +154,7 @@ public class UsuarioDao {
     }
 
 
+
     public List<User> getAllUsers() {
         List<User> usuarios = new ArrayList<>();
         String sql = "SELECT * FROM USERS";
@@ -203,8 +204,8 @@ public class UsuarioDao {
             e.printStackTrace();
         }
         return usuario;
-
     }
+
     public boolean disableUserByEmail(String email) {
         boolean resultado = false;
         String sql = "UPDATE USERS SET status = false WHERE email = ?";
@@ -239,5 +240,17 @@ public class UsuarioDao {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public boolean enableUserByEmail(String email) {
+        try (Connection con = DatabaseConnectionManager.getConnection()) {
+            String query = "UPDATE Users SET status = true WHERE email = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, email);
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
