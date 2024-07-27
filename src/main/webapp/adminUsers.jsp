@@ -34,7 +34,7 @@
 
     <div class="row mb-4">
         <div class="col">
-            <form action="AdminUsersServlet" method="post">
+            <form action="adminUsers" method="post">
                 <input type="hidden" name="action" value="buscar">
                 <label for="emailSearch" class="form-label">Correo electrónico:</label>
                 <div class="input-group">
@@ -125,5 +125,6 @@
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="js/adminUsers.js"></script>
 </body>
 </html>

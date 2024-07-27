@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/AdminUsersServlet")
+@WebServlet(name="AdminUsersServlet", value = "/adminUsers")
 public class AdminUsersServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UsuarioDao usuarioDao = new UsuarioDao();

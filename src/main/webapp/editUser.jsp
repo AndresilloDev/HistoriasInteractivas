@@ -20,7 +20,7 @@
     <div class="row p-3 shadow box-area" style="width: 700px;">
         <div class="col-md-12">
             <div class="row align-items-center">
-                <form action="EditUserServlet" method="post" autocomplete="off" enctype="multipart/form-data">
+                <form action="editUser" method="post" autocomplete="off" enctype="multipart/form-data">
                     <div class="d-flex justify-content-center align-items-center mb-2">
                         <img alt="userPicture" id="img" src="${pageContext.request.contextPath}/${user.profilePicture != null ? user.profilePicture : 'resources/img/userIcon.png'}" class="img-fluid" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover"/>
                     </div>
