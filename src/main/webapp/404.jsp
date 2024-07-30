@@ -51,5 +51,6 @@
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
-</body>
+</body
+
 </html>
