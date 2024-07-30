@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.List, mx.edu.utez.historiasinteractivas.model.User" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
@@ -13,81 +13,107 @@
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
+    <style>
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0,0,0,.05);
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+        }
+        .pagination li {
+            margin: 0 5px;
+        }
+    </style>
 </head>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
 
 <div class="container my-5">
-    <h1>Administrar Usuarios</h1>
+    <h1>Consulta de usuarios</h1>
+
     <div class="row mb-4">
         <div class="col">
-            <form action="AdminUsersServlet" method="post">
+            <form action="adminUsers" method="post">
                 <input type="hidden" name="action" value="buscar">
                 <label for="emailSearch" class="form-label">Correo electrónico:</label>
-                <input type="email" name="email" id="emailSearch" class="form-control" required>
-                <button type="submit" class="btn btn-primary mt-2">Buscar Usuario</button>
-            </form>
-        </div>
-        <div class="col">
-            <form action="AdminUsersServlet" method="post" onsubmit="return confirm('¿Estás seguro de que quieres deshabilitar este usuario?');">
-                <input type="hidden" name="action" value="deshabilitar">
-                <label for="emailDisable" class="form-label">Correo electrónico:</label>
-                <input type="email" name="email" id="emailDisable" class="form-control" required>
-                <button type="submit" class="btn btn-danger mt-2">Deshabilitar Usuario</button>
+                <div class="input-group">
+                    <input type="email" name="email" id="emailSearch" class="form-control" required>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                </div>
             </form>
         </div>
     </div>
 
-    <% if (request.getAttribute("usuarios") != null) { %>
+    <c:if test="${not empty usuario}">
+        <h2>Información del Usuario</h2>
+        <div class="card">
+            <div class="card-body">
+                <p><strong>Nombre:</strong> ${usuario.name}</p>
+                <p><strong>Apellido Paterno:</strong> ${usuario.paternalSurname}</p>
+                <p><strong>Apellido Materno:</strong> ${usuario.maternalSurname}</p>
+                <p><strong>Correo Electrónico:</strong> ${usuario.email}</p>
+                <p><strong>Estado:</strong> ${usuario.status ? "Habilitado" : "Deshabilitado"}</p>
+                <form action="AdminUsersServlet" method="post" onsubmit="return confirm('¿Estás seguro de que quieres cambiar el estado de este usuario?');">
+                    <input type="hidden" name="action" value="${usuario.status ? "deshabilitar" : "habilitar"}">
+                    <input type="hidden" name="email" value="${usuario.email}">
+                    <button type="submit" class="btn ${usuario.status ? "btn-danger" : "btn-success"} mt-2">
+                            ${usuario.status ? "Deshabilitar" : "Habilitar"} Usuario
+                    </button>
+                </form>
+            </div>
+        </div>
+    </c:if>
+
+    <c:if test="${not empty mensaje}">
+        <div class="alert alert-info mt-3">
+                ${mensaje}
+        </div>
+    </c:if>
+
     <h2>Lista de Usuarios</h2>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Correo Electrónico</th>
+            <th>Email</th>
             <th>Usuario</th>
             <th>Nombre</th>
             <th>Apellido Paterno</th>
             <th>Apellido Materno</th>
             <th>Estado</th>
+            <th>Acciones</th>
         </tr>
         </thead>
-        <tbody>
-        <%
-            List<User> usuarios = (List<User>) request.getAttribute("usuarios");
-            for (User usuario : usuarios) {
-        %>
-        <tr>
-            <td><%= usuario.getEmail() %></td>
-            <td><%= usuario.getUser() %></td>
-            <td><%= usuario.getName() %></td>
-            <td><%= usuario.getPaternalSurname() %></td>
-            <td><%= usuario.getMaternalSurname() %></td>
-            <td><%= usuario.isStatus() ? "Habilitado" : "Deshabilitado" %></td>
-        </tr>
-        <% } %>
+        <tbody id="userTableBody">
+        <c:forEach var="user" items="${sessionScope.usuarios}" varStatus="status">
+            <tr>
+                <td>${user.email}</td>
+                <td>${user.user}</td>
+                <td>${user.name}</td>
+                <td>${user.paternalSurname}</td>
+                <td>${user.maternalSurname}</td>
+                <td>${user.status ? "Habilitado" : "Deshabilitado"}</td>
+                <td>
+                    <form action="AdminUsersServlet" method="post" onsubmit="return confirm('¿Estás seguro de que quieres cambiar el estado de este usuario?');">
+                        <input type="hidden" name="action" value="${user.status ? "deshabilitar" : "habilitar"}">
+                        <input type="hidden" name="email" value="${user.email}">
+                        <button type="submit" class="btn ${user.status ? "btn-danger" : "btn-success"}">
+                                ${user.status ? "Deshabilitar" : "Habilitar"} Usuario
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
-    <% } %>
 
-    <% if (request.getAttribute("usuario") != null) { %>
-    <h2>Información del Usuario</h2>
-    <% User usuario = (User) request.getAttribute("usuario"); %>
-    <div class="card">
-        <div class="card-body">
-            <p><strong>Nombre:</strong> <%= usuario.getName() %></p>
-            <p><strong>Apellido Paterno:</strong> <%= usuario.getPaternalSurname() %></p>
-            <p><strong>Apellido Materno:</strong> <%= usuario.getMaternalSurname() %></p>
-            <p><strong>Correo Electrónico:</strong> <%= usuario.getEmail() %></p>
-            <p><strong>Estado:</strong> <%= usuario.isStatus() ? "Habilitado" : "Deshabilitado" %></p>
-        </div>
-    </div>
-    <% } %>
-
-    <% if (request.getAttribute("mensaje") != null) { %>
-    <div class="alert alert-info mt-3">
-        <%= request.getAttribute("mensaje") %>
-    </div>
-    <% } %>
+    <ul class="pagination">
+        <c:forEach var="i" begin="1" end="${sessionScope.usuarios.size() / 15 + 1}">
+            <li class="page-item">
+                <a class="page-link" href="#" onclick="paginate(${i})">${i}</a>
+            </li>
+        </c:forEach>
+    </ul>
 </div>
 
 <section class="waves-container1">
@@ -98,5 +124,7 @@
 
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="js/adminUsers.js"></script>
 </body>
 </html>

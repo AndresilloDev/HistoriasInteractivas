@@ -154,6 +154,7 @@ public class UsuarioDao {
     }
 
 
+
     public List<User> getAllUsers() {
         List<User> usuarios = new ArrayList<>();
         String sql = "SELECT * FROM USERS";
@@ -196,6 +197,7 @@ public class UsuarioDao {
                     usuario.setMaternalSurname(rs.getString("maternal_surname"));
                     usuario.setStatus(rs.getBoolean("status"));
                     usuario.setUser_type(rs.getBoolean("admin") ? 1 : 0);
+                    usuario.setProfilePicture(rs.getString("profile_picture"));
                 }
             }
         } catch (SQLException e) {
@@ -219,24 +221,36 @@ public class UsuarioDao {
         }
         return resultado;
     }
-    public boolean updateUser(User u) {
-        String sql = "UPDATE users SET user = ?, name = ?, paternal_surname = ?, maternal_surname = ? WHERE email = ?";
-        try (Connection con = DatabaseConnectionManager.getConnection();
-             PreparedStatement stmt = con.prepareStatement(sql)) {
 
-            // Establecer los parámetros de entrada
-            stmt.setString(1, u.getUser());
-            stmt.setString(2, u.getName());
-            stmt.setString(3, u.getPaternalSurname());
-            stmt.setString(4, u.getMaternalSurname());
-            stmt.setString(5, u.getEmail());
+    public boolean updateUser(User user) {
+        String query = "UPDATE Users SET user = ?, name = ?, paternal_surname = ?, maternal_surname = ?, profile_picture = ? WHERE email = ?";
+        try (Connection connection = DatabaseConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
-            // Ejecutar la actualización
-            int affectedRows = stmt.executeUpdate();
-            return affectedRows > 0;
+            statement.setString(1, user.getUser());
+            statement.setString(2, user.getName());
+            statement.setString(3, user.getPaternalSurname());
+            statement.setString(4, user.getMaternalSurname());
+            statement.setString(5, user.getProfilePicture());
+            statement.setString(6, user.getEmail());
+
+            int rowsUpdated = statement.executeUpdate();
+            return rowsUpdated > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public boolean enableUserByEmail(String email) {
+        try (Connection con = DatabaseConnectionManager.getConnection()) {
+            String query = "UPDATE Users SET status = true WHERE email = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, email);
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

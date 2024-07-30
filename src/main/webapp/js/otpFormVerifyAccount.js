@@ -17,4 +17,9 @@ otpInputs.forEach((input, index) => {
             otpInputs[index - 1].focus(); // Volver al campo anterior si se borra
         }
     });
+
+    input.addEventListener("keypress", function (event){
+        if (this.value !== "") event.preventDefault();
+    })
+
 });

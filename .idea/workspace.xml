@@ -10,11 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/EditUserFormServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/EditUserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/AdminUsersServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/AdminUsersServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/editUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminUsers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminUsers.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,7 +274,10 @@
       <workItem from="1721700393590" duration="6623000" />
       <workItem from="1721880047800" duration="23000" />
       <workItem from="1721880085459" duration="13000" />
-      <workItem from="1721880118244" duration="1959000" />
+      <workItem from="1721880118244" duration="2694000" />
+      <workItem from="1721961038096" duration="947000" />
+      <workItem from="1721962018050" duration="4328000" />
+      <workItem from="1722054372185" duration="328000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
