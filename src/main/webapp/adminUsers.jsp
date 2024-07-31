@@ -94,7 +94,7 @@
                 <td>${user.maternalSurname}</td>
                 <td>${user.status ? "Habilitado" : "Deshabilitado"}</td>
                 <td>
-                    <form action="AdminUsersServlet" method="post" onsubmit="return confirm('¿Estás seguro de que quieres cambiar el estado de este usuario?');">
+                    <form action="adminUsers" method="post" onsubmit="return confirm('¿Estás seguro de que quieres cambiar el estado de este usuario?');">
                         <input type="hidden" name="action" value="${user.status ? "deshabilitar" : "habilitar"}">
                         <input type="hidden" name="email" value="${user.email}">
                         <button type="submit" class="btn ${user.status ? "btn-danger" : "btn-success"}">

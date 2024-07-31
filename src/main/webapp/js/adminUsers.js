@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('El DOM ha sido completamente cargado y analizado');
-    fetch('/Historias_Interactivas_war_exploded/AdminUsersServlet')
+    fetch('/Historias_Interactivas_war_exploded/adminUsers')
         .then(response => {
             if (response.ok) {
                 console.log('Salio bien :D');
