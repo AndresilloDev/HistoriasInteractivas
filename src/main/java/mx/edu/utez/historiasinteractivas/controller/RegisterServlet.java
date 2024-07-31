@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
 import mx.edu.utez.historiasinteractivas.model.User;
 import mx.edu.utez.historiasinteractivas.utils.GenerationCode;
 import mx.edu.utez.historiasinteractivas.utils.GmailSenderVerify;
@@ -32,26 +33,36 @@ public class RegisterServlet extends HttpServlet {
         }
 
         // Crear el usuario
-        User usuario = new User(email, 1, email, "", "", password, email); // Ajusta los parámetros según tu lógica
+        UsuarioDao dao = new UsuarioDao();
+        if (!dao.existsUser(email, password)){
+            // Generar el código de verificación y enviarlo por correo electrónico
+            try {
+                User usuario = new User(email, password);
+                System.out.println("Generando código de verificación");
+                String verificationCode = GenerationCode.generateVerificationCode();
+                GmailSenderVerify verification = new GmailSenderVerify();
+                verification.sendVerificationEmail(email, verificationCode);
 
-        // Generar el código de verificación y enviarlo por correo electrónico
-        try {
-            System.out.println("Generando código de verificación");
-            String verificationCode = GenerationCode.generateVerificationCode();
-            GmailSenderVerify verification = new GmailSenderVerify();
-            verification.sendVerificationEmail(email, verificationCode);
+                // Guardar el usuario y el código de verificación en la sesión
+                HttpSession session = req.getSession();
+                session.setAttribute("user", usuario);
+                session.setAttribute("verificationCode", verificationCode);
 
-            // Guardar el usuario y el código de verificación en la sesión
-            HttpSession session = req.getSession();
-            session.setAttribute("user", usuario);
-            session.setAttribute("verificationCode", verificationCode);
+                System.out.println("Redirigiendo a verifyAccount.jsp");
+                resp.sendRedirect("verifyAccount.jsp");
+            } catch (Exception e) {
+                System.out.println("Error al enviar el correo: " + e.getMessage());
+                req.setAttribute("errorMessage", "¡Error al enviar el correo de verificación!");
+                req.getRequestDispatcher("register.jsp").forward(req, resp);
+            }
+        } else {
+            try {
+                req.setAttribute("errorMessage", "¡El usuario ya existe!");
+                resp.sendRedirect("register.jsp");
 
-            System.out.println("Redirigiendo a verifyAccount.jsp");
-            resp.sendRedirect("verifyAccount.jsp");
-        } catch (Exception e) {
-            System.out.println("Error al enviar el correo: " + e.getMessage());
-            req.setAttribute("errorMessage", "¡Error al enviar el correo de verificación!");
-            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            } catch (Exception e){
+                System.out.println("El correo ya esta siendo usado");
+            }
         }
     }
 

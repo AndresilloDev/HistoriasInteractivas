@@ -20,29 +20,28 @@ public class RecoverPasswordServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String correo = req.getParameter("email");
+        String email = req.getParameter("email");
 
         UsuarioDao dao = new UsuarioDao();
-        User user = new User(correo);
 
-        if (!dao.existsUser(user)) {
+        if (dao.findUserByEmail(email) == null) {
             System.out.println("No usuario correspondiente");
-            req.setAttribute("errorMessage", "No existe el usuario " + correo);
+            req.setAttribute("errorMessage", "No existe el usuario " + email);
             req.getRequestDispatcher("recoverPassword.jsp").forward(req, resp);
         } else {
             //Generar el token aleatorio y crear un link en base a eso
             String token = RandomStringGenerator.generateRandomString();
-            String resetLink = "http://localhost:8080/Historias_Interactivas_war_exploded/changePassword?token=" + token + "&email="+correo;
+            String resetLink = "http://localhost:8080/Historias_Interactivas_war_exploded/changePassword?token=" + token + "&email="+email;
 
             //Guardar el token en la base de datos para su posterior verificado
-            if(!dao.saveChangePasswordToken(user, token)){
+            if(!dao.saveChangePasswordToken(email, token)){
                 System.out.println("No se pudo almacenar");
-                req.setAttribute("errorMessage", "Error al cambiar la contraseña, inténtelo de nuevo en unos momentos" + correo);
+                req.setAttribute("errorMessage", "Error al cambiar la contraseña, inténtelo de nuevo en unos momentos" + email);
                 req.getRequestDispatcher("recoverPassword.jsp").forward(req, resp);
             }
             try {
                 GmailSender gs = new GmailSender();
-                gs.sendEmailRecoverPassword(user, resetLink);
+                gs.sendEmailRecoverPassword(email, resetLink);
                 System.out.println("Correo enviado");
                 req.setAttribute("message", "Favor de revisar su correo para cambiar la contraseña.");
                 req.getRequestDispatcher("recoverPassword.jsp").forward(req, resp);

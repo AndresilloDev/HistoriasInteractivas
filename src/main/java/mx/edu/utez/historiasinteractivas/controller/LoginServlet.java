@@ -17,31 +17,29 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //Obtener los parámetros del formulario
-        String user = req.getParameter("user");
+        String emailOrUser = req.getParameter("user");
         String password = req.getParameter("password");
-        User usuario = new User(user, password);
 
         //Se obtiene el usuario si existe
         UsuarioDao dao = new UsuarioDao();
-        User u = dao.getUser(usuario);
+        User usuario = dao.getUser(emailOrUser, password);
 
-        if (u != null && u.isStatus()) { // El usuario existe y está activo
-            System.out.println("Pasado la primera prueba");
-            System.out.println(u.getUser_type());
+        if (usuario != null && usuario.isStatus()) { // El usuario existe y está activo
 
             // Guardar usuario en la sesión
             HttpSession session = req.getSession();
-            session.setAttribute("user", u);
+            session.setAttribute("user", usuario);
 
             // El usuario es un creador de historias
-            if (u.getUser_type() == 0) {
-                System.out.println("userNomra");
-                resp.sendRedirect("index.jsp");
+            if (usuario.isAdmin()) {
+                System.out.println("usuario Admin");
+                resp.sendRedirect("adminUsers.jsp");
 
             // El usuario es un administrador
-            } else if (u.getUser_type() == 1) {
-                System.out.println("Admin");
-                resp.sendRedirect("paginaNoCreadaParaAdministrador.jsp");
+            } else {
+                System.out.println("Usuario Normal");
+                resp.sendRedirect("index.jsp");
+
             }
 
         } else { // El usuario no existe o las credenciales son incorrectas

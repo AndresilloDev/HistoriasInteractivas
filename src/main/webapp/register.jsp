@@ -30,17 +30,17 @@
                     <h1>Registrate</h1>
                 </div>
 
-                <form action="register" method="post" autocomplete="off">
+                <form id="registerForm" action="register" method="post" autocomplete="off">
                     <label class="label">
                         <input id="email" name="email" type="email" placeholder=" " maxlength="50" class="input input-group mb-3 fs-6" required>
                         <span class="labelName fs-6">Correo electrónico</span>
                     </label>
                     <label class="label">
-                        <input name="password" type="password" placeholder=" " maxlength="50" class="input input-group mb-3 fs-6" required>
+                        <input id="password" name="password" type="password" placeholder=" " maxlength="50" class="input input-group mb-3 fs-6" required>
                         <span class="labelName fs-6">Contraseña</span>
                     </label>
                     <label class="label">
-                        <input name="confirmPassword" type="password" placeholder=" " maxlength="50" class="input input-group mb-3 fs-6" required>
+                        <input id="confirmPassword" name="confirmPassword" type="password" placeholder=" " maxlength="50" class="input input-group mb-3 fs-6" required>
                         <span class="labelName fs-6">Confirmar contraseña</span>
                     </label>
                     <input class="button pt-1 pb-1 mb-2" type="submit" value="Registrate" name="register"/>

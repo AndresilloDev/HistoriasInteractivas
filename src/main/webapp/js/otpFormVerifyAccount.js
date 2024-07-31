@@ -20,6 +20,8 @@ otpInputs.forEach((input, index) => {
 
     input.addEventListener("keypress", function (event){
         if (this.value !== "") event.preventDefault();
-    })
-
+    });
+    input.onpaste = function(event) {
+        event.preventDefault();
+    }
 });
