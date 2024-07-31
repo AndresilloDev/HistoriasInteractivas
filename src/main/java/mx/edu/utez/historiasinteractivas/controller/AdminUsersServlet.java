@@ -19,9 +19,11 @@ public class AdminUsersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("Funciono bien hasta aquí");
         List<User> usuarios = usuarioDao.getAllUsers();
         HttpSession session = request.getSession();
         session.setAttribute("usuarios", usuarios);
+        System.out.println("Funciono bien hasta aquí V2");
         request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
     }
 

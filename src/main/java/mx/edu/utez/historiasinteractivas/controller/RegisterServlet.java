@@ -33,11 +33,11 @@ public class RegisterServlet extends HttpServlet {
         }
 
         // Crear el usuario
-        User usuario = new User(email, 1, email, "", "", password, email); // Ajusta los parámetros según tu lógica
         UsuarioDao dao = new UsuarioDao();
-        if (!dao.existsUser(usuario)){
+        if (!dao.existsUser(email, password)){
             // Generar el código de verificación y enviarlo por correo electrónico
             try {
+                User usuario = new User(email, password);
                 System.out.println("Generando código de verificación");
                 String verificationCode = GenerationCode.generateVerificationCode();
                 GmailSenderVerify verification = new GmailSenderVerify();
@@ -57,6 +57,7 @@ public class RegisterServlet extends HttpServlet {
             }
         } else {
             try {
+                req.setAttribute("errorMessage", "¡El usuario ya existe!");
                 resp.sendRedirect("register.jsp");
 
             } catch (Exception e){

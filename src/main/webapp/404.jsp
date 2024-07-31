@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,23 +30,22 @@
     </style>
 
 </head>
-
 <body class="light-mode">
 
 <div class="container text-center">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h1 class="display-1">404</h1>
-            <p class="lead">Oops! La página que buscas no existe.</p>
+            <p class="lead">¡Oops! La página que buscas no existe.</p>
             <a href="index.jsp" class="btn btn-primary">Volver al Inicio</a>
         </div>
     </div>
 </div>
 
 <section class="waves-container1">
-    <div class="wave wave1" style="position: fixed"></div>
-    <div class="wave wave2" style="position: fixed"></div>
-    <div class="wave wave3" style="position: fixed"></div>
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
 </section>
 
 <script src="components/navComponent/themeSwitch.js"></script>
