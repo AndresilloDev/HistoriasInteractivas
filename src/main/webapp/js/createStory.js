@@ -220,213 +220,212 @@ function init() {
 		var newnode = diagram.findNodeForData (toData);
 		diagram.select (newnode);
 		diagram.commitTransaction ('Add State');
-		
-		// Template de el trazado de los nodos y sus conexiones
-		storyDiagram.linkTemplate = $ (go.Link,
-			{curve: go.Curve.Bezier, toShortLength: 5, fromSpot: go.Spot.Right, toSpot: go.Spot.Left},
-			$ (go.Shape,
-				{stroke: lineColor, strokeWidth: 2.5}
-			),
-			$ (go.Shape,
-				{toArrow: 'Kite', fill: lineColor, stroke: lineColor, scale: 1.5}
-			)
-		);
-		
-		// Cuando se crea un nuevo enlace, determinar qué plantilla usar
-		storyDiagram.addDiagramListener ('LinkDrawn', (e) => {
-			var link = e.subject;
-			if (link.fromNode.findLinksOutOf ().count > 2) {
-				storyDiagram.remove (link);
-				alert ('El evento no puede tener más de dos conexiones salientes.');
-			} else if (link.toNode.findLinksInto ().count > 2) {
-				storyDiagram.remove (link);
-				alert ('El evento no puede tener más de dos conexiones entrantes.');
-			}
-		});
-		
-		var buttonsBar = new go.Palette (
-			'buttonsBar', // Crear una nueva Paleta en el elemento HTML DIV
-			{
-				// Compartir el mapa de plantillas con la Paleta
-				nodeTemplateMap: storyDiagram.nodeTemplateMap,
-				autoScale: go.AutoScale.Uniform, // Responsividad del GoJS
-			}
-		);
-		
-		buttonsBar.model.nodeDataArray = [
-			{category: 'middleEvent'},
-			{category: 'endEvent'},
-		];
-		
-		
-		// Leer los datos en formato JSON del elemento "mySavedModel" cargados apartir del JAVA
-		load ();
-		layout ();
 	}
+	// Template de el trazado de los nodos y sus conexiones
+	storyDiagram.linkTemplate = $ (go.Link,
+		{curve: go.Curve.Bezier, toShortLength: 5, fromSpot: go.Spot.Right, toSpot: go.Spot.Left},
+		$ (go.Shape,
+			{stroke: lineColor, strokeWidth: 2.5}
+		),
+		$ (go.Shape,
+			{toArrow: 'Kite', fill: lineColor, stroke: lineColor, scale: 1.5}
+		)
+	);
+	
+	// Cuando se crea un nuevo enlace, determinar qué plantilla usar
+	storyDiagram.addDiagramListener ('LinkDrawn', (e) => {
+		var link = e.subject;
+		if (link.fromNode.findLinksOutOf ().count > 2) {
+			storyDiagram.remove (link);
+			alert ('El evento no puede tener más de dos conexiones salientes.');
+		} else if (link.toNode.findLinksInto ().count > 2) {
+			storyDiagram.remove (link);
+			alert ('El evento no puede tener más de dos conexiones entrantes.');
+		}
+	});
+	
+	var buttonsBar = new go.Palette (
+		'buttonsBar', // Crear una nueva Paleta en el elemento HTML DIV
+		{
+			// Compartir el mapa de plantillas con la Paleta
+			nodeTemplateMap: storyDiagram.nodeTemplateMap,
+			autoScale: go.AutoScale.Uniform, // Responsividad del GoJS
+		}
+	);
+	
+	buttonsBar.model.nodeDataArray = [
+		{category: 'middleEvent'},
+		{category: 'endEvent'},
+	];
+	
+	
+	// Leer los datos en formato JSON del elemento "mySavedModel" cargados apartir del JAVA
+	load ();
+	layout ();
+}
 
 // Función para abrir el modal
-	function openEditModal(e, obj) {
-		var node = obj.part;
-		if ( !node) return;
-		
-		var data = node.data;
-		
-		// Cargar los datos del nodo en el formulario
-		document.getElementById ('nodeText').value = data.text || '';
-		document.getElementById ('nodeDescription').value = data.description || '';
-		document.getElementById ('fileUpload').value = ''; // Limpiar archivo cargado
-		
-		// Limpiar las vistas previas
-		clearPreviews ();
-		
-		// Actualizar vistas previas si ya hay archivos cargados
-		if (data.hasImage) {
-			document.getElementById ('imagePreviewContainer').classList.add ('active');
-		}
-		if (data.hasAudio) {
-			document.getElementById ('audioPreviewContainer').classList.add ('active');
-		}
-		if (data.hasVideo) {
-			document.getElementById ('videoPreviewContainer').classList.add ('active');
-		}
-		
-		// Mostrar el área de arrastre si no hay combinación de imagen y audio
-		if ( !(data.hasImage && data.hasAudio) && !data.hasVideo) {
-			document.getElementById ('dropArea').style.display = 'block';
-		} else {
-			document.getElementById ('dropArea').style.display = 'none';
-		}
-		
-		// Mostrar el modal
-		document.getElementById ('editModal').style.display = 'flex';
-		
-		// Guardar los datos del nodo en el modal
-		window.currentNode = node; // Guardar referencia al nodo actual
+function openEditModal(e, obj) {
+	var node = obj.part;
+	if ( !node) return;
+	
+	var data = node.data;
+	
+	// Cargar los datos del nodo en el formulario
+	document.getElementById ('nodeText').value = data.text || '';
+	document.getElementById ('nodeDescription').value = data.description || '';
+	document.getElementById ('fileUpload').value = ''; // Limpiar archivo cargado
+	
+	// Limpiar las vistas previas
+	clearPreviews ();
+	
+	// Actualizar vistas previas si ya hay archivos cargados
+	if (data.hasImage) {
+		document.getElementById ('imagePreviewContainer').classList.add ('active');
 	}
+	if (data.hasAudio) {
+		document.getElementById ('audioPreviewContainer').classList.add ('active');
+	}
+	if (data.hasVideo) {
+		document.getElementById ('videoPreviewContainer').classList.add ('active');
+	}
+	
+	// Mostrar el área de arrastre si no hay combinación de imagen y audio
+	if ( !(data.hasImage && data.hasAudio) && !data.hasVideo) {
+		document.getElementById ('dropArea').style.display = 'block';
+	} else {
+		document.getElementById ('dropArea').style.display = 'none';
+	}
+	
+	// Mostrar el modal
+	document.getElementById ('editModal').style.display = 'flex';
+	
+	// Guardar los datos del nodo en el modal
+	window.currentNode = node; // Guardar referencia al nodo actual
+}
 
 // Función para cerrar el modal
-	function closeModal() {
-		document.getElementById ('editModal').style.display = 'none';
-	}
+function closeModal() {
+	document.getElementById ('editModal').style.display = 'none';
+}
 
 // Función para guardar los datos del nodo
-	function saveNodeData() {
-		var node = window.currentNode;
-		if ( !node) return;
-		
-		var text = document.getElementById ('nodeText').value;
-		var description = document.getElementById ('nodeDescription').value;
-		
-		// Actualizar los datos del nodo
-		storyDiagram.model.setDataProperty (node.data, 'text', text);
-		storyDiagram.model.setDataProperty (node.data, 'description', description);
-		
-		// Actualizar datos del nodo con los archivos
-		var hasImage = document.getElementById ('imagePreviewContainer').classList.contains ('active');
-		var hasAudio = document.getElementById ('audioPreviewContainer').classList.contains ('active');
-		var hasVideo = document.getElementById ('videoPreviewContainer').classList.contains ('active');
-		
-		storyDiagram.model.setDataProperty (node.data, 'hasImage', hasImage);
-		storyDiagram.model.setDataProperty (node.data, 'hasAudio', hasAudio);
-		storyDiagram.model.setDataProperty (node.data, 'hasVideo', hasVideo);
-		
-		// Cerrar el modal
-		closeModal ();
-	}
+function saveNodeData() {
+	var node = window.currentNode;
+	if ( !node) return;
+	
+	var text = document.getElementById ('nodeText').value;
+	var description = document.getElementById ('nodeDescription').value;
+	
+	// Actualizar los datos del nodo
+	storyDiagram.model.setDataProperty (node.data, 'text', text);
+	storyDiagram.model.setDataProperty (node.data, 'description', description);
+	
+	// Actualizar datos del nodo con los archivos
+	var hasImage = document.getElementById ('imagePreviewContainer').classList.contains ('active');
+	var hasAudio = document.getElementById ('audioPreviewContainer').classList.contains ('active');
+	var hasVideo = document.getElementById ('videoPreviewContainer').classList.contains ('active');
+	
+	storyDiagram.model.setDataProperty (node.data, 'hasImage', hasImage);
+	storyDiagram.model.setDataProperty (node.data, 'hasAudio', hasAudio);
+	storyDiagram.model.setDataProperty (node.data, 'hasVideo', hasVideo);
+	
+	// Cerrar el modal
+	closeModal ();
+}
 
 // Configuración de arrastrar y soltar
-	document.getElementById ('dropArea').addEventListener ('dragover', function (event) {
-		event.preventDefault ();
-		event.stopPropagation ();
-		event.dataTransfer.dropEffect = 'copy';
-		this.classList.add ('dragover');
-	});
+document.getElementById ('dropArea').addEventListener ('dragover', function (event) {
+	event.preventDefault ();
+	event.stopPropagation ();
+	event.dataTransfer.dropEffect = 'copy';
+	this.classList.add ('dragover');
+});
+
+document.getElementById ('dropArea').addEventListener ('dragleave', function (event) {
+	event.preventDefault ();
+	event.stopPropagation ();
+	this.classList.remove ('dragover');
+});
+
+document.getElementById ('dropArea').addEventListener ('drop', function (event) {
+	event.preventDefault ();
+	event.stopPropagation ();
+	this.classList.remove ('dragover');
 	
-	document.getElementById ('dropArea').addEventListener ('dragleave', function (event) {
-		event.preventDefault ();
-		event.stopPropagation ();
-		this.classList.remove ('dragover');
-	});
-	
-	document.getElementById ('dropArea').addEventListener ('drop', function (event) {
-		event.preventDefault ();
-		event.stopPropagation ();
-		this.classList.remove ('dragover');
-		
-		var files = event.dataTransfer.files;
-		handleFiles (files);
-	});
-	
-	document.getElementById ('dropArea').addEventListener ('click', function () {
-		document.getElementById ('fileUpload').click ();
-	});
-	
-	document.getElementById ('fileUpload').addEventListener ('change', function (event) {
-		var files = event.target.files;
-		handleFiles (files);
-	});
+	var files = event.dataTransfer.files;
+	handleFiles (files);
+});
+
+document.getElementById ('dropArea').addEventListener ('click', function () {
+	document.getElementById ('fileUpload').click ();
+});
+
+document.getElementById ('fileUpload').addEventListener ('change', function (event) {
+	var files = event.target.files;
+	handleFiles (files);
+});
 
 // Función para manejar los archivos
-	function handleFiles(files) {
-		let hasImage = document.getElementById ('imagePreviewContainer').classList.contains ('active');
-		let hasAudio = document.getElementById ('audioPreviewContainer').classList.contains ('active');
-		let hasVideo = document.getElementById ('videoPreviewContainer').classList.contains ('active');
-		
-		for (let file of files) {
-			if (file.type.startsWith ('image/')) {
-				if (hasVideo) {
-					alert ('No se permite subir imagen junto con video.');
-					return;
-				}
-				hasImage = true;
-				document.getElementById ('imagePreviewContainer').classList.add ('active');
-			} else if (file.type.startsWith ('audio/')) {
-				if (hasVideo) {
-					alert ('No se permite subir audio junto con video.');
-					return;
-				}
-				hasAudio = true;
-				document.getElementById ('audioPreviewContainer').classList.add ('active');
-			} else if (file.type.startsWith ('video/')) {
-				if (hasImage || hasAudio) {
-					alert ('No se permite subir video junto con imagen o audio.');
-					return;
-				}
-				hasVideo = true;
-				document.getElementById ('videoPreviewContainer').classList.add ('active');
+function handleFiles(files) {
+	let hasImage = document.getElementById ('imagePreviewContainer').classList.contains ('active');
+	let hasAudio = document.getElementById ('audioPreviewContainer').classList.contains ('active');
+	let hasVideo = document.getElementById ('videoPreviewContainer').classList.contains ('active');
+	
+	for (let file of files) {
+		if (file.type.startsWith ('image/')) {
+			if (hasVideo) {
+				alert ('No se permite subir imagen junto con video.');
+				return;
 			}
-		}
-		
-		// Mostrar u ocultar el área de arrastre según las combinaciones permitidas
-		if (hasImage && hasAudio) {
-			document.getElementById ('dropArea').style.display = 'none';
-		} else {
-			document.getElementById ('dropArea').style.display = 'block';
+			hasImage = true;
+			document.getElementById ('imagePreviewContainer').classList.add ('active');
+		} else if (file.type.startsWith ('audio/')) {
+			if (hasVideo) {
+				alert ('No se permite subir audio junto con video.');
+				return;
+			}
+			hasAudio = true;
+			document.getElementById ('audioPreviewContainer').classList.add ('active');
+		} else if (file.type.startsWith ('video/')) {
+			if (hasImage || hasAudio) {
+				alert ('No se permite subir video junto con imagen o audio.');
+				return;
+			}
+			hasVideo = true;
+			document.getElementById ('videoPreviewContainer').classList.add ('active');
 		}
 	}
+	
+	// Mostrar u ocultar el área de arrastre según las combinaciones permitidas
+	if (hasImage && hasAudio) {
+		document.getElementById ('dropArea').style.display = 'none';
+	} else {
+		document.getElementById ('dropArea').style.display = 'block';
+	}
+}
 
 // Función para limpiar las vistas previas
-	function clearPreviews() {
-		document.getElementById ('imagePreviewContainer').classList.remove ('active');
-		document.getElementById ('audioPreviewContainer').classList.remove ('active');
-		document.getElementById ('videoPreviewContainer').classList.remove ('active');
-	}
+function clearPreviews() {
+	document.getElementById ('imagePreviewContainer').classList.remove ('active');
+	document.getElementById ('audioPreviewContainer').classList.remove ('active');
+	document.getElementById ('videoPreviewContainer').classList.remove ('active');
+}
 
 // Función de guardar el diagrama en formato JSON
-	function save() {
-		document.getElementById ('mySavedModel').value = storyDiagram.model.toJson ();
-		storyDiagram.isModified = false;
-		console.log (storyDiagram.model.toJson ());
-	}
+function save() {
+	document.getElementById ('mySavedModel').value = storyDiagram.model.toJson ();
+	storyDiagram.isModified = false;
+	console.log (storyDiagram.model.toJson ());
+}
 
 // Función para cargar el modelo guardado en JSON
-	function load() {
-		storyDiagram.model = go.Model.fromJson (document.getElementById ('mySavedModel').value);
-	}
-	
-	function layout() {
-		storyDiagram.layoutDiagram (true);
-	}
-	
-	window.addEventListener ('DOMContentLoaded', init);
+function load() {
+	storyDiagram.model = go.Model.fromJson (document.getElementById ('mySavedModel').value);
 }
+
+function layout() {
+	storyDiagram.layoutDiagram (true);
+}
+
+window.addEventListener ('DOMContentLoaded', init);
