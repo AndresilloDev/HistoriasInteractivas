@@ -57,3 +57,10 @@ function typewriterEffect(elementId, words, colors) {
 data.forEach(item => {
     typewriterEffect(item.elementId, item.words, item.colors);
 });
+
+function scrollToNextSection() {
+    const nextSection = document.querySelector('.two');
+    if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}

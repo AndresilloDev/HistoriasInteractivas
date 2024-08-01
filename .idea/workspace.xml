@@ -11,9 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Solucione un error al actualizar el componente navBar despues de iniciar sesion, [cambiaron la BD &gt;:( y no me di conta]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/404.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/404.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/writingAnimation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/writingAnimation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,11 +106,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
       <recent name="C:\Users\andre\Documents\DEV-UTEZ\HistoriasInteractivas\src\main\webapp\js" />
       <recent name="$PROJECT_DIR$/src/main/webapp/components/navComponent" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/icons" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/img" />
-      <recent name="C:\Users\erick\IdeaProjects\HistoriasInteractivas\src\main\resources" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 11.0.0-M20">
@@ -237,8 +239,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -299,6 +301,8 @@
       <workItem from="1722151160198" duration="1842000" />
       <workItem from="1722319995902" duration="1772000" />
       <workItem from="1722467829726" duration="6286000" />
+      <workItem from="1722488775290" duration="1039000" />
+      <workItem from="1722498782544" duration="3647000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />

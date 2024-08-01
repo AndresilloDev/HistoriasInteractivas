@@ -53,6 +53,15 @@
             </div>
         </section>
 
+        <c:if test="${not empty sessionScope.user}">
+            <div class="scroll-arrow" onclick="scrollToNextSection()">
+                <svg id="more-arrows" xmlns="http://www.w3.org/2000/svg" width="100" height="64" viewBox="0 0 100 64">
+                    <polygon class="arrow-middle" points="50,45.8 0,15 5,13 50,41.2 95,13 100,15"/>
+                    <polygon class="arrow-bottom" points="50,64 0,32 10,28 50,56.8 90,28 100,32"/>
+                </svg>
+            </div>
+        </c:if>
+
         <section class="waves-container1">
             <div class="wave wave1"></div>
             <div class="wave wave2"></div>

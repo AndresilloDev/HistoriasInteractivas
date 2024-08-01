@@ -292,3 +292,51 @@ body {
     background: var(--mode-hover-color);
     border-radius: 10px;
 }
+
+
+/*FLECHAS ANIMADAS*/
+.scroll-arrow {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 2000;
+}
+
+#more-arrows {
+    width: 60px;
+    height: auto;
+    fill: white;
+}
+.arrow-middle {
+    animation: bounce-middle 1.8s infinite;
+}
+
+.arrow-bottom {
+    animation: bounce-bottom 2s infinite;
+}
+
+@keyframes bounce-middle {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-12px);
+    }
+    60% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes bounce-bottom {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-14px);
+    }
+    60% {
+        transform: translateY(-7px);
+    }
+}
