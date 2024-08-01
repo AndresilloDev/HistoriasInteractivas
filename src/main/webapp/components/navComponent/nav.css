@@ -30,21 +30,24 @@
     font-size: 1rem;
     padding: 0.3rem 0.5rem;
 }
-#loginIcon {
+#loginIcon{
     width: 1.5rem;
     height: 1.5rem;
 }
-#navThemeButton {
+#navThemeButton, #profileDropdown {
     padding: 0.3rem 0.5rem;
 }
-#themeButton {
+#themeButton, #userButton{
     background-color: var(--mode-background-color);
     border-color: var(--mode-hover-color);
     border: 1px solid var(--mode-hover-color);
     border-radius: 50%;
     padding: 0.3rem 0.35rem;
 }
-#themeIcon {
+#userButton::after {
+    display: none;
+}
+#themeIcon, #userIcon {
     width: 1.5rem;
     height: 1.5rem;
 }
@@ -67,10 +70,10 @@
         width: 1.3rem;
         height: 1.3rem;
     }
-    #themeButton {
+    #themeButton, #userButton {
         padding: 0.3rem 0.4rem;
     }
-    #themeIcon {
+    #themeIcon, #userIcon {
         width: 1.3rem;
         height: 1.3rem;
     }
@@ -94,11 +97,77 @@
         width: 1.2rem;
         height: 1.2rem;
     }
-    #themeButton {
+    #themeButton, #userButton {
         padding: 0.2rem 0.4rem;
     }
-    #themeIcon {
+    #themeIcon, #userIcon {
         width: 1.2rem;
         height: 1.2rem;
     }
+}
+
+/* Estilos para el dropdown */
+.dropdown-menu {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--mode-shadow-color);
+    background-color: var(--mode-card-color);
+    display: none;
+    position: absolute;
+    right: 0;
+    z-index: 2500;
+    width: 250px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.nav-item.dropdown.show .dropdown-menu {
+    display: block;
+}
+#profileDropdown .profile-info {
+    padding: 0.5rem 1rem;
+    cursor: default;
+}
+#profileDropdown .profile-info:hover {
+    background-color: transparent;
+}
+#profileDropdown .profile-info div {
+    margin-left: 0.5rem;
+}
+#profileDropdown .profile-info strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--mode-text-color);
+}
+#profileDropdown .profile-info small {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--mode-text-color);
+}
+#profileDropdown .dropdown-item a {
+    display: flex;
+    align-items: center;
+    color: #1473d3;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+#profileDropdown .dropdown-item i {
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+    color: var(--mode-text-color);
+}
+#profileDropdown .dropdown-item a:hover {
+    background-color: var(--mode-card-color);
+    filter: brightness(1.3);
+    color: var(--mode-hover-color);
+}
+#profileDropdown .dropdown-item a:hover i {
+    color: var(--mode-hover-color);
+}
+#userIcon {
+    border-radius: 50%;
+}
+.dropdown-divider {
+    margin: 0.75rem 0;
+    border-top: var(--mode-text-color);
 }
