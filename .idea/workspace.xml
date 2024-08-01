@@ -10,11 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/go.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +24,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="CSS File" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
+        <option value="CSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -105,11 +104,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\andre\Documents\DEV-UTEZ\HistoriasInteractivas\src\main\webapp\js" />
       <recent name="$PROJECT_DIR$/src/main/webapp/components/navComponent" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/icons" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/img" />
       <recent name="C:\Users\erick\IdeaProjects\HistoriasInteractivas\src\main\resources" />
-      <recent name="C:\Users\erick\IdeaProjects\HistoriasInteractivas\src\main\webapp\resources" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 11.0.0-M20">
@@ -227,6 +226,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GmailSender" />
+        <item itemvalue="Application.GmailSender" />
+        <item itemvalue="Application.GmailSender" />
+        <item itemvalue="Application.GmailSender" />
         <item itemvalue="Application.GmailSender" />
       </list>
     </recent_temporary>
@@ -393,7 +396,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721420261044</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="JSP y CSS de CreateStory hasta ahora">
+      <option name="closed" value="true" />
+      <created>1722475790981</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1722475790981</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,7 +435,8 @@
     <MESSAGE value="Creado el componente nav" />
     <MESSAGE value="Animación de scroll'snap agregada al index" />
     <MESSAGE value="Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1" />
+    <MESSAGE value="JSP y CSS de CreateStory hasta ahora" />
+    <option name="LAST_COMMIT_MESSAGE" value="JSP y CSS de CreateStory hasta ahora" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
