@@ -42,7 +42,7 @@
                                 <li><a class="dropdown-item" href="#"><i class="icon-book"></i> Tus historias</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="icon-pencil"></i> Crear una historia</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="icon-logout"></i> Cerrar sesión</a></li>
-                                <c:if test="${user.user_type == 1}">
+                                <c:if test="${user.admin}">
                                     <li><a class="dropdown-item" href="#"><i class="icon-settings"></i> Administrar</a></li>
                                 </c:if>
                             </ul>
