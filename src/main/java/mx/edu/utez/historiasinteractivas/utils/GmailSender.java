@@ -76,12 +76,12 @@ public class GmailSender {
             }
         }
     }
-    public void sendEmailRecoverPassword(User u, String link) throws Exception {
+    public void sendEmailRecoverPassword(String userEmail, String link) throws Exception {
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
         MimeMessage email = new MimeMessage(session);
         email.setFrom(new InternetAddress(FROM));
-        email.addRecipient(TO, new InternetAddress(u.getEmail()));
+        email.addRecipient(TO, new InternetAddress(userEmail));
         email.setSubject("Cambiar contraseña");
         email.setContent("Link hacia la página para el cambio de contraseña: " + link, "text/html; charset=utf-8");
 

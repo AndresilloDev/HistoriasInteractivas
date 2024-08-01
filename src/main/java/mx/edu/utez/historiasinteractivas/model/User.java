@@ -1,26 +1,23 @@
 package mx.edu.utez.historiasinteractivas.model;
 
 public class User {
-
-    private String id_user;
-    private String user;
     private String email;
-    private int user_type;
+    private String user;
     private String token;
+    private String change_password_token;
     private String name;
     private String paternalSurname;
     private String maternalSurname;
     private String profilePicture;
     private String password;
     private boolean status;
+    private boolean admin;
+
     public User() {
     }
-    //
 
-    //Constructor para registro de usuario
-    public User(String email, int user_type, String name, String paternalSurname, String maternalSurname, String password, String user) {
+    public User(String email, String name, String paternalSurname, String maternalSurname, String password, String user) {
         this.email = email;
-        this.user_type = user_type;
         this.name = name;
         this.paternalSurname = paternalSurname;
         this.maternalSurname = maternalSurname;
@@ -28,12 +25,11 @@ public class User {
         this.user = user;
         this.status = true;
     }
-
+    //Constructor para registro de usuario
     //Constructor para el login
     public User(String email, String password) {
-        this.password = password;
         this.email = email;
-        this.user = email;
+        this.password = password;
     }
 
     //Constructor para la recuperación de contraseña
@@ -50,12 +46,12 @@ public class User {
         this.email = email;
     }
 
-    public int getUser_type() {
-        return user_type;
+    public String getUser() {
+        return user;
     }
 
-    public void setUser_type(int user_type) {
-        this.user_type = user_type;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getToken() {
@@ -64,6 +60,14 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getChange_password_token() {
+        return change_password_token;
+    }
+
+    public void setChange_password_token(String change_password_token) {
+        this.change_password_token = change_password_token;
     }
 
     public String getName() {
@@ -90,20 +94,20 @@ public class User {
         this.maternalSurname = maternalSurname;
     }
 
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 
     public boolean isStatus() {
@@ -114,19 +118,11 @@ public class User {
         this.status = status;
     }
 
-    public String getProfilePicture() {
-        return profilePicture;
+    public boolean isAdmin() {
+        return admin;
     }
 
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
-    }
-
-    public String getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(String id_user) {
-        this.id_user = id_user;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }
