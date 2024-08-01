@@ -37,7 +37,7 @@
                                         <small>@${user.user}</small>
                                     </div>
                                 </li>
-                                <li><a class="dropdown-item" href="editUser">Editar cuenta</a></li>
+                                <li><a class="dropdown-item" href="editUser.jsp">Editar cuenta</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#"><i class="icon-book"></i> Tus historias</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="icon-pencil"></i> Crear una historia</a></li>

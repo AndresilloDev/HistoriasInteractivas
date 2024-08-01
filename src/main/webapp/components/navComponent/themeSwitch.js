@@ -1,16 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const themeButton = document.getElementById('themeButton');
     const themeIcon = document.getElementById('themeIcon');
-    const loginIcon = document.getElementById('loginIcon');
     const body = document.body;
     
     // Verificar que los elementos existen
     console.log('themeButton:', themeButton);
     console.log('themeIcon:', themeIcon);
-    console.log('loginIcon:', loginIcon);
     
     // Cargar el tema al iniciar la página
     const savedTheme = localStorage.getItem('theme');
+    const loginIcon = document.getElementById('loginIcon');
+    if (loginIcon) {
+        loginIcon.style.filter = 'brightness(0)';
+    }
+    
     if (savedTheme === 'dark') {
         switchTheme(); // Llamar a switchTheme para aplicar el tema oscuro al cargar
     }
@@ -37,8 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
             themeIcon.style.filter = 'invert(1)';
             themeIcon.style.padding = '0 0 0 0';
             localStorage.setItem('theme', 'dark');
+            
+            const loginIcon = document.getElementById('loginIcon');
             if (loginIcon) {
-                loginIcon.style.filter = 'brightness(0)';
+                loginIcon.style.filter = 'brightness(1000)';
             }
         } else {
             body.classList.remove('dark-mode');
@@ -47,8 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
             themeIcon.style.filter = 'invert(0)';
             themeIcon.style.padding = '0 0 0 2px';
             localStorage.setItem('theme', 'light');
+            
+            const loginIcon = document.getElementById('loginIcon');
             if (loginIcon) {
-                loginIcon.style.filter = 'brightness(1000)';
+                loginIcon.style.filter = 'brightness(0)';
             }
         }
     }

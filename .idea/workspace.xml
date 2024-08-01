@@ -9,13 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_12_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_12_p__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_25_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_25_p__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_26_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_26_p__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Solucione un error al actualizar el componente navBar despues de iniciar sesion, [cambiaron la BD &gt;:( y no me di conta]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -406,7 +404,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722475790981</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Solucione un error al actualizar el componente navBar despues de iniciar sesion, [cambiaron la BD &gt;:( y no me di conta]">
+      <option name="closed" value="true" />
+      <created>1722483191757</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1722483191757</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -438,7 +444,8 @@
     <MESSAGE value="Animación de scroll'snap agregada al index" />
     <MESSAGE value="Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1" />
     <MESSAGE value="JSP y CSS de CreateStory hasta ahora" />
-    <option name="LAST_COMMIT_MESSAGE" value="JSP y CSS de CreateStory hasta ahora" />
+    <MESSAGE value="Solucione un error al actualizar el componente navBar despues de iniciar sesion, [cambiaron la BD &gt;:( y no me di conta]" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucione un error al actualizar el componente navBar despues de iniciar sesion, [cambiaron la BD &gt;:( y no me di conta]" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -24,7 +24,7 @@
     background-color: transparent;
 }
 #loginButton {
-    color: var(--mode-hover-color);
+    color: var(--mode-text-color);
     border-color: var(--mode-hover-color);
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1rem;
