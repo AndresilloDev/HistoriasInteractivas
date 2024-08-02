@@ -1,36 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
-    <meta charset="UTF-8">
+    <title>Historias Interactivas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Página no encontrada</title>
-    <link rel="stylesheet" href="components/navComponent/nav.css">
-    <link rel="stylesheet" href="css/waveAnimation.css">
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="components/navComponent/nav.css">
     <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
-
-    <style>
-        .container {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .display-1 {
-            font-size: 10rem;
-        }
-        .lead {
-            font-size: 2rem;
-        }
-        .btn {
-            font-size: 1.25rem;
-        }
-    </style>
-
 </head>
+
 <body class="light-mode">
+<jsp:include page="../../components/navComponent/nav.jsp" />
+
 
 <div class="container text-center">
     <div class="row justify-content-center">
@@ -43,13 +28,11 @@
 </div>
 
 <section class="waves-container1">
-    <div class="wave wave1"></div>
-    <div class="wave wave2"></div>
-    <div class="wave wave3"></div>
+    <div class="wave wave1" style="position: fixed"></div>
+    <div class="wave wave2" style="position: fixed"></div>
+    <div class="wave wave3" style="position: fixed"></div>
 </section>
 
 <script src="components/navComponent/themeSwitch.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-
 </body>
 </html>

@@ -64,5 +64,6 @@
 
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<jsp:include page="components/footerComponent/footer.jsp" />
 </body>
 </html>

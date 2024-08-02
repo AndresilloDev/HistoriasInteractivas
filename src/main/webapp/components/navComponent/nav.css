@@ -24,29 +24,45 @@
     background-color: transparent;
 }
 #loginButton {
-    color: var(--mode-hover-color);
+    color: var(--mode-text-color);
     border-color: var(--mode-hover-color);
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1rem;
     padding: 0.3rem 0.5rem;
 }
-#loginIcon {
+#loginIcon{
     width: 1.5rem;
     height: 1.5rem;
 }
-#navThemeButton {
+#navThemeButton, #profileDropdown {
     padding: 0.3rem 0.5rem;
 }
-#themeButton {
+#themeButton, #userButton{
     background-color: var(--mode-background-color);
     border-color: var(--mode-hover-color);
     border: 1px solid var(--mode-hover-color);
     border-radius: 50%;
     padding: 0.3rem 0.35rem;
 }
+#userButton {
+    border: none;
+    padding: 0rem 0.35rem;
+}
+#userButton::after {
+    display: none;
+}
+#userButton:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
 #themeIcon {
     width: 1.5rem;
     height: 1.5rem;
+}
+#userIcon {
+    width: 2.3rem;
+    height: 2.3rem;
 }
 /*Media queries*/
 @media (768px <= width <= 1200px) {
@@ -67,12 +83,16 @@
         width: 1.3rem;
         height: 1.3rem;
     }
-    #themeButton {
+    #themeButton{
         padding: 0.3rem 0.4rem;
     }
     #themeIcon {
         width: 1.3rem;
         height: 1.3rem;
+    }
+    #userIcon {
+        width: 2.1rem;
+        height: 2.1rem;
     }
 }
 
@@ -101,4 +121,84 @@
         width: 1.2rem;
         height: 1.2rem;
     }
+    #userIcon {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+/* Estilos para el dropdown */
+.dropdown-menu {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--mode-shadow-color);
+    background-color: var(--mode-card-color);
+    display: none;
+    position: absolute;
+    right: 0;
+    z-index: 2500;
+    width: 250px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.dropdown-item {
+    color: var(--mode-text-color);
+    background-color: transparent;
+    cursor: pointer;
+}
+.dropdown-item:hover {
+    background-color: var(--mode-hover-color);
+    border-radius: 5px;
+}
+.nav-item.dropdown.show .dropdown-menu {
+    display: block;
+}
+#profileDropdown .profile-info {
+    padding: 0.5rem 1rem;
+    cursor: default;
+}
+#profileDropdown .profile-info:hover {
+    background-color: transparent;
+}
+#profileDropdown .profile-info div {
+    margin-left: 0.5rem;
+}
+#profileDropdown .profile-info strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--mode-text-color);
+}
+#profileDropdown .profile-info small {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--mode-text-color);
+}
+#profileDropdown .dropdown-item a {
+    display: flex;
+    align-items: center;
+    color: #1473d3 !important;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+#profileDropdown .dropdown-item i {
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+    color: var(--mode-text-color);
+}
+#profileDropdown .dropdown-item a:hover {
+    background-color: var(--mode-card-color);
+    filter: brightness(1.3);
+    color: var(--mode-hover-color);
+}
+#profileDropdown .dropdown-item a:hover i {
+    color: var(--mode-hover-color);
+}
+#userIcon {
+    border-radius: 50%;
+    object-fit: cover;
+}
+.dropdown-divider {
+    margin: 0.75rem 0;
+    border-top: var(--mode-text-color);
 }
