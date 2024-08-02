@@ -25,8 +25,8 @@
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area">
         <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
-            <div class="featured-image mb-3">
-                <img alt="featured_image" src="https://cdni.iconscout.com/illustration/premium/thumb/login-10299071-8333958.png" class="img-fluid">
+            <div class="featured-image mb-1">
+                <img alt="featured_image" src="resources/img/featuredImageLogin.png" class="img-fluid">
             </div>
         </div>
         <div class="col-md-6 right-box d-flex justify-content-center align-items-center">
@@ -48,7 +48,7 @@
                     </div>
                     <input class="button pt-1 pb-1 mb-2" type="submit" value="Inicia sesión" name="login"/>
                 </form>
-                <div class="input-group mb-3 d-flex justify-content-end">
+                <div class="input-group mb-1 d-flex justify-content-end">
                     <small><a href="register.jsp">¿No tienes una cuenta? Registrate</a></small>
                 </div>
             </div>

@@ -33,9 +33,6 @@
 
 <button id="PreviewButton" onclick="">Preview <i>></i></button>
 <button id="SaveButton" onclick="save()">Guardar historia</button>
-<button onclick="load()">Load</button>
-<button onclick="layout()">Layout</button>
-Diagram Model saved in JSON format:
 <br>
 <!-- Estp esta oculto pero contiene el diagrama que se carga al abrir la historia
      Aqui deberiamos cargar el json de lahistoria cargado -->
