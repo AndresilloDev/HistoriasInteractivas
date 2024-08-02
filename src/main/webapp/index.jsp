@@ -180,5 +180,6 @@
 <script src="js/writingAnimation.js"></script>
 <script src="js/overlayInformation.js"></script>
 <script src="components/navComponent/themeSwitch.js"></script>
+<jsp:include page="components/footerComponent/footer.jsp" />
 </body>
 </html>

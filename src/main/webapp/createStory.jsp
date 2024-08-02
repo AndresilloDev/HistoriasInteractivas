@@ -77,5 +77,7 @@ Diagram Model saved in JSON format:
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/go.js"></script>
+
+<jsp:include page="components/footerComponent/footer.jsp" />
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@ page import="mx.edu.utez.historiasinteractivas.model.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -26,6 +27,14 @@
         }
     </style>
 </head>
+<%
+    session = request.getSession(false);
+    User user = (User) session.getAttribute("user");
+    if(session != null && user != null && !user.isAdmin()) {
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
 

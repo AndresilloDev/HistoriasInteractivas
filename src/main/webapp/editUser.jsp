@@ -1,3 +1,4 @@
+<%@ page import="mx.edu.utez.historiasinteractivas.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es-MX">
@@ -12,7 +13,14 @@
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
 </head>
-
+<%
+    session = request.getSession(false);
+    User user = (User) session.getAttribute("user");
+    if(user == null) {
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
 
@@ -66,5 +74,6 @@
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/editUser.js"></script>
+<jsp:include page="components/footerComponent/footer.jsp" />
 </body>
 </html>

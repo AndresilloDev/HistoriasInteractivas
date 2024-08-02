@@ -12,7 +12,13 @@
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
 </head>
-
+<%
+    session = request.getSession(false);
+    if(session != null && session.getAttribute("user") != null) {
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
 
@@ -63,6 +69,7 @@
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/register.js"></script>
+<jsp:include page="components/footerComponent/footer.jsp" />
 </body>
 </html>
 

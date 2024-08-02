@@ -44,7 +44,8 @@ public class LoginServlet extends HttpServlet {
 
         } else { // El usuario no existe o las credenciales son incorrectas
             System.out.println("ohno");
-            resp.sendRedirect("login.jsp");
+            req.setAttribute("errorMessage", "¡El usuario o la contraseña son incorrectos!"); //Esto es lo que debería salir en el mensaje
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }
 

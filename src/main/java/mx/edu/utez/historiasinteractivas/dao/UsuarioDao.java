@@ -66,7 +66,7 @@ public class UsuarioDao {
     }
 
     public boolean existsUser(String email, String password) {
-        String sql = "select * from user where email = ? and password = ?";
+        String sql = "select * from users where email = ? and password = ?";
 
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement statement = con.prepareStatement(sql)) {

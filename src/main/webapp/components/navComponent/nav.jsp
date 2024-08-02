@@ -33,8 +33,18 @@
                                 <!-- Contenido del dropdown -->
                                 <li class="profile-info">
                                     <div>
-                                        <strong>${user.name} ${user.paternalSurname.charAt(0)}.</strong><br>
-                                        <small>@${user.user}</small>
+                                        <c:if test="${user.name != null}">
+                                            <strong>${user.name} ${user.paternalSurname.charAt(0)}.</strong>
+                                        </c:if>
+                                        <c:if test="${user.name == null}">
+                                            <strong>${user.email}</strong>
+                                        </c:if>
+                                        <c:if test="${user.user != null}">
+                                            <small>@${user.user}</small>
+                                        </c:if>
+                                        <c:if test="${user.user == null}">
+                                            <small>@${user.email}</small>
+                                        </c:if>
                                     </div>
                                 </li>
                                 <li><a class="dropdown-item" href="editUser.jsp">Editar cuenta</a></li>
@@ -43,7 +53,7 @@
                                 <li><a class="dropdown-item" href="#"><i class="icon-pencil"></i> Crear una historia</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i class="icon-logout"></i> Cerrar sesión</a></li>
                                 <c:if test="${user.admin}">
-                                    <li><a class="dropdown-item" href="#"><i class="icon-settings"></i> Administrar</a></li>
+                                    <li><a class="dropdown-item" href="adminUsers.jsp"><i class="icon-settings"></i> Administrar</a></li>
                                 </c:if>
                             </ul>
                         </li>
