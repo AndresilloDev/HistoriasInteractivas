@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/themeSwitch.css">
     <style>
         .table-striped tbody tr:nth-of-type(odd) {
-            background-color: rgba(0,0,0,.05);
+            background-color: var(--mode-background-color);
         }
         .pagination {
             display: flex;
