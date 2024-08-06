@@ -21,12 +21,13 @@
 %>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
+<jsp:include page="components/alertComponent/alert.jsp" />
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area">
         <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
             <div class="featured-image mb-3">
-                <img alt="featured_image" src="https://cdni.iconscout.com/illustration/premium/thumb/login-10299071-8333958.png" class="img-fluid">
+                <img alt="featured_image" src="resources/img/featuredImageRecoverPassword.png" class="img-fluid">
             </div>
         </div>
         <div class="col-md-6 right-box d-flex justify-content-center align-items-center">
@@ -61,6 +62,5 @@
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/recoverPassword.js"></script>
-<jsp:include page="components/footerComponent/footer.jsp" />
 </body>
 </html>

@@ -37,6 +37,7 @@
 %>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
+<jsp:include page="components/alertComponent/alert.jsp" />
 
 <div class="container my-5">
     <h1>Consulta de usuarios</h1>

@@ -242,3 +242,9 @@ small a:hover{
     color: white;
     box-shadow: 0 6px 12px var(--mode-shadow-color);
 }
+
+@media (0px <= width <= 767px) {
+    .right-box {
+        padding-top: 5px;
+    }
+}

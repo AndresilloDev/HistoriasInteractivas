@@ -21,12 +21,13 @@
 %>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
+<jsp:include page="components/alertComponent/alert.jsp" />
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area">
         <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
             <div class="featured-image mb-3">
-                <img alt="featuredImage" src="https://app.dubbpie.com/assets/images/login-img.png" class="img-fluid">
+                <img alt="featuredImage" src="resources/img/featuredImageRegister.png" class="img-fluid">
             </div>
         </div>
 
@@ -69,7 +70,6 @@
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/register.js"></script>
-<jsp:include page="components/footerComponent/footer.jsp" />
 </body>
 </html>
 

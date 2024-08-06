@@ -21,6 +21,7 @@
 %>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
+<jsp:include page="components/alertComponent/alert.jsp" />
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area" style="width: 500px;">
@@ -40,9 +41,6 @@
                 <input name="num5" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
                 <input name="num6" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
             </div>
-            <div class="d-flex justify-content-center mb-4">
-                <button type="submit" class="btn btn-primary">Verificar</button>
-            </div>
         </form>
     </div>
 </div>
@@ -56,8 +54,5 @@
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/otpFormVerifyAccount.js"></script>
-
-<jsp:include page="components/footerComponent/footer.jsp" />
-
 </body>
 </html>

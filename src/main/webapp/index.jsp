@@ -26,6 +26,7 @@
     <section class="one">
         <!-- NAVBAR -->
         <jsp:include page="components/navComponent/nav.jsp" />
+        <jsp:include page="components/alertComponent/alert.jsp" />
 
         <section class="hero">
             <div class="row">
@@ -199,6 +200,5 @@
 <script src="js/writingAnimation.js"></script>
 <script src="js/overlayInformation.js"></script>
 <script src="components/navComponent/themeSwitch.js"></script>
-<jsp:include page="components/footerComponent/footer.jsp" />
 </body>
 </html>
