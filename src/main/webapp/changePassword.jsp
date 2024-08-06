@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="components/navComponent/nav.css">
+    <link rel="stylesheet" href="components/sliderComponent/slider.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
@@ -21,11 +22,12 @@
 %>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
+<jsp:include page="components/alertComponent/alert.jsp" />
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area" style="width: 500px;">
         <div class="col-12 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
-            <img src="resources/img/featuredImageVerifyAccount.png" width="256" alt="Verificar cuenta">
+            <img src="resources/img/featuredImageRecoverPassword.png" width="256" alt="Verificar cuenta">
             <div class="header-text mb-2 mt-4">
                 <h1>Cambiar contraseña</h1>
             </div>
@@ -54,6 +56,5 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/changePassword.js"></script>
 
-<jsp:include page="components/footerComponent/footer.jsp" />
 </body>
 </html>

@@ -15,6 +15,7 @@
 </head>
 <body class="light-mode" style="height: 100vh">
 <jsp:include page="components/navComponent/nav.jsp" />
+<jsp:include page="components/alertComponent/alert.jsp" />
 
 <section class="waves-container1">
     <div class="wave wave1" style="position: fixed"></div>
@@ -75,6 +76,5 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/go.js"></script>
 
-<jsp:include page="components/footerComponent/footer.jsp" />
 </body>
 </html>

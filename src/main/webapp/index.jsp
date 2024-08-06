@@ -1,5 +1,8 @@
 <%@ page import="mx.edu.utez.historiasinteractivas.dao.StoryDao" %>
 <%@ page import="mx.edu.utez.historiasinteractivas.model.Story" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="mx.edu.utez.historiasinteractivas.model.User" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -11,6 +14,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="components/navComponent/nav.css">
+    <link rel="stylesheet" href="components/sliderComponent/slider.css">
     <link rel="stylesheet" href="css/indexLayout.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
@@ -20,6 +24,10 @@
 
 </head>
 
+<%
+    session = request.getSession(false);
+    User user = (User) session.getAttribute("user");
+%>
 <body class="light-mode">
 
 <div class="scroll-container">
@@ -85,41 +93,16 @@
             <h2 class="display-4">Publicas</h2>
             <div class="row">
                 <div class="card-container">
+                    <%
+                            StoryDao dao = new StoryDao();
+                            ArrayList<Story> publishedStories = dao.getAllPublicStories(user);
 
-                    <%  // necesitamos acceder a la base de datos y obtener
-                        // TODOS los usuarios
-                        StoryDao dao = new StoryDao();
-                        ArrayList<Story> lista = dao.getAll();
-                        for(Usuario u : lista){//Por cada usuario de la lista %>
-                    <tr>
-                        <td><%=u.getId()%></td>
-                        <td><%=u.getNombre()%></td>
-                        <td><%=u.getCorreo()%></td>
-                        <td><%=u.isEstado() ? "Habilitado":"Deshabilitado"%></td>
-                        <td><a href="sign_in?id=<%=u.getId()%>">Actualizar</a></td>
-                        <td><a href="fisico?id=<%=u.getId()%>">Eliminar</a></td>
-                        <td><a href="logico?id=<%=u.getId()%>">Eliminar</a></td>
-                    </tr>
-                    <% } %>
-
-                    <div class="card" onclick="openMenu('publica')">
-                        <h2>Título de Historia Pública 1</h2>
+                            for(Story s : publishedStories){
+                    %>
+                    <div class="card" onclick="openMenu('publica', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
+                        <h2><%=s.getStory_title()%></h2>
                     </div>
-                    <div class="card" onclick="openMenu('publica')">
-                        <h2>Título de Historia Pública 2</h2>
-                    </div>
-                    <div class="card" onclick="openMenu('publica')">
-                        <h2>Título de Historia Pública 2</h2>
-                    </div>
-                    <div class="card" onclick="openMenu('publica')">
-                        <h2>Título de Historia Pública 2</h2>
-                    </div>
-                    <div class="card" onclick="openMenu('publica')">
-                        <h2>Título de Historia Pública 2</h2>
-                    </div>
-                    <div class="card" onclick="openMenu('publica')">
-                        <h2>Título de Historia Pública 2</h2>
-                    </div>
+                            <% } %>
                 </div>
             </div>
         </div>
@@ -129,12 +112,15 @@
             <h2 class="display-4">Restringidas</h2>
             <div class="row">
                 <div class="card-container">
-                    <div class="card" onclick="openMenu('restringida')">
-                        <h2>Título de Historia Restringida 1</h2>
+                    <%
+                            ArrayList<Story> restrictedStories = dao.getAllRestrictedStories(user);
+
+                            for(Story s : restrictedStories){
+                    %>
+                    <div class="card" onclick="openMenu('restringida', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
+                        <h2><%=s.getStory_title()%></h2>
                     </div>
-                    <div class="card" onclick="openMenu('restringida')">
-                        <h2>Título de Historia Restringida 2</h2>
-                    </div>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -144,12 +130,15 @@
             <h2 class="display-4">Borradores</h2>
             <div class="row">
                 <div class="card-container">
-                    <div class="card" onclick="openMenu('borrador')">
-                        <h2>Título de Borrador 1</h2>
+                    <%
+                            ArrayList<Story> draftsStories = dao.getAllDraftStories(user);
+
+                            for(Story s : draftsStories){
+                    %>
+                    <div class="card" onclick="openMenu('borrador', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
+                        <h2><%=s.getStory_title()%></h2>
                     </div>
-                    <div class="card" onclick="openMenu('borrador')">
-                        <h2>Título de Borrador 2</h2>
-                    </div>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -173,7 +162,7 @@
             </div>
             <div class="col-md-9 col-12">
                 <h6 class="text-md-start text-center mt-2"><strong>Título</strong></h6>
-                    <h2 class="text-md-start text-center">Título de la historia con JAVA</h2>
+                    <h2 id="story-title" class="text-md-start text-center">Título de la historia con JAVA</h2>
 
                 <p class="text-md-end text-center"><strong>Fecha de publicación</strong><br> 07/12/1941 con JAVA</p>
             </div>
@@ -199,6 +188,6 @@
 <script src="js/writingAnimation.js"></script>
 <script src="js/overlayInformation.js"></script>
 <script src="components/navComponent/themeSwitch.js"></script>
-<jsp:include page="components/footerComponent/footer.jsp" />
+<jsp:include page="components/sliderComponent/slider.jsp" />
 </body>
 </html>

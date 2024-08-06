@@ -1,0 +1,34 @@
+.messageAlert {
+    position: fixed;
+    bottom: 5px;
+    right: 10px;
+    padding: 16px;
+    background-color: var(--mode-card-color);
+    color: var(--mode-text-color);
+    box-shadow: var(--mode-shadow-color);
+    border-radius: 5px;
+    z-index: 2001;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-out;
+    transform: translateX(100%);
+    opacity: 0;
+}
+.messageAlert.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+.messageAlert.hide {
+    transform: translateX(100%);
+    opacity: 0;
+}
+.progressBar {
+    height: 5px;
+    background-color: var(--mode-card-color);
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.progress {
+    height: 100%;
+    background-color: var(--mode-hover-color);
+    width: 0;
+    border-radius: 5px;
+}

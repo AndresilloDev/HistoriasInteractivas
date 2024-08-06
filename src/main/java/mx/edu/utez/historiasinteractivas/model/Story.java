@@ -3,20 +3,23 @@ import java.util.Date;
 import java.sql.Blob;
 
 public class Story {
-    private int id_history;
+    private int id_story;
     private String email_user;
-    private String history_title;
+    private String story_title;
     private Date release_date;
-    private String history_description;
-    private String history_thumbnail;
+    private String story_description;
+    private String story_thumbnail;
     private String json;
+    private int story_type;
 
-    public int getId_history() {
-        return id_history;
+    private Date last_update;
+
+    public int getId_story() {
+        return id_story;
     }
 
-    public void setId_history(int id_history) {
-        this.id_history = id_history;
+    public void setId_story(int id_story) {
+        this.id_story = id_story;
     }
 
     public String getEmail_user() {
@@ -27,12 +30,12 @@ public class Story {
         this.email_user = email_user;
     }
 
-    public String getHistory_title() {
-        return history_title;
+    public String getStory_title() {
+        return story_title;
     }
 
-    public void setHistory_title(String history_title) {
-        this.history_title = history_title;
+    public void setStory_title(String story_title) {
+        this.story_title = story_title;
     }
 
     public Date getRelease_time() {
@@ -43,20 +46,20 @@ public class Story {
         this.release_date = release_date;
     }
 
-    public String getHistory_description() {
-        return history_description;
+    public String getStory_description() {
+        return story_description;
     }
 
-    public void setHistory_description(String history_description) {
-        this.history_description = history_description;
+    public void setStory_description(String story_description) {
+        this.story_description = story_description;
     }
 
-    public String getHistory_thumbnail() {
-        return history_thumbnail;
+    public String getStory_thumbnail() {
+        return story_thumbnail;
     }
 
-    public void setHistory_thumbnail(String history_thumbnail) {
-        this.history_thumbnail = history_thumbnail;
+    public void setStory_thumbnail(String story_thumbnail) {
+        this.story_thumbnail = story_thumbnail;
     }
 
     public String getJson() {
@@ -65,5 +68,25 @@ public class Story {
 
     public void setJson(String json) {
         this.json = json;
+    }
+
+    public Date getRelease_date() {
+        return release_date;
+    }
+
+    public int getStory_type() {
+        return story_type;
+    }
+
+    public void setStory_type(int story_type) {
+        this.story_type = story_type;
+    }
+
+    public Date getLast_update() {
+        return last_update;
+    }
+
+    public void setLast_update(Date last_update) {
+        this.last_update = last_update;
     }
 }

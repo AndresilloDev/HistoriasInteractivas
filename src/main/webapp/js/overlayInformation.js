@@ -1,8 +1,15 @@
 // Función para abrir el menú desplegable y ajustar opciones según la sección
-function openMenu(seccion) {
+function openMenu(seccion, title, date, description, thumbnail) {
     var overlay = document.getElementById('overlay');
     overlay.style.display = 'flex'; // Mostrar el overlay
 
+    // Actualizar el contenido de la historia
+    document.querySelector('#overlay h2').innerText = title;
+    document.querySelector('#overlay .text-md-end').innerHTML = '<strong>Fecha de publicación:</strong><br>' + date;
+    document.querySelector('#overlay .img-fluid').src = thumbnail;
+    document.querySelector('#overlay .text-md-start + p').innerText = description;
+
+    // Actualizar las opciones del menú según la sección
     var option1 = document.getElementById('option1');
     var option2 = document.getElementById('option2');
     var option3 = document.getElementById('option3');
