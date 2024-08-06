@@ -66,7 +66,112 @@ public class GmailSenderVerify {
         email.setFrom(new InternetAddress(FROM));
         email.addRecipient(TO, new InternetAddress(recipientEmail));
         email.setSubject("Código de verificación de tu cuenta");
-        email.setContent("Tu código de verificación es: " + verificationCode, "text/html; charset=utf-8");
+        email.setContent("<!DOCTYPE html>\n" +
+                "<html lang=\"es\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                "    <title>Código de Verificación</title>\n" +
+                "    <style>\n" +
+                "        body {\n" +
+                "            font-family: Arial, sans-serif;\n" +
+                "            margin: 0;\n" +
+                "            padding: 0;\n" +
+                "            background-color: #f4f4f4;\n" +
+                "        }\n" +
+                "        .container {\n" +
+                "            max-width: 600px;\n" +
+                "            margin: 50px auto;\n" +
+                "            background-color: #ffffff;\n" +
+                "            padding: 20px;\n" +
+                "            border-radius: 10px;\n" +
+                "            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);\n" +
+                "        }\n" +
+                "        .header {\n" +
+                "            display: flex;\n" +
+                "            align-items: center;\n" +
+                "            margin-bottom: 20px;\n" +
+                "        }\n" +
+                "        .logo img {\n" +
+                "            max-width: 100px;\n" +
+                "            margin-right: 10px;\n" +
+                "        }\n" +
+                "        .header-text {\n" +
+                "            font-size: 24px;\n" +
+                "            color: #555555;\n" +
+                "        }\n" +
+                "        .divider {\n" +
+                "            border-top: 2px solid #9332EB;\n" +
+                "            margin: 20px 0;\n" +
+                "        }\n" +
+                "        .message {\n" +
+                "            font-size: 16px;\n" +
+                "            color: #555555;\n" +
+                "            margin-bottom: 20px;\n" +
+                "            text-align: center;\n" +
+                "        }\n" +
+                "        .verification-code {\n" +
+                "            font-size: 24px;\n" +
+                "            font-weight: bold;\n" +
+                "            color: #9332EB;\n" +
+                "            margin: 20px 0;\n" +
+                "            text-align: center;\n" +
+                "        }\n" +
+                "        .square {\n" +
+                "            display: inline-block;\n" +
+                "            background-color: #9332EB;\n" +
+                "            color: white;\n" +
+                "            padding: 10px 20px;\n" +
+                "            margin: 5px;\n" +
+                "            border-radius: 5px;\n" +
+                "            font-size: 24px;\n" +
+                "            text-align: center;\n" +
+                "        }\n" +
+                "        .footer {\n" +
+                "            font-size: 14px;\n" +
+                "            color: #555555;\n" +
+                "            margin-top: 20px;\n" +
+                "            text-align: center;\n" +
+                "        }\n" +
+                "    </style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "    <div class=\"container\">\n" +
+                "        <div class=\"header\">\n" +
+                "            <div class=\"logo\">\n" +
+                "                <img src=\"logoHistoriasInteractivas.png\" alt=\"Logo\">\n" +
+                "            </div>\n" +
+                "            <div class=\"header-text\">\n" +
+                "                Story\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "        <div class=\"divider\"></div>\n" +
+                "        <div class=\"message\">\n" +
+                "            Código de Verificación para tu Cuenta\n" +
+                "        </div>\n" +
+                "        <div class=\"message\">\n" +
+                "            Para completar tu proceso de registro y activar tu cuenta, por favor utiliza el siguiente código de verificación:\n" +
+                "        </div>\n" +
+                "        <div class=\"verification-code\">\n" +
+                "            <div style=\"text-align: center;\">\n" +
+                "                <div class=\"square\">{{verificationCode.charAt(0)}}</div>\n" +
+                "                <div class=\"square\">{{verificationCode.charAt(1)}}</div>\n" +
+                "                <div class=\"square\">{{verificationCode.charAt(2)}}</div>\n" +
+                "                <div class=\"square\">{{verificationCode.charAt(3)}}</div>\n" +
+                "                <div class=\"square\">{{verificationCode.charAt(4)}}</div>\n" +
+                "                <div class=\"square\">{{verificationCode.charAt(5)}}</div>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "        <div class=\"footer\">\n" +
+                "            Si no has solicitado este código, por favor ignora este mensaje.\n" +
+                "        </div>\n" +
+                "        <div class=\"footer\">\n" +
+                "            Si tienes alguna pregunta o necesitas asistencia adicional, no dudes en contactar a nuestro equipo de soporte.<br>\n" +
+                "            Gracias por elegirnos.\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "</body>\n" +
+                "</html>\n" + verificationCode, "text/html; charset=utf-8");
 
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         email.writeTo(buffer);
