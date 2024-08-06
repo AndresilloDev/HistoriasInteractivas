@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="components/navComponent/nav.css">
-    <link rel="stylesheet" href="components/sliderComponent/slider.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
@@ -55,7 +54,5 @@
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/otpFormVerifyAccount.js"></script>
-
-
 </body>
 </html>
