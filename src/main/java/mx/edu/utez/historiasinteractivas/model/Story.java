@@ -6,9 +6,10 @@ public class Story {
     private int id_history;
     private String email_user;
     private String history_title;
-    private Date release_time;
+    private Date release_date;
     private String history_description;
-    private Blob history_thumbnail;
+    private String history_thumbnail;
+    private String json;
 
     public int getId_history() {
         return id_history;
@@ -35,11 +36,11 @@ public class Story {
     }
 
     public Date getRelease_time() {
-        return release_time;
+        return release_date;
     }
 
-    public void setRelease_time(Date release_time) {
-        this.release_time = release_time;
+    public void setRelease_date(Date release_date) {
+        this.release_date = release_date;
     }
 
     public String getHistory_description() {
@@ -50,11 +51,19 @@ public class Story {
         this.history_description = history_description;
     }
 
-    public Blob getHistory_thumbnail() {
+    public String getHistory_thumbnail() {
         return history_thumbnail;
     }
 
-    public void setHistory_thumbnail(Blob history_thumbnail) {
+    public void setHistory_thumbnail(String history_thumbnail) {
         this.history_thumbnail = history_thumbnail;
+    }
+
+    public String getJson() {
+        return json;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
     }
 }

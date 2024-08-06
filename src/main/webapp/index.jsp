@@ -1,3 +1,5 @@
+<%@ page import="mx.edu.utez.historiasinteractivas.dao.StoryDao" %>
+<%@ page import="mx.edu.utez.historiasinteractivas.model.Story" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -83,6 +85,23 @@
             <h2 class="display-4">Publicas</h2>
             <div class="row">
                 <div class="card-container">
+
+                    <%  // necesitamos acceder a la base de datos y obtener
+                        // TODOS los usuarios
+                        StoryDao dao = new StoryDao();
+                        ArrayList<Story> lista = dao.getAll();
+                        for(Usuario u : lista){//Por cada usuario de la lista %>
+                    <tr>
+                        <td><%=u.getId()%></td>
+                        <td><%=u.getNombre()%></td>
+                        <td><%=u.getCorreo()%></td>
+                        <td><%=u.isEstado() ? "Habilitado":"Deshabilitado"%></td>
+                        <td><a href="sign_in?id=<%=u.getId()%>">Actualizar</a></td>
+                        <td><a href="fisico?id=<%=u.getId()%>">Eliminar</a></td>
+                        <td><a href="logico?id=<%=u.getId()%>">Eliminar</a></td>
+                    </tr>
+                    <% } %>
+
                     <div class="card" onclick="openMenu('publica')">
                         <h2>Título de Historia Pública 1</h2>
                     </div>
