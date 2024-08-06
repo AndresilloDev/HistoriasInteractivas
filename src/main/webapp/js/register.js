@@ -13,3 +13,24 @@ form.addEventListener("submit", function(event) {
         alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
     }
 });
+
+const emailLabel = document.getElementById("email");
+const passwordLabel = document.getElementById("password");
+const confirmPasswordLabel = document.getElementById("confirmPassword");
+
+emailLabel.addEventListener("keydown", function (e) {
+    if (this.value.length >= 50 && e.key !== "Backspace") {
+        e.preventDefault();
+    }
+})
+passwordLabel.addEventListener("keydown", function (e) {
+    if (this.value.length >= 50 && e.key !== "Backspace") {
+        e.preventDefault();
+    }
+
+})
+confirmPasswordLabel.addEventListener("keydown", function (e) {
+    if (this.value.length >= 50 && e.key !== "Backspace") {
+        e.preventDefault();
+    }
+})

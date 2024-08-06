@@ -9,7 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1" />
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/changePassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_12_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_12_p__m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_25_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_25_p__m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_26_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_26_p__m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/changePassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/changePassword.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/editUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/editUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/editUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/register.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

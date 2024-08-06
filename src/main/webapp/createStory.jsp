@@ -24,7 +24,7 @@
 
 <div class="container-vertical">
     <label class="label" style="font-family: 'Noto Sans JP', sans-serif">
-        <input name="storyTitle" id="storyTitle" type="text" placeholder=" " class="input input-group mb-3 fs-6" required style="background-color: var(--mode-background-color); width: 300px" value="Historia 1">
+        <input name="storyTitle" id="storyTitle" type="text" placeholder=" " maxlength="20" class="input input-group mb-3 fs-6" required style="background-color: var(--mode-background-color); width: 300px" value="Historia 1">
         <span class="labelName fs-6" style="background-color: var(--mode-background-color)">Titulo de la historia</span>
     </label>
     <div id="storyDiagram" class="storyDiagram-container"></div>

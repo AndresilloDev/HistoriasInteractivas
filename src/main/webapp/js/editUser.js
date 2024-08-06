@@ -12,3 +12,29 @@ file.addEventListener("change", e => {
         img.src = defaultFile;
     }
 });
+
+const userLabel = document.getElementById("user");
+const nameLabel = document.getElementById("name");
+const paternalNameLabel = document.getElementById("paternalName");
+const maternalNameLabel = document.getElementById("maternalName");
+
+userLabel.addEventListener("keydown", function (e) {
+    if (this.value.length >= 20 && e.key !== "Backspace") {
+        e.preventDefault();
+    }
+})
+nameLabel.addEventListener("keydown", function (e) {
+    if (this.value.length >= 20 && e.key !== "Backspace") {
+        e.preventDefault();
+    }
+})
+paternalNameLabel.addEventListener("keydown", function (e) {
+    if (this.value.length >= 20 && e.key !== "Backspace") {
+        e.preventDefault();
+    }
+})
+maternalNameLabel.addEventListener("keydown", function (e) {
+    if (this.value.length >= 20 && e.key !== "Backspace") {
+        e.preventDefault();
+    }
+})

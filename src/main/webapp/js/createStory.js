@@ -428,4 +428,12 @@ function layout() {
 	storyDiagram.layoutDiagram (true);
 }
 
+const storyTitleLabel = document.getElementById("storyTitle")
+storyTitleLabel.addEventListener("keydown", function (e) {
+	if (this.value.length >= 20 && e.key !== "Backspace") {
+		e.preventDefault();
+	}
+})
+
+
 window.addEventListener ('DOMContentLoaded', init);
