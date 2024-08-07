@@ -29,18 +29,7 @@ public class LoginServlet extends HttpServlet {
             // Guardar usuario en la sesión
             HttpSession session = req.getSession();
             session.setAttribute("user", usuario);
-
-            // El usuario es un creador de historias
-            if (usuario.isAdmin()) {
-                System.out.println("usuario Admin");
-                resp.sendRedirect("adminUsers.jsp");
-
-            // El usuario es un administrador
-            } else {
-                System.out.println("Usuario Normal");
-                resp.sendRedirect("index.jsp");
-
-            }
+            resp.sendRedirect("index.jsp");
 
         } else { // El usuario no existe o las credenciales son incorrectas
             System.out.println("ohno");

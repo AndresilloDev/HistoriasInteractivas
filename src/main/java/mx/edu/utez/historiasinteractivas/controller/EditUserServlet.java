@@ -44,16 +44,12 @@ public class EditUserServlet extends HttpServlet {
 
         if (filePart != null && filePart.getSubmittedFileName() != null && !filePart.getSubmittedFileName().isEmpty()) {
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-            String uploadDir = getServletContext().getRealPath("") + File.separator + "uploads";
-            File uploadDirFile = new File(uploadDir);
-            if (!uploadDirFile.exists()) {
-                uploadDirFile.mkdirs();
-            }
+            String uploadDir = getServletContext().getRealPath("") + File.separator + "uploads" + File.separator + "profilePictures";
             String filePath = uploadDir + File.separator + fileName;
             filePart.write(filePath);
             System.out.println("Archivo guardado en: " + filePath);
 
-            profilePicture = "uploads/" + fileName;
+            profilePicture = "uploads" + File.separator + "profilePictures" + fileName;
         }
 
         if (dao.findUserByEmail(email) != null) {
@@ -69,7 +65,6 @@ public class EditUserServlet extends HttpServlet {
             } else {
                 updatedUser.setProfilePicture(dao.findUserByEmail(email).getProfilePicture());
             }
-
             if (dao.updateUser(updatedUser)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", updatedUser);
@@ -78,8 +73,5 @@ public class EditUserServlet extends HttpServlet {
         } else {
             response.sendRedirect("profile.jsp?updateSuccess=false");
         }
-
-
-
     }
 }

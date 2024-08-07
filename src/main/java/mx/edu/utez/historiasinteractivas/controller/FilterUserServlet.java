@@ -11,10 +11,9 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {
         "/editUser.jsp",
         "/adminUsers.jsp",
-        "/index.jsp",
         "/editUser.jsp",
 })
-public class FilterEditUserServlet implements Filter {
+public class FilterUserServlet implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
@@ -28,8 +27,7 @@ public class FilterEditUserServlet implements Filter {
 
         if(session != null) {
             chain.doFilter(request,response);
-        }
-        else {
+        } else {
             httpResponse.sendRedirect("login.jsp");
         }
     }
