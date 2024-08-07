@@ -12,6 +12,7 @@ import java.io.IOException;
         "/editUser.jsp",
         "/adminUsers.jsp",
         "/editUser.jsp",
+        "/createStory.jsp"
 })
 public class FilterUserServlet implements Filter {
     @Override

@@ -62,7 +62,7 @@ public class StoryDao {
 
     public ArrayList<Story> getAllPublicStories(User user) throws SQLException {
         ArrayList<Story> stories = new ArrayList<Story>();
-        String query = "SELECT * FROM stories WHERE email_user=? AND story_type = 1";
+        String query = "SELECT * FROM stories WHERE email_user = ? AND story_type = 1";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, user.getEmail());
@@ -85,7 +85,7 @@ public class StoryDao {
 
     public ArrayList<Story> getAllRestrictedStories(User user) throws SQLException {
         ArrayList<Story> stories = new ArrayList<Story>();
-        String query = "SELECT * FROM stories WHERE email_user=? AND story_type = 2";
+        String query = "SELECT * FROM stories WHERE email_user = ? AND story_type = 2";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, user.getEmail());
@@ -108,7 +108,7 @@ public class StoryDao {
 
     public ArrayList<Story> getAllDraftStories(User user) throws SQLException {
         ArrayList<Story> stories = new ArrayList<Story>();
-        String query = "SELECT * FROM stories WHERE email_user=? AND story_type = 3";
+        String query = "SELECT * FROM stories WHERE email_user = ? AND story_type = 3";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, user.getEmail());

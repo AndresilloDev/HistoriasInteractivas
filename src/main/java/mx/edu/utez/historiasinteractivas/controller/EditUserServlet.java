@@ -49,7 +49,7 @@ public class EditUserServlet extends HttpServlet {
             filePart.write(filePath);
             System.out.println("Archivo guardado en: " + filePath);
 
-            profilePicture = "uploads" + File.separator + "profilePictures" + fileName;
+            profilePicture = "uploads/profilePictures/" + fileName;
         }
 
         if (dao.findUserByEmail(email) != null) {
@@ -65,6 +65,7 @@ public class EditUserServlet extends HttpServlet {
             } else {
                 updatedUser.setProfilePicture(dao.findUserByEmail(email).getProfilePicture());
             }
+
             if (dao.updateUser(updatedUser)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", updatedUser);
@@ -73,5 +74,8 @@ public class EditUserServlet extends HttpServlet {
         } else {
             response.sendRedirect("profile.jsp?updateSuccess=false");
         }
+
+
+
     }
 }
