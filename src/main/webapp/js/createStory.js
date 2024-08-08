@@ -329,6 +329,7 @@ function saveNodeData() {
 	storyDiagram.model.setDataProperty (node.data, 'hasImage', hasImage);
 	storyDiagram.model.setDataProperty (node.data, 'hasAudio', hasAudio);
 	storyDiagram.model.setDataProperty (node.data, 'hasVideo', hasVideo);
+
 	
 	// Cerrar el modal
 	closeModal ();
@@ -413,9 +414,38 @@ function clearPreviews() {
 }
 
 // Función de guardar el diagrama en formato JSON
-function save() {
+function saveStory() {
 	document.getElementById ('mySavedModel').value = storyDiagram.model.toJson ();
 	storyDiagram.isModified = false;
+
+	const storyTitle = document.getElementById("storyTitle").value;
+	const storyData = storyDiagram.model.toJson();
+
+	// Crear el objeto de datos que se enviará al servlet
+	const dataToSend = {
+		title: storyTitle,
+		diagram: storyData
+	};
+
+	// Hacer la solicitud AJAX al servlet
+	fetch('createStory', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(dataToSend)
+	})
+		.then(response => response.json())  // Esperar una respuesta JSON del servlet
+		.then(data => {
+			// Procesar la respuesta del servlet
+			console.log("Respuesta del servidor:", data);
+		})
+		.catch(error => {
+			console.error("Error al guardar la historia:", error);
+		});
+
+
+
 	console.log (storyDiagram.model.toJson ());
 }
 

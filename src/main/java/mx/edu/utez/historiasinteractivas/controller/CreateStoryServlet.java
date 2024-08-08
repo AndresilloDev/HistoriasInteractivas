@@ -1,27 +1,23 @@
 package mx.edu.utez.historiasinteractivas.controller;
 
-import jakarta.servlet.http.*;
-import mx.edu.utez.historiasinteractivas.model.User;
-import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
-
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
+import mx.edu.utez.historiasinteractivas.model.User;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-@WebServlet(name = "EditUserServlet", value = "/editUser")
-@MultipartConfig
-public class EditUserServlet extends HttpServlet {
+@WebServlet(name = "CreateStoryServlet", value = "/createStory")
+public class CreateStoryServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("me estoy ejecutando");
         String email = request.getParameter("email");
-        String user = request.getParameter("user");
-        String name = request.getParameter("name");
-        String paternalName = request.getParameter("paternalName");
-        String maternalName = request.getParameter("maternalName");
+
         Part filePart = request.getPart("userPicture");
 
         UsuarioDao dao = new UsuarioDao();
@@ -42,10 +38,7 @@ public class EditUserServlet extends HttpServlet {
         if (dao.findUserByEmail(email) != null) {
             User updatedUser = new User();
             updatedUser.setEmail(email);
-            updatedUser.setUser(user);
-            updatedUser.setName(name);
-            updatedUser.setPaternalSurname(paternalName);
-            updatedUser.setMaternalSurname(maternalName);
+
 
             if (profilePicture != null) {
                 updatedUser.setProfilePicture(profilePicture);

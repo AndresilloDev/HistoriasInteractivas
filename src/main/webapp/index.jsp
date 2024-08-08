@@ -99,7 +99,7 @@
 
                             for(Story s : publishedStories){
                     %>
-                    <div class="card" onclick="openMenu('publica', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
+                    <div class="card" onclick="openMenu('publica', '<%=s.getId_story()%>', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
                         <img src="<%=s.getStory_thumbnail()%>" class="card-img-top">
                         <h2><%=s.getStory_title()%></h2>
                     </div>
@@ -118,7 +118,7 @@
 
                             for(Story s : restrictedStories){
                     %>
-                    <div class="card" onclick="openMenu('restringida', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
+                    <div class="card" onclick="openMenu('restringida', '<%=s.getId_story()%>', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
                         <img src="<%=s.getStory_thumbnail()%>" class="card-img-top">
                         <h2><%=s.getStory_title()%></h2>
                     </div>
@@ -137,7 +137,7 @@
 
                             for(Story s : draftsStories){
                     %>
-                    <div class="card" onclick="openMenu('borrador', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
+                    <div class="card" onclick="openMenu('borrador', '<%=s.getId_story()%>', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
                         <img src="<%=s.getStory_thumbnail()%>" class="card-img-top">
                         <h2><%=s.getStory_title()%></h2>
                     </div>

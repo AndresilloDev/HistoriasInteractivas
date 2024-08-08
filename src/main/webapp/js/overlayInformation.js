@@ -1,5 +1,5 @@
 // Función para abrir el menú desplegable y ajustar opciones según la sección
-function openMenu(seccion, title, date, description, thumbnail) {
+function openMenu(seccion, id, title, date, description, thumbnail) {
     var overlay = document.getElementById('overlay');
     overlay.style.display = 'flex'; // Mostrar el overlay
 
@@ -33,6 +33,9 @@ function openMenu(seccion, title, date, description, thumbnail) {
         default:
             break;
     }
+    option2.onclick = function() {
+        window.location.href = `/Historias_Interactivas_war_exploded/createStory.jsp?id_Story=${id}`;
+    };
 }
 
 // Función para cerrar el menú desplegable

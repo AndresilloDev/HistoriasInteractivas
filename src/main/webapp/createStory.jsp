@@ -33,7 +33,7 @@
 </div>
 
 <button id="PreviewButton" onclick="">Preview <i>></i></button>
-<button id="SaveButton" onclick="save()">Guardar historia</button>
+<button id="SaveButton" onclick="saveStory()">Guardar historia</button>
 <br>
 <!-- Estp esta oculto pero contiene el diagrama que se carga al abrir la historia
      Aqui deberiamos cargar el json de lahistoria cargado -->

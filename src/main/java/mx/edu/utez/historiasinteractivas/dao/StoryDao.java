@@ -9,6 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StoryDao {
+    public boolean createStory(String email) throws SQLException {
+        String query = "INSERT INTO stories ";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+        PreparedStatement ps = con.prepareStatement(query)){
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public Story findByCode(String code) throws SQLException {
         Story story = null;
         String query = "SELECT * FROM stories WHERE code=?";
@@ -69,6 +83,7 @@ public class StoryDao {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Story story = new Story();
+                story.setId_story(rs.getInt("id_story"));
                 story.setEmail_user(rs.getString("email_user"));
                 story.setStory_title(rs.getString("story_title"));
                 story.setStory_description(rs.getString("story_description"));
@@ -92,6 +107,7 @@ public class StoryDao {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Story story = new Story();
+                story.setId_story(rs.getInt("id_story"));
                 story.setEmail_user(rs.getString("email_user"));
                 story.setStory_title(rs.getString("story_title"));
                 story.setStory_description(rs.getString("story_description"));
@@ -115,6 +131,7 @@ public class StoryDao {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Story story = new Story();
+                story.setId_story(rs.getInt("id_story"));
                 story.setEmail_user(rs.getString("email_user"));
                 story.setStory_title(rs.getString("story_title"));
                 story.setStory_description(rs.getString("story_description"));
