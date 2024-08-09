@@ -21,9 +21,23 @@
         .pagination {
             display: flex;
             justify-content: center;
+            margin-top: 20px;
         }
         .pagination li {
             margin: 0 5px;
+        }
+        .pagination li a {
+            color: var(--mode-color);
+            background-color: var(--mode-background-color);
+            border: 1px solid var(--mode-color);
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .pagination li a:hover {
+            background-color: var(--mode-color);
+            color: var(--mode-background-color);
         }
     </style>
 </head>
@@ -48,8 +62,9 @@
                 <input type="hidden" name="action" value="buscar">
                 <label for="emailSearch" class="form-label">Correo electrónico:</label>
                 <div class="input-group">
-                    <input type="text" name="email" id="emailSearch" class="form-control" required>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    <input type="text" name="email" id="emailSearch" class="form-control" placeholder="Buscar por correo electrónico" required>
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
                 </div>
             </form>
         </div>
@@ -92,12 +107,13 @@
     </table>
 
     <ul class="pagination">
-        <c:forEach var="i" begin="1" end="${sessionScope.usuarios.size() / 15 + 1}">
-            <li class="page-item">
-                <a class="page-link" href="#" onclick="paginate(${i})">${i}</a>
+        <c:forEach var="i" begin="1" end="${sessionScope.totalPaginas}">
+            <li class="page-item ${i == sessionScope.paginaActual ? 'active' : ''}">
+                <a class="page-link" href="adminUsers?page=${i}">${i}</a>
             </li>
         </c:forEach>
     </ul>
+
 </div>
 
 <section class="waves-container1">
@@ -108,7 +124,7 @@
 
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="js/adminUsers.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
