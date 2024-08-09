@@ -1,0 +1,32 @@
+.container-custom {
+    height: 80vh; /* 80% de la altura de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.image-container {
+    height: 40%; /* 40% de la altura del contenedor */
+    overflow: hidden;
+}
+.image-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin deformarla */
+}
+.audio-container {
+    height: 10%; /* 10% de la altura del contenedor */
+}
+.text-container {
+    height: 40%; /* 40% de la altura del contenedor */
+    overflow-y: auto; /* Añade scroll si el texto es muy largo */
+}
+.buttons-container {
+    height: 10%; /* 10% de la altura del contenedor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-custom {
+    flex: 1;
+    margin: 0 5px;
+}

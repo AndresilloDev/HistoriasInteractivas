@@ -1,8 +1,10 @@
 package mx.edu.utez.historiasinteractivas.dao;
 
+import mx.edu.utez.historiasinteractivas.model.Scene;
 import mx.edu.utez.historiasinteractivas.model.Story;
 import mx.edu.utez.historiasinteractivas.model.User;
 import mx.edu.utez.historiasinteractivas.utils.DatabaseConnectionManager;
+import mx.edu.utez.historiasinteractivas.utils.GenerateStoryCode;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class StoryDao {
 
     public Story findByCode(String code) throws SQLException {
         Story story = null;
-        String query = "SELECT * FROM stories WHERE code=?";
+        String query = "SELECT * FROM stories WHERE id_story=?";
         try (Connection con = DatabaseConnectionManager.getConnection();
         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, code);
@@ -83,7 +85,7 @@ public class StoryDao {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Story story = new Story();
-                story.setId_story(rs.getInt("id_story"));
+                story.setId_story(rs.getString("id_story"));
                 story.setEmail_user(rs.getString("email_user"));
                 story.setStory_title(rs.getString("story_title"));
                 story.setStory_description(rs.getString("story_description"));
@@ -107,7 +109,7 @@ public class StoryDao {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Story story = new Story();
-                story.setId_story(rs.getInt("id_story"));
+                story.setId_story(rs.getString("id_story"));
                 story.setEmail_user(rs.getString("email_user"));
                 story.setStory_title(rs.getString("story_title"));
                 story.setStory_description(rs.getString("story_description"));
@@ -131,7 +133,7 @@ public class StoryDao {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Story story = new Story();
-                story.setId_story(rs.getInt("id_story"));
+                story.setId_story(rs.getString("id_story"));
                 story.setEmail_user(rs.getString("email_user"));
                 story.setStory_title(rs.getString("story_title"));
                 story.setStory_description(rs.getString("story_description"));
@@ -144,5 +146,29 @@ public class StoryDao {
             }
             return stories;
         }
+    }
+
+    public boolean isCodeUnique(String code) {
+        String sql = "SELECT COUNT(*) FROM story WHERE story_id = ?";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, code);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) == 0; // Retorna true si no hay coincidencias
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public String generateUniqueCode(int length) {
+        String code;
+        do {
+            code = GenerateStoryCode.generateRandomCode(length);
+        } while (!isCodeUnique(code));
+        return code;
     }
 }

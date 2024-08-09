@@ -11,11 +11,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Se ha hecho que los usuarios en adminUsers se pueda buscar sin necesidad de colocar el correo completo, así como cambiar la forma en la que se muestran">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_24__6_17PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_24__6_17PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_24__7_45PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_24__7_45PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/AdminUsersServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/AdminUsersServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminUsers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminUsers.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_2024_03_36_p__m___Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_2024_03_36_p_ m__[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_2024_03_36_p_ m__[Changes]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/PreviewStoryServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/ViewStoryServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/model/Scene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/GenerateStoryCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/previewStory.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/previewStory.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/viewStory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/model/Story.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/model/Story.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

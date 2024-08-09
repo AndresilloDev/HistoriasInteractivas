@@ -1,9 +1,17 @@
 package mx.edu.utez.historiasinteractivas.model;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Blob;
+import java.util.List;
 
 public class Story {
-    private int id_story;
+    private String id_story;
     private String email_user;
     private String story_title;
     private Date release_date;
@@ -14,11 +22,13 @@ public class Story {
 
     private Date last_update;
 
-    public int getId_story() {
+    private ArrayList<Scene> scenes;
+
+    public String getId_story() {
         return id_story;
     }
 
-    public void setId_story(int id_story) {
+    public void setId_story(String id_story) {
         this.id_story = id_story;
     }
 
@@ -88,5 +98,44 @@ public class Story {
 
     public void setLast_update(Date last_update) {
         this.last_update = last_update;
+    }
+
+    public void addScene(Scene scene) {
+        scenes.add(scene);
+    }
+
+    public ArrayList<Scene> getScenes() {
+        return scenes;
+    }
+
+    public void setScenes(ArrayList<Scene> scenes) {
+        this.scenes = scenes;
+    }
+
+    public ArrayList<Scene> parseJsonToScenes() {
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Scene> scenes = new ArrayList<>();
+
+        try {
+            JsonNode rootNode = mapper.readTree(json);
+            JsonNode scenesNode = rootNode.path("scenes");
+
+            if (scenesNode.isArray()) {
+                scenes = mapper.readValue(scenesNode.toString(), new TypeReference<>() {
+                });
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return scenes;
+    }
+    public Scene getScene(int destination_scene) {
+        for (Scene scene : scenes) {
+            if (scene.getId_scene() == destination_scene) {
+                return scene;
+            }
+        }
+        return null;
     }
 }
