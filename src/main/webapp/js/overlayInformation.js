@@ -1,5 +1,5 @@
 // Función para abrir el menú desplegable y ajustar opciones según la sección
-function openMenu(seccion, id, title, date, description, thumbnail) {
+function openMenu(seccion, title, date, description, thumbnail, url) {
     var overlay = document.getElementById('overlay');
 
     // Mostrar el overlay
@@ -37,7 +37,7 @@ function openMenu(seccion, id, title, date, description, thumbnail) {
     }
 
     option2.onclick = function() {
-        window.location.href = `/Historias_Interactivas_war_exploded/createStory.jsp?id_Story=${id}`;
+        window.location.href = url;
     };
 }
 

@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DatabaseConnectionManager {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/historiasinteractivas";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/historiasInteractivas";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
 

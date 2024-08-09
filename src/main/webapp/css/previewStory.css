@@ -17,16 +17,25 @@
     height: 10%; /* 10% de la altura del contenedor */
 }
 .text-container {
-    height: 40%; /* 40% de la altura del contenedor */
+    height: 80%; /* 40% de la altura del contenedor */
     overflow-y: auto; /* Añade scroll si el texto es muy largo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--mode-background-color);
+    border-radius: 10px;
+    padding: 6rem 6rem;
+    text-align: center;
+    font-size: 2.6rem;
 }
 .buttons-container {
     height: 10%; /* 10% de la altura del contenedor */
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px; /* Espaciado entre botones */
 }
+
 .btn-custom {
     flex: 1;
-    margin: 0 5px;
 }

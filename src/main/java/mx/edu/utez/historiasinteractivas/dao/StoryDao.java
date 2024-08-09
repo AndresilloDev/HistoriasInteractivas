@@ -12,7 +12,7 @@ import java.util.List;
 
 public class StoryDao {
     public boolean createStory(String email) throws SQLException {
-        String query = "INSERT INTO stories ";
+        String query = "INSERT INTO historiasInteractivas.Stories ";
         try (Connection con = DatabaseConnectionManager.getConnection();
         PreparedStatement ps = con.prepareStatement(query)){
             ps.setString(1, email);
@@ -27,7 +27,7 @@ public class StoryDao {
 
     public Story findByCode(String code) throws SQLException {
         Story story = null;
-        String query = "SELECT * FROM stories WHERE id_story=?";
+        String query = "SELECT * FROM historiasInteractivas.Stories WHERE id_story=?";
         try (Connection con = DatabaseConnectionManager.getConnection();
         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, code);
@@ -54,7 +54,7 @@ public class StoryDao {
 
     public ArrayList<Story> getAll(User user) throws SQLException {
         ArrayList<Story> stories = new ArrayList<Story>();
-        String query = "SELECT * FROM stories WHERE email_user=?";
+        String query = "SELECT * FROM historiasInteractivas.Stories WHERE email_user=?";
         try (Connection con = DatabaseConnectionManager.getConnection();
         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, user.getEmail());
@@ -78,7 +78,7 @@ public class StoryDao {
 
     public ArrayList<Story> getAllPublicStories(User user) throws SQLException {
         ArrayList<Story> stories = new ArrayList<Story>();
-        String query = "SELECT * FROM stories WHERE email_user = ? AND story_type = 1";
+        String query = "SELECT * FROM historiasInteractivas.Stories WHERE email_user = ? AND story_type = 1";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, user.getEmail());
@@ -102,7 +102,7 @@ public class StoryDao {
 
     public ArrayList<Story> getAllRestrictedStories(User user) throws SQLException {
         ArrayList<Story> stories = new ArrayList<Story>();
-        String query = "SELECT * FROM stories WHERE email_user = ? AND story_type = 2";
+        String query = "SELECT * FROM historiasInteractivas.Stories WHERE email_user = ? AND story_type = 2";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, user.getEmail());
@@ -126,7 +126,7 @@ public class StoryDao {
 
     public ArrayList<Story> getAllDraftStories(User user) throws SQLException {
         ArrayList<Story> stories = new ArrayList<Story>();
-        String query = "SELECT * FROM stories WHERE email_user = ? AND story_type = 3";
+        String query = "SELECT * FROM historiasInteractivas.Stories WHERE email_user = ? AND story_type = 3";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, user.getEmail());
@@ -149,7 +149,7 @@ public class StoryDao {
     }
 
     public boolean isCodeUnique(String code) {
-        String sql = "SELECT COUNT(*) FROM story WHERE story_id = ?";
+        String sql = "SELECT COUNT(*) FROM historiasInteractivas.Stories WHERE story_id = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, code);

@@ -34,8 +34,12 @@ public class PreviewStoryServlet extends HttpServlet {
             System.out.println(scene.toString());
 
             HttpSession session = req.getSession();
-            req.setAttribute("scene", scene);
+            session.setAttribute("scene", scene);
             session.setAttribute("story", story);
+            session.setAttribute("image", scene.getScene_image());
+            session.setAttribute("link", scene.getScene_link());
+            session.setAttribute("video", scene.getScene_video());
+            session.setAttribute("audio", scene.getScene_audio());
             req.getRequestDispatcher("/previewStory.jsp").forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -43,12 +47,31 @@ public class PreviewStoryServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        Story story = (Story) session.getAttribute("story");
+        System.out.println( "gistorias en servlet " + story.toString());
         String option = req.getParameter("option");
-        
+        StoryDao storyDao = new StoryDao();
+        Scene lastScene = (Scene) session.getAttribute("scene");
+        Scene newScene = new Scene();
+
         if(option.equals("option1")){
-            
+            newScene = story.getScene(lastScene.getDestiny_scene_option_1());
+
         } else if (option.equals("option2")) {
+            newScene = story.getScene(lastScene.getDestiny_scene_option_2());
 
         }
+
+        System.out.println(newScene.toString());
+
+        session.setAttribute("scene", newScene);
+        session.setAttribute("image", newScene.getScene_image());
+        session.setAttribute("link", newScene.getScene_link());
+        session.setAttribute("video", newScene.getScene_video());
+        session.setAttribute("audio", newScene.getScene_audio());
+        req.getRequestDispatcher("/previewStory.jsp").forward(req, resp);
+
+
     }
 }

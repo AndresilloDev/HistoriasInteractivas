@@ -25,12 +25,10 @@
         return;
     }
     Story story = (Story) session.getAttribute("story");
-    Scene scene = (Scene) request.getAttribute("scene");
+    Scene scene = (Scene) session.getAttribute("scene");
 
-    String image = (scene.getScene_image() != null && scene.getScene_image().equals("null")) ? null : scene.getScene_image();
-    String audio = (scene.getScene_audio() != null && scene.getScene_audio().equals("null")) ? null : scene.getScene_audio();
-    String video = (scene.getScene_video() != null && scene.getScene_video().equals("null")) ? null : scene.getScene_video();
-    String link = (scene.getScene_link() != null && scene.getScene_link().equals("null")) ? null : scene.getScene_link();
+    System.out.println(session.getAttribute("image"));
+    System.out.println(session.getAttribute("link"));
 
 %>
 <body class="light-mode">
@@ -40,47 +38,50 @@
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area">
         <div class="container container-custom">
-            <c:if test="${not empty image and image != 'null'}">
-                <img src="${image}" alt="Scene Image" class="img-fluid">
+            <!--
+            <c:if test="${not empty sessionScope.link and sessionScope.link != 'null'}">
+                <img src="${sessionScope.image}" alt="Scene Image" class="img-fluid">
             </c:if>
 
-            <!-- Mostrar audio si está presente y no es 'null' como cadena -->
-            <c:if test="${not empty audio and audio != 'null'}">
+            <c:if test="${not empty sessionScope.link and sessionScope.link != 'null'}">
                 <audio controls>
-                    <source src="${audio}" type="audio/mpeg">
+                    <source src="${sessionScope.audio}" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
             </c:if>
 
-            <!-- Mostrar video si está presente y no es 'null' como cadena -->
-            <c:if test="${not empty video and video != 'null'}">
+            <c:if test="${not empty sessionScope.link and sessionScope.link != 'null'}">
                 <video width="100%" controls>
-                    <source src="${video}" type="video/mp4">
+                    <source src="${sessionScope.video}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </c:if>
 
-            <!-- Mostrar video de YouTube si está presente y no es 'null' como cadena -->
-            <c:if test="${not empty link and link != 'null'}">
+            <c:if test="${not empty sessionScope.link and sessionScope.link != 'null'}">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${link}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${sessionScope.link}" allowfullscreen></iframe>
                 </div>
             </c:if>
-
+            -->
 
             <div class="text-container">
                 <p><%=scene.getScene_text()%></p>
             </div>
 
             <!-- Contenedor de Botones -->
-            <form class="buttons-container" action="previewStory" method="post">
-                <input type="hidden" name="option" value="option1">
-                <button type="submit" class="btn btn-primary btn-custom"><%=scene.getFirst_choice()%></button>
-            </form>
-            <form class="buttons-container" action="previewStory" method="post">
-                <input type="hidden" name="option" value="option2">
-                <button type="submit" class="btn btn-secondary btn-custom"><%=scene.getSecond_choice()%></button>
-            </form>
+
+
+            <div class="buttons-container">
+                <form action="previewStory" method="post">
+                    <input type="hidden" name="option" value="option1">
+                    <button type="submit" class="btn btn-primary btn-custom"><%=scene.getFirst_choice()%></button>
+                </form>
+                <form action="previewStory" method="post">
+                    <input type="hidden" name="option" value="option2">
+                    <button type="submit" class="btn btn-secondary btn-custom"><%=scene.getSecond_choice()%></button>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>

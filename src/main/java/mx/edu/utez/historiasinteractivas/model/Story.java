@@ -138,4 +138,20 @@ public class Story {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Story{" +
+                "id_story='" + id_story + '\'' +
+                ", email_user='" + email_user + '\'' +
+                ", story_title='" + story_title + '\'' +
+                ", release_date=" + release_date +
+                ", story_description='" + story_description + '\'' +
+                ", story_thumbnail='" + story_thumbnail + '\'' +
+                ", json='" + json + '\'' +
+                ", story_type=" + story_type +
+                ", last_update=" + last_update +
+                ", scenes=" + scenes +
+                '}';
+    }
 }

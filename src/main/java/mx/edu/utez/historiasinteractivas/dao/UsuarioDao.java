@@ -11,7 +11,7 @@ public class UsuarioDao {
 
     // Crear usuario en la base de datos
     public boolean insert(User u) {
-        String query = "INSERT INTO users(email, password) VALUES(?, SHA2(?, 256))";
+        String query = "INSERT INTO historiasInteractivas.Users(email, password) VALUES(?, SHA2(?, 256))";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -66,7 +66,7 @@ public class UsuarioDao {
     }
 
     public boolean existsUser(String email, String password) {
-        String sql = "select * from users where email = ? and password = ?";
+        String sql = "select * from historiasInteractivas.Users where email = ? and password = ?";
 
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement statement = con.prepareStatement(sql)) {
@@ -88,7 +88,7 @@ public class UsuarioDao {
     }
 
     public boolean saveChangePasswordToken(String email, String token) {
-        String sql = "UPDATE users SET change_password_token = ? WHERE email = ?";
+        String sql = "UPDATE historiasInteractivas.Users SET change_password_token = ? WHERE email = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -111,7 +111,7 @@ public class UsuarioDao {
     }
 
     public String getPasswordToken(User user) {
-        String sql = "Select change_password_token from users where email = ?";
+        String sql = "Select change_password_token from historiasInteractivas.Users where email = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement statement = con.prepareStatement(sql)) {
 
@@ -131,7 +131,7 @@ public class UsuarioDao {
     }
 
     public boolean updatePassword(User u, String password) {
-        String sql = "UPDATE users SET password = sha2(?,256) WHERE email = ?";
+        String sql = "UPDATE historiasInteractivas.Users SET password = sha2(?,256) WHERE email = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -156,7 +156,7 @@ public class UsuarioDao {
 
     public ArrayList<User> getAllUsers() {
         ArrayList<User> usuarios = new ArrayList<>();
-        String sql = "SELECT * FROM USERS";
+        String sql = "SELECT * FROM historiasInteractivas.Users";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement statement = con.prepareStatement(sql);
              ResultSet rs = statement.executeQuery()) {
@@ -179,7 +179,7 @@ public class UsuarioDao {
 
     public User findUserByEmail(String email) {
         User usuario = null;
-        String sql = "SELECT * FROM USERS WHERE email = ?";
+        String sql = "SELECT * FROM historiasInteractivas.Users WHERE email = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement statement = con.prepareStatement(sql)) {
 
@@ -204,7 +204,7 @@ public class UsuarioDao {
     }
 
     public boolean disableUserByEmail(String email) {
-        String sql = "UPDATE USERS SET status = false WHERE email = ?";
+        String sql = "UPDATE historiasInteractivas.Users SET status = false WHERE email = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
              stmt.setString(1, email);
@@ -216,7 +216,7 @@ public class UsuarioDao {
     }
 
     public boolean updateUser(User user) {
-        String query = "UPDATE Users SET user = ?, name = ?, paternal_surname = ?, maternal_surname = ?, profile_picture = ? WHERE email = ?";
+        String query = "UPDATE historiasInteractivas.Users SET user = ?, name = ?, paternal_surname = ?, maternal_surname = ?, profile_picture = ? WHERE email = ?";
         try (Connection connection = DatabaseConnectionManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
@@ -237,7 +237,7 @@ public class UsuarioDao {
 
     public boolean enableUserByEmail(String email) {
         try (Connection con = DatabaseConnectionManager.getConnection()) {
-            String query = "UPDATE Users SET status = true WHERE email = ?";
+            String query = "UPDATE historiasInteractivas.Users SET status = true WHERE email = ?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, email);
             return ps.executeUpdate() > 0;
@@ -250,7 +250,7 @@ public class UsuarioDao {
 
     public ArrayList<User> findAllUsersByEmail(String email) {
         ArrayList<User> usuarios = new ArrayList<>();
-        String sql = "SELECT * FROM USERS WHERE email LIKE ?";
+        String sql = "SELECT * FROM historiasInteractivas.Users WHERE email LIKE ?";
 
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement statement = con.prepareStatement(sql)) {
