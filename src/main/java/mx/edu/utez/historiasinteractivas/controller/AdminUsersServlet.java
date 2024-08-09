@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name="AdminUsersServlet", value = "/adminUsers")
@@ -35,30 +36,42 @@ public class AdminUsersServlet extends HttpServlet {
 
         if ("buscar".equals(action)) {
             String email = request.getParameter("email");
-            User usuario = usuarioDao.findUserByEmail(email);
-            if (usuario != null) {
-                session.setAttribute("usuario", usuario);
-                System.out.println("Usuario encontrado: " + usuario.getEmail());
+            ArrayList<User> usuarios = usuarioDao.findAllUsersByEmail(email);
+
+            if (!usuarios.isEmpty()) {
+                session.setAttribute("usuarios", usuarios);
+                request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
+
             } else {
-                session.setAttribute("mensaje", "Usuario no encontrado.");
-                System.out.println("Usuario no encontrado.");
+                request.setAttribute("message", "No existen usuarios que cumplan las condiciones");
+
+
+                usuarios = usuarioDao.getAllUsers();
+                session.setAttribute("usuarios", usuarios);
+                request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
             }
+
         } else if ("deshabilitar".equals(action)) {
             String email = request.getParameter("email");
             boolean resultado = usuarioDao.disableUserByEmail(email);
-            session.setAttribute("mensaje", resultado ? "Usuario deshabilitado correctamente." : "Usuario no encontrado.");
-            System.out.println("Usuario deshabilitado: " + resultado);
+
+            request.setAttribute("message", resultado ? "Usuario deshabilitado correctamente." : "Usuario no encontrado.");
+
+            ArrayList<User> usuarios = usuarioDao.getAllUsers();
+            session.setAttribute("usuarios", usuarios);
+            request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
+
         } else if ("habilitar".equals(action)) {
             String email = request.getParameter("email");
             boolean resultado = usuarioDao.enableUserByEmail(email);
-            session.setAttribute("mensaje", resultado ? "Usuario habilitado correctamente." : "Usuario no encontrado.");
-            System.out.println("Usuario habilitado: " + resultado);
+
+            request.setAttribute("message", resultado ? "Usuario habilitado correctamente." : "Usuario no encontrado.");
+
+            ArrayList<User> usuarios = usuarioDao.getAllUsers();
+            session.setAttribute("usuarios", usuarios);
+            request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
         }
 
-        List<User> usuarios = usuarioDao.getAllUsers();
-        System.out.println("Usuarios obtenidos en doPost: " + usuarios);
-        session.setAttribute("usuarios", usuarios);
-        request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
     }
 }
 

@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="components/navComponent/nav.css">
-    <link rel="stylesheet" href="components/sliderComponent/slider.css">
     <link rel="stylesheet" href="css/indexLayout.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
@@ -28,6 +27,7 @@
     session = request.getSession(false);
     User user = (User) session.getAttribute("user");
 %>
+<jsp:include page="components/alertComponent/alert.jsp" />
 <body class="light-mode">
 
 <div class="scroll-container">
@@ -81,7 +81,7 @@
 
     <c:choose>
     <c:when test="${not empty sessionScope.user}">
-    <section class="two">
+    <section id="storieContent" class="two">
         <section class="waves-container2" style="rotate: 180deg; padding-top: 200px;">
             <div class="wave wave1"></div>
             <div class="wave wave2"></div>

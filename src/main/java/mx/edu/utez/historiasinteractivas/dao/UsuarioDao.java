@@ -154,8 +154,8 @@ public class UsuarioDao {
     }
 
 
-    public List<User> getAllUsers() {
-        List<User> usuarios = new ArrayList<>();
+    public ArrayList<User> getAllUsers() {
+        ArrayList<User> usuarios = new ArrayList<>();
         String sql = "SELECT * FROM USERS";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement statement = con.prepareStatement(sql);
@@ -201,22 +201,18 @@ public class UsuarioDao {
             e.printStackTrace();
         }
         return usuario;
-
     }
+
     public boolean disableUserByEmail(String email) {
-        boolean resultado = false;
         String sql = "UPDATE USERS SET status = false WHERE email = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
-
-            stmt.setString(1, email);
-
-            int affectedRows = stmt.executeUpdate();
-            resultado = affectedRows > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
+             stmt.setString(1, email);
+             return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+             e.printStackTrace();
+             return false;
         }
-        return resultado;
     }
 
     public boolean updateUser(User user) {
@@ -249,5 +245,35 @@ public class UsuarioDao {
             e.printStackTrace();
             return false;
         }
+    }
+
+
+    public ArrayList<User> findAllUsersByEmail(String email) {
+        ArrayList<User> usuarios = new ArrayList<>();
+        String sql = "SELECT * FROM USERS WHERE email LIKE ?";
+
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement statement = con.prepareStatement(sql)) {
+
+            statement.setString(1, email + "%");
+
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    User usuario = new User();
+                    usuario.setEmail(rs.getString("email"));
+                    usuario.setUser(rs.getString("user"));
+                    usuario.setName(rs.getString("name"));
+                    usuario.setPaternalSurname(rs.getString("paternal_surname"));
+                    usuario.setMaternalSurname(rs.getString("maternal_surname"));
+                    usuario.setStatus(rs.getBoolean("status"));
+                    usuario.setProfilePicture(rs.getString("profile_picture"));
+                    usuarios.add(usuario);  // Agrega cada usuario a la lista
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return usuarios;  // Retorna la lista de usuarios
     }
 }

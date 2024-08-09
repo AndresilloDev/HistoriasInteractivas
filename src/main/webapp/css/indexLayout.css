@@ -1,4 +1,5 @@
 @import url('variablesColor.css');
+
 body {
     font-family: 'Hammersmith One', sans-serif;
     background-color: var(--mode-background-color);

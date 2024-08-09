@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="components/navComponent/nav.css">
-    <link rel="stylesheet" href="components/sliderComponent/slider.css">
-    <link rel="stylesheet" href="components/sliderComponent/slider.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
@@ -50,38 +48,12 @@
                 <input type="hidden" name="action" value="buscar">
                 <label for="emailSearch" class="form-label">Correo electrónico:</label>
                 <div class="input-group">
-                    <input type="email" name="email" id="emailSearch" class="form-control" required>
+                    <input type="text" name="email" id="emailSearch" class="form-control" required>
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                 </div>
             </form>
         </div>
     </div>
-
-    <c:if test="${not empty usuario}">
-        <h2>Información del Usuario</h2>
-        <div class="card">
-            <div class="card-body">
-                <p><strong>Nombre:</strong> ${usuario.name}</p>
-                <p><strong>Apellido Paterno:</strong> ${usuario.paternalSurname}</p>
-                <p><strong>Apellido Materno:</strong> ${usuario.maternalSurname}</p>
-                <p><strong>Correo Electrónico:</strong> ${usuario.email}</p>
-                <p><strong>Estado:</strong> ${usuario.status ? "Habilitado" : "Deshabilitado"}</p>
-                <form action="AdminUsersServlet" method="post" onsubmit="return confirm('¿Estás seguro de que quieres cambiar el estado de este usuario?');">
-                    <input type="hidden" name="action" value="${usuario.status ? "deshabilitar" : "habilitar"}">
-                    <input type="hidden" name="email" value="${usuario.email}">
-                    <button type="submit" class="btn ${usuario.status ? "btn-danger" : "btn-success"} mt-2">
-                            ${usuario.status ? "Deshabilitar" : "Habilitar"} Usuario
-                    </button>
-                </form>
-            </div>
-        </div>
-    </c:if>
-
-    <c:if test="${not empty mensaje}">
-        <div class="alert alert-info mt-3">
-                ${mensaje}
-        </div>
-    </c:if>
 
     <h2>Lista de Usuarios</h2>
     <table class="table table-striped">
