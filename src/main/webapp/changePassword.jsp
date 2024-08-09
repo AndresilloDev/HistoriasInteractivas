@@ -36,10 +36,13 @@
             <div class="d-flex justify-content-center mb-4">
                 <input type="hidden" name="token" value="${token}">
                 <input type="hidden" name="email" value="${email}">
-                <input type="password" class="form-control" name="newPassword" placeholder="Nueva contraseña" required>
+                <label class="label">
+                    <input name="newPassword" type="password" placeholder=" " maxlength="50" class="input input-group mb-1 fs-6" required>
+                    <span class="labelName fs-6">Nueva contraseña</span>
+                </label>
             </div>
             <div class="d-flex justify-content-center mb-4">
-                <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
+                <button type="submit" class="button pt-1 pb-1 mb-2">Cambiar contraseña</button>
             </div>
         </form>
     </div>

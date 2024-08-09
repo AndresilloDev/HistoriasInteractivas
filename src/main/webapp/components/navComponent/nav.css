@@ -131,7 +131,7 @@
 .dropdown-menu {
     padding: 1rem;
     border-radius: 0.5rem;
-    box-shadow: var(--mode-shadow-color);
+    filter: drop-shadow(5px var(--mode-shadow-color));
     background-color: var(--mode-card-color);
     display: none;
     position: absolute;
@@ -148,6 +148,7 @@
 }
 .dropdown-item:hover {
     background-color: var(--mode-hover-color);
+    color: white;
     border-radius: 5px;
 }
 .nav-item.dropdown.show .dropdown-menu {
@@ -176,7 +177,6 @@
 #profileDropdown .dropdown-item a {
     display: flex;
     align-items: center;
-    color: #1473d3 !important;
     text-decoration: none;
     padding: 0.5rem 1rem;
     transition: color 0.3s ease;
@@ -201,4 +201,13 @@
 .dropdown-divider {
     margin: 0.75rem 0;
     border-top: var(--mode-text-color);
+    background-color: var(--mode-text-color);
+}
+
+.profile-info strong, .profile-info small {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }

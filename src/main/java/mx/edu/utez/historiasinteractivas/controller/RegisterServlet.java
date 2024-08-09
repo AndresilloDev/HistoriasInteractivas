@@ -45,7 +45,7 @@ public class RegisterServlet extends HttpServlet {
 
                 // Guardar el usuario y el código de verificación en la sesión
                 HttpSession session = req.getSession();
-                session.setAttribute("user", usuario);
+                session.setAttribute("registerUser", usuario);
                 session.setAttribute("verificationCode", verificationCode);
 
                 System.out.println("Redirigiendo a verifyAccount.jsp");

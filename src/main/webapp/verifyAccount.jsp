@@ -42,6 +42,7 @@
                 <input name="num6" type="number" class="form-control otp-input" maxlength="1" pattern="[0-9]" required>
             </div>
         </form>
+        <button class="button pt-1 m-auto w-50" href="register.jsp">Volver</button>
     </div>
 </div>
 

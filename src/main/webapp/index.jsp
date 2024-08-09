@@ -99,8 +99,7 @@
 
                             for(Story s : publishedStories){
                     %>
-                    <div class="card" onclick="openMenu('publica', '<%=s.getId_story()%>', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
-                        <img src="<%=s.getStory_thumbnail()%>" class="card-img-top">
+                    <div style="background-image: url('<%=s.getStory_thumbnail()%>'); background-size: cover; background-position: center;" class="card" onclick="openMenu('publica', '<%=s.getId_story()%>', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
                         <h2><%=s.getStory_title()%></h2>
                     </div>
                             <% } %>
@@ -118,8 +117,7 @@
 
                             for(Story s : restrictedStories){
                     %>
-                    <div class="card" onclick="openMenu('restringida', '<%=s.getId_story()%>', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
-                        <img src="<%=s.getStory_thumbnail()%>" class="card-img-top">
+                    <div style="background-image: url('<%=s.getStory_thumbnail()%>'); background-size: cover; background-position: center;" class="card" onclick="openMenu('restringida', '<%=s.getId_story()%>', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
                         <h2><%=s.getStory_title()%></h2>
                     </div>
                     <% } %>
@@ -137,8 +135,7 @@
 
                             for(Story s : draftsStories){
                     %>
-                    <div class="card" onclick="openMenu('borrador', '<%=s.getId_story()%>', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
-                        <img src="<%=s.getStory_thumbnail()%>" class="card-img-top">
+                    <div style="background-image: url('<%=s.getStory_thumbnail()%>'); background-size: cover; background-position: center;" class="card" onclick="openMenu('borrador', '<%=s.getId_story()%>', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>')">
                         <h2><%=s.getStory_title()%></h2>
                     </div>
                     <% } %>
@@ -161,19 +158,19 @@
         </div>
         <div class="row mt-4">
             <div class="col-md-3 col-12 m-auto" style="width: 125px; height: 150px; border-radius: 15px">
-                <img src="https://m.media-amazon.com/images/I/91UaMqkEb5L._AC_UF894,1000_QL80_.jpg" class="img-fluid" alt="Portada de la historia">
+                <img src="https://m.media-amazon.com/images/I/91UaMqkEb5L._AC_UF894,1000_QL80_.jpg" class="img-fluid" id="thumbnail" alt="Portada de la historia">
             </div>
             <div class="col-md-9 col-12">
                 <h6 class="text-md-start text-center mt-2"><strong>Título</strong></h6>
-                    <h2 id="story-title" class="text-md-start text-center">Título de la historia con JAVA</h2>
+                    <h2 id="story-title" class="text-md-start text-center">Titulo</h2>
 
-                <p class="text-md-end text-center"><strong>Fecha de publicación</strong><br> 07/12/1941 con JAVA</p>
+                <p class="text-md-end text-center"><strong>Fecha de publicación</strong><br><span id="date"></span></p>
             </div>
         </div>
         <div class="row mt-4 p3">
-            <h6 class="text-md-start text-center"><strong>Descripción</strong></h6>
+            <h6 class="text-center"><strong>Descripción</strong></h6>
             <div class="col">
-                <p class="text-md-start text-center">Descripción detallada de la historia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vestibulum arcu a facilisis.</p>
+                <p class="text-center" id="description">Sin descripción</p>
             </div>
         </div>
         <div class="row mt-2">
@@ -190,6 +187,7 @@
 <script src="js/searchStory.js"></script>
 <script src="js/writingAnimation.js"></script>
 <script src="js/overlayInformation.js"></script>
+<script src="js/index.js"></script>
 <script src="components/navComponent/themeSwitch.js"></script>
 </body>
 </html>

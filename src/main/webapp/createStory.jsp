@@ -13,6 +13,13 @@
     <link rel="stylesheet" href="css/themeSwitch.css">
     <link rel="stylesheet" href="css/createStory.css">
 </head>
+<%
+    session = request.getSession(false);
+    if(session.getAttribute("user") == null) {
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
 <body class="light-mode" style="height: 100vh">
 <jsp:include page="components/navComponent/nav.jsp" />
 <jsp:include page="components/alertComponent/alert.jsp" />

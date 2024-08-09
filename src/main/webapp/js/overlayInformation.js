@@ -1,13 +1,15 @@
 // Función para abrir el menú desplegable y ajustar opciones según la sección
 function openMenu(seccion, id, title, date, description, thumbnail) {
     var overlay = document.getElementById('overlay');
-    overlay.style.display = 'flex'; // Mostrar el overlay
+
+    // Mostrar el overlay
+    overlay.classList.add('show');
 
     // Actualizar el contenido de la historia
-    document.querySelector('#overlay h2').innerText = title;
-    document.querySelector('#overlay .text-md-end').innerHTML = '<strong>Fecha de publicación:</strong><br>' + date;
-    document.querySelector('#overlay .img-fluid').src = thumbnail;
-    document.querySelector('#overlay .text-md-start + p').innerText = description;
+    document.getElementById('story-title').innerText = title;
+    document.getElementById('thumbnail').src = thumbnail;
+    document.getElementById('date').innerText = date;
+    document.getElementById('description').innerText = description;
 
     // Actualizar las opciones del menú según la sección
     var option1 = document.getElementById('option1');
@@ -33,6 +35,7 @@ function openMenu(seccion, id, title, date, description, thumbnail) {
         default:
             break;
     }
+
     option2.onclick = function() {
         window.location.href = `/Historias_Interactivas_war_exploded/createStory.jsp?id_Story=${id}`;
     };
@@ -41,5 +44,7 @@ function openMenu(seccion, id, title, date, description, thumbnail) {
 // Función para cerrar el menú desplegable
 function closeMenu() {
     var overlay = document.getElementById('overlay');
-    overlay.style.display = 'none';
+
+    // Ocultar el overlay
+    overlay.classList.remove('show');
 }

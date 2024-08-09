@@ -26,7 +26,7 @@ public class VerifyServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         String verificationCode = (String) session.getAttribute("verificationCode");
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("registerUser");
 
         System.out.println("Código ingresado: " + enteredCode);
         System.out.println("Código esperado: " + verificationCode);
@@ -37,7 +37,9 @@ public class VerifyServlet extends HttpServlet {
                 UsuarioDao usuarioDao = new UsuarioDao();
                 if (usuarioDao.insert(user)) {
                     System.out.println("Usuario registrado correctamente");
-                    session.removeAttribute("verificationCode"); // Remover el código de la sesión
+                    session.invalidate();
+                    session = req.getSession();
+                    session.setAttribute("user", user);
                     resp.sendRedirect("index.jsp"); // Redirigir a index
                 } else {
                     System.out.println("Error al registrar el usuario");

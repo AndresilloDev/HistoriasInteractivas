@@ -90,15 +90,14 @@ public class GmailSenderVerify {
                 "        .header {\n" +
                 "            display: flex;\n" +
                 "            align-items: center;\n" +
+                "            justify-content: center;\n" +
                 "            margin-bottom: 20px;\n" +
+                "            width: 100%;\n" +
                 "        }\n" +
                 "        .logo img {\n" +
                 "            max-width: 100px;\n" +
-                "            margin-right: 10px;\n" +
-                "        }\n" +
-                "        .header-text {\n" +
-                "            font-size: 24px;\n" +
-                "            color: #555555;\n" +
+                "            padding-left: 50%;\n" +
+                "            padding-right: 50%;\n" +
                 "        }\n" +
                 "        .divider {\n" +
                 "            border-top: 2px solid #9332EB;\n" +
@@ -111,7 +110,7 @@ public class GmailSenderVerify {
                 "            text-align: center;\n" +
                 "        }\n" +
                 "        .verification-code {\n" +
-                "            font-size: 24px;\n" +
+                "            font-size: 20px;\n" +
                 "            font-weight: bold;\n" +
                 "            color: #9332EB;\n" +
                 "            margin: 20px 0;\n" +
@@ -127,6 +126,13 @@ public class GmailSenderVerify {
                 "            font-size: 24px;\n" +
                 "            text-align: center;\n" +
                 "        }\n" +
+                "        @media (max-width: 600px) {\n" +
+                "        .square {\n" +
+                "           font-size: 18px;\n" +
+                "           padding: 8px 16px;\n" +
+                "           margin: 4px;\n" +
+                "        }\n" +
+                "        }\n" +
                 "        .footer {\n" +
                 "            font-size: 14px;\n" +
                 "            color: #555555;\n" +
@@ -139,10 +145,7 @@ public class GmailSenderVerify {
                 "    <div class=\"container\">\n" +
                 "        <div class=\"header\">\n" +
                 "            <div class=\"logo\">\n" +
-                "                <img src=\"logoHistoriasInteractivas.png\" alt=\"Logo\">\n" +
-                "            </div>\n" +
-                "            <div class=\"header-text\">\n" +
-                "                Story\n" +
+                "                <img src=\"https://raw.githubusercontent.com/AndresilloDev/HistoriasInteractivas/main/src/main/webapp/resources/img/logoHistoriasInteractivas.png?token=GHSAT0AAAAAACVVJEM7PZ7R7K3G2UFJQTRAZVVSGDA\" alt=\"Logo\">\n" +
                 "            </div>\n" +
                 "        </div>\n" +
                 "        <div class=\"divider\"></div>\n" +
@@ -154,12 +157,12 @@ public class GmailSenderVerify {
                 "        </div>\n" +
                 "        <div class=\"verification-code\">\n" +
                 "            <div style=\"text-align: center;\">\n" +
-                "                <div class=\"square\">{{verificationCode.charAt(0)}}</div>\n" +
-                "                <div class=\"square\">{{verificationCode.charAt(1)}}</div>\n" +
-                "                <div class=\"square\">{{verificationCode.charAt(2)}}</div>\n" +
-                "                <div class=\"square\">{{verificationCode.charAt(3)}}</div>\n" +
-                "                <div class=\"square\">{{verificationCode.charAt(4)}}</div>\n" +
-                "                <div class=\"square\">{{verificationCode.charAt(5)}}</div>\n" +
+                "                <div class=\"square\">" + verificationCode.charAt(0) + "</div>\n" +
+                "                <div class=\"square\">" + verificationCode.charAt(1) + "</div>\n" +
+                "                <div class=\"square\">" + verificationCode.charAt(2) + "</div>\n" +
+                "                <div class=\"square\">" + verificationCode.charAt(3) + "</div>\n" +
+                "                <div class=\"square\">" + verificationCode.charAt(4) + "</div>\n" +
+                "                <div class=\"square\">" + verificationCode.charAt(5) + "</div>\n" +
                 "            </div>\n" +
                 "        </div>\n" +
                 "        <div class=\"footer\">\n" +
@@ -171,7 +174,7 @@ public class GmailSenderVerify {
                 "        </div>\n" +
                 "    </div>\n" +
                 "</body>\n" +
-                "</html>\n" + verificationCode, "text/html; charset=utf-8");
+                "</html>\n", "text/html; charset=utf-8");
 
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         email.writeTo(buffer);

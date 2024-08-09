@@ -11,17 +11,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Se ha hecho que los usuarios en adminUsers se pueda buscar sin necesidad de colocar el correo completo, así como cambiar la forma en la que se muestran">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_24,_6_17 PM_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_24__6_17PM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/AdminUsersServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/AdminUsersServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminUsers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminUsers.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/RegisterServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/VerifyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/VerifyServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/GmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/GmailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/GmailSenderVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/GmailSenderVerify.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/changePassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/changePassword.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/createStory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/createStory.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/editUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editUser.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/recoverPassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/recoverPassword.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/dragItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/overlayInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/overlayInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/writingAnimation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/writingAnimation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/verifyAccount.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/verifyAccount.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

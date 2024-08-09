@@ -47,13 +47,13 @@
                                         </c:if>
                                     </div>
                                 </li>
-                                <li><a class="dropdown-item" href="editUser.jsp">Editar cuenta</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="index.jsp#storieContent"><i class="icon-book"></i> Tus historias</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="icon-pencil"></i> Crear una historia</a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i class="icon-logout"></i> Cerrar sesión</a></li>
+                                <li><a class="dropdown-item" href="editUser.jsp">Editar cuenta</a></li>
+                                <li><a class="dropdown-item" onclick="scrollToNextSection()">Tus historias</a></li>
+                                <li><a class="dropdown-item" href="http://localhost:8080/Historias_Interactivas_war_exploded/createStory.jsp">Crear una historia</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Cerrar sesión</a></li>
                                 <c:if test="${user.admin}">
-                                    <li><a class="dropdown-item" href="adminUsers.jsp"><i class="icon-settings"></i> Administrar</a></li>
+                                    <li><a class="dropdown-item" href="adminUsers.jsp">Administrar</a></li>
                                 </c:if>
                             </ul>
                         </li>

@@ -12,15 +12,14 @@
     width: 100%;
     height: 100%;
     z-index: 1009;
+    border: 2px solid var(--mode-text-color);
 }
 .storyDiagram-container {
     flex: 1;
     height: 70vh;
     background-color: var(--mode-card-color);
-    border-width: 2px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    border-color: #000920FF;
 }
 .buttonsBar-container {
     height: 7vh;
