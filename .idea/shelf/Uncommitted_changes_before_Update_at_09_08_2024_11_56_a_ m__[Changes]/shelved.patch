@@ -1,0 +1,389 @@
+Index: src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package mx.edu.utez.historiasinteractivas.dao;\r\n\r\nimport mx.edu.utez.historiasinteractivas.model.Story;\r\nimport mx.edu.utez.historiasinteractivas.model.User;\r\nimport mx.edu.utez.historiasinteractivas.utils.DatabaseConnectionManager;\r\n\r\nimport java.sql.*;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class StoryDao {\r\n    public boolean createStory(String email) throws SQLException {\r\n        String query = \"INSERT INTO stories \";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n        PreparedStatement ps = con.prepareStatement(query)){\r\n            ps.setString(1, email);\r\n            ResultSet rs = ps.executeQuery();\r\n            return true;\r\n\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public Story findByCode(String code) throws SQLException {\r\n        Story story = null;\r\n        String query = \"SELECT * FROM stories WHERE code=?\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){\r\n            ps.setString(1, code);\r\n            ResultSet rs = ps.executeQuery();\r\n            if(rs.next()) {\r\n                story = new Story();\r\n                story.setEmail_user(rs.getString(\"email_user\"));\r\n                story.setStory_title(rs.getString(\"story_title\"));\r\n                story.setStory_description(rs.getString(\"story_description\"));\r\n                story.setStory_thumbnail(rs.getString(\"story_thumbnail\"));\r\n                story.setStory_type(rs.getInt(\"story_type\"));\r\n                story.setRelease_date(rs.getDate(\"release_date\"));\r\n                story.setLast_update(rs.getDate(\"last_update\"));\r\n                story.setJson(rs.getString(\"json\"));\r\n\r\n                return story;\r\n            }\r\n\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public ArrayList<Story> getAll(User user) throws SQLException {\r\n        ArrayList<Story> stories = new ArrayList<Story>();\r\n        String query = \"SELECT * FROM stories WHERE email_user=?\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){\r\n            ps.setString(1, user.getEmail());\r\n            ResultSet rs = ps.executeQuery();\r\n            while(rs.next()) {\r\n                Story story = new Story();\r\n                story.setEmail_user(rs.getString(\"email_user\"));\r\n                story.setStory_title(rs.getString(\"story_title\"));\r\n                story.setStory_description(rs.getString(\"story_description\"));\r\n                story.setStory_thumbnail(rs.getString(\"story_thumbnail\"));\r\n                story.setStory_type(rs.getInt(\"story_type\"));\r\n                story.setRelease_date(rs.getDate(\"release_date\"));\r\n                story.setLast_update(rs.getDate(\"last_update\"));\r\n                story.setJson(rs.getString(\"json\"));\r\n                stories.add(story);\r\n            }\r\n            return stories;\r\n        }\r\n    }\r\n\r\n\r\n    public ArrayList<Story> getAllPublicStories(User user) throws SQLException {\r\n        ArrayList<Story> stories = new ArrayList<Story>();\r\n        String query = \"SELECT * FROM stories WHERE email_user = ? AND story_type = 1\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){\r\n            ps.setString(1, user.getEmail());\r\n            ResultSet rs = ps.executeQuery();\r\n            while(rs.next()) {\r\n                Story story = new Story();\r\n                story.setId_story(rs.getInt(\"id_story\"));\r\n                story.setEmail_user(rs.getString(\"email_user\"));\r\n                story.setStory_title(rs.getString(\"story_title\"));\r\n                story.setStory_description(rs.getString(\"story_description\"));\r\n                story.setStory_thumbnail(rs.getString(\"story_thumbnail\"));\r\n                story.setStory_type(rs.getInt(\"story_type\"));\r\n                story.setRelease_date(rs.getDate(\"release_date\"));\r\n                story.setLast_update(rs.getDate(\"last_update\"));\r\n                story.setJson(rs.getString(\"json\"));\r\n                stories.add(story);\r\n            }\r\n            return stories;\r\n        }\r\n    }\r\n\r\n    public ArrayList<Story> getAllRestrictedStories(User user) throws SQLException {\r\n        ArrayList<Story> stories = new ArrayList<Story>();\r\n        String query = \"SELECT * FROM stories WHERE email_user = ? AND story_type = 2\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){\r\n            ps.setString(1, user.getEmail());\r\n            ResultSet rs = ps.executeQuery();\r\n            while(rs.next()) {\r\n                Story story = new Story();\r\n                story.setId_story(rs.getInt(\"id_story\"));\r\n                story.setEmail_user(rs.getString(\"email_user\"));\r\n                story.setStory_title(rs.getString(\"story_title\"));\r\n                story.setStory_description(rs.getString(\"story_description\"));\r\n                story.setStory_thumbnail(rs.getString(\"story_thumbnail\"));\r\n                story.setStory_type(rs.getInt(\"story_type\"));\r\n                story.setRelease_date(rs.getDate(\"release_date\"));\r\n                story.setLast_update(rs.getDate(\"last_update\"));\r\n                story.setJson(rs.getString(\"json\"));\r\n                stories.add(story);\r\n            }\r\n            return stories;\r\n        }\r\n    }\r\n\r\n    public ArrayList<Story> getAllDraftStories(User user) throws SQLException {\r\n        ArrayList<Story> stories = new ArrayList<Story>();\r\n        String query = \"SELECT * FROM stories WHERE email_user = ? AND story_type = 3\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){\r\n            ps.setString(1, user.getEmail());\r\n            ResultSet rs = ps.executeQuery();\r\n            while(rs.next()) {\r\n                Story story = new Story();\r\n                story.setId_story(rs.getInt(\"id_story\"));\r\n                story.setEmail_user(rs.getString(\"email_user\"));\r\n                story.setStory_title(rs.getString(\"story_title\"));\r\n                story.setStory_description(rs.getString(\"story_description\"));\r\n                story.setStory_thumbnail(rs.getString(\"story_thumbnail\"));\r\n                story.setStory_type(rs.getInt(\"story_type\"));\r\n                story.setRelease_date(rs.getDate(\"release_date\"));\r\n                story.setLast_update(rs.getDate(\"last_update\"));\r\n                story.setJson(rs.getString(\"json\"));\r\n                stories.add(story);\r\n            }\r\n            return stories;\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java b/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java
+--- a/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java	
++++ b/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java	
+@@ -10,7 +10,7 @@
+ 
+ public class StoryDao {
+     public boolean createStory(String email) throws SQLException {
+-        String query = "INSERT INTO stories ";
++        String query = "INSERT INTO historiasInteractivas.Stories ";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+         PreparedStatement ps = con.prepareStatement(query)){
+             ps.setString(1, email);
+@@ -25,7 +25,7 @@
+ 
+     public Story findByCode(String code) throws SQLException {
+         Story story = null;
+-        String query = "SELECT * FROM stories WHERE code=?";
++        String query = "SELECT * FROM historiasInteractivas.Stories WHERE code=?";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
+             ps.setString(1, code);
+@@ -52,7 +52,7 @@
+ 
+     public ArrayList<Story> getAll(User user) throws SQLException {
+         ArrayList<Story> stories = new ArrayList<Story>();
+-        String query = "SELECT * FROM stories WHERE email_user=?";
++        String query = "SELECT * FROM historiasInteractivas.Stories WHERE email_user=?";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
+             ps.setString(1, user.getEmail());
+@@ -76,7 +76,7 @@
+ 
+     public ArrayList<Story> getAllPublicStories(User user) throws SQLException {
+         ArrayList<Story> stories = new ArrayList<Story>();
+-        String query = "SELECT * FROM stories WHERE email_user = ? AND story_type = 1";
++        String query = "SELECT * FROM historiasInteractivas.Stories WHERE email_user = ? AND story_type = 1";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
+             ps.setString(1, user.getEmail());
+@@ -100,7 +100,7 @@
+ 
+     public ArrayList<Story> getAllRestrictedStories(User user) throws SQLException {
+         ArrayList<Story> stories = new ArrayList<Story>();
+-        String query = "SELECT * FROM stories WHERE email_user = ? AND story_type = 2";
++        String query = "SELECT * FROM historiasInteractivas.Stories WHERE email_user = ? AND story_type = 2";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
+             ps.setString(1, user.getEmail());
+@@ -124,7 +124,7 @@
+ 
+     public ArrayList<Story> getAllDraftStories(User user) throws SQLException {
+         ArrayList<Story> stories = new ArrayList<Story>();
+-        String query = "SELECT * FROM stories WHERE email_user = ? AND story_type = 3";
++        String query = "SELECT * FROM historiasInteractivas.Stories WHERE email_user = ? AND story_type = 3";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
+             ps.setString(1, user.getEmail());
+Index: src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package mx.edu.utez.historiasinteractivas.dao;\r\n\r\nimport mx.edu.utez.historiasinteractivas.model.User;\r\nimport mx.edu.utez.historiasinteractivas.utils.DatabaseConnectionManager;\r\n\r\nimport java.sql.*;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class UsuarioDao {\r\n\r\n    // Crear usuario en la base de datos\r\n    public boolean insert(User u) {\r\n        String query = \"INSERT INTO users(email, password) VALUES(?, SHA2(?, 256))\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {\r\n\r\n            // Establecer los parámetros de entrada\r\n            stmt.setString(1, u.getEmail());\r\n            stmt.setString(2, u.getPassword());\r\n\r\n            // Ejecutar la inserción\r\n            int affectedRows = stmt.executeUpdate();\r\n            System.out.println(\"Affected rows: \" + affectedRows);\r\n\r\n            // Verificar si se insertó una fila\r\n            if (affectedRows > 0) {\r\n                return true;\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public User getUser(String email,String password) {\r\n        User usuario = null;\r\n        String sql = \"call loginUser(?, ?)\";\r\n\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             CallableStatement statement = con.prepareCall(sql)) {\r\n\r\n            // Establecer los parámetros de entrada\r\n            statement.setString(1, email);\r\n            statement.setString(2, password);\r\n            statement.execute();\r\n\r\n            // Ejecutar la consulta\r\n            try (ResultSet rs = statement.getResultSet()) {\r\n                if (rs.next()) {\r\n                    usuario = new User();\r\n                    usuario.setEmail(rs.getString(\"email\"));\r\n                    usuario.setUser(rs.getString(\"user\"));\r\n                    usuario.setName(rs.getString(\"name\"));\r\n                    usuario.setPaternalSurname(rs.getString(\"paternal_surname\"));\r\n                    usuario.setMaternalSurname(rs.getString(\"maternal_surname\"));\r\n                    usuario.setProfilePicture(rs.getString(\"profile_picture\"));\r\n                    usuario.setStatus(rs.getBoolean(\"status\"));\r\n                    usuario.setAdmin(rs.getBoolean(\"admin\"));\r\n                }\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return usuario;\r\n    }\r\n\r\n    public boolean existsUser(String email, String password) {\r\n        String sql = \"select * from users where email = ? and password = ?\";\r\n\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement statement = con.prepareStatement(sql)) {\r\n\r\n            // Establecer los parámetros de entrada\r\n            statement.setString(1, email);\r\n            statement.setString(2, password);\r\n\r\n            // Ejecutar la consulta\r\n            try (ResultSet rs = statement.executeQuery()) {\r\n                if (rs.next()) {\r\n                    return true;\r\n                }\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public boolean saveChangePasswordToken(String email, String token) {\r\n        String sql = \"UPDATE users SET change_password_token = ? WHERE email = ?\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {\r\n\r\n            // Establecer los parámetros de entrada\r\n            stmt.setString(1, token);\r\n            stmt.setString(2, email);\r\n\r\n            // Ejecutar la inserción\r\n            int affectedRows = stmt.executeUpdate();\r\n            System.out.println(\"Affected rows: \" + affectedRows);\r\n\r\n            // Verificar si se insertó una fila\r\n            if (affectedRows > 0) {\r\n                return true;\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public String getPasswordToken(User user) {\r\n        String sql = \"Select change_password_token from users where email = ?\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement statement = con.prepareStatement(sql)) {\r\n\r\n            // Establecer los parámetros de entrada\r\n            statement.setString(1, user.getEmail());\r\n\r\n            // Ejecutar la consulta\r\n            try (ResultSet rs = statement.executeQuery()) {\r\n                if (rs.next()) {\r\n                    return rs.getString(\"change_password_token\");\r\n                }\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return \"\";\r\n    }\r\n\r\n    public boolean updatePassword(User u, String password) {\r\n        String sql = \"UPDATE users SET password = sha2(?,256) WHERE email = ?\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {\r\n\r\n            // Establecer los parámetros de entrada\r\n            stmt.setString(1, password);\r\n            stmt.setString(2, u.getEmail());\r\n\r\n            // Ejecutar la inserción\r\n            int affectedRows = stmt.executeUpdate();\r\n            System.out.println(\"Affected rows: \" + affectedRows);\r\n\r\n            // Verificar si se insertó una fila\r\n            if (affectedRows > 0) {\r\n                return true;\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return false;\r\n    }\r\n\r\n\r\n    public List<User> getAllUsers() {\r\n        List<User> usuarios = new ArrayList<>();\r\n        String sql = \"SELECT * FROM USERS\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement statement = con.prepareStatement(sql);\r\n             ResultSet rs = statement.executeQuery()) {\r\n\r\n            while (rs.next()) {\r\n                User usuario = new User();\r\n                usuario.setEmail(rs.getString(\"email\"));\r\n                usuario.setUser(rs.getString(\"user\"));\r\n                usuario.setName(rs.getString(\"name\"));\r\n                usuario.setPaternalSurname(rs.getString(\"paternal_surname\"));\r\n                usuario.setMaternalSurname(rs.getString(\"maternal_surname\"));\r\n                usuario.setStatus(rs.getBoolean(\"status\"));\r\n                usuarios.add(usuario);\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return usuarios;\r\n    }\r\n\r\n    public User findUserByEmail(String email) {\r\n        User usuario = null;\r\n        String sql = \"SELECT * FROM USERS WHERE email = ?\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement statement = con.prepareStatement(sql)) {\r\n\r\n            statement.setString(1, email);\r\n\r\n            try (ResultSet rs = statement.executeQuery()) {\r\n                if (rs.next()) {\r\n                    usuario = new User();\r\n                    usuario.setEmail(rs.getString(\"email\"));\r\n                    usuario.setUser(rs.getString(\"user\"));\r\n                    usuario.setName(rs.getString(\"name\"));\r\n                    usuario.setPaternalSurname(rs.getString(\"paternal_surname\"));\r\n                    usuario.setMaternalSurname(rs.getString(\"maternal_surname\"));\r\n                    usuario.setStatus(rs.getBoolean(\"status\"));\r\n                    usuario.setProfilePicture(rs.getString(\"profile_picture\"));\r\n                }\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return usuario;\r\n\r\n    }\r\n    public boolean disableUserByEmail(String email) {\r\n        boolean resultado = false;\r\n        String sql = \"UPDATE USERS SET status = false WHERE email = ?\";\r\n        try (Connection con = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement stmt = con.prepareStatement(sql)) {\r\n\r\n            stmt.setString(1, email);\r\n\r\n            int affectedRows = stmt.executeUpdate();\r\n            resultado = affectedRows > 0;\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return resultado;\r\n    }\r\n\r\n    public boolean updateUser(User user) {\r\n        String query = \"UPDATE Users SET user = ?, name = ?, paternal_surname = ?, maternal_surname = ?, profile_picture = ? WHERE email = ?\";\r\n        try (Connection connection = DatabaseConnectionManager.getConnection();\r\n             PreparedStatement statement = connection.prepareStatement(query)) {\r\n\r\n            statement.setString(1, user.getUser());\r\n            statement.setString(2, user.getName());\r\n            statement.setString(3, user.getPaternalSurname());\r\n            statement.setString(4, user.getMaternalSurname());\r\n            statement.setString(5, user.getProfilePicture());\r\n            statement.setString(6, user.getEmail());\r\n\r\n            int rowsUpdated = statement.executeUpdate();\r\n            return rowsUpdated > 0;\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public boolean enableUserByEmail(String email) {\r\n        try (Connection con = DatabaseConnectionManager.getConnection()) {\r\n            String query = \"UPDATE Users SET status = true WHERE email = ?\";\r\n            PreparedStatement ps = con.prepareStatement(query);\r\n            ps.setString(1, email);\r\n            return ps.executeUpdate() > 0;\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n            return false;\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java b/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java
+--- a/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java	
++++ b/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java	
+@@ -11,7 +11,7 @@
+ 
+     // Crear usuario en la base de datos
+     public boolean insert(User u) {
+-        String query = "INSERT INTO users(email, password) VALUES(?, SHA2(?, 256))";
++        String query = "INSERT INTO historiasInteractivas.Users(email, password) VALUES(?, SHA2(?, 256))";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement stmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+ 
+@@ -66,7 +66,7 @@
+     }
+ 
+     public boolean existsUser(String email, String password) {
+-        String sql = "select * from users where email = ? and password = ?";
++        String sql = "select * from historiasInteractivas.Users where email = ? and password = ?";
+ 
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement statement = con.prepareStatement(sql)) {
+@@ -88,7 +88,7 @@
+     }
+ 
+     public boolean saveChangePasswordToken(String email, String token) {
+-        String sql = "UPDATE users SET change_password_token = ? WHERE email = ?";
++        String sql = "UPDATE historiasInteractivas.Users SET change_password_token = ?, token_creation_time = CURRENT_TIMESTAMP() WHERE email = ?";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+ 
+@@ -111,7 +111,7 @@
+     }
+ 
+     public String getPasswordToken(User user) {
+-        String sql = "Select change_password_token from users where email = ?";
++        String sql = "Select change_password_token from historiasInteractivas.Users where email = ?";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement statement = con.prepareStatement(sql)) {
+ 
+@@ -131,7 +131,7 @@
+     }
+ 
+     public boolean updatePassword(User u, String password) {
+-        String sql = "UPDATE users SET password = sha2(?,256) WHERE email = ?";
++        String sql = "UPDATE historiasInteractivas.Users SET password = sha2(?,256) WHERE email = ?";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+ 
+@@ -156,7 +156,7 @@
+ 
+     public List<User> getAllUsers() {
+         List<User> usuarios = new ArrayList<>();
+-        String sql = "SELECT * FROM USERS";
++        String sql = "SELECT * FROM historiasInteractivas.Users";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement statement = con.prepareStatement(sql);
+              ResultSet rs = statement.executeQuery()) {
+@@ -179,7 +179,7 @@
+ 
+     public User findUserByEmail(String email) {
+         User usuario = null;
+-        String sql = "SELECT * FROM USERS WHERE email = ?";
++        String sql = "SELECT * FROM historiasInteractivas.Users WHERE email = ?";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement statement = con.prepareStatement(sql)) {
+ 
+@@ -205,7 +205,7 @@
+     }
+     public boolean disableUserByEmail(String email) {
+         boolean resultado = false;
+-        String sql = "UPDATE USERS SET status = false WHERE email = ?";
++        String sql = "UPDATE historiasInteractivas.Users SET status = false WHERE email = ?";
+         try (Connection con = DatabaseConnectionManager.getConnection();
+              PreparedStatement stmt = con.prepareStatement(sql)) {
+ 
+@@ -220,7 +220,7 @@
+     }
+ 
+     public boolean updateUser(User user) {
+-        String query = "UPDATE Users SET user = ?, name = ?, paternal_surname = ?, maternal_surname = ?, profile_picture = ? WHERE email = ?";
++        String query = "UPDATE historiasInteractivas.Users SET user = ?, name = ?, paternal_surname = ?, maternal_surname = ?, profile_picture = ? WHERE email = ?";
+         try (Connection connection = DatabaseConnectionManager.getConnection();
+              PreparedStatement statement = connection.prepareStatement(query)) {
+ 
+@@ -241,7 +241,7 @@
+ 
+     public boolean enableUserByEmail(String email) {
+         try (Connection con = DatabaseConnectionManager.getConnection()) {
+-            String query = "UPDATE Users SET status = true WHERE email = ?";
++            String query = "UPDATE historiasInteractivas.Users SET status = true WHERE email = ?";
+             PreparedStatement ps = con.prepareStatement(query);
+             ps.setString(1, email);
+             return ps.executeUpdate() > 0;
+Index: src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package mx.edu.utez.historiasinteractivas.utils;\r\n\r\nimport com.zaxxer.hikari.HikariConfig;\r\nimport com.zaxxer.hikari.HikariDataSource;\r\nimport java.sql.Connection;\r\nimport java.sql.SQLException;\r\n\r\npublic class DatabaseConnectionManager {\r\n    private static final String JDBC_URL = \"jdbc:mysql://localhost:3306/historiasinteractivas\";\r\n    private static final String USER = \"root\";\r\n    private static final String PASSWORD = \"root\";\r\n\r\n    private static final HikariConfig config = new HikariConfig();\r\n    private static final HikariDataSource dataSource;\r\n\r\n    static {\r\n        try {\r\n            Class.forName(\"com.mysql.cj.jdbc.Driver\");\r\n        } catch (ClassNotFoundException e) {\r\n            throw new RuntimeException(\"Error\", e);\r\n        }\r\n\r\n        config.setJdbcUrl(JDBC_URL);\r\n        config.setUsername(USER);\r\n        config.setPassword(PASSWORD);\r\n        config.setMinimumIdle(5);\r\n        config.setMaximumPoolSize(10);\r\n        config.setConnectionTimeout(30000); // 30 seconds\r\n        dataSource = new HikariDataSource(config);\r\n    }\r\n\r\n    public static Connection getConnection() throws SQLException {\r\n        return dataSource.getConnection();\r\n    }\r\n\r\n    private DatabaseConnectionManager() {\r\n        // Private constructor to prevent instantiation\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java b/src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java
+--- a/src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java	
++++ b/src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java	
+@@ -6,9 +6,9 @@
+ import java.sql.SQLException;
+ 
+ public class DatabaseConnectionManager {
+-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/historiasinteractivas";
+-    private static final String USER = "root";
+-    private static final String PASSWORD = "root";
++    private static final String JDBC_URL = "jdbc:mysql://34.226.121.129:3306/historiasInteractivas";
++    private static final String USER = "elegidokawai";
++    private static final String PASSWORD = "Elegidokawai323*";
+ 
+     private static final HikariConfig config = new HikariConfig();
+     private static final HikariDataSource dataSource;
+Index: src/main/java/mx/edu/utez/historiasinteractivas/controller/ChangePasswordServlet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package mx.edu.utez.historiasinteractivas.controller;\r\n\r\nimport jakarta.servlet.ServletException;\r\nimport jakarta.servlet.annotation.WebServlet;\r\nimport jakarta.servlet.http.HttpServlet;\r\nimport jakarta.servlet.http.HttpServletRequest;\r\nimport jakarta.servlet.http.HttpServletResponse;\r\nimport mx.edu.utez.historiasinteractivas.dao.UsuarioDao;\r\nimport mx.edu.utez.historiasinteractivas.model.User;\r\n\r\nimport java.io.IOException;\r\n\r\n@WebServlet(name=\"ChangePasswordServlet\", value = \"/changePassword\")\r\npublic class ChangePasswordServlet extends HttpServlet {\r\n\r\n    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {\r\n        String email = req.getParameter(\"email\");\r\n        String tokenGiven = req.getParameter(\"token\");\r\n\r\n        req.setAttribute(\"email\", email);\r\n        req.setAttribute(\"token\", tokenGiven);\r\n        req.getRequestDispatcher(\"changePassword.jsp\").forward(req, resp);\r\n    }\r\n\r\n    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {\r\n        String email = req.getParameter(\"email\");\r\n        String tokenGiven = req.getParameter(\"token\");\r\n        String newPassword = req.getParameter(\"newPassword\");\r\n\r\n        UsuarioDao dao = new UsuarioDao();\r\n        User user = new User(email);\r\n\r\n        String token = dao.getPasswordToken(user);\r\n\r\n        if (tokenGiven.equals(token)) {\r\n            dao.updatePassword(user, newPassword);\r\n            req.setAttribute(\"message\", \"Contraseña actualizada correctamente.\");\r\n            req.getRequestDispatcher(\"login.jsp\").forward(req, resp);\r\n            // Redirige a la página de inicio de sesión\r\n        } else {\r\n            req.setAttribute(\"errorMessage\", \"Token no válido.\");\r\n            req.getRequestDispatcher(\"changePassword.jsp\").forward(req, resp);\r\n            // Vuelve a la página de cambio de contraseña\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/mx/edu/utez/historiasinteractivas/controller/ChangePasswordServlet.java b/src/main/java/mx/edu/utez/historiasinteractivas/controller/ChangePasswordServlet.java
+--- a/src/main/java/mx/edu/utez/historiasinteractivas/controller/ChangePasswordServlet.java	
++++ b/src/main/java/mx/edu/utez/historiasinteractivas/controller/ChangePasswordServlet.java	
+@@ -38,7 +38,7 @@
+             req.getRequestDispatcher("login.jsp").forward(req, resp);
+             // Redirige a la página de inicio de sesión
+         } else {
+-            req.setAttribute("errorMessage", "Token no válido.");
++            req.setAttribute("errorMessage", "El Token caduco.");
+             req.getRequestDispatcher("changePassword.jsp").forward(req, resp);
+             // Vuelve a la página de cambio de contraseña
+         }
+Index: src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package mx.edu.utez.historiasinteractivas.controller;\r\n\r\nimport jakarta.servlet.ServletException;\r\nimport jakarta.servlet.annotation.WebServlet;\r\nimport jakarta.servlet.http.*;\r\nimport mx.edu.utez.historiasinteractivas.dao.UsuarioDao;\r\nimport mx.edu.utez.historiasinteractivas.model.User;\r\n\r\nimport java.io.File;\r\nimport java.io.IOException;\r\nimport java.nio.file.Paths;\r\n\r\n@WebServlet(name = \"CreateStoryServlet\", value = \"/createStory\")\r\npublic class CreateStoryServlet extends HttpServlet {\r\n\r\n    @Override\r\n    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\r\n        System.out.println(\"me estoy ejecutando\");\r\n        String email = request.getParameter(\"email\");\r\n\r\n        Part filePart = request.getPart(\"userPicture\");\r\n\r\n        UsuarioDao dao = new UsuarioDao();\r\n        User usuario = dao.findUserByEmail(email);\r\n\r\n        String profilePicture = usuario.getProfilePicture();\r\n\r\n        if (filePart != null && filePart.getSubmittedFileName() != null && !filePart.getSubmittedFileName().isEmpty()) {\r\n            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();\r\n            String uploadDir = getServletContext().getRealPath(\"\") + File.separator + \"uploads\" + File.separator + \"profilePictures\";\r\n            String filePath = uploadDir + File.separator + fileName;\r\n            filePart.write(filePath);\r\n            System.out.println(\"Archivo guardado en: \" + filePath);\r\n\r\n            profilePicture = \"uploads/profilePictures/\" + fileName;\r\n        }\r\n\r\n        if (dao.findUserByEmail(email) != null) {\r\n            User updatedUser = new User();\r\n            updatedUser.setEmail(email);\r\n\r\n\r\n            if (profilePicture != null) {\r\n                updatedUser.setProfilePicture(profilePicture);\r\n            } else {\r\n                updatedUser.setProfilePicture(dao.findUserByEmail(email).getProfilePicture());\r\n            }\r\n\r\n            if (dao.updateUser(updatedUser)) {\r\n                HttpSession session = request.getSession();\r\n                session.setAttribute(\"user\", updatedUser);\r\n                response.sendRedirect(\"index.jsp\");\r\n            }\r\n        } else {\r\n            response.sendRedirect(\"profile.jsp?updateSuccess=false\");\r\n        }\r\n\r\n\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java b/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java
+--- a/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java	
++++ b/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java	
+@@ -2,60 +2,53 @@
+ 
+ import jakarta.servlet.ServletException;
+ import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.*;
+-import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
+-import mx.edu.utez.historiasinteractivas.model.User;
++import jakarta.servlet.http.HttpServlet;
++import jakarta.servlet.http.HttpServletRequest;
++import jakarta.servlet.http.HttpServletResponse;
++//import org.json.JSONObject;
+ 
+-import java.io.File;
++import java.io.BufferedReader;
+ import java.io.IOException;
+-import java.nio.file.Paths;
++
+ 
+ @WebServlet(name = "CreateStoryServlet", value = "/createStory")
+ public class CreateStoryServlet extends HttpServlet {
++    @Override
++    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
++        String idStory = req.getParameter("id_story");
++
++        req.setAttribute("idStory", idStory);
++        req.getRequestDispatcher("createStory.jsp").forward(req, resp);
++    }
+ 
+     @Override
+     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+-        System.out.println("me estoy ejecutando");
+-        String email = request.getParameter("email");
+-
+-        Part filePart = request.getPart("userPicture");
+-
+-        UsuarioDao dao = new UsuarioDao();
+-        User usuario = dao.findUserByEmail(email);
+-
+-        String profilePicture = usuario.getProfilePicture();
+-
+-        if (filePart != null && filePart.getSubmittedFileName() != null && !filePart.getSubmittedFileName().isEmpty()) {
+-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+-            String uploadDir = getServletContext().getRealPath("") + File.separator + "uploads" + File.separator + "profilePictures";
+-            String filePath = uploadDir + File.separator + fileName;
+-            filePart.write(filePath);
+-            System.out.println("Archivo guardado en: " + filePath);
+-
+-            profilePicture = "uploads/profilePictures/" + fileName;
++        /*
++        // Leer el JSON desde la solicitud
++        StringBuilder sb = new StringBuilder();
++        BufferedReader reader = request.getReader();
++        String line;
++        while ((line = reader.readLine()) != null) {
++            sb.append(line);
+         }
++        String jsonString = sb.toString();
+ 
+-        if (dao.findUserByEmail(email) != null) {
+-            User updatedUser = new User();
+-            updatedUser.setEmail(email);
++        // Convertir el string JSON a un objeto JSON
++        JSONObject jsonObject = new JSONObject(jsonString);
+ 
++        // Obtener los datos del JSON
++        String title = jsonObject.getString("title");
++        String diagram = jsonObject.getString("diagram");
+ 
+-            if (profilePicture != null) {
+-                updatedUser.setProfilePicture(profilePicture);
+-            } else {
+-                updatedUser.setProfilePicture(dao.findUserByEmail(email).getProfilePicture());
+-            }
++        // Aquí puedes procesar y guardar los datos según tus necesidades
+ 
+-            if (dao.updateUser(updatedUser)) {
+-                HttpSession session = request.getSession();
+-                session.setAttribute("user", updatedUser);
+-                response.sendRedirect("index.jsp");
+-            }
+-        } else {
+-            response.sendRedirect("profile.jsp?updateSuccess=false");
+-        }
+-
+-
+-
++        // Enviar una respuesta JSON al cliente
++        response.setContentType("application/json");
++        response.setCharacterEncoding("UTF-8");
++        JSONObject jsonResponse = new JSONObject();
++        jsonResponse.put("status", "success");
++        response.getWriter().write(jsonResponse.toString());
++        */
++         
+     }
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"Historias-Interactivas:war\" />\r\n      <artifact name=\"Historias-Interactivas:war exploded\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb\" name=\"Changes\" comment=\"Creación de las carpetas para almacenar audios e imagenes, ahora las imagenes de una historia se muestran en el index\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/uploads/storiesThumbnails/2020-04-18.jpg\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/uploads/storiesThumbnails/d56847563b2baa214d1f81be57c1992a.jpg\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_12_p__m___Changes_.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_12_p_ m__[Changes]/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_25_p__m___Changes_.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_25_p_ m__[Changes]/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_26_p__m___Changes_.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_26_p_ m__[Changes]/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/EditUserServlet.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/EditUserServlet.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/createStory.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/createStory.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/index.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/index.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/js/createStory.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/js/createStory.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/js/overlayInformation.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/js/overlayInformation.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"CSS File\" />\r\n        <option value=\"Jsp File\" />\r\n        <option value=\"JavaScript File\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Pull.Settings\">\r\n    <option name=\"OPTIONS\">\r\n      <set>\r\n        <option value=\"REBASE\" />\r\n      </set>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <excluded-from-favorite>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"LOCAL\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"main\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </excluded-from-favorite>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Elegidokawai\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"LogFilters\">\r\n    <option name=\"FILTER_ERRORS\" value=\"false\" />\r\n    <option name=\"FILTER_WARNINGS\" value=\"false\" />\r\n    <option name=\"FILTER_INFO\" value=\"true\" />\r\n    <option name=\"FILTER_DEBUG\" value=\"true\" />\r\n    <option name=\"CUSTOM_FILTER\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 5\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2hkhVrpiFptRFcN8bnY88zpJm8e\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.GmailSender.executor&quot;: &quot;Run&quot;,\r\n    &quot;JavaScript Debug.Tomcat 11.0.0-M20 JavaScript.executor&quot;: &quot;Debug&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;Tomcat Server.Tomcat 11.0.0-M20.executor&quot;: &quot;Run&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/erick/IdeaProjects/HistoriasInteractivas/src/main/webapp/uploads/storiesThumbnails&quot;,\r\n    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\erick\\IdeaProjects\\HistoriasInteractivas\\src\\main\\webapp\\uploads\\storiesThumbnails\" />\r\n      <recent name=\"C:\\Users\\erick\\IdeaProjects\\HistoriasInteractivas\\src\\main\\webapp\\uploads\\storiesAudio\" />\r\n      <recent name=\"C:\\Users\\andre\\Documents\\DEV-UTEZ\\HistoriasInteractivas\\src\\main\\webapp\\resources\\img\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\erick\\IdeaProjects\\HistoriasInteractivas\\src\\main\\webapp\\uploads\\storiesThumbnails\" />\r\n      <recent name=\"C:\\Users\\erick\\IdeaProjects\\HistoriasInteractivas\\src\\main\\webapp\\uploads\\profilePictures\" />\r\n      <recent name=\"C:\\Users\\andre\\Documents\\DEV-UTEZ\\HistoriasInteractivas\\src\\main\\webapp\\resources\\img\" />\r\n      <recent name=\"C:\\Users\\ferch\\Desktop\\repositorios\\HistoriasInteractivas\\src\\main\\webapp\\resources\\img\" />\r\n      <recent name=\"$PROJECT_DIR$/src/main/webapp/components/navComponent\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Tomcat Server.Tomcat 11.0.0-M20\">\r\n    <configuration name=\"GmailSender\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"mx.edu.utez.historiasinteractivas.utils.GmailSender\" />\r\n      <module name=\"Historias-Interactivas\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"mx.edu.utez.historiasinteractivas.utils.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Tomcat 11.0.0-M20\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Local\" APPLICATION_SERVER_NAME=\"Tomcat 10.1.8\" ALTERNATIVE_JRE_ENABLED=\"true\" ALTERNATIVE_JRE_PATH=\"21\">\r\n      <option name=\"BROWSER_ID\" value=\"98ca6316-2f89-46d9-a9e5-fa9e2b0625b3\" />\r\n      <option name=\"START_JAVASCRIPT_DEBUGGER\" value=\"true\" />\r\n      <option name=\"UPDATING_POLICY\" value=\"restart-server\" />\r\n      <deployment>\r\n        <artifact name=\"Historias-Interactivas:war exploded\">\r\n          <settings>\r\n            <option name=\"CONTEXT_PATH\" value=\"/Historias_Interactivas_war_exploded\" />\r\n          </settings>\r\n        </artifact>\r\n        <artifact name=\"Historias-Interactivas:war\">\r\n          <settings>\r\n            <option name=\"CONTEXT_PATH\" value=\"/Historias_Interactivas_war\" />\r\n          </settings>\r\n        </artifact>\r\n      </deployment>\r\n      <server-settings>\r\n        <option name=\"BASE_DIRECTORY_NAME\" value=\"c376f812-0c3a-4499-969d-a0b2d69d03f1\" />\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat Catalina\" />\r\n      <predefined_log_file id=\"Tomcat Manager\" />\r\n      <predefined_log_file id=\"Tomcat Host Manager\" />\r\n      <predefined_log_file id=\"Tomcat Localhost Access\" />\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"56602\" />\r\n      </RunnerSettings>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Cover\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Debug\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Profile\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Run\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"Historias-Interactivas:war exploded\" />\r\n          <artifact name=\"Historias-Interactivas:war\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.GmailSender\" />\r\n      <item itemvalue=\"Tomcat Server.Tomcat 11.0.0-M20\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.GmailSender\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-temurin-21.0.2-4caba194b151-7da56cdf\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb\" name=\"Changes\" comment=\"\" />\r\n      <created>1718144010223</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1718144010223</updated>\r\n      <workItem from=\"1718144011820\" duration=\"3757000\" />\r\n      <workItem from=\"1718219300734\" duration=\"3694000\" />\r\n      <workItem from=\"1718651725293\" duration=\"207000\" />\r\n      <workItem from=\"1718655754850\" duration=\"2438000\" />\r\n      <workItem from=\"1718730385985\" duration=\"2795000\" />\r\n      <workItem from=\"1718951012867\" duration=\"2702000\" />\r\n      <workItem from=\"1719029966472\" duration=\"3363000\" />\r\n      <workItem from=\"1719070498136\" duration=\"6568000\" />\r\n      <workItem from=\"1719089132180\" duration=\"162000\" />\r\n      <workItem from=\"1719089642073\" duration=\"3394000\" />\r\n      <workItem from=\"1719096831870\" duration=\"7000\" />\r\n      <workItem from=\"1719253659139\" duration=\"600000\" />\r\n      <workItem from=\"1719259790032\" duration=\"1174000\" />\r\n      <workItem from=\"1719297299233\" duration=\"4518000\" />\r\n      <workItem from=\"1719349680383\" duration=\"2165000\" />\r\n      <workItem from=\"1719353706856\" duration=\"1401000\" />\r\n      <workItem from=\"1719799202897\" duration=\"958000\" />\r\n      <workItem from=\"1719800453720\" duration=\"85000\" />\r\n      <workItem from=\"1719800712432\" duration=\"5358000\" />\r\n      <workItem from=\"1719946636269\" duration=\"3523000\" />\r\n      <workItem from=\"1719954607981\" duration=\"2046000\" />\r\n      <workItem from=\"1719987157716\" duration=\"380000\" />\r\n      <workItem from=\"1720046460212\" duration=\"172000\" />\r\n      <workItem from=\"1720145005587\" duration=\"913000\" />\r\n      <workItem from=\"1720327222745\" duration=\"1116000\" />\r\n      <workItem from=\"1720367356963\" duration=\"9420000\" />\r\n      <workItem from=\"1720550203817\" duration=\"3078000\" />\r\n      <workItem from=\"1720579617492\" duration=\"212000\" />\r\n      <workItem from=\"1720581062149\" duration=\"10076000\" />\r\n      <workItem from=\"1720594108860\" duration=\"4789000\" />\r\n      <workItem from=\"1720631223271\" duration=\"2329000\" />\r\n      <workItem from=\"1720639174944\" duration=\"1908000\" />\r\n      <workItem from=\"1720794917841\" duration=\"38000\" />\r\n      <workItem from=\"1720801187986\" duration=\"6664000\" />\r\n      <workItem from=\"1720814539114\" duration=\"1626000\" />\r\n      <workItem from=\"1721681162624\" duration=\"7547000\" />\r\n      <workItem from=\"1721699095964\" duration=\"1276000\" />\r\n      <workItem from=\"1721700393590\" duration=\"6623000\" />\r\n      <workItem from=\"1721880047800\" duration=\"23000\" />\r\n      <workItem from=\"1721880085459\" duration=\"13000\" />\r\n      <workItem from=\"1721880118244\" duration=\"2694000\" />\r\n      <workItem from=\"1721961038096\" duration=\"947000\" />\r\n      <workItem from=\"1721962018050\" duration=\"4328000\" />\r\n      <workItem from=\"1722054372185\" duration=\"328000\" />\r\n      <workItem from=\"1722745940726\" duration=\"42000\" />\r\n      <workItem from=\"1722745993084\" duration=\"1047000\" />\r\n      <workItem from=\"1722747083631\" duration=\"197000\" />\r\n      <workItem from=\"1722747299181\" duration=\"4246000\" />\r\n      <workItem from=\"1722889298221\" duration=\"378000\" />\r\n      <workItem from=\"1723052062020\" duration=\"12847000\" />\r\n      <workItem from=\"1723080416936\" duration=\"6210000\" />\r\n      <workItem from=\"1723144142348\" duration=\"2700000\" />\r\n      <workItem from=\"1723151763774\" duration=\"1479000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"first commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1718222350262</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1718222350262</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Erikitirijiyo commit, aun no funciona la bd, pero en teoria ya estan todos los datos necesarios :D\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1719078887960</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1719078887960</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Erikitirijiyo commit, ya esta conectada a la base de datos, algo bien, se termino lo de inicio de sesión y se modifico el jsp de login (email), faltaria la pagina para redirigir cuando el inicio de sesión es exitoso.&#10;// nota // como la base de datos, no tiene datos, no tendria que redirigir a ninguna otra pagina.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1719096776523</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1719096776523</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Login corregido\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1719802538329</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1719802538329</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Frontend actualizado + nuevas paginas en jsp\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1720552009278</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1720552009278</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"imagen provisional\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1720552030883</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1720552030883</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Dependencia taglib para usarla mas adelante + pagina de verificacion otp + algunos cambios en la nomenclatura (antes snakeCase, ahora camelCase)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1720592821496</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1720592821496</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"themeSwitch mas bonito porque vi un twit del midudev y no podia dormir sin hacerlo\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1720594734261</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1720594734261</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Centre algunos divs con bootstrap \uD83D\uDE2E\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1720595485155</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1720595485156</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"agregue editar Informacion de usuario + preview de su foto de perfil\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1720599089732</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1720599089732</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Animación de scroll'snap agregada al index\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721412055909</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721412055909</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721420261044</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721420261044</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Cosas\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1723060435796</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1723060435796</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Cosas\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1723060579650</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1723060579650</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Creación de las carpetas para almacenar audios e imagenes, ahora las imagenes de una historia se muestran en el index\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1723067271784</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1723067271784</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"16\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"first commit\" />\r\n    <MESSAGE value=\"Erikitirijiyo commit, aun no funciona la bd, pero en teoria ya estan todos los datos necesarios :D\" />\r\n    <MESSAGE value=\"Erikitirijiyo commit, ya esta conectada a la base de datos, algo bien, se termino lo de inicio de sesión y se modifico el jsp de login (email), faltaria la pagina para redirigir cuando el inicio de sesión es exitoso.&#10;// nota // como la base de datos, no tiene datos, no tendria que redirigir a ninguna otra pagina.\" />\r\n    <MESSAGE value=\"Login corregido\" />\r\n    <MESSAGE value=\"Frontend actualizado + nuevas paginas en jsp\" />\r\n    <MESSAGE value=\"imagen provisional\" />\r\n    <MESSAGE value=\"Dependencia taglib para usarla mas adelante + pagina de verificacion otp + algunos cambios en la nomenclatura (antes snakeCase, ahora camelCase)\" />\r\n    <MESSAGE value=\"themeSwitch mas bonito porque vi un twit del midudev y no podia dormir sin hacerlo\" />\r\n    <MESSAGE value=\"Centre algunos divs con bootstrap \" />\r\n    <MESSAGE value=\"agregue editar Informacion de usuario + preview de su foto de perfil\" />\r\n    <MESSAGE value=\"Creado el componente nav\" />\r\n    <MESSAGE value=\"Animación de scroll'snap agregada al index\" />\r\n    <MESSAGE value=\"Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1\" />\r\n    <MESSAGE value=\"Cosas\" />\r\n    <MESSAGE value=\"Creación de las carpetas para almacenar audios e imagenes, ahora las imagenes de una historia se muestran en el index\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Creación de las carpetas para almacenar audios e imagenes, ahora las imagenes de una historia se muestran en el index\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -10,23 +10,12 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Creación de las carpetas para almacenar audios e imagenes, ahora las imagenes de una historia se muestran en el index">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/uploads/storiesThumbnails/2020-04-18.jpg" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/uploads/storiesThumbnails/d56847563b2baa214d1f81be57c1992a.jpg" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_12_p__m___Changes_.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_12_p_ m__[Changes]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_25_p__m___Changes_.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_25_p_ m__[Changes]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_26_p__m___Changes_.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_07_2024_07_26_p_ m__[Changes]/shelved.patch" beforeDir="false" />
++    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Modificaciones en createStory js y jsp, tambien en index jsp y overlayInformation js, creeación de un dao en storyDao y nuevo servlet createStoryServlet, subo 2 imagenes para el funcionamiento de las historias como prueba">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/EditUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/EditUserServlet.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/overlayInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/overlayInformation.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/ChangePasswordServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/ChangePasswordServlet.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/UsuarioDao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -315,7 +304,9 @@
+       <workItem from="1723052062020" duration="12847000" />
+       <workItem from="1723080416936" duration="6210000" />
+       <workItem from="1723144142348" duration="2700000" />
+-      <workItem from="1723151763774" duration="1479000" />
++      <workItem from="1723151763774" duration="10031000" />
++      <workItem from="1723176880800" duration="938000" />
++      <workItem from="1723221006329" duration="3432000" />
+     </task>
+     <task id="LOCAL-00001" summary="first commit">
+       <option name="closed" value="true" />
+@@ -437,7 +428,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1723067271784</updated>
+     </task>
+-    <option name="localTasksCounter" value="16" />
++    <task id="LOCAL-00016" summary="Modificaciones en createStory js y jsp, tambien en index jsp y overlayInformation js, creeación de un dao en storyDao y nuevo servlet createStoryServlet, subo 2 imagenes para el funcionamiento de las historias como prueba">
++      <option name="closed" value="true" />
++      <created>1723153606828</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1723153606828</updated>
++    </task>
++    <option name="localTasksCounter" value="17" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -470,7 +469,8 @@
+     <MESSAGE value="Historias de ejemplo en el index agregadas&#10;!NOTA:&#10;Hacer que se agregen la foto de las historias de cada usuario segun quien este logeado con un filtro de sesion ademas METER TODA LA class=&quot;two&quot; en un java para que solo se carge si esta logeado, si no entonces el user solo ve la seccion 1" />
+     <MESSAGE value="Cosas" />
+     <MESSAGE value="Creación de las carpetas para almacenar audios e imagenes, ahora las imagenes de una historia se muestran en el index" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Creación de las carpetas para almacenar audios e imagenes, ahora las imagenes de una historia se muestran en el index" />
++    <MESSAGE value="Modificaciones en createStory js y jsp, tambien en index jsp y overlayInformation js, creeación de un dao en storyDao y nuevo servlet createStoryServlet, subo 2 imagenes para el funcionamiento de las historias como prueba" />
++    <option name="LAST_COMMIT_MESSAGE" value="Modificaciones en createStory js y jsp, tambien en index jsp y overlayInformation js, creeación de un dao en storyDao y nuevo servlet createStoryServlet, subo 2 imagenes para el funcionamiento de las historias como prueba" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
