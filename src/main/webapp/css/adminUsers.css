@@ -1,0 +1,114 @@
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--mode-background-color);
+    color: var(--mode-text-color);
+    text-align: center;
+}
+tr {
+    color: var(--mode-text-color);
+    text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+#headRow {
+    color: var(--mode-hover-color);
+    font-family: 'Hammersmith One', sans-serif;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination li {
+    margin: 0 5px;
+}
+.pagination li a {
+    color: var(--mode-text-color);
+    background-color: var(--mode-background-color);
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.pagination li a:hover {
+    background-color: var(--mode-hover-color);
+    color: white;
+}
+.pagination li .active {
+    background-color: var(--mode-hover-color);
+}
+.input-group-append {
+    display: flex;
+    align-items: center;
+}
+.button.reload {
+    border-radius: 50%;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+}
+
+.search-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border: 2px solid var(--mode-hover-color);
+}
+
+.form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .form-control:focus,
+.input-group .btn:focus {
+    box-shadow: none;
+}
+
+
+@media (max-width: 1000px) {
+    .table thead {
+        display: none
+    }
+
+    .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--mode-text-color);
+        border-radius: 8px;
+        padding: 0.5rem;
+        background-color: var(--mode-card-color);
+    }
+
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border-bottom: 1px solid var(--mode-text-color);
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .table td:last-child {
+        border-bottom: none;
+    }
+
+    h1 {
+        text-align: center;
+    }
+}

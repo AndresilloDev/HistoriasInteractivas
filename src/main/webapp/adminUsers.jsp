@@ -14,32 +14,8 @@
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
-    <style>
-        .table-striped tbody tr:nth-of-type(odd) {
-            background-color: var(--mode-background-color);
-        }
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .pagination li {
-            margin: 0 5px;
-        }
-        .pagination li a {
-            color: var(--mode-color);
-            background-color: var(--mode-background-color);
-            border: 1px solid var(--mode-color);
-            padding: 8px 12px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .pagination li a:hover {
-            background-color: var(--mode-color);
-            color: var(--mode-background-color);
-        }
-    </style>
+    <link rel="stylesheet" href="css/adminUsers.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 </head>
 <%
     session = request.getSession(false);
@@ -58,41 +34,45 @@
 
     <div class="row mb-4">
         <div class="col">
-            <form action="adminUsers" method="post">
+            <form id="searchForm" action="adminUsers" method="post">
                 <input type="hidden" name="action" value="buscar">
-                <label for="emailSearch" class="form-label">Correo electrónico:</label>
                 <div class="input-group">
-                    <input type="text" name="email" id="emailSearch" class="form-control" placeholder="Buscar por correo electrónico" required>
-                    <span class="input-group-text"><i class="fa fa-search"></i></span>
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    <input type="text" name="email" id="emailSearch" class="form-control input" placeholder="Buscar por correo electrónico" required>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary search-button button">Buscar</button>
+                    </div>
                 </div>
             </form>
         </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary button reload" onclick="reloadUsers()">
+                <i class="fas fa-redo"></i>
+            </button>
+        </div>
     </div>
 
-    <h2>Lista de Usuarios</h2>
     <table class="table table-striped">
         <thead>
-        <tr>
+        <tr id="headRow">
             <th>Email</th>
             <th>Usuario</th>
             <th>Nombre</th>
             <th>Apellido Paterno</th>
             <th>Apellido Materno</th>
             <th>Estado</th>
-            <th>Acciones</th>
+            <th>Acción</th>
         </tr>
         </thead>
         <tbody id="userTableBody">
         <c:forEach var="user" items="${sessionScope.usuarios}" varStatus="status">
             <tr>
-                <td>${user.email}</td>
-                <td>${user.user}</td>
-                <td>${user.name}</td>
-                <td>${user.paternalSurname}</td>
-                <td>${user.maternalSurname}</td>
-                <td>${user.status ? "Habilitado" : "Deshabilitado"}</td>
-                <td>
+                <td data-label="Email">${user.email}</td>
+                <td data-label="Usuario">${user.user}</td>
+                <td data-label="Nombre">${user.name}</td>
+                <td data-label="Apellido Paterno">${user.paternalSurname}</td>
+                <td data-label="Apellido Materno">${user.maternalSurname}</td>
+                <td data-label="Estado">${user.status ? "Habilitado" : "Deshabilitado"}</td>
+                <td data-label="Estatus">
                     <form action="adminUsers" method="post" onsubmit="return confirm('¿Estás seguro de que quieres cambiar el estado de este usuario?');">
                         <input type="hidden" name="action" value="${user.status ? "deshabilitar" : "habilitar"}">
                         <input type="hidden" name="email" value="${user.email}">
@@ -125,6 +105,10 @@
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/adminUsers.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>
+    function reloadUsers() {
+        window.location.href = 'adminUsers';
+    }
+</script>
 </body>
 </html>
