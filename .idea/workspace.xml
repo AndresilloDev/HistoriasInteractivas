@@ -10,7 +10,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Presentacion" />
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Presentacion">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/uploads/storiesThumbnails/FB_IMG_1626816852306.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/uploads/storiesThumbnails/c4851e7113842520d036413835ba73a5.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -306,7 +309,7 @@
       <workItem from="1723151763774" duration="1479000" />
       <workItem from="1723175603431" duration="3365000" />
       <workItem from="1723226570086" duration="3505000" />
-      <workItem from="1723230705625" duration="3031000" />
+      <workItem from="1723230705625" duration="3399000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
