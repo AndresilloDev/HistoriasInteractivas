@@ -104,19 +104,6 @@ public class GmailSender {
                 "            border-radius: 10px;\n" +
                 "            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);\n" +
                 "        }\n" +
-                "        .header {\n" +
-                "            display: flex;\n" +
-                "            align-items: center;\n" +
-                "            margin-bottom: 20px;\n" +
-                "        }\n" +
-                "        .logo img {\n" +
-                "            max-width: 100px;\n" +
-                "            margin-right: 10px;\n" +
-                "        }\n" +
-                "        .header-text {\n" +
-                "            font-size: 50px;\n" +
-                "            color: #555555;\n" +
-                "        }\n" +
                 "        .divider {\n" +
                 "            border-top: 2px solid #9332EB;\n" +
                 "            margin: 20px 0;\n" +
@@ -155,19 +142,13 @@ public class GmailSender {
                 "           color: white;\n" +
                 "           border-radius: 10px;\n" +
                 "           margin: 5px;\n" +
+                "           margin-bottom: 10px;\n" +
+                "           padding: 10px;\n" +
                 "        }\n" +
                 "    </style>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "    <div class=\"container\">\n" +
-                "        <div class=\"header\">\n" +
-                "            <div class=\"logo\">\n" +
-                "                <img src=\"https://raw.githubusercontent.com/AndresilloDev/HistoriasInteractivas/main/src/main/webapp/resources/img/logoHistoriasInteractivas.png?token=GHSAT0AAAAAACVVJEM7PZ7R7K3G2UFJQTRAZVVSGDA\" alt=\"Logo\">\n" +
-                "            </div>\n" +
-                "            <div class=\"header-text\">\n" +
-                "                Story\n" +
-                "            </div>\n" +
-                "        </div>\n" +
                 "        <div class=\"divider\"></div>\n" +
                 "        <div class=\"message\">\n" +
                 "            Para restablecer su contraseña, haga clic en el botón que aparece a continuación. El enlace se autodestruirá después de tres días.\n" +
@@ -175,6 +156,7 @@ public class GmailSender {
                 "        <div class=\"divider\"></div>\n" +
                 "        <div class=\"footer\">\n" +
                 "           <a href=\"" + link + "\" class=\"button\">Restablecer Contraseña</a>\n" +
+                "            <br> " +
                 "            <br> " +
                 "            Si no desea cambiar su contraseña o no solicitó un restablecimiento, puede ignorar y eliminar este correo electrónico.\n" +
                 "        </div>\n" +

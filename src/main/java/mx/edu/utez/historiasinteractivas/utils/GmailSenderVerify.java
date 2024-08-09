@@ -87,18 +87,6 @@ public class GmailSenderVerify {
                 "            border-radius: 10px;\n" +
                 "            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);\n" +
                 "        }\n" +
-                "        .header {\n" +
-                "            display: flex;\n" +
-                "            align-items: center;\n" +
-                "            justify-content: center;\n" +
-                "            margin-bottom: 20px;\n" +
-                "            width: 100%;\n" +
-                "        }\n" +
-                "        .logo img {\n" +
-                "            max-width: 100px;\n" +
-                "            padding-left: 50%;\n" +
-                "            padding-right: 50%;\n" +
-                "        }\n" +
                 "        .divider {\n" +
                 "            border-top: 2px solid #9332EB;\n" +
                 "            margin: 20px 0;\n" +
@@ -143,11 +131,6 @@ public class GmailSenderVerify {
                 "</head>\n" +
                 "<body>\n" +
                 "    <div class=\"container\">\n" +
-                "        <div class=\"header\">\n" +
-                "            <div class=\"logo\">\n" +
-                "                <img src=\"https://raw.githubusercontent.com/AndresilloDev/HistoriasInteractivas/main/src/main/webapp/resources/img/logoHistoriasInteractivas.png?token=GHSAT0AAAAAACVVJEM7PZ7R7K3G2UFJQTRAZVVSGDA\" alt=\"Logo\">\n" +
-                "            </div>\n" +
-                "        </div>\n" +
                 "        <div class=\"divider\"></div>\n" +
                 "        <div class=\"message\">\n" +
                 "            Código de Verificación para tu Cuenta\n" +

@@ -47,7 +47,8 @@
 <textarea id="mySavedModel" style="width: 100%; height: 300px; background-color: transparent; display: none">
                                                                                                             { "class": "GraphLinksModel",
                                                                                                             "nodeDataArray": [{"category":"startEvent","key":-1,"loc":"0 0"}],
-                                                                                                            "linkDataArray": []}
+                                                                                                            "linkDataArra
+    y": []}
 </textarea>
 
 <!-- Modal de Edición -->
