@@ -20,7 +20,7 @@
 <%
     session = request.getSession(false);
     User user = (User) session.getAttribute("user");
-    if(session != null && user != null && !user.isAdmin()) {
+    if(user == null || !user.isAdmin()) {
         response.sendRedirect("index.jsp");
         return;
     }

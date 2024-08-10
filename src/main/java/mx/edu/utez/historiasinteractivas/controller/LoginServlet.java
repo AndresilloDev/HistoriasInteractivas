@@ -24,23 +24,25 @@ public class LoginServlet extends HttpServlet {
         UsuarioDao dao = new UsuarioDao();
         User usuario = dao.getUser(emailOrUser, password);
 
-        if (usuario != null) { // El usuario existe
-            if (usuario.isStatus()) { // El usuario está activo
-                // Guardar usuario en la sesión
-                HttpSession session = req.getSession();
-                session.setAttribute("user", usuario);
-                resp.sendRedirect("index.jsp");
-            } else { // El usuario está deshabilitado
-                // Obtener el correo de un administrador
-                String adminEmail = dao.getAdminEmail();
-                req.setAttribute("errorMessage",
-                        "El usuario está deshabilitado.<br>Por favor, contacta a un administrador para más información: " + adminEmail);
-                req.getRequestDispatcher("login.jsp").forward(req, resp);
-            }
-        } else { // El usuario no existe o las credenciales son incorrectas
+        if (usuario == null) { // El usuario no existe
             req.setAttribute("errorMessage", "¡El usuario o la contraseña son incorrectos!");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
+            return;
         }
+
+        if (!usuario.isStatus()) { // El usuario no está activo
+            String adminEmail = dao.getAdminEmail();
+            req.setAttribute("errorMessage",
+                    "El usuario está deshabilitado." +
+                       "<br>" +
+                       "Por favor, contacta a un administrador para más información: " + adminEmail);
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            return;
+        }
+        // Guardar usuario en la sesión
+        HttpSession session = req.getSession();
+        session.setAttribute("user", usuario);
+        resp.sendRedirect("index.jsp");
     }
 
     @Override
