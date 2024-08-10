@@ -274,6 +274,24 @@ public class UsuarioDao {
             e.printStackTrace();
         }
 
-        return usuarios;  // Retorna la lista de usuarios
+        return usuarios;
+    }
+    public String getAdminEmail() {
+        String email = "";
+        String query = "SELECT email FROM historiasInteractivas.Users WHERE admin = true ORDER BY RAND() LIMIT 1";
+
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                email = rs.getString("email");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return email != null && !email.isEmpty() ? email : "admin@historiainteractivas.mx";
     }
 }

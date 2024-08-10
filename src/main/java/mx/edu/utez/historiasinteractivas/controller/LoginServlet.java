@@ -16,24 +16,29 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //Obtener los parámetros del formulario
+        // Obtener los parámetros del formulario
         String emailOrUser = req.getParameter("user");
         String password = req.getParameter("password");
 
-        //Se obtiene el usuario si existe
+        // Se obtiene el usuario si existe
         UsuarioDao dao = new UsuarioDao();
         User usuario = dao.getUser(emailOrUser, password);
 
-        if (usuario != null && usuario.isStatus()) { // El usuario existe y está activo
-
-            // Guardar usuario en la sesión
-            HttpSession session = req.getSession();
-            session.setAttribute("user", usuario);
-            resp.sendRedirect("index.jsp");
-
+        if (usuario != null) { // El usuario existe
+            if (usuario.isStatus()) { // El usuario está activo
+                // Guardar usuario en la sesión
+                HttpSession session = req.getSession();
+                session.setAttribute("user", usuario);
+                resp.sendRedirect("index.jsp");
+            } else { // El usuario está deshabilitado
+                // Obtener el correo de un administrador
+                String adminEmail = dao.getAdminEmail();
+                req.setAttribute("errorMessage",
+                        "El usuario está deshabilitado.<br>Por favor, contacta a un administrador para más información: " + adminEmail);
+                req.getRequestDispatcher("login.jsp").forward(req, resp);
+            }
         } else { // El usuario no existe o las credenciales son incorrectas
-            System.out.println("ohno");
-            req.setAttribute("errorMessage", "¡El usuario o la contraseña son incorrectos!"); //Esto es lo que debería salir en el mensaje
+            req.setAttribute("errorMessage", "¡El usuario o la contraseña son incorrectos!");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }
