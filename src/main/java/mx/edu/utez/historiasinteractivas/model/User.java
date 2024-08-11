@@ -125,4 +125,23 @@ public class User {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
+
+    //Metodo toString para debugueo
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", user='" + user + '\'' +
+                ", token='" + token + '\'' +
+                ", change_password_token='" + change_password_token + '\'' +
+                ", name='" + name + '\'' +
+                ", paternalSurname='" + paternalSurname + '\'' +
+                ", maternalSurname='" + maternalSurname + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", password='" + password + '\'' +
+                ", status=" + status +
+                ", admin=" + admin +
+                '}';
+    }
 }

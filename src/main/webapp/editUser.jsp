@@ -44,7 +44,7 @@
                         <span class="labelName fs-6">Correo electrónico</span>
                     </label>
                     <label class="label">
-                        <input id="user" name="user" type="text" placeholder=" " maxlength="20" class="input input-group mb-4 fs-6" value="${user.user}" required>
+                        <input id="user" name="user_name" type="text" placeholder=" " maxlength="20" class="input input-group mb-4 fs-6" value="${user.user}" required>
                         <span class="labelName fs-6">Nombre de usuario</span>
                     </label>
                     <label class="label">
