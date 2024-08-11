@@ -25,12 +25,13 @@ public class StoryDao {
         return false;
     }
 
-    public Story findByCode(String code) throws SQLException {
+    public Story findByCode(String code, User user) throws SQLException {
         Story story = null;
-        String query = "SELECT * FROM historiasInteractivas.Stories WHERE id_story=?";
+        String query = "SELECT * FROM historiasInteractivas.Stories WHERE id_story=? AND email_user = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
         PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, code);
+            ps.setString(2, user.getEmail());
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
                 story = new Story();

@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.StoryDao;
 import mx.edu.utez.historiasinteractivas.model.Scene;
 import mx.edu.utez.historiasinteractivas.model.Story;
+import mx.edu.utez.historiasinteractivas.model.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,10 +20,12 @@ public class PreviewStoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
         String id_story = req.getParameter("id_story");
         StoryDao storyDao = new StoryDao();
         try {
-            Story story = storyDao.findByCode(id_story);
+            Story story = storyDao.findByCode(id_story, user);
             story.setScenes(story.parseJsonToScenes());
 
             System.out.println(story.getJson());
@@ -33,13 +36,12 @@ public class PreviewStoryServlet extends HttpServlet {
             System.out.println(scene + " escena GET");
             System.out.println(scene.toString());
 
-            HttpSession session = req.getSession();
-            session.setAttribute("scene", scene);
-            session.setAttribute("story", story);
-            session.setAttribute("image", scene.getScene_image());
-            session.setAttribute("link", scene.getScene_link());
-            session.setAttribute("video", scene.getScene_video());
-            session.setAttribute("audio", scene.getScene_audio());
+            req.setAttribute("scene", scene);
+            req.setAttribute("story", story);
+            req.setAttribute("image", scene.getScene_image());
+            req.setAttribute("link", scene.getScene_link());
+            req.setAttribute("video", scene.getScene_video());
+            req.setAttribute("audio", scene.getScene_audio());
             req.getRequestDispatcher("/previewStory.jsp").forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -51,8 +53,7 @@ public class PreviewStoryServlet extends HttpServlet {
         Story story = (Story) session.getAttribute("story");
         System.out.println( "gistorias en servlet " + story.toString());
         String option = req.getParameter("option");
-        StoryDao storyDao = new StoryDao();
-        Scene lastScene = (Scene) session.getAttribute("scene");
+        Scene lastScene = (Scene) req.getAttribute("scene");
         Scene newScene = new Scene();
 
         if(option.equals("option1")){
@@ -65,11 +66,11 @@ public class PreviewStoryServlet extends HttpServlet {
 
         System.out.println(newScene.toString());
 
-        session.setAttribute("scene", newScene);
-        session.setAttribute("image", newScene.getScene_image());
-        session.setAttribute("link", newScene.getScene_link());
-        session.setAttribute("video", newScene.getScene_video());
-        session.setAttribute("audio", newScene.getScene_audio());
+        req.setAttribute("scene", newScene);
+        req.setAttribute("image", newScene.getScene_image());
+        req.setAttribute("link", newScene.getScene_link());
+        req.setAttribute("video", newScene.getScene_video());
+        req.setAttribute("audio", newScene.getScene_audio());
         req.getRequestDispatcher("/previewStory.jsp").forward(req, resp);
 
 

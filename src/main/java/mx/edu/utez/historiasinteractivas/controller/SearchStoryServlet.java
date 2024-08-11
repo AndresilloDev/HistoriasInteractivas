@@ -11,7 +11,7 @@ import mx.edu.utez.historiasinteractivas.model.Story;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name="SearchoStoryServlet", value = "searchStory")
+@WebServlet(name="SearchStoryServlet", value = "/searchStory")
 public class SearchStoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class SearchStoryServlet extends HttpServlet {
             req.getRequestDispatcher("index.jsp").forward(req, resp);
             return;
         }
-        Story story = new Story();
+        Story story = null;
         StoryDao storyDao = new StoryDao();
 
         try {
@@ -31,7 +31,8 @@ public class SearchStoryServlet extends HttpServlet {
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
                 return;
             }
-            req.setAttribute("story", story);
+
+            req.getSession().setAttribute("story", story);
             req.getRequestDispatcher("viewStory.jsp").forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
