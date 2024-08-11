@@ -121,8 +121,22 @@ public class Story {
             JsonNode scenesNode = rootNode.path("scenes");
 
             if (scenesNode.isArray()) {
-                scenes = mapper.readValue(scenesNode.toString(), new TypeReference<>() {
-                });
+                for (JsonNode sceneNode : scenesNode) {
+                    Scene scene = mapper.treeToValue(sceneNode, Scene.class);
+
+                    // Combinación de campos duplicados
+                    if (sceneNode.has("scene_image")) {
+                        scene.setHasImage(sceneNode.get("scene_image").asBoolean());
+                    }
+                    if (sceneNode.has("scene_audio")) {
+                        scene.setHasAudio(sceneNode.get("scene_audio").asBoolean());
+                    }
+                    if (sceneNode.has("scene_video")) {
+                        scene.setHasVideo(sceneNode.get("scene_video").asBoolean());
+                    }
+
+                    scenes.add(scene);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -130,9 +144,14 @@ public class Story {
 
         return scenes;
     }
+
+
     public Scene getScene(int destination_scene) {
         for (Scene scene : scenes) {
-            if (scene.getId_scene() == destination_scene) {
+            if (scene.getId_scene() == destination_scene || scene.getKey() == destination_scene) {
+                if (scene.getScene_text() == null || scene.getScene_text().isEmpty()) {
+                    scene.setScene_text(scene.getDescription());
+                }
                 return scene;
             }
         }

@@ -51,28 +51,31 @@ public class PreviewStoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Story story = (Story) session.getAttribute("story");
-        System.out.println( "historias en servlet " + story.toString());
-        String option = req.getParameter("option");
-        Scene lastScene = (Scene) req.getAttribute("scene");
-        Scene newScene = new Scene();
+        Scene lastScene = (Scene) session.getAttribute("scene");
 
-        if(option.equals("option1")){
-            newScene = story.getScene(lastScene.getDestiny_scene_option_1());
-
-        } else if (option.equals("option2")) {
-            newScene = story.getScene(lastScene.getDestiny_scene_option_2());
-
+        if (story == null || lastScene == null) {
+            resp.sendRedirect("index.jsp");
+            return;
         }
 
-        System.out.println(newScene.toString());
+        String option = req.getParameter("option");
+        Scene newScene = null;
 
-        req.setAttribute("scene", newScene);
-        req.setAttribute("image", newScene.getScene_image());
-        req.setAttribute("link", newScene.getScene_link());
-        req.setAttribute("video", newScene.getScene_video());
-        req.setAttribute("audio", newScene.getScene_audio());
-        req.getRequestDispatcher("/previewStory.jsp").forward(req, resp);
+        if ("option1".equals(option)) {
+            newScene = story.getScene(lastScene.getDestiny_scene_option_1());
+        } else if ("option2".equals(option)) {
+            newScene = story.getScene(lastScene.getDestiny_scene_option_2());
+        }
 
+        if (newScene != null) {
+            session.setAttribute("scene", newScene);
+            req.setAttribute("scene", newScene);
+            req.setAttribute("image", newScene.getScene_image());
+            req.setAttribute("link", newScene.getScene_link());
+            req.setAttribute("video", newScene.getScene_video());
+            req.setAttribute("audio", newScene.getScene_audio());
+        }
 
+        req.getRequestDispatcher("/viewStory.jsp").forward(req, resp);
     }
 }

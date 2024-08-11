@@ -45,21 +45,31 @@ public class ViewStoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Story story = (Story) session.getAttribute("story");
-        String option = req.getParameter("option");
-        Scene lastScene = (Scene) req.getAttribute("scene");
-        Scene newScene = new Scene();
+        Scene lastScene = (Scene) session.getAttribute("scene");
 
-        if(option.equals("option1")){
+        if (story == null || lastScene == null) {
+            resp.sendRedirect("index.jsp");
+            return;
+        }
+
+        String option = req.getParameter("option");
+        Scene newScene = null;
+
+        if ("option1".equals(option)) {
             newScene = story.getScene(lastScene.getDestiny_scene_option_1());
-        } else if (option.equals("option2")) {
+        } else if ("option2".equals(option)) {
             newScene = story.getScene(lastScene.getDestiny_scene_option_2());
         }
 
-        req.setAttribute("scene", newScene);
-        req.setAttribute("image", newScene.getScene_image());
-        req.setAttribute("link", newScene.getScene_link());
-        req.setAttribute("video", newScene.getScene_video());
-        req.setAttribute("audio", newScene.getScene_audio());
+        if (newScene != null) {
+            session.setAttribute("scene", newScene);
+            req.setAttribute("scene", newScene);
+            req.setAttribute("image", newScene.getScene_image());
+            req.setAttribute("link", newScene.getScene_link());
+            req.setAttribute("video", newScene.getScene_video());
+            req.setAttribute("audio", newScene.getScene_audio());
+        }
+
         req.getRequestDispatcher("/viewStory.jsp").forward(req, resp);
     }
 }
