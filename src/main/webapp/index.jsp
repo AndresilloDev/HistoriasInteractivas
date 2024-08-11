@@ -45,9 +45,9 @@
                     </h1>
                     <div class="row">
                         <div class="search-input position-relative">
-                            <form method="get" id="search-form">
+                            <form method="post" action="searchStory" id="search-form">
                                 <fieldset>
-                                    <input name="storyCode" type="search" id="search" placeholder="Escribe el codigo" maxlength="6" class="pt-1 pb-1 mb-4">
+                                    <input name="id_story" type="search" id="search" placeholder="Escribe el codigo" maxlength="6" class="pt-1 pb-1 mb-4">
                                     <input class="button pt-1 pb-1 mb-4" type="submit" value="Buscar" name="searchStory"/>
                                 </fieldset>
                             </form>

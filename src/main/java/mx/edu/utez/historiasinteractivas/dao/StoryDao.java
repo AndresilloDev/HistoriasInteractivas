@@ -52,6 +52,33 @@ public class StoryDao {
         return null;
     }
 
+    public Story findPublicStoryByCode(String id_story) throws SQLException {
+        Story story = null;
+        String query = "SELECT * FROM historiasInteractivas.Stories WHERE id_story = ? AND story_type = 1";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
+            ps.setString(1, id_story);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                story = new Story();
+                story.setEmail_user(rs.getString("email_user"));
+                story.setStory_title(rs.getString("story_title"));
+                story.setStory_description(rs.getString("story_description"));
+                story.setStory_thumbnail(rs.getString("story_thumbnail"));
+                story.setStory_type(rs.getInt("story_type"));
+                story.setRelease_date(rs.getDate("release_date"));
+                story.setLast_update(rs.getDate("last_update"));
+                story.setJson(rs.getString("json"));
+
+                return story;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ArrayList<Story> getAll(User user) throws SQLException {
         ArrayList<Story> stories = new ArrayList<Story>();
         String query = "SELECT * FROM historiasInteractivas.Stories WHERE email_user=?";
