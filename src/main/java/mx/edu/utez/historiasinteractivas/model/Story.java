@@ -112,6 +112,24 @@ public class Story {
         this.scenes = scenes;
     }
 
+    // C O N S T R U C T O R E S
+
+    //Constructor vacío
+
+    public Story() {
+    }
+
+
+    //Creación de historia
+
+
+    public Story(String id_story, String email_user, String story_title, String json) {
+        this.id_story = id_story;
+        this.email_user = email_user;
+        this.story_title = story_title;
+        this.json = json;
+    }
+
     public ArrayList<Scene> parseJsonToScenes() {
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<Scene> scenes = new ArrayList<>();

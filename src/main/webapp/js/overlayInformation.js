@@ -1,5 +1,5 @@
 // Función para abrir el menú desplegable y ajustar opciones según la sección
-function openMenu(seccion, title, date, description, thumbnail, url) {
+function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
     var overlay = document.getElementById('overlay');
 
     // Mostrar el overlay
@@ -19,25 +19,31 @@ function openMenu(seccion, title, date, description, thumbnail, url) {
     switch (seccion) {
         case 'publica':
             option1.textContent = 'Restringir historia';
-            option2.textContent = 'Editar historia';
-            option3.textContent = 'Compartir historia';
             break;
         case 'restringida':
             option1.textContent = 'Publicar historia';
-            option2.textContent = 'Editar historia';
-            option3.textContent = 'Compartir historia';
             break;
         case 'borrador':
             option1.textContent = 'Publicar historia';
-            option2.textContent = 'Editar historia';
-            option3.textContent = 'Restringir historia';
-            break;
-        default:
             break;
     }
 
+    option2.textContent = 'Editar historia';
+    option3.textContent = 'Compartir historia';
+
     option2.onclick = function() {
         window.location.href = url;
+    };
+
+    // Agregar el evento para copiar el id_story al portapapeles en option3
+    option3.onclick = function() {
+        navigator.clipboard.writeText(id_story)
+            .then(() => {
+                alert('ID de la historia copiado al portapapeles');
+            })
+            .catch(err => {
+                console.error('Error al copiar: ', err);
+            });
     };
 }
 

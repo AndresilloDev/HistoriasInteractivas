@@ -4,7 +4,7 @@ import mx.edu.utez.historiasinteractivas.model.Scene;
 import mx.edu.utez.historiasinteractivas.model.Story;
 import mx.edu.utez.historiasinteractivas.model.User;
 import mx.edu.utez.historiasinteractivas.utils.DatabaseConnectionManager;
-import mx.edu.utez.historiasinteractivas.utils.GenerateStoryCode;
+import mx.edu.utez.historiasinteractivas.utils.RandomStringGenerator;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -195,31 +195,31 @@ public class StoryDao {
     public String generateUniqueCode(int length) {
         String code;
         do {
-            code = GenerateStoryCode.generateRandomCode(length);
+            code = RandomStringGenerator.generateRandomString(length);
         } while (!isCodeUnique(code));
         return code;
     }
-    public void updateStory(String id, String title, String json) {
-        String sql = "UPDATE historiasInteractivas.Stories SET story_title = ?, json = ? WHERE id = ?";
+    public void updateStory(Story story) {
+        String sql = "UPDATE historiasInteractivas.Stories SET story_title = ?, json = ? WHERE id_story = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, title);
-            ps.setString(2, json);
-            ps.setString(3, id);
+            ps.setString(1, story.getStory_title());
+            ps.setString(2, story.getJson());
+            ps.setString(3, story.getId_story());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public boolean insertStory(String id_story, String email, String title, String json) {
+    public boolean insertStory(Story story) {
         String query = "INSERT INTO historiasInteractivas.Stories (id_story, email_user, story_title, json) VALUES (?, ?, ?, ?)";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, id_story);
-            ps.setString(2, email);
-            ps.setString(3, title);
-            ps.setString(4, json);
+            ps.setString(1, story.getId_story());
+            ps.setString(2, story.getEmail_user());
+            ps.setString(3, story.getStory_title());
+            ps.setString(4, story.getJson());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows > 0) {

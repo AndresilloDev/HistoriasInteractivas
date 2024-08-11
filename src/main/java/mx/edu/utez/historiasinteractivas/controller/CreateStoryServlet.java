@@ -4,6 +4,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import mx.edu.utez.historiasinteractivas.dao.StoryDao;
+import mx.edu.utez.historiasinteractivas.model.Story;
 import mx.edu.utez.historiasinteractivas.model.User;
 import mx.edu.utez.historiasinteractivas.utils.RandomStringGenerator;
 import org.json.JSONObject;
@@ -35,13 +36,15 @@ public class CreateStoryServlet extends HttpServlet {
         String title = jsonObject.getString("title");
         String diagram = jsonObject.getString("diagram");
 
+        Story story = new Story(idStory, email, title, diagram);
+
         StoryDao dao = new StoryDao();
 
         if (idStory != null && !idStory.isEmpty()) { // Actualizar historia existente
-            dao.updateStory(idStory, title, diagram);
+            dao.updateStory(story);
 
         } else {
-            if (!dao.insertStory(tokenStory, email, title, diagram)) {
+            if (!dao.insertStory(story)) {
                 request.setAttribute("errorMessage", "¡Error al registrar la historia!");
                 request.getRequestDispatcher("createStory.jsp").forward(request, response);
             }
