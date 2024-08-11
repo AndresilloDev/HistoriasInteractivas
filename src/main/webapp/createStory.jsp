@@ -49,6 +49,7 @@
 <br>
 <!-- Estp esta oculto pero contiene el diagrama que se carga al abrir la historia
      Aqui deberiamos cargar el json de lahistoria cargado -->
+<textarea id="mySavedModel" style="width: 100%; height: 300px; background-color: transparent; display: none">
 <c:choose>
     <c:when test="${not empty param.id_story}">
         <%
@@ -58,18 +59,15 @@
             Story story = dao.findByCode(idStory, user);
             String diagram = (story != null) ? story.getJson() : "{}";
         %>
-        <textarea id="mySavedModel" style="width: 100%; height: 300px; background-color: transparent; display: none">
-            <%= diagram %>
-        </textarea>
+        <%= diagram %>
     </c:when>
     <c:otherwise>
-            <textarea id="mySavedModel" style="width: 100%; height: 300px; background-color: transparent; display: none">
-                { "class": "GraphLinksModel",
-                "nodeDataArray": [{"category":"startEvent","key":-1,"loc":"0 0"}],
-                "linkDataArray": []}
-            </textarea>
+        { "class": "GraphLinksModel",
+        "nodeDataArray": [{"category":"startEvent","key":-1,"loc":"0 0"}],
+        "linkDataArray": []}
     </c:otherwise>
 </c:choose>
+</textarea>
 
 <!-- Modal de Edición -->
 <div id="editModal">
