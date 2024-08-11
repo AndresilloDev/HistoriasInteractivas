@@ -72,11 +72,11 @@
 
 
             <div class="buttons-container">
-                <form action="previewStory" method="post">
+                <form action="viewStory" method="post">
                     <input type="hidden" name="option" value="option1">
                     <button type="submit" class="btn btn-primary btn-custom"><%=scene.getFirst_choice()%></button>
                 </form>
-                <form action="previewStory" method="post">
+                <form action="viewStory" method="post">
                     <input type="hidden" name="option" value="option2">
                     <button type="submit" class="btn btn-secondary btn-custom"><%=scene.getSecond_choice()%></button>
                 </form>

@@ -51,7 +51,7 @@ public class PreviewStoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Story story = (Story) session.getAttribute("story");
-        System.out.println( "gistorias en servlet " + story.toString());
+        System.out.println( "historias en servlet " + story.toString());
         String option = req.getParameter("option");
         Scene lastScene = (Scene) req.getAttribute("scene");
         Scene newScene = new Scene();
