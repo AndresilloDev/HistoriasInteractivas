@@ -199,4 +199,35 @@ public class StoryDao {
         } while (!isCodeUnique(code));
         return code;
     }
+    public void updateStory(String id, String title, String json) {
+        String sql = "UPDATE historiasInteractivas.Stories SET story_title = ?, json = ? WHERE id = ?";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, title);
+            ps.setString(2, json);
+            ps.setString(3, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public boolean insertStory(String id_story, String email, String title, String json) {
+        String query = "INSERT INTO historiasInteractivas.Stories (id_story, email_user, story_title, json) VALUES (?, ?, ?, ?)";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, id_story);
+            ps.setString(2, email);
+            ps.setString(3, title);
+            ps.setString(4, json);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

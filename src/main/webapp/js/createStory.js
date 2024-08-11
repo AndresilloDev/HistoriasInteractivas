@@ -444,8 +444,6 @@ function saveStory() {
 			console.error("Error al guardar la historia:", error);
 		});
 
-
-
 	console.log (storyDiagram.model.toJson ());
 }
 

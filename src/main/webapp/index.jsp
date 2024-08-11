@@ -121,7 +121,7 @@
 
                             for(Story s : restrictedStories){
                     %>
-                    <div style="background-image: url('<%=s.getStory_thumbnail()%>'); background-size: cover; background-position: center;" class="card" onclick="openMenu('restringida', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>', '<%=request.getContextPath() + File.separator + "/createStory.jsp"%>')">
+                    <div style="background-image: url('<%=s.getStory_thumbnail()%>'); background-size: cover; background-position: center;" class="card" onclick="openMenu('restringida', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>', '<%=request.getContextPath() + File.separator + "/createStory.jsp?id_story=" + s.getId_story()%>')">
                         <h2><%=s.getStory_title()%></h2>
                     </div>
                     <% } %>
@@ -139,7 +139,7 @@
 
                             for(Story s : draftsStories){
                     %>
-                    <div style="background-image: url('<%=s.getStory_thumbnail()%>'); background-size: cover; background-position: center;" class="card" onclick="openMenu('borrador', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>', '<%=request.getContextPath() + File.separator + "/createStory.jsp"%>')">
+                    <div style="background-image: url('<%=s.getStory_thumbnail()%>'); background-size: cover; background-position: center;" class="card" onclick="openMenu('borrador', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>', '<%=request.getContextPath() + File.separator + "/createStory.jsp?id_story=" + s.getId_story()%>')">
                         <h2><%=s.getStory_title()%></h2>
                     </div>
                     <% } %>

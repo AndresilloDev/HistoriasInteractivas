@@ -1,4 +1,9 @@
+<%@ page import="mx.edu.utez.historiasinteractivas.dao.StoryDao" %>
+<%@ page import="mx.edu.utez.historiasinteractivas.model.Story" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="mx.edu.utez.historiasinteractivas.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
@@ -44,12 +49,27 @@
 <br>
 <!-- Estp esta oculto pero contiene el diagrama que se carga al abrir la historia
      Aqui deberiamos cargar el json de lahistoria cargado -->
-<textarea id="mySavedModel" style="width: 100%; height: 300px; background-color: transparent; display: none">
-                                                                                                            { "class": "GraphLinksModel",
-                                                                                                            "nodeDataArray": [{"category":"startEvent","key":-1,"loc":"0 0"}],
-                                                                                                            "linkDataArra
-    y": []}
-</textarea>
+<c:choose>
+    <c:when test="${not empty param.id_story}">
+        <%
+            String idStory = request.getParameter("id_story");
+            User user = (User) session.getAttribute("user");
+            StoryDao dao = new StoryDao();
+            Story story = dao.findByCode(idStory, user);
+            String diagram = (story != null) ? story.getJson() : "{}";
+        %>
+        <textarea id="mySavedModel" style="width: 100%; height: 300px; background-color: transparent; display: none">
+            <%= diagram %>
+        </textarea>
+    </c:when>
+    <c:otherwise>
+            <textarea id="mySavedModel" style="width: 100%; height: 300px; background-color: transparent; display: none">
+                { "class": "GraphLinksModel",
+                "nodeDataArray": [{"category":"startEvent","key":-1,"loc":"0 0"}],
+                "linkDataArray": []}
+            </textarea>
+    </c:otherwise>
+</c:choose>
 
 <!-- Modal de Edición -->
 <div id="editModal">
