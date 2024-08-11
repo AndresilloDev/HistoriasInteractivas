@@ -8,10 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
 import mx.edu.utez.historiasinteractivas.model.User;
-import mx.edu.utez.historiasinteractivas.utils.GenerationCode;
-import mx.edu.utez.historiasinteractivas.utils.GmailSenderVerify;
+import mx.edu.utez.historiasinteractivas.utils.GmailSender;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 
 @WebServlet(name = "RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -39,8 +39,8 @@ public class RegisterServlet extends HttpServlet {
             try {
                 User usuario = new User(email, password);
                 System.out.println("Generando código de verificación");
-                String verificationCode = GenerationCode.generateVerificationCode();
-                GmailSenderVerify verification = new GmailSenderVerify();
+                String verificationCode = generateVerificationCode();
+                GmailSender verification = new GmailSender();
                 verification.sendVerificationEmail(email, verificationCode);
 
                 // Guardar el usuario y el código de verificación en la sesión
@@ -64,6 +64,12 @@ public class RegisterServlet extends HttpServlet {
                 System.out.println("El correo ya esta siendo usado");
             }
         }
+    }
+
+    public static String generateVerificationCode() {
+        SecureRandom random = new SecureRandom();
+        int num = random.nextInt(1000000);
+        return String.format("%06d", num);
     }
 
     @Override

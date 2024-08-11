@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import mx.edu.utez.historiasinteractivas.dao.StoryDao;
 import mx.edu.utez.historiasinteractivas.model.User;
-import mx.edu.utez.historiasinteractivas.utils.RandomStringGeneratorV2;
+import mx.edu.utez.historiasinteractivas.utils.RandomStringGenerator;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -29,7 +29,7 @@ public class CreateStoryServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
 
-        String tokenStory = RandomStringGeneratorV2.generateRandomString();
+        String tokenStory = RandomStringGenerator.generateRandomString(6);
         String email = user.getEmail();
         String idStory = request.getParameter("id_Story");
         String title = jsonObject.getString("title");

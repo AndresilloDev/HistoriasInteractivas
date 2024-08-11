@@ -30,7 +30,7 @@ public class RecoverPasswordServlet extends HttpServlet {
             req.getRequestDispatcher("recoverPassword.jsp").forward(req, resp);
         } else {
             //Generar el token aleatorio y crear un link en base a eso
-            String token = RandomStringGenerator.generateRandomString();
+            String token = RandomStringGenerator.generateRandomString(20);
             String resetLink = "http://localhost:8080/Historias_Interactivas_war_exploded/changePassword?token=" + token + "&email="+email;
 
             //Guardar el token en la base de datos para su posterior verificado

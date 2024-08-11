@@ -5,13 +5,12 @@ import java.util.Random;
 public class RandomStringGenerator {
 
     private static final String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
-    private static final int STRING_LENGTH = 20;
 
-    public static String generateRandomString() {
+    public static String generateRandomString(int length) {
         Random random = new Random();
-        StringBuilder sb = new StringBuilder(STRING_LENGTH);
+        StringBuilder sb = new StringBuilder(length);
 
-        for (int i = 0; i < STRING_LENGTH; i++) {
+        for (int i = 0; i < length; i++) {
             int index = random.nextInt(CHARACTERS.length());
             sb.append(CHARACTERS.charAt(index));
         }
