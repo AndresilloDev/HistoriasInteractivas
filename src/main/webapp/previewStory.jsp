@@ -19,16 +19,21 @@
     session = request.getSession(false);
     User user = (User) session.getAttribute("user");
     System.out.println(user.toString());
-    if(user == null) {
-        response.sendRedirect("index.jsp");
-        return;
-    }
-    System.out.println(request.getAttribute("text"));
-    System.out.println(request.getAttribute("description"));
-    System.out.println(request.getAttribute("image"));
-    System.out.println(request.getAttribute("link"));
 
 
+    String text = (String) request.getAttribute("text");
+    String description = (String) request.getAttribute("description");
+    String image = (String) request.getAttribute("image");
+    String link = (String) request.getAttribute("link");
+    String video = (String) request.getAttribute("video");
+    String audio = (String) request.getAttribute("audio");
+
+    System.out.println("text " + text);
+    System.out.println("description " + description);
+    System.out.println("image " + image);
+    System.out.println("link " + link);
+    System.out.println("video " + video);
+    System.out.println("Audio " + audio);
 %>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
@@ -37,48 +42,51 @@
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area">
         <div class="container container-custom">
-            <c:if test="${requestScope.image != null or requestScope.image.equals('null')}">
-                <img src="${requestScope.image}" alt="Scene Image" class="img-fluid">
+            <c:if test="${requestScope.image != null or !requestScope.image.equals('null')}">
+                <img src="${image}" alt="Scene Image" class="img-fluid">
             </c:if>
 
-            <c:if test="${requestScope.audio != null or requestScope.audio.equals('null')}">
+            <c:if test="${requestScope.audio != null or !requestScope.audio.equals('null')}">
                 <audio controls>
-                    <source src="${requestScope.audio}" type="audio/mpeg">
+                    <source src="${audio}" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
             </c:if>
 
-            <c:if test="${requestScope.video != null or requestScope.video.equals('null')}">
+            <c:if test="${requestScope.video != null or !requestScope.video.equals('null')}">
                 <video width="100%" controls>
-                    <source src="${requestScope.video}" type="video/mp4">
+                    <source src="${video}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </c:if>
 
-            <c:if test="${requestScope.link != null or requestScope.link.equals('null')}">
+            <c:if test="${requestScope.link != null or !requestScope.link.equals('null')}">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${requestScope.link}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${link}" allowfullscreen></iframe>
                 </div>
             </c:if>
 
             <div class="text-container">
-                <p><%=request.getParameter("description")%></p>
+                <p><%=description%></p>
             </div>
 
             <!-- Contenedor de Botones -->
 
 
             <div class="buttons-container">
-                <form action="previewStory" method="get">
-                    <input type="hidden" name="option" value="option1">
-                    <button type="submit" class="btn btn-primary btn-custom"><%=request.getParameter("option1")%></button>
-                </form>
-                <form action="previewStory" method="get">
-                    <input type="hidden" name="option" value="option2">
-                    <button type="submit" class="btn btn-secondary btn-custom"><%=request.getParameter("option2")%></button>
-                </form>
+                <c:if test="${requestScope.option1 != null or !requestScope.option1.equals('null')}">
+                    <form action="previewStory" method="get">
+                        <input type="hidden" name="option" value="option1">
+                        <button type="submit" class="btn btn-primary btn-custom"><%=request.getParameter("option1")%></button>
+                    </form>
+                </c:if>
+                <c:if test="${requestScope.option2 != null or !requestScope.option1.equals('null')}">
+                    <form action="previewStory" method="get">
+                        <input type="hidden" name="option" value="option2">
+                        <button type="submit" class="btn btn-secondary btn-custom"><%=request.getParameter("option2")%></button>
+                    </form>
+                </c:if>
             </div>
-
         </div>
     </div>
 </div>

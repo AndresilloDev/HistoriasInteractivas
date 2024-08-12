@@ -18,10 +18,6 @@
 <%
     session = request.getSession(false);
     User user = (User) session.getAttribute("user");
-    if(user == null) {
-        response.sendRedirect("index.jsp");
-        return;
-    }
     System.out.println(request.getAttribute("text"));
     System.out.println(request.getAttribute("description"));
     System.out.println(request.getAttribute("image"));
@@ -37,7 +33,7 @@
     <div class="row p-3 shadow box-area">
         <div class="container container-custom">
             <c:if test="${requestScope.image != null or requestScope.image.equals('null')}">
-                <img src="${requestScope.image}" alt="Scene Image" class="img-fluid">
+                <img src="${requestScope.image}" alt="Event Image" class="img-fluid">
             </c:if>
 
             <c:if test="${requestScope.audio != null or requestScope.audio.equals('null')}">
@@ -68,11 +64,11 @@
 
 
             <div class="buttons-container">
-                <form action="previewStory" method="get">
+                <form action="viewStory" method="get">
                     <input type="hidden" name="option" value="option1">
                     <button type="submit" class="btn btn-primary btn-custom"><%=request.getParameter("option1")%></button>
                 </form>
-                <form action="previewStory" method="get">
+                <form action="viewStory" method="get">
                     <input type="hidden" name="option" value="option2">
                     <button type="submit" class="btn btn-secondary btn-custom"><%=request.getParameter("option2")%></button>
                 </form>

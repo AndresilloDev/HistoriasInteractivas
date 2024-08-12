@@ -76,6 +76,19 @@ public class GraphLinksModel {
         return linkedTexts.isEmpty() ? null : linkedTexts;
     }
 
+    public ArrayList<Integer> getKeysOfLinkedEvents(int fromKey) {
+        ArrayList<Integer> linkedKeys = new ArrayList<>();
+
+        // Encontrar todas las llaves de eventos encadenados
+        for (Link link : linkDataArray) {
+            if (link.getFrom() == fromKey) {
+                linkedKeys.add(link.getTo());
+            }
+        }
+
+        return linkedKeys.isEmpty() ? null : linkedKeys;
+    }
+
     @Override
     public String toString() {
         return "GraphLinksModel{" +
