@@ -31,4 +31,12 @@ public class Link {
     public void setTo(int to) {
         this.to = to;
     }
+
+    @Override
+    public String toString() {
+        return "Link{" +
+                "from=" + from +
+                ", to=" + to +
+                '}';
+    }
 }

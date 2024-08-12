@@ -46,6 +46,8 @@ public class StoryDao {
 
                 story = new Story(id, email, title, release_date, description, thumbnail, json, story_type, last_update);
 
+                System.out.println(story.toString());
+
                 return story;
             }
 

@@ -101,4 +101,19 @@ public class Event {
     public void setLink(String link) {
         this.link = link;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "category='" + category + '\'' +
+                ", key=" + key +
+                ", loc='" + loc + '\'' +
+                ", text='" + text + '\'' +
+                ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
+                ", video='" + video + '\'' +
+                ", audio='" + audio + '\'' +
+                ", link='" + link + '\'' +
+                '}';
+    }
 }

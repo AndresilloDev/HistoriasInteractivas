@@ -75,4 +75,13 @@ public class GraphLinksModel {
         }
         return linkedTexts.isEmpty() ? null : linkedTexts;
     }
+
+    @Override
+    public String toString() {
+        return "GraphLinksModel{" +
+                "class_name='" + class_name + '\'' +
+                ", nodeDataArray=" + nodeDataArray.toString() +
+                ", linkDataArray=" + linkDataArray.toString() +
+                '}';
+    }
 }

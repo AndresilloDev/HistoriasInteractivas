@@ -50,6 +50,7 @@ public class PreviewStoryServlet extends HttpServlet {
 
             System.out.println(story.getModel());
             System.out.println(story + " story GET");
+            story.getModel().toString();
 
             Event event = story.getModel().getEventByKey(event_id);
 
