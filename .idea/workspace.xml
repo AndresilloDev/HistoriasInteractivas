@@ -10,12 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Presentacion">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_2024_03_36_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_2024_03_36_p__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_24__6_17PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_24__6_17PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_24__7_45PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_08_24__7_45PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2024_11_56_a__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2024_11_56_a__m___Changes_.xml" afterDir="false" />
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/go.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/go.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -444,7 +441,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723234166032</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Presentacion">
+      <option name="closed" value="true" />
+      <created>1723413097896</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1723413097896</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,7 +484,8 @@
     <MESSAGE value="Creación de las carpetas para almacenar audios e imagenes, ahora las imagenes de una historia se muestran en el index" />
     <MESSAGE value="Se ha hecho que los usuarios en adminUsers se pueda buscar sin necesidad de colocar el correo completo, así como cambiar la forma en la que se muestran" />
     <MESSAGE value="Presentacion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Presentacion" />
+    <MESSAGE value="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
