@@ -195,6 +195,8 @@ public class UsuarioDao {
                     usuario.setMaternalSurname(rs.getString("maternal_surname"));
                     usuario.setStatus(rs.getBoolean("status"));
                     usuario.setProfilePicture(rs.getString("profile_picture"));
+                    usuario.setAdmin(rs.getBoolean("admin"));
+                    usuario.setStatus(rs.getBoolean("status"));
                 }
             }
         } catch (SQLException e) {

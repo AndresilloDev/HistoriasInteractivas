@@ -101,7 +101,14 @@
                             for(Story s : publishedStories){
                     %>
 
-                    <div style="background-image: url('<%=s.getStory_thumbnail()%>'); background-size: cover; background-position: center;" class="card" onclick="openMenu('publica', '<%=s.getStory_title()%>', '<%=s.getRelease_date()%>', '<%=s.getStory_description()%>', '<%=s.getStory_thumbnail()%>', '<%=request.getContextPath() + File.separator + "/createStory.jsp?id_story=" + s.getId_story()%>', '<%=s.getId_story()%>')">
+                    <div style="background-image: url('<%=s.getStory_thumbnail()%>'); background-size: cover; background-position: center;" class="card"
+                         onclick="openMenu('publica',
+                                 '<%=s.getStory_title()%>',
+                                 '<%=s.getRelease_date()%>',
+                                 '<%=s.getStory_description()%>',
+                                 '<%=s.getStory_thumbnail()%>',
+                                 '<%=request.getContextPath() + File.separator + "/createStory.jsp?id_story=" + s.getId_story()%>',
+                                 '<%=s.getId_story()%>')">
                         <h2><%=s.getStory_title()%></h2>
                     </div>
                             <% } %>

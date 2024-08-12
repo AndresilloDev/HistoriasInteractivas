@@ -18,7 +18,7 @@ public class EditUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
-        String user = request.getParameter("user");
+        String user_name = request.getParameter("user_name");
         String name = request.getParameter("name");
         String paternalName = request.getParameter("paternalName");
         String maternalName = request.getParameter("maternalName");
@@ -27,8 +27,14 @@ public class EditUserServlet extends HttpServlet {
         UsuarioDao dao = new UsuarioDao();
         User usuario = dao.findUserByEmail(email);
 
-        String profilePicture = usuario.getProfilePicture();
+        // Verificar si el usuario fue encontrado
+        if (usuario == null) {
+            request.setAttribute("message", "Ha ocurrido un error al actualizar los datos");
+            request.getRequestDispatcher("editUser.jsp").forward(request, response);
+            return;
+        }
 
+        // Manejo de la imagen de perfil
         if (filePart != null && filePart.getSubmittedFileName() != null && !filePart.getSubmittedFileName().isEmpty()) {
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
             String uploadDir = getServletContext().getRealPath("") + File.separator + "uploads" + File.separator + "profilePictures";
@@ -36,33 +42,30 @@ public class EditUserServlet extends HttpServlet {
             filePart.write(filePath);
             System.out.println("Archivo guardado en: " + filePath);
 
-            profilePicture = "uploads/profilePictures/" + fileName;
+            usuario.setProfilePicture("uploads/profilePictures/" + fileName);
         }
 
-        if (dao.findUserByEmail(email) != null) {
-            User updatedUser = new User();
-            updatedUser.setEmail(email);
-            updatedUser.setUser(user);
-            updatedUser.setName(name);
-            updatedUser.setPaternalSurname(paternalName);
-            updatedUser.setMaternalSurname(maternalName);
-
-            if (profilePicture != null) {
-                updatedUser.setProfilePicture(profilePicture);
-            } else {
-                updatedUser.setProfilePicture(dao.findUserByEmail(email).getProfilePicture());
-            }
-
-            if (dao.updateUser(updatedUser)) {
-                HttpSession session = request.getSession();
-                session.setAttribute("user", updatedUser);
-                response.sendRedirect("index.jsp");
-            }
+        // Actualización de la información del usuario
+        usuario.setEmail(email);
+        if (user_name == null || user_name.isEmpty()){
+            usuario.setUser(email);
         } else {
-            response.sendRedirect("profile.jsp?updateSuccess=false");
+            usuario.setUser(user_name);
         }
+        usuario.setName(name);
+        usuario.setPaternalSurname(paternalName);
+        usuario.setMaternalSurname(maternalName);
 
-
-
+        // Actualización en la base de datos
+        if (dao.updateUser(usuario)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user", usuario);
+            request.setAttribute("message", "Datos actualizados correctamente");
+            request.getRequestDispatcher("editUser.jsp").forward(request, response);
+        } else {
+            request.setAttribute("message", "Ha ocurrido un error al actualizar los datos");
+            request.getRequestDispatcher("editUser.jsp").forward(request, response);
+        }
     }
+
 }
