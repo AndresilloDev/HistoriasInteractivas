@@ -1,6 +1,5 @@
 package mx.edu.utez.historiasinteractivas.dao;
 
-import mx.edu.utez.historiasinteractivas.model.Scene;
 import mx.edu.utez.historiasinteractivas.model.Story;
 import mx.edu.utez.historiasinteractivas.model.User;
 import mx.edu.utez.historiasinteractivas.utils.DatabaseConnectionManager;
@@ -34,15 +33,18 @@ public class StoryDao {
             ps.setString(2, user.getEmail());
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                story = new Story();
-                story.setEmail_user(rs.getString("email_user"));
-                story.setStory_title(rs.getString("story_title"));
-                story.setStory_description(rs.getString("story_description"));
-                story.setStory_thumbnail(rs.getString("story_thumbnail"));
-                story.setStory_type(rs.getInt("story_type"));
-                story.setRelease_date(rs.getDate("release_date"));
-                story.setLast_update(rs.getDate("last_update"));
-                story.setJson(rs.getString("json"));
+
+                String id = rs.getString("id_story");
+                String email = rs.getString("email_user");
+                String title = rs.getString("story_title");
+                String description = rs.getString("story_description");
+                String thumbnail = rs.getString("story_thumbnail");
+                int story_type = rs.getInt("story_type");
+                Date release_date = rs.getDate("release_date");
+                Date last_update = rs.getDate("last_update");
+                String json = rs.getString("json");
+
+                story = new Story(id, email, title, release_date, description, thumbnail, json, story_type, last_update);
 
                 return story;
             }
@@ -61,15 +63,18 @@ public class StoryDao {
             ps.setString(1, id_story);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                story = new Story();
-                story.setEmail_user(rs.getString("email_user"));
-                story.setStory_title(rs.getString("story_title"));
-                story.setStory_description(rs.getString("story_description"));
-                story.setStory_thumbnail(rs.getString("story_thumbnail"));
-                story.setStory_type(rs.getInt("story_type"));
-                story.setRelease_date(rs.getDate("release_date"));
-                story.setLast_update(rs.getDate("last_update"));
-                story.setJson(rs.getString("json"));
+
+                String id = rs.getString("id_story");
+                String email = rs.getString("email_user");
+                String title = rs.getString("story_title");
+                String description = rs.getString("story_description");
+                String thumbnail = rs.getString("story_thumbnail");
+                int story_type = rs.getInt("story_type");
+                Date release_date = rs.getDate("release_date");
+                Date last_update = rs.getDate("last_update");
+                String json = rs.getString("json");
+
+                story = new Story(id, email, title, release_date, description, thumbnail, json, story_type, last_update);
 
                 return story;
             }
@@ -177,7 +182,7 @@ public class StoryDao {
     }
 
     public boolean isCodeUnique(String code) {
-        String sql = "SELECT COUNT(*) FROM historiasInteractivas.Stories WHERE story_id = ?";
+        String sql = "SELECT COUNT(*) FROM historiasInteractivas.Stories WHERE id_story = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, code);

@@ -107,7 +107,7 @@
                                  '<%=s.getRelease_date()%>',
                                  '<%=s.getStory_description()%>',
                                  '<%=s.getStory_thumbnail()%>',
-                                 '<%=request.getContextPath() + File.separator + "/createStory.jsp?id_story=" + s.getId_story()%>',
+                                 '<%=request.getContextPath() + File.separator + "/createStory.jsp?id_story=" + s.getId_story() + "&scene_id=-1"%>',
                                  '<%=s.getId_story()%>')">
                         <h2><%=s.getStory_title()%></h2>
                     </div>

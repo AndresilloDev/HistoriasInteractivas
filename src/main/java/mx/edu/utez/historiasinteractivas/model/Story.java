@@ -22,7 +22,7 @@ public class Story {
 
     private Date last_update;
 
-    private ArrayList<Scene> scenes;
+    private GraphLinksModel model;
 
     public String getId_story() {
         return id_story;
@@ -100,16 +100,12 @@ public class Story {
         this.last_update = last_update;
     }
 
-    public void addScene(Scene scene) {
-        scenes.add(scene);
+    public GraphLinksModel getModel() {
+        return model;
     }
 
-    public ArrayList<Scene> getScenes() {
-        return scenes;
-    }
-
-    public void setScenes(ArrayList<Scene> scenes) {
-        this.scenes = scenes;
+    public void setModel(GraphLinksModel model) {
+        this.model = model;
     }
 
     // C O N S T R U C T O R E S
@@ -118,7 +114,6 @@ public class Story {
 
     public Story() {
     }
-
 
     //Creación de historia
 
@@ -130,50 +125,40 @@ public class Story {
         this.json = json;
     }
 
-    public ArrayList<Scene> parseJsonToScenes() {
-        ObjectMapper mapper = new ObjectMapper();
-        ArrayList<Scene> scenes = new ArrayList<>();
-
-        try {
-            JsonNode rootNode = mapper.readTree(json);
-            JsonNode scenesNode = rootNode.path("scenes");
-
-            if (scenesNode.isArray()) {
-                for (JsonNode sceneNode : scenesNode) {
-                    Scene scene = mapper.treeToValue(sceneNode, Scene.class);
-
-                    // Combinación de campos duplicados
-                    if (sceneNode.has("scene_image")) {
-                        scene.setHasImage(sceneNode.get("scene_image").asBoolean());
-                    }
-                    if (sceneNode.has("scene_audio")) {
-                        scene.setHasAudio(sceneNode.get("scene_audio").asBoolean());
-                    }
-                    if (sceneNode.has("scene_video")) {
-                        scene.setHasVideo(sceneNode.get("scene_video").asBoolean());
-                    }
-
-                    scenes.add(scene);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return scenes;
+    public Story(String id_story, String email_user, String story_title, Date release_date, String story_description, String story_thumbnail, String json, int story_type, Date last_update) {
+        this.id_story = id_story;
+        this.email_user = email_user;
+        this.story_title = story_title;
+        this.release_date = release_date;
+        this.story_description = story_description;
+        this.story_thumbnail = story_thumbnail;
+        this.json = json;
+        this.story_type = story_type;
+        this.last_update = last_update;
+        this.model = parseJsonToGraphLinksModel();
     }
 
 
-    public Scene getScene(int destination_scene) {
-        for (Scene scene : scenes) {
-            if (scene.getId_scene() == destination_scene || scene.getKey() == destination_scene) {
-                if (scene.getScene_text() == null || scene.getScene_text().isEmpty()) {
-                    scene.setScene_text(scene.getDescription());
-                }
-                return scene;
-            }
+    // M É T O D O S
+
+    public GraphLinksModel parseJsonToGraphLinksModel() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        GraphLinksModel graphLinksModel = null;
+
+        try {
+            // Parseo del JSON a GraphLinksModel
+            graphLinksModel = objectMapper.readValue(this.json, GraphLinksModel.class);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return null;
+
+        if (model != null) {
+            System.out.println("Clase: " + model.getClass_name());
+            System.out.println("NodeDataArray: " + model.getNodeDataArray().size());
+            System.out.println("LinkDataArray: " + model.getLinkDataArray().size());
+        }
+
+        return graphLinksModel;
     }
 
     @Override
@@ -188,7 +173,7 @@ public class Story {
                 ", json='" + json + '\'' +
                 ", story_type=" + story_type +
                 ", last_update=" + last_update +
-                ", scenes=" + scenes +
+                ", model=" + model +
                 '}';
     }
 }

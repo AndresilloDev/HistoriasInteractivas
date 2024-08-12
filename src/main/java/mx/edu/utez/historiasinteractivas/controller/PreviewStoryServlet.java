@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.StoryDao;
-import mx.edu.utez.historiasinteractivas.model.Scene;
+import mx.edu.utez.historiasinteractivas.model.Event;
 import mx.edu.utez.historiasinteractivas.model.Story;
 import mx.edu.utez.historiasinteractivas.model.User;
 
@@ -20,62 +20,58 @@ public class PreviewStoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         String id_story = req.getParameter("id_story");
+        Story story = (Story) session.getAttribute("story");
+        int event_id;
+
+        try{
+            event_id = Integer.parseInt(req.getParameter("event_id"));
+        } catch (NumberFormatException e){
+            event_id = -1;
+        }
+
         StoryDao storyDao = new StoryDao();
+
         try {
-            Story story = storyDao.findByCode(id_story, user);
-            story.setScenes(story.parseJsonToScenes());
+            //Si no existe ninguna historia con el código dado
+            if (!storyDao.isCodeUnique(id_story)) {
+                req.setAttribute("message", "No existe la historia");
+                req.getRequestDispatcher("index.jsp").forward(req, resp);
+            }
 
-            System.out.println(story.getJson());
+            //Si la historia actual no es igual a la almacenada
+            if(story == null || !story.getId_story().equals(id_story)){
+                story = storyDao.findByCode(id_story, user);
+                session.setAttribute("story", story);
+            }
+
+            System.out.println(story.getModel());
             System.out.println(story + " story GET");
-            System.out.println(story.getScenes());
 
-            Scene scene = story.getScene(1);
-            System.out.println(scene + " escena GET");
-            System.out.println(scene.toString());
+            Event event = story.getModel().getEventByKey(event_id);
 
-            req.setAttribute("scene", scene);
-            req.setAttribute("story", story);
-            req.setAttribute("image", scene.getScene_image());
-            req.setAttribute("link", scene.getScene_link());
-            req.setAttribute("video", scene.getScene_video());
-            req.setAttribute("audio", scene.getScene_audio());
-            req.getRequestDispatcher("/previewStory.jsp").forward(req, resp);
+            req.setAttribute("text", event.getText());
+            req.setAttribute("description", event.getDescription());
+            req.setAttribute("image", event.getImage());
+            req.setAttribute("link", event.getLink());
+            req.setAttribute("video", event.getVideo());
+            req.setAttribute("audio", event.getAudio());
+
+            ArrayList<String> linkedTexts = story.getModel().getTextOfLinkedEvents(event_id);
+            if (linkedTexts != null) {
+                req.setAttribute("option1", !linkedTexts.isEmpty() ? linkedTexts.get(0) : null);
+                req.setAttribute("option2", linkedTexts.size() > 1 ? linkedTexts.get(1) : null);
+            } else {
+                req.setAttribute("option1", null);
+                req.setAttribute("option2", null);
+            }
+
+            resp.sendRedirect(req.getContextPath() + "/previewStory?id_story=" + id_story + "&event_id=" + event_id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        Story story = (Story) session.getAttribute("story");
-        Scene lastScene = (Scene) session.getAttribute("scene");
-
-        if (story == null || lastScene == null) {
-            resp.sendRedirect("index.jsp");
-            return;
-        }
-
-        String option = req.getParameter("option");
-        Scene newScene = null;
-
-        if ("option1".equals(option)) {
-            newScene = story.getScene(lastScene.getDestiny_scene_option_1());
-        } else if ("option2".equals(option)) {
-            newScene = story.getScene(lastScene.getDestiny_scene_option_2());
-        }
-
-        if (newScene != null) {
-            session.setAttribute("scene", newScene);
-            req.setAttribute("scene", newScene);
-            req.setAttribute("image", newScene.getScene_image());
-            req.setAttribute("link", newScene.getScene_link());
-            req.setAttribute("video", newScene.getScene_video());
-            req.setAttribute("audio", newScene.getScene_audio());
-        }
-
-        req.getRequestDispatcher("/viewStory.jsp").forward(req, resp);
     }
 }

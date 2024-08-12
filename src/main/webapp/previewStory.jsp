@@ -1,8 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="mx.edu.utez.historiasinteractivas.model.User" %>
-<%@ page import="mx.edu.utez.historiasinteractivas.model.Story" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="mx.edu.utez.historiasinteractivas.model.Scene" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es-MX">
@@ -25,9 +22,8 @@
         response.sendRedirect("index.jsp");
         return;
     }
-    Story story = (Story) session.getAttribute("story");
-    Scene scene = (Scene) request.getAttribute("scene");
-
+    System.out.println(request.getAttribute("text"));
+    System.out.println(request.getAttribute("description"));
     System.out.println(request.getAttribute("image"));
     System.out.println(request.getAttribute("link"));
 
@@ -65,20 +61,20 @@
             </c:if>
 
             <div class="text-container">
-                <p><%=scene.getScene_text()%></p>
+                <p><%=request.getParameter("description")%></p>
             </div>
 
             <!-- Contenedor de Botones -->
 
 
             <div class="buttons-container">
-                <form action="previewStory" method="post">
+                <form action="previewStory" method="get">
                     <input type="hidden" name="option" value="option1">
-                    <button type="submit" class="btn btn-primary btn-custom"><%=scene.getFirst_choice()%></button>
+                    <button type="submit" class="btn btn-primary btn-custom"><%=request.getParameter("option1")%></button>
                 </form>
-                <form action="previewStory" method="post">
+                <form action="previewStory" method="get">
                     <input type="hidden" name="option" value="option2">
-                    <button type="submit" class="btn btn-secondary btn-custom"><%=scene.getSecond_choice()%></button>
+                    <button type="submit" class="btn btn-secondary btn-custom"><%=request.getParameter("option2")%></button>
                 </form>
             </div>
 
