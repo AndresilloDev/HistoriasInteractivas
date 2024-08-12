@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page import="mx.edu.utez.historiasinteractivas.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -84,7 +84,7 @@
                         <button type="submit" class="btn btn-primary btn-custom"><%=option1%></button>
                     </form>
                 </c:if>
-                <c:if test="${option2 != null or !option1.equals('null')}">
+                <c:if test="${option2 != null or !option2.equals('null')}">
                     <form action="previewStory" method="get">
                         <input type="hidden" name="option" value="option2">
                         <button type="submit" class="btn btn-secondary btn-custom"><%=option2%></button>

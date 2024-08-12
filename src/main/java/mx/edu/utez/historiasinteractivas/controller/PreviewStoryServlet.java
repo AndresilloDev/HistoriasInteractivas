@@ -31,6 +31,9 @@ public class PreviewStoryServlet extends HttpServlet {
 
         Story story = (Story) session.getAttribute("story");
         String id_story = req.getParameter("id_story");
+        if(id_story==null) {
+            id_story = (String) session.getAttribute("id_story");
+        }
         System.out.println(id_story);
 
         StoryDao storyDao = new StoryDao();
@@ -74,7 +77,22 @@ public class PreviewStoryServlet extends HttpServlet {
 
                 System.out.println("Evento: " + event.toString());
 
-                lol(req, story, event_id, event);
+                session .setAttribute("id_story", id_story);
+                req.setAttribute("text", event.getText());
+                req.setAttribute("description", event.getDescription());
+                req.setAttribute("image", event.getImage());
+                req.setAttribute("link", event.getLink());
+                req.setAttribute("video", event.getVideo());
+                req.setAttribute("audio", event.getAudio());
+
+                ArrayList<String> linkedTexts = story.getModel().getTextOfLinkedEvents(event_id);
+                if (linkedTexts != null) {
+                    req.setAttribute("option1", !linkedTexts.isEmpty() ? linkedTexts.get(0) : null);
+                    req.setAttribute("option2", linkedTexts.size() > 1 ? linkedTexts.get(1) : null);
+                } else {
+                    req.setAttribute("option1", null);
+                    req.setAttribute("option2", null);
+                }
 
                 System.out.println("Id historia: " + id_story);
                 System.out.println("Id escena" + event_id);
@@ -84,24 +102,6 @@ public class PreviewStoryServlet extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        }
-    }
-
-    static void lol(HttpServletRequest req, Story story, int event_id, Event event) {
-        req.setAttribute("text", event.getText());
-        req.setAttribute("description", event.getDescription());
-        req.setAttribute("image", event.getImage());
-        req.setAttribute("link", event.getLink());
-        req.setAttribute("video", event.getVideo());
-        req.setAttribute("audio", event.getAudio());
-
-        ArrayList<String> linkedTexts = story.getModel().getTextOfLinkedEvents(event_id);
-        if (linkedTexts != null) {
-            req.setAttribute("option1", !linkedTexts.isEmpty() ? linkedTexts.get(0) : null);
-            req.setAttribute("option2", linkedTexts.size() > 1 ? linkedTexts.get(1) : null);
-        } else {
-            req.setAttribute("option1", null);
-            req.setAttribute("option2", null);
         }
     }
 }
