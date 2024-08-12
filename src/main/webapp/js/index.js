@@ -30,3 +30,33 @@ function scrollToNextSection() {
         nextSection.scrollIntoView({ behavior: 'smooth' });
     }
 }
+
+
+// CODIGO PARA EL MODAL DE CREAR HISTORIA
+
+document.getElementById('openCreateStoryModal').addEventListener('click', function(event) {
+    event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+    document.getElementById('storyModal').classList.add('show'); // Muestra el modal
+});
+
+function closeStoryModal() {
+    document.getElementById('storyModal').classList.remove('show');
+}
+
+function previewImage() {
+    const file = document.getElementById('coverImage').files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function () {
+        document.getElementById('thumbnailPreview').src = reader.result;
+    }
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
+
+document.getElementById('createStoryForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Aquí puedes manejar la lógica para crear la historia
+});

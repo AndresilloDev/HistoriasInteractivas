@@ -50,7 +50,7 @@
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="editUser.jsp">Editar cuenta</a></li>
                                 <li><a class="dropdown-item" onclick="scrollToNextSection()">Tus historias</a></li>
-                                <li><a class="dropdown-item" href="http://localhost:8080/Historias_Interactivas_war_exploded/createStory.jsp">Crear una historia</a></li>
+                                <li><a class="dropdown-item" href="#" id="openCreateStoryModal">Crear una historia</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Cerrar sesión</a></li>
                                 <c:if test="${user.admin}">
                                     <li><a class="dropdown-item" href="adminUsers.jsp">Administrar</a></li>

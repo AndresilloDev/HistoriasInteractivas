@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/indexLayout.css">
     <link rel="stylesheet" href="css/waveAnimation.css">
     <link rel="stylesheet" href="css/themeSwitch.css">
+    <link rel="stylesheet" href="css/form.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -192,6 +193,51 @@
         </div>
     </div>
 </div>
+
+<div class="overlay" id="storyModal">
+    <div class="modal-container">
+        <div class="row justify-content-end">
+            <button class="close-btn" onclick="closeStoryModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- AQUI VA EL FORM PARA CREAR UNA HISTORIA ERICKITO -->
+        <form id="createStoryForm" class="mt-4">
+            <div class="row mb-4">
+                <div class="col-md-3 col-12 m-auto" style="width: 125px; height: 150px; border-radius: 15px;">
+                    <img src="rutaarchivo.xd" class="img-fluid" id="thumbnailPreview" alt="Portada de la historia">
+                </div>
+                <div class="col-md-9 col-12">
+                    <label class="label">
+                        <input id="storyTitle" name="storyTitle" type="text" placeholder=" " class="input input-group mb-3 fs-6" required>
+                        <span class="labelName fs-6">Titulo</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <label class="label">
+                        <textarea id="storyDescription" name="description" type="text" placeholder=" " class="input input-group mb-3 fs-6" required></textarea>
+                        <span class="labelName fs-6">Descripción</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col text-center">
+                    <label for="coverImage" class="btn btn-primary">Seleccionar Portada</label>
+                    <input type="file" id="coverImage" name="coverImage" accept="image/*" class="d-none" onchange="previewImage()">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-success">Crear Historia</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="js/searchStory.js"></script>
