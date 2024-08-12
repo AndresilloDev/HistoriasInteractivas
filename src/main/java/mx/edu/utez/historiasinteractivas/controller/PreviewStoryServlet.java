@@ -31,6 +31,7 @@ public class PreviewStoryServlet extends HttpServlet {
 
         Story story = (Story) session.getAttribute("story");
         String id_story = req.getParameter("id_story");
+        System.out.println(id_story);
 
         StoryDao storyDao = new StoryDao();
 

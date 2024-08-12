@@ -27,6 +27,8 @@
     String link = (String) request.getAttribute("link");
     String video = (String) request.getAttribute("video");
     String audio = (String) request.getAttribute("audio");
+    String option1 = (String) request.getAttribute("option1");
+    String option2 = (String) request.getAttribute("option2");
 
     System.out.println("text " + text);
     System.out.println("description " + description);
@@ -34,6 +36,8 @@
     System.out.println("link " + link);
     System.out.println("video " + video);
     System.out.println("Audio " + audio);
+    System.out.println("Option 1 " + option1);
+    System.out.println("Option 2 " + option2);
 %>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
@@ -42,25 +46,25 @@
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area">
         <div class="container container-custom">
-            <c:if test="${requestScope.image != null or !requestScope.image.equals('null')}">
+            <c:if test="${image != null or !image.equals('null')}">
                 <img src="${image}" alt="Scene Image" class="img-fluid">
             </c:if>
 
-            <c:if test="${requestScope.audio != null or !requestScope.audio.equals('null')}">
+            <c:if test="${audio != null or !audio.equals('null')}">
                 <audio controls>
                     <source src="${audio}" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
             </c:if>
 
-            <c:if test="${requestScope.video != null or !requestScope.video.equals('null')}">
+            <c:if test="${video != null or !video.equals('null')}">
                 <video width="100%" controls>
                     <source src="${video}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </c:if>
 
-            <c:if test="${requestScope.link != null or !requestScope.link.equals('null')}">
+            <c:if test="${link != null or !link.equals('null')}">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${link}" allowfullscreen></iframe>
                 </div>
@@ -74,16 +78,16 @@
 
 
             <div class="buttons-container">
-                <c:if test="${requestScope.option1 != null or !requestScope.option1.equals('null')}">
+                <c:if test="${option1 != null or !option1.equals('null')}">
                     <form action="previewStory" method="get">
                         <input type="hidden" name="option" value="option1">
-                        <button type="submit" class="btn btn-primary btn-custom"><%=request.getParameter("option1")%></button>
+                        <button type="submit" class="btn btn-primary btn-custom"><%=option1%></button>
                     </form>
                 </c:if>
-                <c:if test="${requestScope.option2 != null or !requestScope.option1.equals('null')}">
+                <c:if test="${option2 != null or !option1.equals('null')}">
                     <form action="previewStory" method="get">
                         <input type="hidden" name="option" value="option2">
-                        <button type="submit" class="btn btn-secondary btn-custom"><%=request.getParameter("option2")%></button>
+                        <button type="submit" class="btn btn-secondary btn-custom"><%=option2%></button>
                     </form>
                 </c:if>
             </div>
