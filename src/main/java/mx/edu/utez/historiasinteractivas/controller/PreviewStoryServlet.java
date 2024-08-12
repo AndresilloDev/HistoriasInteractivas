@@ -54,6 +54,8 @@ public class PreviewStoryServlet extends HttpServlet {
 
             Event event = story.getModel().getEventByKey(event_id);
 
+            System.out.println("Evento: " + event.toString());
+
             req.setAttribute("text", event.getText());
             req.setAttribute("description", event.getDescription());
             req.setAttribute("image", event.getImage());
@@ -70,7 +72,16 @@ public class PreviewStoryServlet extends HttpServlet {
                 req.setAttribute("option2", null);
             }
 
-            resp.sendRedirect(req.getContextPath() + "/previewStory?id_story=" + id_story + "&event_id=" + event_id);
+            System.out.println("Id historia: " + id_story);
+            System.out.println("Id escena" + event_id);
+            System.out.println("Usuario: " + session.getAttribute("user").toString());
+
+            if (user == null) {
+                resp.sendRedirect("index.jsp");
+                return;
+            }
+
+            req.getRequestDispatcher("previewStory.jsp").forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

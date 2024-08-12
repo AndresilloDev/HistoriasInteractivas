@@ -18,6 +18,7 @@
 <%
     session = request.getSession(false);
     User user = (User) session.getAttribute("user");
+    System.out.println(user.toString());
     if(user == null) {
         response.sendRedirect("index.jsp");
         return;
