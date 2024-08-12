@@ -10,10 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/go.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/go.js" afterDir="false" />
-    </list>
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -449,7 +446,23 @@
       <option name="project" value="LOCAL" />
       <updated>1723413097896</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA">
+      <option name="closed" value="true" />
+      <created>1723427759015</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1723427759015</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA">
+      <option name="closed" value="true" />
+      <created>1723427891430</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1723427891430</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
