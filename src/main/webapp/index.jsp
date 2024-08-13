@@ -108,7 +108,7 @@
                                  '<%=s.getRelease_date()%>',
                                  '<%=s.getStory_description()%>',
                                  '<%=s.getStory_thumbnail()%>',
-                                 '<%=request.getContextPath() + File.separator + "/createStory.jsp?id_story=" + s.getId_story() + "&scene_id=-1"%>',
+                                 '<%=request.getContextPath() + File.separator + "/createStory.jsp?id_story=" + s.getId_story()%>',
                                  '<%=s.getId_story()%>')">
                         <h2><%=s.getStory_title()%></h2>
                     </div>
@@ -203,10 +203,10 @@
         </div>
 
         <!-- AQUI VA EL FORM PARA CREAR UNA HISTORIA ERICKITO -->
-        <form id="createStoryForm" class="mt-4">
+        <form id="createStoryForm" method="post" action="createStory" class="mt-4" enctype="multipart/form-data">
             <div class="row mb-4">
                 <div class="col-md-3 col-12 m-auto" style="width: 125px; height: 150px; border-radius: 15px;">
-                    <img src="rutaarchivo.xd" class="img-fluid" id="thumbnailPreview" alt="Portada de la historia">
+                    <img src="resources/img/userIcon.png" class="img-fluid" id="thumbnailPreview" alt="Portada de la historia">
                 </div>
                 <div class="col-md-9 col-12">
                     <label class="label">
@@ -218,7 +218,7 @@
             <div class="row mb-4">
                 <div class="col">
                     <label class="label">
-                        <textarea id="storyDescription" name="description" type="text" placeholder=" " class="input input-group mb-3 fs-6" required></textarea>
+                        <textarea id="storyDescription" name="storyDescription" type="text" placeholder=" " class="input input-group mb-3 fs-6" required></textarea>
                         <span class="labelName fs-6">Descripción</span>
                     </label>
                 </div>

@@ -20,10 +20,21 @@
 </head>
 <%
     session = request.getSession(false);
-    if(session.getAttribute("user") == null) {
+    String idStory = request.getParameter("id_story");
+    if(session.getAttribute("user") == null || idStory == null) {
         response.sendRedirect("index.jsp");
         return;
     }
+    User user = (User) session.getAttribute("user");
+    StoryDao dao = new StoryDao();
+    Story story = null;
+    try {
+        story = dao.findByCode(idStory, user);
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+    String storyTitle = story.getStory_title();
+    String diagram = story.getJson();
 %>
 <body class="light-mode" style="height: 100vh">
 <jsp:include page="components/navComponent/nav.jsp" />
@@ -37,7 +48,7 @@
 
 <div class="container-vertical">
     <label class="label" style="font-family: 'Noto Sans JP', sans-serif">
-        <input name="storyTitle" id="storyTitle" type="text" placeholder=" " maxlength="20" class="input input-group mb-3 fs-6" required style="background-color: var(--mode-background-color); width: 300px" value="Historia 1">
+        <input name="storyTitle" id="storyTitle" type="text" placeholder=" " maxlength="20" class="input input-group mb-3 fs-6" required style="background-color: var(--mode-background-color); width: 300px" value="<%= storyTitle %>">
         <span class="labelName fs-6" style="background-color: var(--mode-background-color)">Titulo de la historia</span>
     </label>
     <div id="storyDiagram" class="storyDiagram-container"></div>
@@ -45,28 +56,12 @@
 </div>
 
 <button id="PreviewButton" onclick="">Preview <i>></i></button>
-<button id="SaveButton" onclick="saveStory()">Guardar historia</button>
+<button id="SaveButton" onclick="saveStory('<%=idStory%>')">Guardar historia</button>
 <br>
 <!-- Estp esta oculto pero contiene el diagrama que se carga al abrir la historia
      Aqui deberiamos cargar el json de lahistoria cargado -->
 <textarea id="mySavedModel" style="width: 100%; height: 300px; background-color: transparent; display: none">
-<c:choose>
-    <c:when test="${not empty param.id_story}">
-        <%
-            String idStory = request.getParameter("id_story");
-            User user = (User) session.getAttribute("user");
-            StoryDao dao = new StoryDao();
-            Story story = dao.findByCode(idStory, user);
-            String diagram = (story != null) ? story.getJson() : "{}";
-        %>
-        <%= diagram %>
-    </c:when>
-    <c:otherwise>
-        { "class": "GraphLinksModel",
-        "nodeDataArray": [{"category":"startEvent","key":-1,"loc":"0 0"}],
-        "linkDataArray": []}
-    </c:otherwise>
-</c:choose>
+    <%= diagram %>
 </textarea>
 
 <!-- Modal de Edición -->

@@ -24,6 +24,21 @@ public class Story {
 
     private GraphLinksModel model;
 
+
+    public Story(String id_story, String email_user, String story_title, String story_description, String story_thumbnail, String json) {
+        this.id_story = id_story;
+        this.email_user = email_user;
+        this.story_title = story_title;
+        this.story_description = story_description;
+        this.story_thumbnail = story_thumbnail;
+        this.json = json;
+    }
+
+    public Story(String id_story, String story_title, String json) {
+        this.id_story = id_story;
+        this.story_title = story_title;
+        this.json = json;
+    }
     public String getId_story() {
         return id_story;
     }

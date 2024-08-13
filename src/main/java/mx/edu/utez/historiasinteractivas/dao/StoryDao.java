@@ -46,15 +46,13 @@ public class StoryDao {
 
                 story = new Story(id, email, title, release_date, description, thumbnail, json, story_type, last_update);
 
-                System.out.println(story.toString());
-
                 return story;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return story;
     }
 
     public Story findPublicStoryByCode(String id_story) throws SQLException {
@@ -214,35 +212,13 @@ public class StoryDao {
         }
         return false;
     }
-
-    public String generateUniqueCode(int length) {
-        String code;
-        do {
-            code = RandomStringGenerator.generateRandomString(length);
-        } while (!isCodeUnique(code));
-        return code;
-    }
-    public void updateStory(Story story) {
+    public boolean updateStory(Story story) {
         String sql = "UPDATE historiasInteractivas.Stories SET story_title = ?, json = ? WHERE id_story = ?";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, story.getStory_title());
             ps.setString(2, story.getJson());
             ps.setString(3, story.getId_story());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public boolean insertStory(Story story) {
-        String query = "INSERT INTO historiasInteractivas.Stories (id_story, email_user, story_title, json) VALUES (?, ?, ?, ?)";
-        try (Connection con = DatabaseConnectionManager.getConnection();
-             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, story.getId_story());
-            ps.setString(2, story.getEmail_user());
-            ps.setString(3, story.getStory_title());
-            ps.setString(4, story.getJson());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows > 0) {
@@ -254,6 +230,26 @@ public class StoryDao {
         return false;
     }
 
+    public boolean insertStory(Story story) {
+        String query = "INSERT INTO historiasInteractivas.Stories (id_story, email_user, story_title, story_description, story_thumbnail, json) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, story.getId_story());
+            ps.setString(2, story.getEmail_user());
+            ps.setString(3, story.getStory_title());
+            ps.setString(4, story.getStory_description());
+            ps.setString(5, story.getStory_thumbnail());
+            ps.setString(6, story.getJson());
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     public boolean existsStory(String idStory) {
         String sql = "SELECT COUNT(*) FROM historiasInteractivas.Stories WHERE id_story = ? AND story_type=1";
         try (Connection con = DatabaseConnectionManager.getConnection();

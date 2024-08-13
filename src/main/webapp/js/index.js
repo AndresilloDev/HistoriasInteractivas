@@ -55,8 +55,3 @@ function previewImage() {
         reader.readAsDataURL(file);
     }
 }
-
-document.getElementById('createStoryForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    // Aquí puedes manejar la lógica para crear la historia
-});

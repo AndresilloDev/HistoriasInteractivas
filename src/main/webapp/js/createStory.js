@@ -414,7 +414,7 @@ function clearPreviews() {
 }
 
 // Función de guardar el diagrama en formato JSON
-function saveStory() {
+function saveStory(idStory) {
 	document.getElementById ('mySavedModel').value = storyDiagram.model.toJson ();
 	storyDiagram.isModified = false;
 
@@ -424,11 +424,12 @@ function saveStory() {
 	// Crear el objeto de datos que se enviará al servlet
 	const dataToSend = {
 		title: storyTitle,
-		diagram: storyData
+		diagram: storyData,
+		idStory: idStory
 	};
 
 	// Hacer la solicitud AJAX al servlet
-	fetch('createStory', {
+	fetch('storyDiagram', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
