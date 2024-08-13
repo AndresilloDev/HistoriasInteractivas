@@ -18,70 +18,84 @@ import java.util.ArrayList;
 @WebServlet(name="ViewStoryServlet", value = "/viewStory")
 public class ViewStoryServlet extends HttpServlet {
 
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        //Obtener el usuario
         HttpSession session = req.getSession();
-        String id_story = req.getParameter("id_story");
-        Story story = (Story) session.getAttribute("story");
-        int event_id;
 
+        //Obtener la historia de la sesión y el id de los parámetros
+        // -- En caso de no haber parámetro con id, se coloca el de la sesión --
+        Story story = (Story) session.getAttribute("story");
+        String id_story = req.getParameter("id_story");
+        if(id_story==null) {
+            id_story = (String) session.getAttribute("id_story");
+        }
+
+        StoryDao storyDao = new StoryDao();
+
+        //Obtener el evento actual
+        // Si no hay evento, colocar el primero
+        int event_id;
         try{
             event_id = Integer.parseInt(req.getParameter("event_id"));
         } catch (NumberFormatException e){
             event_id = -1;
         }
 
-        StoryDao storyDao = new StoryDao();
-
-        //Si no existe ninguna historia con el código dado
-        if (!storyDao.isPublicCodeUnique(id_story)) {
-            req.setAttribute("message", "No existe la historia");
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
-        }
-
-        //Si la historia actual no es igual a la almacenada
-        if(story == null || !story.getId_story().equals(id_story)){
-            try {
-                story = storyDao.findPublicStoryByCode(id_story);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+        try {
+            //Si no existe ninguna historia con el código dado
+            if (storyDao.isCodeUnique(id_story)) {
+                req.setAttribute("message", "No existe la historia");
+                req.getRequestDispatcher("index.jsp").forward(req, resp);
             }
-            session.setAttribute("story", story);
-        }
 
-        System.out.println(story.getModel());
-        System.out.println(story + " story GET");
-        story.getModel().toString();
+            //Si la historia actual no es igual a la almacenada, obtenerla según el link y actualizarla en la sesión
+            if(story == null || !story.getId_story().equals(id_story)){
+                story = storyDao.findPublicStoryByCode(id_story);
+                session.removeAttribute("story");
+                session.setAttribute("story", story);
+                session.setAttribute("story_name", story.getStory_title());
+            }
 
-        Event event = story.getModel().getEventByKey(event_id);
+            //Obtener los datos del evento actual
+            Event event = story.getModel().getEventByKey(event_id);
 
-        System.out.println("Evento: " + event.toString());
+            //Colocar los datos en el request
+            req.setAttribute("id_story", id_story);
+            req.setAttribute("event_id", event_id);
+            req.setAttribute("text", event.getText());
+            req.setAttribute("description", event.getDescription());
+            req.setAttribute("image", event.getImage());
+            req.setAttribute("link", event.getLink());
+            req.setAttribute("video", event.getVideo());
+            req.setAttribute("audio", event.getAudio());
 
-        lol(req, story, event_id, event);
+            //Obtener el texto de las opciones
+            ArrayList<String> linkedTexts = story.getModel().getTextOfLinkedEvents(event_id);
+            if (linkedTexts != null) {
+                //En caso de que solo exista un link, colocar ese texto, y en option2 colocar null
+                //Por la validación anterior, debe haber al menos un texto de forma asegurada
+                req.setAttribute("option1", linkedTexts.get(0));
+                req.setAttribute("option2", linkedTexts.size() > 1 ? linkedTexts.get(1) : null);
+            } else {
+                req.setAttribute("option1", null);
+                req.setAttribute("option2", null);
+            }
 
-        System.out.println("Id historia: " + id_story);
-        System.out.println("Id escena" + event_id);
-        System.out.println("Usuario: " + session.getAttribute("user").toString());
+            //En caso de haber una opción en los parámetros (Indica que se llamó desde la escena con un botón), tomarla y mandarla a la página
+            String option = req.getParameter("option");
+            System.out.println("Opción elegida: " + option);
 
-        req.getRequestDispatcher("viewStory.jsp").forward(req, resp);
-    }
+            if(option != null && option.equals("option1")){
+                resp.sendRedirect("viewStory?id_story="+id_story+"&event_id="+story.getModel().getKeysOfLinkedEvents(event_id).get(0));
+                return;
+            } else if (option != null && option.equals("option2")) {
+                resp.sendRedirect("viewStory?id_story=" + id_story + "&event_id=" + story.getModel().getKeysOfLinkedEvents(event_id).get(1));
+                return;
+            }
 
-    static void lol(HttpServletRequest req, Story story, int event_id, Event event) {
-        req.setAttribute("text", event.getText());
-        req.setAttribute("description", event.getDescription());
-        req.setAttribute("image", event.getImage());
-        req.setAttribute("link", event.getLink());
-        req.setAttribute("video", event.getVideo());
-        req.setAttribute("audio", event.getAudio());
-
-        ArrayList<String> linkedTexts = story.getModel().getTextOfLinkedEvents(event_id);
-        if (linkedTexts != null) {
-            req.setAttribute("option1", !linkedTexts.isEmpty() ? linkedTexts.get(0) : null);
-            req.setAttribute("option2", linkedTexts.size() > 1 ? linkedTexts.get(1) : null);
-        } else {
-            req.setAttribute("option1", null);
-            req.setAttribute("option2", null);
+            req.getRequestDispatcher("viewStory.jsp").forward(req, resp);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

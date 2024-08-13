@@ -16,11 +16,12 @@ public class SearchStoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id_story = req.getParameter("id_story");
-        if(id_story == null) {
+        if (id_story == null) {
             req.setAttribute("message", "No se ingresó un código");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
             return;
         }
+
         Story story = null;
         StoryDao storyDao = new StoryDao();
 
@@ -32,10 +33,11 @@ public class SearchStoryServlet extends HttpServlet {
                 return;
             }
 
-            req.getSession().setAttribute("story", story);
-            req.getRequestDispatcher("viewStory.jsp").forward(req, resp);
+            // Aquí rediriges con el método GET pasando los datos en la URL
+            resp.sendRedirect("viewStory?id_story=" + id_story);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 }

@@ -253,4 +253,20 @@ public class StoryDao {
         }
         return false;
     }
+
+    public boolean existsStory(String idStory) {
+        String sql = "SELECT COUNT(*) FROM historiasInteractivas.Stories WHERE id_story = ? AND story_type=1";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, idStory);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) == 1; // Retorna true si hay coincidencias
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -1,10 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page import="mx.edu.utez.historiasinteractivas.model.User" %>
+<%@ page import="mx.edu.utez.historiasinteractivas.dao.UsuarioDao" %>
+<%@ page import="mx.edu.utez.historiasinteractivas.dao.StoryDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
-    <title>Preview</title>
+    <title><%=session.getAttribute("story_name")%></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -17,13 +19,27 @@
 </head>
 <%
     session = request.getSession(false);
-    User user = (User) session.getAttribute("user");
-    System.out.println(request.getAttribute("text"));
-    System.out.println(request.getAttribute("description"));
-    System.out.println(request.getAttribute("image"));
-    System.out.println(request.getAttribute("link"));
 
+    String id_story = (String) request.getAttribute("id_story");
 
+    StoryDao storyDao = new StoryDao();
+
+    if(!storyDao.existsStory(id_story)){
+        response.sendRedirect("index.jsp");
+    }
+
+    int event_id = (int) request.getAttribute("event_id");
+
+    System.out.println(event_id);
+
+    String text = (String) request.getAttribute("text");
+    String description = (String) request.getAttribute("description");
+    String image = (String) request.getAttribute("image");
+    String link = (String) request.getAttribute("link");
+    String video = (String) request.getAttribute("video");
+    String audio = (String) request.getAttribute("audio");
+    String option1 = (String) request.getAttribute("option1");
+    String option2 = (String) request.getAttribute("option2");
 %>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
@@ -32,48 +48,60 @@
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area">
         <div class="container container-custom">
-            <c:if test="${requestScope.image != null or requestScope.image.equals('null')}">
-                <img src="${requestScope.image}" alt="Event Image" class="img-fluid">
+            <c:if test="${image != null}">
+                <img src="${image}" alt="Scene Image" class="img-fluid">
             </c:if>
 
-            <c:if test="${requestScope.audio != null or requestScope.audio.equals('null')}">
+            <c:if test="${audio != null}">
                 <audio controls>
-                    <source src="${requestScope.audio}" type="audio/mpeg">
+                    <source src="${audio}" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
             </c:if>
 
-            <c:if test="${requestScope.video != null or requestScope.video.equals('null')}">
+            <c:if test="${video != null}">
                 <video width="100%" controls>
-                    <source src="${requestScope.video}" type="video/mp4">
+                    <source src="${video}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </c:if>
 
-            <c:if test="${requestScope.link != null or requestScope.link.equals('null')}">
+            <c:if test="${link != null}">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${requestScope.link}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${link}" allowfullscreen></iframe>
                 </div>
             </c:if>
 
             <div class="text-container">
-                <p><%=request.getParameter("description")%></p>
+                <p><%=description%></p>
             </div>
 
             <!-- Contenedor de Botones -->
 
 
             <div class="buttons-container">
-                <form action="viewStory" method="get">
-                    <input type="hidden" name="option" value="option1">
-                    <button type="submit" class="btn btn-primary btn-custom"><%=request.getParameter("option1")%></button>
-                </form>
-                <form action="viewStory" method="get">
-                    <input type="hidden" name="option" value="option2">
-                    <button type="submit" class="btn btn-secondary btn-custom"><%=request.getParameter("option2")%></button>
-                </form>
+                <c:if test="${option1 != null}">
+                    <form action="viewStory" method="get">
+                        <input type="hidden" name="id_story" value="<%=id_story%>">
+                        <input type="hidden" name="event_id" value="<%=event_id%>">
+                        <input type="hidden" name="option" value="option1">
+                        <button type="submit" class="btn btn-primary btn-custom"><%=option1%></button>
+                    </form>
+                </c:if>
+                <c:if test="${option2 != null}">
+                    <form action="viewStory" method="get">
+                        <input type="hidden" name="id_story" value="<%=id_story%>">
+                        <input type="hidden" name="event_id" value="<%=event_id%>">
+                        <input type="hidden" name="option" value="option2">
+                        <button type="submit" class="btn btn-secondary btn-custom"><%=option2%></button>
+                    </form>
+                </c:if>
+                <c:if test="${option1 == null and option2 == null}">
+                    <a href="index.jsp">
+                        <button class="btn btn-primary btn-custom">Volver a la página principal</button>
+                    </a>
+                </c:if>
             </div>
-
         </div>
     </div>
 </div>
