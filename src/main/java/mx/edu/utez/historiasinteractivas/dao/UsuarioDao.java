@@ -296,4 +296,21 @@ public class UsuarioDao {
 
         return email != null && !email.isEmpty() ? email : "admin@historiainteractivas.mx";
     }
+
+    public boolean hasStory(User user, String idStory) {
+        String sql = "SELECT COUNT(*) FROM historiasInteractivas.Stories WHERE id_story = ? AND email_user = ?";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, idStory);
+            ps.setString(2, user.getEmail());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) == 0; // Retorna true si no hay coincidencias
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

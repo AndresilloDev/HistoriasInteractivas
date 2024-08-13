@@ -73,6 +73,8 @@ public class GraphLinksModel {
                 }
             }
         }
+
+        //Devolver null si no hay textos
         return linkedTexts.isEmpty() ? null : linkedTexts;
     }
 
