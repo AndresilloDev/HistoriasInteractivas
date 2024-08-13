@@ -86,7 +86,8 @@ public class PreviewStoryServlet extends HttpServlet {
             }
 
             //En caso de haber una opción en los parámetros (Indica que se llamó desde la escena con un botón), tomarla y mandarla a la página
-            String option = (String) req.getAttribute("option");
+            String option = req.getParameter("option");
+            System.out.println("Opción elegida: " + option);
 
             if(option != null && option.equals("option1")){
                 resp.sendRedirect("previewStory?id_story="+id_story+"&event_id="+story.getModel().getKeysOfLinkedEvents(event_id).get(0));
