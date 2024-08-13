@@ -90,7 +90,7 @@
             <div class="wave wave3"></div>
         </section>
         <h1 class="display-1 fw-bold mb-3 text-center">Tus historias</h1>
-        <div class="container mb-4 text-left">
+        <div class="container mb-4 text-left" style="min-height: 0">
             <!-- Sección de historias públicas -->
             <h2 class="display-4">Publicas</h2>
             <div class="row">
@@ -118,7 +118,7 @@
             </div>
         </div>
 
-        <div class="container mb-4 text-left">
+        <div class="container mb-4 text-left" style="min-height: 0">
             <!-- Sección de historias restringidas -->
             <h2 class="display-4">Restringidas</h2>
             <div class="row">
@@ -136,7 +136,7 @@
             </div>
         </div>
 
-        <div class="container mb-4 text-left" style="padding-bottom: 100px">
+        <div class="container mb-4 text-left" style="min-height: 0; padding-bottom: 100px">
             <!-- Sección de borradores de historias -->
             <h2 class="display-4">Borradores</h2>
             <div class="row">
@@ -161,7 +161,7 @@
 </div>
 
 <div class="overlay" id="overlay">
-    <div class="menu container">
+    <div class="menu container" style="min-height: 0">
         <div class="row" style="width: fit-content; padding-left: 96%">
             <button class="close-btn" onclick="closeMenu()">
                 <i class="fas fa-times"></i>

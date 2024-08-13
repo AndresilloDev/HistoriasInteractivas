@@ -11,16 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/StoryDiagramServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2024_07_58_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2024_07_58_p__m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/dao/StoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/ViewStoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/ViewStoryServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/model/Story.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/model/Story.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +123,7 @@
       <recent name="$PROJECT_DIR$/src/main/webapp/components/navComponent" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.8">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 11.0.0-M20">
     <configuration name="GmailSender" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mx.edu.utez.historiasinteractivas.utils.GmailSender" />
       <module name="Historias-Interactivas" />
@@ -143,7 +137,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 10.1.8" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.8" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="21" nameIsGenerated="true">
+    <configuration name="Tomcat 11.0.0-M20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.0-M20" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="21" nameIsGenerated="true">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -238,7 +232,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.GmailSender" />
-      <item itemvalue="Tomcat Server.Tomcat 10.1.8" />
+      <item itemvalue="Tomcat Server.Tomcat 11.0.0-M20" />
     </list>
     <recent_temporary>
       <list>
@@ -249,7 +243,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-temurin-21.0.2-4caba194b151-7da56cdf" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -323,6 +318,8 @@
       <workItem from="1723515530442" duration="9318000" />
       <workItem from="1723527783536" duration="449000" />
       <workItem from="1723553900982" duration="3174000" />
+      <workItem from="1723567260614" duration="911000" />
+      <workItem from="1723568524137" duration="2271000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
