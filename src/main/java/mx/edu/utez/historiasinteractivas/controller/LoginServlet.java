@@ -31,11 +31,10 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (!usuario.isStatus()) { // El usuario no está activo
-            String adminEmail = dao.getAdminEmail();
             req.setAttribute("errorMessage",
                     "El usuario está deshabilitado." +
                        "<br>" +
-                       "Por favor, contacta a un administrador para más información: " + adminEmail);
+                       "Por favor, contactanos para más información: historiasinteractivasutez@gmail.com");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
             return;
         }

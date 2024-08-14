@@ -33,11 +33,18 @@ public class SearchStoryServlet extends HttpServlet {
                 return;
             }
 
+            // Validar si la historia es restringida o un borrador
+            int storyType = story.getStory_type();
+            if (storyType == 2 || storyType == 3) {
+                req.setAttribute("message", "La historia está restringida o es un borrador y no puede ser accedida.");
+                req.getRequestDispatcher("index.jsp").forward(req, resp);
+                return;
+            }
+
             // Aquí rediriges con el método GET pasando los datos en la URL
             resp.sendRedirect("viewStory?id_story=" + id_story);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
 }

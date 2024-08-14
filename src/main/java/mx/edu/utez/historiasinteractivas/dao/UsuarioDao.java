@@ -197,6 +197,7 @@ public class UsuarioDao {
                     usuario.setProfilePicture(rs.getString("profile_picture"));
                     usuario.setAdmin(rs.getBoolean("admin"));
                     usuario.setStatus(rs.getBoolean("status"));
+                    usuario.setPrincipalAdmin(rs.getBoolean("principal_admin"));
                 }
             }
         } catch (SQLException e) {
@@ -278,24 +279,6 @@ public class UsuarioDao {
 
         return usuarios;
     }
-    public String getAdminEmail() {
-        String email = "";
-        String query = "SELECT email FROM historiasInteractivas.Users WHERE admin = true ORDER BY RAND() LIMIT 1";
-
-        try (Connection con = DatabaseConnectionManager.getConnection();
-             PreparedStatement ps = con.prepareStatement(query);
-             ResultSet rs = ps.executeQuery()) {
-
-            if (rs.next()) {
-                email = rs.getString("email");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return email != null && !email.isEmpty() ? email : "admin@historiainteractivas.mx";
-    }
 
     public boolean hasStory(User user, String idStory) {
         String sql = "SELECT COUNT(*) FROM historiasInteractivas.Stories WHERE id_story = ? AND email_user = ?";
@@ -306,6 +289,23 @@ public class UsuarioDao {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt(1) == 0; // Retorna true si no hay coincidencias
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean isPrincipalAdmin(String email) {
+        String sql = "SELECT principal_admin FROM historiasInteractivas.Users WHERE email = ?";
+        try (Connection con = DatabaseConnectionManager.getConnection();
+             PreparedStatement statement = con.prepareStatement(sql)) {
+
+            statement.setString(1, email);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean("principal_admin");
                 }
             }
         } catch (SQLException e) {

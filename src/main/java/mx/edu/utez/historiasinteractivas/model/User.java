@@ -12,6 +12,7 @@ public class User {
     private String password;
     private boolean status;
     private boolean admin;
+    private boolean principal_admin;
 
     public User() {
     }
@@ -25,14 +26,12 @@ public class User {
         this.user = user;
         this.status = true;
     }
-    //Constructor para registro de usuario
-    //Constructor para el login
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    //Constructor para la recuperación de contraseña
     public User(String email) {
         this.email = email;
         this.user = email;
@@ -126,7 +125,13 @@ public class User {
         this.admin = admin;
     }
 
-    //Metodo toString para debugueo
+    public boolean isPrincipalAdmin() {
+        return principal_admin;
+    }
+
+    public void setPrincipalAdmin(boolean principal_admin) {
+        this.principal_admin = principal_admin;
+    }
 
     @Override
     public String toString() {
@@ -142,6 +147,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", status=" + status +
                 ", admin=" + admin +
+                ", principal_admin=" + principal_admin +
                 '}';
     }
+
 }

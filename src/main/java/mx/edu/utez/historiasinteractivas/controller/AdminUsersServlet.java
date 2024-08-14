@@ -45,7 +45,15 @@ public class AdminUsersServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        String email = request.getParameter("email");
         HttpSession session = request.getSession();
+        User currentUser = usuarioDao.findUserByEmail(email);
+
+        if (currentUser == null) {
+            request.setAttribute("message", "Usuario no encontrado.");
+            request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
+            return;
+        }
 
         int usuariosPorPagina = 10;
         int paginaActual = 1;
@@ -54,34 +62,50 @@ public class AdminUsersServlet extends HttpServlet {
             paginaActual = Integer.parseInt(pagina);
         }
 
+        boolean isPrincipalAdmin = currentUser.isPrincipalAdmin();
+
         if ("buscar".equals(action)) {
-            String email = request.getParameter("email");
-            ArrayList<User> usuarios = usuarioDao.findAllUsersByEmail(email);
+            String emailToSearch = request.getParameter("email");
+            ArrayList<User> usuarios = usuarioDao.findAllUsersByEmail(emailToSearch);
 
             if (!usuarios.isEmpty()) {
                 session.setAttribute("usuarios", usuarios);
             } else {
-                request.setAttribute("message", "No existen usuarios que cumplan las condiciones");
-                usuarios = usuarioDao.getAllUsers();
-                session.setAttribute("usuarios", usuarios);
+                request.setAttribute("message", "No existen usuarios que cumplan las condiciones.");
+                List<User> todosLosUsuarios = usuarioDao.getAllUsers();
+                session.setAttribute("usuarios", todosLosUsuarios);
             }
 
         } else if ("deshabilitar".equals(action)) {
-            String email = request.getParameter("email");
-            boolean resultado = usuarioDao.disableUserByEmail(email);
-            request.setAttribute("message", resultado ? "Usuario deshabilitado correctamente." : "Usuario no encontrado.");
-            ArrayList<User> usuarios = usuarioDao.getAllUsers();
-            session.setAttribute("usuarios", usuarios);
+            User userToDisable = usuarioDao.findUserByEmail(email);
+
+            if (userToDisable != null) {
+                if (userToDisable.isAdmin() && !isPrincipalAdmin) {
+                    request.setAttribute("message", "No tienes permisos para deshabilitar a este usuario.");
+                } else {
+                    boolean resultado = usuarioDao.disableUserByEmail(email);
+                    request.setAttribute("message", resultado ? "Usuario deshabilitado correctamente." : "Error al deshabilitar al usuario.");
+                }
+            } else {
+                request.setAttribute("message", "Usuario no encontrado.");
+            }
 
         } else if ("habilitar".equals(action)) {
-            String email = request.getParameter("email");
-            boolean resultado = usuarioDao.enableUserByEmail(email);
-            request.setAttribute("message", resultado ? "Usuario habilitado correctamente." : "Usuario no encontrado.");
-            ArrayList<User> usuarios = usuarioDao.getAllUsers();
-            session.setAttribute("usuarios", usuarios);
+            User userToEnable = usuarioDao.findUserByEmail(email);
+
+            if (userToEnable != null) {
+                if (userToEnable.isAdmin() && !isPrincipalAdmin) {
+                    request.setAttribute("message", "No tienes permisos para habilitar a este usuario.");
+                } else {
+                    boolean resultado = usuarioDao.enableUserByEmail(email);
+                    request.setAttribute("message", resultado ? "Usuario habilitado correctamente." : "Error al habilitar al usuario.");
+                }
+            } else {
+                request.setAttribute("message", "Usuario no encontrado.");
+            }
         }
 
-        List<User> todosLosUsuarios = (List<User>) session.getAttribute("usuarios");
+        List<User> todosLosUsuarios = usuarioDao.getAllUsers();
         int startIndex = (paginaActual - 1) * usuariosPorPagina;
         int endIndex = Math.min(startIndex + usuariosPorPagina, todosLosUsuarios.size());
         List<User> usuariosPaginados = todosLosUsuarios.subList(startIndex, endIndex);

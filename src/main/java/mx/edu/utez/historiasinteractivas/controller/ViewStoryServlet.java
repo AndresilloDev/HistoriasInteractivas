@@ -26,7 +26,7 @@ public class ViewStoryServlet extends HttpServlet {
         // -- En caso de no haber parámetro con id, se coloca el de la sesión --
         Story story = (Story) session.getAttribute("story");
         String id_story = req.getParameter("id_story");
-        if(id_story==null) {
+        if(id_story == null) {
             id_story = (String) session.getAttribute("id_story");
         }
 
@@ -35,9 +35,9 @@ public class ViewStoryServlet extends HttpServlet {
         //Obtener el evento actual
         // Si no hay evento, colocar el primero
         int event_id;
-        try{
+        try {
             event_id = Integer.parseInt(req.getParameter("event_id"));
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             event_id = -1;
         }
 
@@ -46,11 +46,27 @@ public class ViewStoryServlet extends HttpServlet {
             if (storyDao.isCodeUnique(id_story)) {
                 req.setAttribute("message", "No existe la historia");
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
+                return;
             }
 
             //Si la historia actual no es igual a la almacenada, obtenerla según el link y actualizarla en la sesión
-            if(story == null || !story.getId_story().equals(id_story)){
+            if (story == null || !story.getId_story().equals(id_story)) {
                 story = storyDao.findPublicStoryByCode(id_story);
+
+                // Validar si la historia es restringida o un borrador
+                if (story == null) {
+                    req.setAttribute("message", "La historia no existe o está restringida.");
+                    req.getRequestDispatcher("index.jsp").forward(req, resp);
+                    return;
+                }
+
+                int storyType = story.getStory_type();
+                if (storyType == 2 || storyType == 3) {
+                    req.setAttribute("message", "La historia está restringida o es un borrador.");
+                    req.getRequestDispatcher("index.jsp").forward(req, resp);
+                    return;
+                }
+
                 session.removeAttribute("story");
                 session.setAttribute("story", story);
                 session.setAttribute("story_name", story.getStory_title());
@@ -85,8 +101,8 @@ public class ViewStoryServlet extends HttpServlet {
             String option = req.getParameter("option");
             System.out.println("Opción elegida: " + option);
 
-            if(option != null && option.equals("option1")){
-                resp.sendRedirect("viewStory?id_story="+id_story+"&event_id="+story.getModel().getKeysOfLinkedEvents(event_id).get(0));
+            if (option != null && option.equals("option1")) {
+                resp.sendRedirect("viewStory?id_story=" + id_story + "&event_id=" + story.getModel().getKeysOfLinkedEvents(event_id).get(0));
                 return;
             } else if (option != null && option.equals("option2")) {
                 resp.sendRedirect("viewStory?id_story=" + id_story + "&event_id=" + story.getModel().getKeysOfLinkedEvents(event_id).get(1));
