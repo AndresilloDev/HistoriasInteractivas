@@ -31,6 +31,8 @@ public class CreateStoryServlet extends HttpServlet {
             System.out.println("Archivo guardado en: " + filePath);
 
             storyThumbnail = ("uploads/storiesThumbnails/" + fileName);
+        }else {
+            storyThumbnail = ("resources/img/thumbnailDefault.png");
         }
 
         String id_story = RandomStringGenerator.generateRandomString(6);

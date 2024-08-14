@@ -10,11 +10,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/img/thumbnailDefault.png" afterDir="false" />
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Modal para crear historia arreglado">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/controller/CreateStoryServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -477,7 +476,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723427891430</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Modal para crear historia arreglado">
+      <option name="closed" value="true" />
+      <created>1723651290764</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1723651290764</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +521,8 @@
     <MESSAGE value="Se ha hecho que los usuarios en adminUsers se pueda buscar sin necesidad de colocar el correo completo, así como cambiar la forma en la que se muestran" />
     <MESSAGE value="Presentacion" />
     <MESSAGE value="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios en la libreria para evitar prolemas con las palaras reservadas de JAVA" />
+    <MESSAGE value="Modal para crear historia arreglado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modal para crear historia arreglado" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

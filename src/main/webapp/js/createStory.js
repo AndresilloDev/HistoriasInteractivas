@@ -280,18 +280,18 @@ function openEditModal(e, obj) {
 	clearPreviews ();
 	
 	// Actualizar vistas previas si ya hay archivos cargados
-	if (data.hasImage) {
+	if (data.image) {
 		document.getElementById ('imagePreviewContainer').classList.add ('active');
 	}
-	if (data.hasAudio) {
+	if (data.audio) {
 		document.getElementById ('audioPreviewContainer').classList.add ('active');
 	}
-	if (data.hasVideo) {
+	if (data.video) {
 		document.getElementById ('videoPreviewContainer').classList.add ('active');
 	}
 	
 	// Mostrar el área de arrastre si no hay combinación de imagen y audio
-	if ( !(data.hasImage && data.hasAudio) && !data.hasVideo) {
+	if ( !(data.image && data.audio) && !data.video) {
 		document.getElementById ('dropArea').style.display = 'block';
 	} else {
 		document.getElementById ('dropArea').style.display = 'none';
@@ -322,13 +322,13 @@ function saveNodeData() {
 	storyDiagram.model.setDataProperty (node.data, 'description', description);
 	
 	// Actualizar datos del nodo con los archivos
-	var hasImage = document.getElementById ('imagePreviewContainer').classList.contains ('active');
-	var hasAudio = document.getElementById ('audioPreviewContainer').classList.contains ('active');
-	var hasVideo = document.getElementById ('videoPreviewContainer').classList.contains ('active');
+	var image = document.getElementById ('imagePreviewContainer').classList.contains ('active');
+	var audio = document.getElementById ('audioPreviewContainer').classList.contains ('active');
+	var video = document.getElementById ('videoPreviewContainer').classList.contains ('active');
 	
-	storyDiagram.model.setDataProperty (node.data, 'hasImage', hasImage);
-	storyDiagram.model.setDataProperty (node.data, 'hasAudio', hasAudio);
-	storyDiagram.model.setDataProperty (node.data, 'hasVideo', hasVideo);
+	storyDiagram.model.setDataProperty (node.data, 'image', image);
+	storyDiagram.model.setDataProperty (node.data, 'audio', audio);
+	storyDiagram.model.setDataProperty (node.data, 'video', video);
 
 	
 	// Cerrar el modal
@@ -369,37 +369,37 @@ document.getElementById ('fileUpload').addEventListener ('change', function (eve
 
 // Función para manejar los archivos
 function handleFiles(files) {
-	let hasImage = document.getElementById ('imagePreviewContainer').classList.contains ('active');
-	let hasAudio = document.getElementById ('audioPreviewContainer').classList.contains ('active');
-	let hasVideo = document.getElementById ('videoPreviewContainer').classList.contains ('active');
+	let image = document.getElementById ('imagePreviewContainer').classList.contains ('active');
+	let audio = document.getElementById ('audioPreviewContainer').classList.contains ('active');
+	let video = document.getElementById ('videoPreviewContainer').classList.contains ('active');
 	
 	for (let file of files) {
 		if (file.type.startsWith ('image/')) {
-			if (hasVideo) {
+			if (video) {
 				alert ('No se permite subir imagen junto con video.');
 				return;
 			}
-			hasImage = true;
+			image = true;
 			document.getElementById ('imagePreviewContainer').classList.add ('active');
 		} else if (file.type.startsWith ('audio/')) {
-			if (hasVideo) {
+			if (video) {
 				alert ('No se permite subir audio junto con video.');
 				return;
 			}
-			hasAudio = true;
+			audio = true;
 			document.getElementById ('audioPreviewContainer').classList.add ('active');
 		} else if (file.type.startsWith ('video/')) {
-			if (hasImage || hasAudio) {
+			if (image || audio) {
 				alert ('No se permite subir video junto con imagen o audio.');
 				return;
 			}
-			hasVideo = true;
+			video = true;
 			document.getElementById ('videoPreviewContainer').classList.add ('active');
 		}
 	}
 	
 	// Mostrar u ocultar el área de arrastre según las combinaciones permitidas
-	if (hasImage && hasAudio) {
+	if (image && audio) {
 		document.getElementById ('dropArea').style.display = 'none';
 	} else {
 		document.getElementById ('dropArea').style.display = 'block';
