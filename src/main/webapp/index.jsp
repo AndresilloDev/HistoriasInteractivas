@@ -205,33 +205,31 @@
         <!-- AQUI VA EL FORM PARA CREAR UNA HISTORIA ERICKITO -->
         <form id="createStoryForm" method="post" action="createStory" class="mt-4" enctype="multipart/form-data">
             <div class="row mb-4">
-                <div class="col-md-3 col-12 m-auto" style="width: 125px; height: 150px; border-radius: 15px;">
-                    <img src="resources/img/userIcon.png" class="img-fluid" id="thumbnailPreview" alt="Portada de la historia">
+                <div class="col-md-3 col-12 m-auto position-relative" style="width: 125px; height: 150px; border-radius: 15px;">
+                    <!-- Contenedor de la imagen y el botón -->
+                    <div class="image-upload-container position-relative" style="border-radius: 15px;">
+                        <img src="resources/img/thumbnailDefault.png" class="img-fluid" id="thumbnailPreview" alt="Portada de la historia" style="border-radius: 15px;">
+                        <!-- Botón de subir imagen -->
+                        <label for="coverImage" class="image-upload-btn position-absolute w-100 h-100 top-0 start-0 d-flex align-items-center justify-content-center" style="opacity: 0; cursor: pointer; transition: opacity 0.3s, background-color 0.3s;">
+                            <span class="fs-1 text-white">+</span>
+                        </label>
+                        <input type="file" id="coverImage" name="coverImage" accept="image/*" class="d-none" onchange="previewImage()">
+                    </div>
                 </div>
-                <div class="col-md-9 col-12">
+                <div class="col-md-9 col-12 mt-md-0 mt-2">
                     <label class="label">
                         <input id="storyTitle" name="storyTitle" type="text" placeholder=" " class="input input-group mb-3 fs-6" required>
                         <span class="labelName fs-6">Titulo</span>
                     </label>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col">
                     <label class="label">
-                        <textarea id="storyDescription" name="storyDescription" type="text" placeholder=" " class="input input-group mb-3 fs-6" required></textarea>
+                        <textarea id="storyDescription" name="storyDescription" placeholder=" " class="input input-group mb-3 fs-6" required></textarea>
                         <span class="labelName fs-6">Descripción</span>
                     </label>
                 </div>
             </div>
             <div class="row mb-4">
                 <div class="col text-center">
-                    <label for="coverImage" class="btn btn-primary">Seleccionar Portada</label>
-                    <input type="file" id="coverImage" name="coverImage" accept="image/*" class="d-none" onchange="previewImage()">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <button type="submit" class="btn btn-success">Crear Historia</button>
+                    <button type="submit" class="button pt-1 pb-1 mb-2">Crear Historia</button>
                 </div>
             </div>
         </form>

@@ -44,11 +44,14 @@ function closeStoryModal() {
 }
 
 function previewImage() {
-    const file = document.getElementById('coverImage').files[0];
+    const input = document.getElementById('coverImage');
+    const preview = document.getElementById('thumbnailPreview');
+
+    const file = input.files[0];
     const reader = new FileReader();
 
-    reader.onloadend = function () {
-        document.getElementById('thumbnailPreview').src = reader.result;
+    reader.onload = function(e) {
+        preview.src = e.target.result;
     }
 
     if (file) {
