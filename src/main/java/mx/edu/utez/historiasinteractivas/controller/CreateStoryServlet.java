@@ -28,7 +28,6 @@ public class CreateStoryServlet extends HttpServlet {
             String uploadDir = getServletContext().getRealPath("") + File.separator + "uploads" + File.separator + "storiesThumbnails";
             String filePath = uploadDir + File.separator + fileName;
             filePart.write(filePath);
-            System.out.println("Archivo guardado en: " + filePath);
 
             storyThumbnail = ("uploads/storiesThumbnails/" + fileName);
         }else {
@@ -36,6 +35,7 @@ public class CreateStoryServlet extends HttpServlet {
         }
 
         String id_story = RandomStringGenerator.generateRandomString(6);
+        id_story= id_story.toUpperCase();
         String email = user.getEmail();
         String storyTitle = request.getParameter("storyTitle");
         String storyDescription = request.getParameter("storyDescription");

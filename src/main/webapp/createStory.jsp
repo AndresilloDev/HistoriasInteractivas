@@ -69,10 +69,10 @@
     <div id="modalContent">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2 class="mb-2">Editar Evento</h2>
-        <form id="editForm">
+        <form id="editForm" enctype="multipart/form-data">
             <div id="dropArea" class="mb-4">
                 <p>Arrastra y suelta archivos aquí o haz clic para seleccionar archivos</p>
-                <input type="file" id="fileUpload" name="fileUpload" multiple style="display: none;" />
+                <input type="file" id="fileUpload" name="fileUpload" style="display: none; " accept="image/*,audio/*,video/*" multiple/>
             </div>
             <!-- Contenedor de las vistas previas -->
             <div id="imagePreviewContainer" class="preview-container">📷 Imagen</div>

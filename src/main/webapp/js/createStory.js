@@ -312,27 +312,54 @@ function closeModal() {
 // Función para guardar los datos del nodo
 function saveNodeData() {
 	var node = window.currentNode;
-	if ( !node) return;
-	
-	var text = document.getElementById ('nodeText').value;
-	var description = document.getElementById ('nodeDescription').value;
-	
-	// Actualizar los datos del nodo
-	storyDiagram.model.setDataProperty (node.data, 'text', text);
-	storyDiagram.model.setDataProperty (node.data, 'description', description);
-	
-	// Actualizar datos del nodo con los archivos
-	var image = document.getElementById ('imagePreviewContainer').classList.contains ('active');
-	var audio = document.getElementById ('audioPreviewContainer').classList.contains ('active');
-	var video = document.getElementById ('videoPreviewContainer').classList.contains ('active');
-	
-	storyDiagram.model.setDataProperty (node.data, 'image', image);
-	storyDiagram.model.setDataProperty (node.data, 'audio', audio);
-	storyDiagram.model.setDataProperty (node.data, 'video', video);
+	if (!node) return;
 
-	
-	// Cerrar el modal
-	closeModal ();
+	var formData = new FormData(document.getElementById('editForm'));
+	var fileInput = document.getElementById('fileUpload');
+
+	if (fileInput.files.length > 0) {
+		fetch('uploadFiles', {
+			method: 'POST',
+			body: formData
+		})
+			.then(response => response.text())  // Obtener la ruta del archivo
+			.then(filePaths => {
+				console.log("Respuestas del servidor:", filePaths);
+				var text = document.getElementById('nodeText').value;
+				var description = document.getElementById('nodeDescription').value;
+
+				storyDiagram.model.setDataProperty(node.data, 'text', text);
+				storyDiagram.model.setDataProperty(node.data, 'description', description);
+
+				// Dividir las rutas en base al salto de línea
+				var paths = filePaths.trim().split('\n');
+
+				// Establecer la propiedad correspondiente según el tipo de archivo
+				paths.forEach(path => {
+					if (path.includes('storiesImages')) {
+						storyDiagram.model.setDataProperty(node.data, 'image', path);
+					} else if (path.includes('storiesAudio')) {
+						storyDiagram.model.setDataProperty(node.data, 'audio', path);
+					} else if (path.includes('storiesVideo')) {
+						storyDiagram.model.setDataProperty(node.data, 'video', path);
+					}
+				});
+
+				closeModal();
+			})
+			.catch(error => {
+				console.error('Error al subir el archivo:', error);
+			});
+	} else {
+		console.log("me ejecuto hasta aqui V2")
+		// Si no hay archivo, solo actualiza los demás datos
+		var text = document.getElementById('nodeText').value;
+		var description = document.getElementById('nodeDescription').value;
+
+		storyDiagram.model.setDataProperty(node.data, 'text', text);
+		storyDiagram.model.setDataProperty(node.data, 'description', description);
+		closeModal();
+	}
 }
 
 // Configuración de arrastrar y soltar

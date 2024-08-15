@@ -40,6 +40,13 @@
     String audio = (String) request.getAttribute("audio");
     String option1 = (String) request.getAttribute("option1");
     String option2 = (String) request.getAttribute("option2");
+
+    System.out.println(text);
+    System.out.println(description);
+    System.out.println(image);
+    System.out.println(link);
+    System.out.println(video);
+    System.out.println(audio);
 %>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />
@@ -68,7 +75,7 @@
 
             <c:if test="${link != null}">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${link}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="${link}" allowfullscreen></iframe>
                 </div>
             </c:if>
 
