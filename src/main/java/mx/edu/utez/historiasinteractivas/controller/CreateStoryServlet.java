@@ -46,7 +46,7 @@ public class CreateStoryServlet extends HttpServlet {
 
         if (dao.insertStory(story)) {
             request.setAttribute("message", "¡Historia creada correctamente!");
-            response.sendRedirect("createStory.jsp?id_story="+id_story);
+            request.getRequestDispatcher("createStory.jsp?id_story="+id_story).forward(request, response);
         } else {
             request.setAttribute("errorMessage", "¡Error al crear la historia!");
             response.sendRedirect("index.jsp");

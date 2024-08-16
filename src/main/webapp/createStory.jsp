@@ -55,7 +55,7 @@
     <div id="buttonsBar" class="buttonsBar-container"></div>
 </div>
 
-<button id="PreviewButton" onclick="">Preview <i>></i></button>
+<a id="PreviewButton" href="previewStory?id_story=<%=idStory%>">Preview <i>></i></a>
 <button id="SaveButton" onclick="saveStory('<%=idStory%>')">Guardar historia</button>
 <br>
 <!-- Estp esta oculto pero contiene el diagrama que se carga al abrir la historia

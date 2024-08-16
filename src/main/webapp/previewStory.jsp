@@ -47,6 +47,9 @@
 <div class="container d-flex justify-content-center align-items-center">
     <div class="row p-3 shadow box-area">
         <div class="container container-custom">
+            <div class="row">
+                <a href="createStory.jsp?id_story=<%=id_story%>">Ir a la edición de historia</a>
+            </div>
             <c:if test="${image != null}">
                 <img src="${image}" alt="Scene Image" class="img-fluid">
             </c:if>
