@@ -1,4 +1,5 @@
 // Función para abrir el menú desplegable y ajustar opciones según la sección
+
 function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
     var overlay = document.getElementById('overlay');
 
@@ -18,32 +19,60 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
     switch (seccion) {
         case 'publica':
             option1.textContent = 'Restringir historia';
+            option1.onclick = function() {
+                updateStoryStatus(id_story, 'restringir');
+            };
             option2.textContent = 'Compartir historia';
+            option2.onclick = function() {
+                navigator.clipboard.writeText(id_story)
+                    .then(() => {
+                        alert('ID de la historia copiado al portapapeles');
+                    })
+                    .catch(err => {
+                        console.error('Error al copiar: ', err);
+                    });
+            };
             break;
         case 'restringida':
             option1.textContent = 'Publicar historia';
+            option1.onclick = function() {
+                updateStoryStatus(id_story, 'publicar');
+            };
             option2.textContent = 'Editar historia';
+            option2.onclick = function() {
+                window.location.href = url;
+            };
             break;
         case 'borrador':
             option1.textContent = 'Publicar historia';
+            option1.onclick = function() {
+                updateStoryStatus(id_story, 'publicar');
+            };
             option2.textContent = 'Editar historia';
+            option2.onclick = function() {
+                window.location.href = url;
+            };
             break;
     }
+}
 
-    // Agregar el evento para copiar el id_story al portapapeles en option3
-    option2.onclick = function() {
-        if (option2.textContent === "Compartir historia"){
-            navigator.clipboard.writeText(id_story)
-                .then(() => {
-                    alert('ID de la historia copiado al portapapeles');
-                })
-                .catch(err => {
-                    console.error('Error al copiar: ', err);
-                });
-        } else if (option2.textContent === "Editar historia"){
-            window.location.href = url;
+function updateStoryStatus(id_story, action) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "updateStoryStatus", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                alert('Estado de la historia actualizado correctamente.');
+                location.reload();
+            } else {
+                alert('Error al actualizar el estado de la historia.');
+            }
         }
     };
+
+    xhr.send("id_story=" + encodeURIComponent(id_story) + "&action=" + encodeURIComponent(action));
 }
 
 // Función para cerrar el menú desplegable

@@ -12,7 +12,6 @@ import java.sql.SQLException;
 
 @WebServlet(name = "UpdateStoryStatusServlet", value = "/updateStoryStatus")
 public class UpdateStoryStatusServlet extends HttpServlet {
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Obtener parámetros de la solicitud
@@ -37,8 +36,6 @@ public class UpdateStoryStatusServlet extends HttpServlet {
             } else {
                 req.setAttribute("errorMessage", "No se pudo actualizar el estado de la historia.");
             }
-            // Redirigir de vuelta al index.jsp después de la actualización
-            resp.sendRedirect("index.jsp");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
