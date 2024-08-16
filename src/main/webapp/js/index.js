@@ -20,15 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('load', checkConditions);
 });
 
-
-function scrollToNextSection() {
-    const nextSection = document.querySelector('.two');
-    if (nextSection) {
-        nextSection.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-
 // CODIGO PARA EL MODAL DE CREAR HISTORIA
 
 document.getElementById('openCreateStoryModal').addEventListener('click', function(event) {
