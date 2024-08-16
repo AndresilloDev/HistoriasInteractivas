@@ -110,5 +110,6 @@
         window.location.href = 'adminUsers';
     }
 </script>
+<script src="js/autoScroller.js"></script>
 </body>
 </html>

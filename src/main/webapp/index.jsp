@@ -242,5 +242,6 @@
 <script src="js/overlayInformation.js"></script>
 <script src="js/index.js"></script>
 <script src="components/navComponent/themeSwitch.js"></script>
+<script src="js/autoScroller.js"></script>
 </body>
 </html>

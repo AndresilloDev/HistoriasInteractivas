@@ -126,5 +126,6 @@
         }
     };
 </script>
+<script src="js/autoScroller.js"></script>
 </body>
 </html>

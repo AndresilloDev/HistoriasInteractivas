@@ -96,6 +96,6 @@
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/go.js"></script>
-
+<script src="js/autoScroller.js"></script>
 </body>
 </html>
