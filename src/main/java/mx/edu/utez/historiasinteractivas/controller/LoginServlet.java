@@ -20,6 +20,12 @@ public class LoginServlet extends HttpServlet {
         String emailOrUser = req.getParameter("user");
         String password = req.getParameter("password");
 
+        if(emailOrUser.length()>50 || password.length() > 256){
+            req.setAttribute("errorMessage", "Ha sobrepasado el límite de carácteres");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            return;
+        }
+
         // Se obtiene el usuario si existe
         UsuarioDao dao = new UsuarioDao();
         User usuario = dao.getUser(emailOrUser, password);

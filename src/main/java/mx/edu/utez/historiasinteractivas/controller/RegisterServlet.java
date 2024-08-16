@@ -29,6 +29,12 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
+        if(email.length()>50 || password.length() > 256){
+            req.setAttribute("errorMessage", "Ha sobrepasado el límite de carácteres");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            return;
+        }
+
         // Crear el usuario
         UsuarioDao dao = new UsuarioDao();
         if (!dao.existsUser(email, password)){

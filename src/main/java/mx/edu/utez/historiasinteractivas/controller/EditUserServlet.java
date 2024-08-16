@@ -24,6 +24,16 @@ public class EditUserServlet extends HttpServlet {
         String maternalName = request.getParameter("maternalName");
         Part filePart = request.getPart("userPicture");
 
+        if(email.length()>50 ||
+                user_name.length() > 50 ||
+                name.length() > 40 ||
+                paternalName.length() > 20 ||
+                maternalName.length() > 20){
+            request.setAttribute("errorMessage", "Ha sobrepasado el límite de carácteres");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
+        }
+
         UsuarioDao dao = new UsuarioDao();
         User usuario = dao.findUserByEmail(email);
 
