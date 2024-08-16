@@ -52,9 +52,6 @@ public class UploadFilesServlet extends HttpServlet {
             String relativePath = "uploads" + File.separator + subDir + File.separator + fileName;
             responseBuilder.append(relativePath).append("\n");
 
-            System.out.println(relativePath);
-            System.out.println("Información guardada correctamente");
-
             request.setAttribute("message", "Información guardada correctamente");
         }
         response.getWriter().write(responseBuilder.toString().trim());

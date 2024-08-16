@@ -30,8 +30,6 @@
 
     int event_id = (int) request.getAttribute("event_id");
 
-    System.out.println(event_id);
-
     String text = (String) request.getAttribute("text");
     String description = (String) request.getAttribute("description");
     String image = (String) request.getAttribute("image");
@@ -41,12 +39,6 @@
     String option1 = (String) request.getAttribute("option1");
     String option2 = (String) request.getAttribute("option2");
 
-    System.out.println(text);
-    System.out.println(description);
-    System.out.println(image);
-    System.out.println(link);
-    System.out.println(video);
-    System.out.println(audio);
 %>
 <body class="light-mode">
 <jsp:include page="components/navComponent/nav.jsp" />

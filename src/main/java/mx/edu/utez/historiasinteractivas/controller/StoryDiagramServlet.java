@@ -5,8 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import mx.edu.utez.historiasinteractivas.dao.StoryDao;
 import mx.edu.utez.historiasinteractivas.model.Story;
-import mx.edu.utez.historiasinteractivas.model.User;
-import mx.edu.utez.historiasinteractivas.utils.RandomStringGenerator;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -33,16 +31,13 @@ public class StoryDiagramServlet extends HttpServlet {
             String title = jsonObject.getString("title");
             String diagram = jsonObject.getString("diagram");
 
-            System.out.println(diagram);
 
             Story story = new Story(idStory, title, diagram);
             StoryDao dao = new StoryDao();
 
             if (!dao.updateStory(story)) { // Actualizar historia existente
-                System.out.println("Fallo");
                 request.setAttribute("errorMessage", "¡Error al actualizar la historia!");
             } else {
-                System.out.println("GOOD");
                 request.setAttribute("message", "¡Historia actualizada correctamente!");
             }
 

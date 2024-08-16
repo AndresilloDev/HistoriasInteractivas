@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
-import mx.edu.utez.historiasinteractivas.model.User;
 import mx.edu.utez.historiasinteractivas.utils.GmailSender;
 import mx.edu.utez.historiasinteractivas.utils.RandomStringGenerator;
 
@@ -15,17 +14,12 @@ import java.io.IOException;
 @WebServlet(name="RecoverPasswordServlet", value="/recoverPassword")
 public class RecoverPasswordServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
 
         UsuarioDao dao = new UsuarioDao();
 
         if (dao.findUserByEmail(email) == null) {
-            System.out.println("No usuario correspondiente");
             req.setAttribute("errorMessage", "No existe el usuario " + email);
             req.getRequestDispatcher("recoverPassword.jsp").forward(req, resp);
         } else {
@@ -35,14 +29,12 @@ public class RecoverPasswordServlet extends HttpServlet {
 
             //Guardar el token en la base de datos para su posterior verificado
             if(!dao.saveChangePasswordToken(email, token)){
-                System.out.println("No se pudo almacenar");
                 req.setAttribute("errorMessage", "Error al cambiar la contraseña, inténtelo de nuevo en unos momentos" + email);
                 req.getRequestDispatcher("recoverPassword.jsp").forward(req, resp);
             }
             try {
                 GmailSender gs = new GmailSender();
                 gs.sendEmailRecoverPassword(email, resetLink);
-                System.out.println("Correo enviado");
                 req.setAttribute("message", "Favor de revisar su correo para cambiar la contraseña.");
                 req.getRequestDispatcher("recoverPassword.jsp").forward(req, resp);
 
@@ -50,15 +42,5 @@ public class RecoverPasswordServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
-    }
-
-    @Override
-    public void init() throws ServletException {
-
-    }
-
-    @Override
-    public void destroy() {
-
     }
 }

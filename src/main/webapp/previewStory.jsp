@@ -17,6 +17,13 @@
     <link rel="stylesheet" href="css/previewStory.css">
 </head>
 <%
+    HttpServletResponse httpResponse = (HttpServletResponse) response;
+
+    // Control de caché
+    httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    httpResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    httpResponse.setDateHeader("Expires", 0); // Proxies.
+
     session = request.getSession(false);
     User user = (User) session.getAttribute("user");
     UsuarioDao usuarioDao = new UsuarioDao();
@@ -28,8 +35,6 @@
     }
 
     int event_id = (int) request.getAttribute("event_id");
-
-    System.out.println(event_id);
 
     String text = (String) request.getAttribute("text");
     String description = (String) request.getAttribute("description");
@@ -117,5 +122,12 @@
 
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    };
+</script>
 </body>
 </html>

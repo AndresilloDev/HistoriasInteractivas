@@ -42,83 +42,57 @@ public class Story {
     public String getId_story() {
         return id_story;
     }
-
     public void setId_story(String id_story) {
         this.id_story = id_story;
     }
-
     public String getEmail_user() {
         return email_user;
     }
-
     public void setEmail_user(String email_user) {
         this.email_user = email_user;
     }
-
     public String getStory_title() {
         return story_title;
     }
-
     public void setStory_title(String story_title) {
         this.story_title = story_title;
     }
-
-    public Date getRelease_time() {
-        return release_date;
-    }
-
     public void setRelease_date(Date release_date) {
         this.release_date = release_date;
     }
-
     public String getStory_description() {
         return story_description;
     }
-
     public void setStory_description(String story_description) {
         this.story_description = story_description;
     }
-
     public String getStory_thumbnail() {
         return story_thumbnail;
     }
-
     public void setStory_thumbnail(String story_thumbnail) {
         this.story_thumbnail = story_thumbnail;
     }
-
     public String getJson() {
         return json;
     }
-
     public void setJson(String json) {
         this.json = json;
     }
-
     public Date getRelease_date() {
         return release_date;
     }
-
     public int getStory_type() {
         return story_type;
     }
-
     public void setStory_type(int story_type) {
         this.story_type = story_type;
     }
-
-    public Date getLast_update() {
-        return last_update;
-    }
-
     public void setLast_update(Date last_update) {
         this.last_update = last_update;
     }
-
     public GraphLinksModel getModel() {
         return model;
     }
-
     public void setModel(GraphLinksModel model) {
         this.model = model;
     }
@@ -126,20 +100,8 @@ public class Story {
     // C O N S T R U C T O R E S
 
     //Constructor vacío
-
     public Story() {
     }
-
-    //Creación de historia
-
-
-    public Story(String id_story, String email_user, String story_title, String json) {
-        this.id_story = id_story;
-        this.email_user = email_user;
-        this.story_title = story_title;
-        this.json = json;
-    }
-
     public Story(String id_story, String email_user, String story_title, Date release_date, String story_description, String story_thumbnail, String json, int story_type, Date last_update) {
         this.id_story = id_story;
         this.email_user = email_user;
@@ -153,9 +115,7 @@ public class Story {
         this.model = parseJsonToGraphLinksModel();
     }
 
-
     // M É T O D O S
-
     public GraphLinksModel parseJsonToGraphLinksModel() {
         ObjectMapper objectMapper = new ObjectMapper();
         GraphLinksModel graphLinksModel = null;
@@ -165,12 +125,6 @@ public class Story {
             graphLinksModel = objectMapper.readValue(this.json, GraphLinksModel.class);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-
-        if (model != null) {
-            System.out.println("Clase: " + model.getClass_name());
-            System.out.println("NodeDataArray: " + model.getNodeDataArray().size());
-            System.out.println("LinkDataArray: " + model.getLinkDataArray().size());
         }
 
         return graphLinksModel;

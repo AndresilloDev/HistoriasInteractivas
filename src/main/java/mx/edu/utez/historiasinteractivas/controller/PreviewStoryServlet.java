@@ -54,11 +54,9 @@ public class PreviewStoryServlet extends HttpServlet {
             }
 
             //Si la historia actual no es igual a la almacenada, obtenerla según el link y actualizarla en la sesión
-            if(story == null || !story.getId_story().equals(id_story)){
                 story = storyDao.findByCode(id_story, user);
                 session.removeAttribute("story");
                 session.setAttribute("story", story);
-            }
 
             //Obtener los datos del evento actual
             Event event = story.getModel().getEventByKey(event_id);
@@ -87,7 +85,6 @@ public class PreviewStoryServlet extends HttpServlet {
 
             //En caso de haber una opción en los parámetros (Indica que se llamó desde la escena con un botón), tomarla y mandarla a la página
             String option = req.getParameter("option");
-            System.out.println("Opción elegida: " + option);
 
             if(option != null && option.equals("option1")){
                 resp.sendRedirect("previewStory?id_story="+id_story+"&event_id="+story.getModel().getKeysOfLinkedEvents(event_id).get(0));

@@ -21,7 +21,6 @@ public class UsuarioDao {
 
             // Ejecutar la inserción
             int affectedRows = stmt.executeUpdate();
-            System.out.println("Affected rows: " + affectedRows);
 
             // Verificar si se insertó una fila
             if (affectedRows > 0) {
@@ -98,7 +97,6 @@ public class UsuarioDao {
 
             // Ejecutar la inserción
             int affectedRows = stmt.executeUpdate();
-            System.out.println("Affected rows: " + affectedRows);
 
             // Verificar si se insertó una fila
             if (affectedRows > 0) {
@@ -141,7 +139,6 @@ public class UsuarioDao {
 
             // Ejecutar la inserción
             int affectedRows = stmt.executeUpdate();
-            System.out.println("Affected rows: " + affectedRows);
 
             // Verificar si se insertó una fila
             if (affectedRows > 0) {

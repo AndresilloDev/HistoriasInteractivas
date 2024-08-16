@@ -12,7 +12,6 @@ import java.io.IOException;
 
 @WebServlet(name="ChangePasswordServlet", value = "/changePassword")
 public class ChangePasswordServlet extends HttpServlet {
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String tokenGiven = req.getParameter("token");

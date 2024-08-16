@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.StoryDao;
 import mx.edu.utez.historiasinteractivas.model.Event;
 import mx.edu.utez.historiasinteractivas.model.Story;
-import mx.edu.utez.historiasinteractivas.model.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -99,7 +98,6 @@ public class ViewStoryServlet extends HttpServlet {
 
             //En caso de haber una opción en los parámetros (Indica que se llamó desde la escena con un botón), tomarla y mandarla a la página
             String option = req.getParameter("option");
-            System.out.println("Opción elegida: " + option);
 
             if (option != null && option.equals("option1")) {
                 resp.sendRedirect("viewStory?id_story=" + id_story + "&event_id=" + story.getModel().getKeysOfLinkedEvents(event_id).get(0));

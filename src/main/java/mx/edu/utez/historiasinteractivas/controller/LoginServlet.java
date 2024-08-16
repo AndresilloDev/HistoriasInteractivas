@@ -43,14 +43,4 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("user", usuario);
         resp.sendRedirect("index.jsp");
     }
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-    }
-
-    @Override
-    public void destroy() {
-        super.destroy();
-    }
 }

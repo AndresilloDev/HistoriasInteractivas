@@ -40,7 +40,6 @@ public class EditUserServlet extends HttpServlet {
             String uploadDir = getServletContext().getRealPath("") + File.separator + "uploads" + File.separator + "profilePictures";
             String filePath = uploadDir + File.separator + fileName;
             filePart.write(filePath);
-            System.out.println("Archivo guardado en: " + filePath);
 
             usuario.setProfilePicture("uploads/profilePictures/" + fileName);
         }

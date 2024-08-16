@@ -22,11 +22,8 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         String confirmPassword = req.getParameter("confirmPassword");
 
-        System.out.println("Datos recibidos: email=" + email + ", password=" + password);
-
         // Verificar que las contraseñas coincidan
         if (!password.equals(confirmPassword)) {
-            System.out.println("Las contraseñas no coinciden");
             req.setAttribute("errorMessage", "¡Las contraseñas no coinciden!");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
             return;
@@ -38,7 +35,6 @@ public class RegisterServlet extends HttpServlet {
             // Generar el código de verificación y enviarlo por correo electrónico
             try {
                 User usuario = new User(email, password);
-                System.out.println("Generando código de verificación");
                 String verificationCode = generateVerificationCode();
                 GmailSender verification = new GmailSender();
                 verification.sendVerificationEmail(email, verificationCode);
@@ -48,10 +44,8 @@ public class RegisterServlet extends HttpServlet {
                 session.setAttribute("registerUser", usuario);
                 session.setAttribute("verificationCode", verificationCode);
 
-                System.out.println("Redirigiendo a verifyAccount.jsp");
                 resp.sendRedirect("verifyAccount.jsp");
             } catch (Exception e) {
-                System.out.println("Error al enviar el correo: " + e.getMessage());
                 req.setAttribute("errorMessage", "¡Error al enviar el correo de verificación!");
                 req.getRequestDispatcher("register.jsp").forward(req, resp);
             }
@@ -61,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
                 resp.sendRedirect("register.jsp");
 
             } catch (Exception e){
-                System.out.println("El correo ya esta siendo usado");
+                e.printStackTrace();
             }
         }
     }
@@ -70,15 +64,5 @@ public class RegisterServlet extends HttpServlet {
         SecureRandom random = new SecureRandom();
         int num = random.nextInt(1000000);
         return String.format("%06d", num);
-    }
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-    }
-
-    @Override
-    public void destroy() {
-        super.destroy();
     }
 }
