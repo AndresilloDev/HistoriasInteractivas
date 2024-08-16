@@ -187,8 +187,7 @@
         <div class="row mt-2">
             <div class="col text-center">
                 <button id="option1" class="btn mx-2">Opcion</button><br>
-                <button id="option2" class="btn mx-2">Opcion</button><br>
-                <button id="option3" class="btn mx-2">Opcion</button>
+                <button id="option2" class="btn mx-2">Opcion</button>
             </div>
         </div>
     </div>

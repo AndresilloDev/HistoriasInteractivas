@@ -14,36 +14,35 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
     // Actualizar las opciones del menú según la sección
     var option1 = document.getElementById('option1');
     var option2 = document.getElementById('option2');
-    var option3 = document.getElementById('option3');
 
     switch (seccion) {
         case 'publica':
             option1.textContent = 'Restringir historia';
+            option2.textContent = 'Compartir historia';
             break;
         case 'restringida':
             option1.textContent = 'Publicar historia';
+            option2.textContent = 'Editar historia';
             break;
         case 'borrador':
             option1.textContent = 'Publicar historia';
+            option2.textContent = 'Editar historia';
             break;
     }
 
-    option2.textContent = 'Editar historia';
-    option3.textContent = 'Compartir historia';
-
-    option2.onclick = function() {
-        window.location.href = url;
-    };
-
     // Agregar el evento para copiar el id_story al portapapeles en option3
-    option3.onclick = function() {
-        navigator.clipboard.writeText(id_story)
-            .then(() => {
-                alert('ID de la historia copiado al portapapeles');
-            })
-            .catch(err => {
-                console.error('Error al copiar: ', err);
-            });
+    option2.onclick = function() {
+        if (option2.textContent === "Compartir historia"){
+            navigator.clipboard.writeText(id_story)
+                .then(() => {
+                    alert('ID de la historia copiado al portapapeles');
+                })
+                .catch(err => {
+                    console.error('Error al copiar: ', err);
+                });
+        } else if (option2.textContent === "Editar historia"){
+            window.location.href = url;
+        }
     };
 }
 
