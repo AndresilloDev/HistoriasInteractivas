@@ -12,7 +12,6 @@ public class User {
     private String password;
     private boolean status;
     private boolean admin;
-    private boolean principal_admin;
 
     public User() {
     }
@@ -59,14 +58,6 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public String getChange_password_token() {
-        return change_password_token;
-    }
-
-    public void setChange_password_token(String change_password_token) {
-        this.change_password_token = change_password_token;
     }
 
     public String getName() {
@@ -125,14 +116,6 @@ public class User {
         this.admin = admin;
     }
 
-    public boolean isPrincipalAdmin() {
-        return principal_admin;
-    }
-
-    public void setPrincipalAdmin(boolean principal_admin) {
-        this.principal_admin = principal_admin;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -147,7 +130,6 @@ public class User {
                 ", password='" + password + '\'' +
                 ", status=" + status +
                 ", admin=" + admin +
-                ", principal_admin=" + principal_admin +
                 '}';
     }
 

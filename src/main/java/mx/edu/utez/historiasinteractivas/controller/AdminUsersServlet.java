@@ -28,7 +28,7 @@ public class AdminUsersServlet extends HttpServlet {
             paginaActual = Integer.parseInt(pagina);
         }
 
-        List<User> todosLosUsuarios = usuarioDao.getAllUsers();
+        List<User> todosLosUsuarios = usuarioDao.getAllNotAdmin();
 
         int startIndex = (paginaActual - 1) * usuariosPorPagina;
         int endIndex = Math.min(startIndex + usuariosPorPagina, todosLosUsuarios.size());
@@ -47,13 +47,6 @@ public class AdminUsersServlet extends HttpServlet {
         String action = request.getParameter("action");
         String email = request.getParameter("email");
         HttpSession session = request.getSession();
-        User currentUser = usuarioDao.findUserByEmail(email);
-
-        if (currentUser == null) {
-            request.setAttribute("message", "Usuario no encontrado.");
-            request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
-            return;
-        }
 
         int usuariosPorPagina = 10;
         int paginaActual = 1;
@@ -62,50 +55,52 @@ public class AdminUsersServlet extends HttpServlet {
             paginaActual = Integer.parseInt(pagina);
         }
 
-        boolean isPrincipalAdmin = currentUser.isPrincipalAdmin();
-
-        if ("buscar".equals(action)) {
-            String emailToSearch = request.getParameter("email");
-            ArrayList<User> usuarios = usuarioDao.findAllUsersByEmail(emailToSearch);
-
-            if (!usuarios.isEmpty()) {
-                session.setAttribute("usuarios", usuarios);
-            } else {
-                request.setAttribute("message", "No existen usuarios que cumplan las condiciones.");
-                List<User> todosLosUsuarios = usuarioDao.getAllUsers();
-                session.setAttribute("usuarios", todosLosUsuarios);
-            }
-
-        } else if ("deshabilitar".equals(action)) {
-            User userToDisable = usuarioDao.findUserByEmail(email);
-
-            if (userToDisable != null) {
-                if (userToDisable.isAdmin() && !isPrincipalAdmin) {
-                    request.setAttribute("message", "No tienes permisos para deshabilitar a este usuario.");
+        switch (action) {
+            case "buscar":
+                String emailToSearch = request.getParameter("email");
+                ArrayList<User> usuarios = usuarioDao.findAllUsersByEmail(emailToSearch);
+                if (!usuarios.isEmpty()) {
+                    int startIndex = (paginaActual - 1) * usuariosPorPagina;
+                    int endIndex = Math.min(startIndex + usuariosPorPagina, usuarios.size());
+                    List<User> usuariosPaginados = usuarios.subList(startIndex, endIndex);
+                    session.setAttribute("usuarios", usuariosPaginados);
+                    request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
                 } else {
-                    boolean resultado = usuarioDao.disableUserByEmail(email);
-                    request.setAttribute("message", resultado ? "Usuario deshabilitado correctamente." : "Error al deshabilitar al usuario.");
+                    request.setAttribute("message", "No existen usuarios que cumplan las condiciones.");
+                    List<User> todosLosUsuarios = usuarioDao.getAllNotAdmin();
+                    session.setAttribute("usuarios", todosLosUsuarios);
                 }
-            } else {
-                request.setAttribute("message", "Usuario no encontrado.");
-            }
+                break;
 
-        } else if ("habilitar".equals(action)) {
-            User userToEnable = usuarioDao.findUserByEmail(email);
+            case "deshabilitar":
+                User userToDisable = usuarioDao.findUserByEmail(email);
 
-            if (userToEnable != null) {
-                if (userToEnable.isAdmin() && !isPrincipalAdmin) {
-                    request.setAttribute("message", "No tienes permisos para habilitar a este usuario.");
+                if (userToDisable != null) {
+                    if (userToDisable.isAdmin()) {
+                        request.setAttribute("message", "No puedes desabilitar un administrador.");
+                    } else {
+                        boolean resultado = usuarioDao.disableUserByEmail(email);
+                        request.setAttribute("message", resultado ? "Usuario deshabilitado correctamente." : "Error al deshabilitar al usuario.");
+                    }
                 } else {
+                    request.setAttribute("message", "Usuario no encontrado.");
+                }
+                break;
+
+            case "habilitar":
+                User userToEnable = usuarioDao.findUserByEmail(email);
+
+                if (userToEnable != null) {
                     boolean resultado = usuarioDao.enableUserByEmail(email);
                     request.setAttribute("message", resultado ? "Usuario habilitado correctamente." : "Error al habilitar al usuario.");
+
+                } else {
+                    request.setAttribute("message", "Usuario no encontrado.");
                 }
-            } else {
-                request.setAttribute("message", "Usuario no encontrado.");
-            }
+                break;
         }
 
-        List<User> todosLosUsuarios = usuarioDao.getAllUsers();
+        List<User> todosLosUsuarios = usuarioDao.getAllNotAdmin();
         int startIndex = (paginaActual - 1) * usuariosPorPagina;
         int endIndex = Math.min(startIndex + usuariosPorPagina, todosLosUsuarios.size());
         List<User> usuariosPaginados = todosLosUsuarios.subList(startIndex, endIndex);
