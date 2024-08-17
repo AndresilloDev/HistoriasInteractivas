@@ -53,7 +53,7 @@ function init() {
 				},
 				new go.Binding ('fill', 'color')
 			),
-			$ (go.TextBlock, 'Evento', textStyle (),
+			$ (go.TextBlock, 'Escena', textStyle (),
 				new go.Binding ('text', 'text').makeTwoWay ())
 		);
 	
@@ -134,7 +134,7 @@ function init() {
 				},
 				new go.Binding ('fill', 'color')
 			),
-			$ (go.TextBlock, 'Evento', textStyle (), new go.Binding ('text', 'text').makeTwoWay ())
+			$ (go.TextBlock, 'Escena', textStyle (), new go.Binding ('text', 'text').makeTwoWay ())
 		)
 	);
 	
@@ -289,7 +289,21 @@ function openEditModal(e, obj) {
 	if (data.video) {
 		document.getElementById ('videoPreviewContainer').classList.add ('active');
 	}
-	
+
+	var decisionInput = document.getElementById('nodeText');
+	var labelDecision = document.getElementById('decision');
+	if (data.category === 'startEvent') {
+		decisionInput.value = 'Inicio'; // Rellenar automáticamente con "Inicio"
+		decisionInput.readOnly = true; // Deshabilitar edición
+		decisionInput.style.display = 'none'; // Ocultar los input
+		labelDecision.style.display = 'none';
+	} else {
+		decisionInput.value = data.description || '';
+		decisionInput.readOnly = false; // Habilitar edición
+		decisionInput.style.display = 'block'; // Mostrar los input
+		labelDecision.style.display = 'grid';
+	}
+
 	// Mostrar el área de arrastre si no hay combinación de imagen y audio
 	if ( !(data.image && data.audio) && !data.video) {
 		document.getElementById ('dropArea').style.display = 'block';

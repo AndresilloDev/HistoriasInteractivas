@@ -68,7 +68,7 @@
 <div id="editModal">
     <div id="modalContent">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h2 class="mb-2">Editar Evento</h2>
+        <h2 class="mb-2">Editar Escena</h2>
         <form id="editForm" enctype="multipart/form-data">
             <div id="dropArea" class="mb-4">
                 <p>Arrastra y suelta archivos aquí o haz clic para seleccionar archivos</p>
@@ -79,13 +79,13 @@
             <div id="audioPreviewContainer" class="preview-container">🔉 Audio</div>
             <div id="videoPreviewContainer" class="preview-container mb-4">📽️ Video</div>
 
-            <label class="label">
+            <label class="label" id="decision">
                 <input name="nodeText" id="nodeText" type="text" placeholder=" " class="input input-group mb-3 fs-6" required>
-                <span class="labelName fs-6">Nombre del evento</span>
+                <span class="labelName fs-6">Decisión:</span>
             </label>
             <label class="label">
-                <textarea name="nodeDescription" id="nodeDescription" type="text" placeholder=" " class="input input-group mb-3 fs-6" style="height: 60px"></textarea>
-                <span class="labelName fs-6">Descripción</span>
+                <textarea name="nodeDescription" id="nodeDescription" type="text" placeholder=" " class="input input-group mb-3 fs-6" style="height: 60px" required></textarea>
+                <span class="labelName fs-6">Descripción:</span>
             </label>
             <button class="button" type="button" onclick="saveNodeData()">Aceptar</button>
         </form>

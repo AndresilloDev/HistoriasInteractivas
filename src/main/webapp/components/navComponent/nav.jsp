@@ -53,7 +53,7 @@
                                 <li><a class="dropdown-item" href="#" id="openCreateStoryModal">Crear una historia</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Cerrar sesión</a></li>
                                 <c:if test="${user.admin}">
-                                    <li><a class="dropdown-item" href="adminUsers.jsp">Administrar</a></li>
+                                    <li><a class="dropdown-item" href="adminUsers">Administrar</a></li>
                                 </c:if>
                             </ul>
                         </li>
