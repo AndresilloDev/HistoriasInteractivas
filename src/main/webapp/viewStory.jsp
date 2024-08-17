@@ -24,8 +24,10 @@
 
     StoryDao storyDao = new StoryDao();
 
-    if(!storyDao.existsStory(id_story)){
-        response.sendRedirect("index.jsp");
+    if(!storyDao.existsStory(id_story) ||
+            request.getAttribute("event_id") == null){
+        request.setAttribute("message", "Se ha encontrado un error en el link");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     int event_id = (int) request.getAttribute("event_id");

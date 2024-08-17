@@ -51,6 +51,7 @@ public class PreviewStoryServlet extends HttpServlet {
             if (storyDao.isCodeUnique(id_story)) {
                 req.setAttribute("message", "No existe la historia");
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
+                return;
             }
 
             //Si la historia actual no es igual a la almacenada, obtenerla según el link y actualizarla en la sesión

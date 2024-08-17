@@ -17,21 +17,18 @@
     <link rel="stylesheet" href="css/previewStory.css">
 </head>
 <%
-    HttpServletResponse httpResponse = (HttpServletResponse) response;
-
-    // Control de caché
-    httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-    httpResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-    httpResponse.setDateHeader("Expires", 0); // Proxies.
-
     session = request.getSession(false);
     User user = (User) session.getAttribute("user");
     UsuarioDao usuarioDao = new UsuarioDao();
 
     String id_story = (String) request.getAttribute("id_story");
 
-    if(user == null || usuarioDao.hasStory(user, id_story)){
-        response.sendRedirect("index.jsp");
+    if(user == null ||
+            usuarioDao.hasStory(user, id_story) ||
+            request.getAttribute("event_id") == null
+    ){
+        request.setAttribute("message", "Se ha encontrado un error en el link");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     int event_id = (int) request.getAttribute("event_id");
