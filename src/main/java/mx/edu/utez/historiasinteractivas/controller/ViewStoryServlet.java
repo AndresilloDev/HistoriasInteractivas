@@ -44,7 +44,8 @@ public class ViewStoryServlet extends HttpServlet {
             //Si no existe ninguna historia con el código dado
             if (storyDao.isCodeUnique(id_story)) {
                 req.setAttribute("message", "No existe la historia");
-                req.getRequestDispatcher("index.jsp").forward(req, resp);
+                resp.sendRedirect("index.jsp");
+                // req.getRequestDispatcher("index.jsp").forward(req, resp);
                 return;
             }
 

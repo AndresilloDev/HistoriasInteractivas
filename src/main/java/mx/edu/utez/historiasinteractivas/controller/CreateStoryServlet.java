@@ -52,4 +52,9 @@ public class CreateStoryServlet extends HttpServlet {
             response.sendRedirect("index.jsp");
         }
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect("index.jsp");
+    }
 }
