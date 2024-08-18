@@ -82,3 +82,9 @@ function closeMenu() {
     // Ocultar el overlay
     overlay.classList.remove('show');
 }
+
+window.addEventListener('click', (event) => {
+    if (event.target === overlay) {
+        closeMenu();
+    }
+});

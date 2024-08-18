@@ -106,3 +106,10 @@ function previewImage() {
         reader.readAsDataURL(file);
     }
 }
+
+window.addEventListener('click', (event) => {
+    let overlay = document.getElementById('storyModal');
+    if (event.target === overlay) {
+        closeStoryModal();
+    }
+});
