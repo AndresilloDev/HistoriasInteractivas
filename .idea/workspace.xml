@@ -10,10 +10,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Agregue nuevas funciones en Javascript para que poder crear una historia desde cualquier pagina, agrege el codigo en el themeSwitch.js para no tener que importar el script en todas las vistas de nuevo">
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Agrege funciones con JS para que se cierren los modales al dar click fuera de ellos">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/checkEmptySections.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/overlayInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/overlayInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +26,9 @@
       <list>
         <option value="Enum" />
         <option value="Jsp File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -532,7 +533,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723964699761</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Agrege funciones con JS para que se cierren los modales al dar click fuera de ellos">
+      <option name="closed" value="true" />
+      <created>1723975374601</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1723975374601</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +584,8 @@
     <MESSAGE value="Se quitaron depuraciones y previewStory tambien guarda la historia" />
     <MESSAGE value="Cambie los nombres del createStory.js para que los nombres de cada nodo sean &quot;Escena&quot; en lugar de evento asi como sus modales" />
     <MESSAGE value="Agregue nuevas funciones en Javascript para que poder crear una historia desde cualquier pagina, agrege el codigo en el themeSwitch.js para no tener que importar el script en todas las vistas de nuevo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregue nuevas funciones en Javascript para que poder crear una historia desde cualquier pagina, agrege el codigo en el themeSwitch.js para no tener que importar el script en todas las vistas de nuevo" />
+    <MESSAGE value="Agrege funciones con JS para que se cierren los modales al dar click fuera de ellos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agrege funciones con JS para que se cierren los modales al dar click fuera de ellos" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

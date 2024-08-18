@@ -252,5 +252,6 @@
 <script src="js/index.js"></script>
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="js/autoScroller.js"></script>
+<script src="js/checkEmptySections.js"></script>
 </body>
 </html>

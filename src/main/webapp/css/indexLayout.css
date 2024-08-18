@@ -443,3 +443,17 @@ textarea {
 .image-upload-container:hover #thumbnailPreview {
     opacity: 0.7;
 }
+
+.empty-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px; /* Ajusta la altura según la altura de tus tarjetas */
+    border: 2px dashed var(--mode-text-color); /* Para hacer que se vea diferente de las tarjetas normales */
+    border-radius: 10px;
+    color: var(--mode-text-color);
+    background-color: var(--mode-background-color); /* Color de fondo */
+    text-align: center;
+    font-size: 1.2rem;
+    width: 100%;
+}
