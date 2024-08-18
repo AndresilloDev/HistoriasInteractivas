@@ -10,12 +10,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Cambie los nombres del createStory.js para que los nombres de cada nodo sean &quot;Escena&quot; en lugar de evento asi como sus modales">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_08_24__3_20PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_08_24__3_20PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Agregue nuevas funciones en Javascript para que poder crear una historia desde cualquier pagina, agrege el codigo en el themeSwitch.js para no tener que importar el script en todas las vistas de nuevo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/nav.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/navComponent/themeSwitch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/adminUsers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adminUsers.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/adminUsers.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/adminUsers.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/adminUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/adminUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -532,7 +532,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723929925373</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Agregue nuevas funciones en Javascript para que poder crear una historia desde cualquier pagina, agrege el codigo en el themeSwitch.js para no tener que importar el script en todas las vistas de nuevo">
+      <option name="closed" value="true" />
+      <created>1723964699760</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1723964699761</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,7 +582,8 @@
     <MESSAGE value="Ya vuelve a funcionar adminUsers" />
     <MESSAGE value="Se quitaron depuraciones y previewStory tambien guarda la historia" />
     <MESSAGE value="Cambie los nombres del createStory.js para que los nombres de cada nodo sean &quot;Escena&quot; en lugar de evento asi como sus modales" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambie los nombres del createStory.js para que los nombres de cada nodo sean &quot;Escena&quot; en lugar de evento asi como sus modales" />
+    <MESSAGE value="Agregue nuevas funciones en Javascript para que poder crear una historia desde cualquier pagina, agrege el codigo en el themeSwitch.js para no tener que importar el script en todas las vistas de nuevo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregue nuevas funciones en Javascript para que poder crear una historia desde cualquier pagina, agrege el codigo en el themeSwitch.js para no tener que importar el script en todas las vistas de nuevo" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

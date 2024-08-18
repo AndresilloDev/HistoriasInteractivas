@@ -298,7 +298,6 @@ function openEditModal(e, obj) {
 		decisionInput.style.display = 'none'; // Ocultar los input
 		labelDecision.style.display = 'none';
 	} else {
-		decisionInput.value = data.description || '';
 		decisionInput.readOnly = false; // Habilitar edición
 		decisionInput.style.display = 'block'; // Mostrar los input
 		labelDecision.style.display = 'grid';

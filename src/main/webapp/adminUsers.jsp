@@ -37,7 +37,7 @@
             <form id="searchForm" action="adminUsers" method="post">
                 <input type="hidden" name="action" value="buscar">
                 <div class="input-group">
-                    <input type="text" name="email" id="emailSearch" class="form-control input" placeholder="Buscar por correo electrónico" required>
+                    <input type="text" name="email" id="emailSearch" class="form-control input" placeholder="Correo electrónico" required>
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary search-button button">Buscar</button>
                     </div>
@@ -73,7 +73,7 @@
                 <td data-label="Apellido Materno">${user.maternalSurname}</td>
                 <td data-label="Estado">${user.status ? "Habilitado" : "Deshabilitado"}</td>
                 <td data-label="Estatus">
-                    <form action="adminUsers" method="post" onsubmit="return confirm('¿Estás seguro de que quieres cambiar el estado de este usuario?');">
+                    <form class="confirm-form" action="adminUsers" method="post">
                         <input type="hidden" name="action" value="${user.status ? "deshabilitar" : "habilitar"}">
                         <input type="hidden" name="email" value="${user.email}">
                         <button type="submit" class="btn ${user.status ? "btn-danger" : "btn-success"}">
@@ -85,6 +85,16 @@
         </c:forEach>
         </tbody>
     </table>
+
+    <!-- Modal -->
+    <div id="confirmModal" class="overlay">
+        <div class="modal-container">
+            <span class="close-btn">&times;</span>
+            <p id="modalMessage"></p>
+            <button id="confirmYes" class="btn btn-success">Sí</button>
+            <button id="confirmNo" class="btn btn-danger">No</button>
+        </div>
+    </div>
 
     <ul class="pagination">
         <c:forEach var="i" begin="1" end="${sessionScope.totalPaginas}">
