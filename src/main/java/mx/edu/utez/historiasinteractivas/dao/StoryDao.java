@@ -44,7 +44,7 @@ public class StoryDao {
 
     public Story findPublicStoryByCode(String id_story) throws SQLException {
         Story story = null;
-        String query = "SELECT * FROM historiasInteractivas.Stories WHERE id_story = ? AND story_type = 1";
+        String query = "SELECT * FROM historiasInteractivas.Stories INNER JOIN historiasInteractivas.Users ON email_user = email WHERE id_story = ? AND story_type = 1 AND status = 1";
         try (Connection con = DatabaseConnectionManager.getConnection();
              PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, id_story);
