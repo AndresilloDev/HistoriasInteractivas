@@ -18,7 +18,7 @@ public class SearchStoryServlet extends HttpServlet {
         String id_story = req.getParameter("id_story");
         if (id_story == null) {
             req.setAttribute("message", "No se ingresó un código");
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            req.getRequestDispatcher("index.jsp").forward(req,resp);
             return;
         }
 
@@ -29,7 +29,7 @@ public class SearchStoryServlet extends HttpServlet {
             story = storyDao.findPublicStoryByCode(id_story);
             if (story == null) {
                 req.setAttribute("message", "La historia que buscas no existe");
-                req.getRequestDispatcher("index.jsp").forward(req, resp);
+                req.getRequestDispatcher("index.jsp").forward(req,resp);
                 return;
             }
 
@@ -37,7 +37,7 @@ public class SearchStoryServlet extends HttpServlet {
             int storyType = story.getStory_type();
             if (storyType == 2 || storyType == 3) {
                 req.setAttribute("message", "La historia está restringida o es un borrador y no puede ser accedida.");
-                req.getRequestDispatcher("index.jsp").forward(req, resp);
+                req.getRequestDispatcher("index.jsp").forward(req,resp);
                 return;
             }
 

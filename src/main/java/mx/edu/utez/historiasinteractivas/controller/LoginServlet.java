@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
 import mx.edu.utez.historiasinteractivas.model.User;
+import jakarta.servlet.http.Cookie;
 
 import java.io.IOException;
 
@@ -15,7 +16,6 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         // Obtener los parámetros del formulario
         String emailOrUser = req.getParameter("user");
         String password = req.getParameter("password");
@@ -44,9 +44,20 @@ public class LoginServlet extends HttpServlet {
             req.getRequestDispatcher("login.jsp").forward(req, resp);
             return;
         }
+
         // Guardar usuario en la sesión
         HttpSession session = req.getSession();
         session.setAttribute("user", usuario);
+
+        // Dentro de tu servlet o filtro
+        Cookie sessionCookie = new Cookie("JSESSIONID", session.getId());
+        sessionCookie.setHttpOnly(true);
+        sessionCookie.setMaxAge(60 * 60); // Duración de la cookie en segundos
+        sessionCookie.setPath("/");
+
+        // Agregar SameSite al header Set-Cookie
+        resp.addHeader("Set-Cookie", sessionCookie.getName() + "=" + sessionCookie.getValue() + "; HttpOnly; SameSite=None; Secure; Path=/");
+        resp.addCookie(sessionCookie);
         resp.sendRedirect("index.jsp");
     }
 }

@@ -12,6 +12,10 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
     document.getElementById('date').innerText = date;
     document.getElementById('description').innerText = description;
 
+    var basePath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+    var fullUrl = basePath + url;
+    console.log(fullUrl)
+
     // Actualizar las opciones del menú según la sección
     var option1 = document.getElementById('option1');
     var option2 = document.getElementById('option2');
@@ -40,7 +44,7 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
             };
             option2.textContent = 'Editar historia';
             option2.onclick = function() {
-                window.location.href = url;
+                window.location.href = fullUrl;
             };
             break;
         case 'borrador':
@@ -50,7 +54,7 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
             };
             option2.textContent = 'Editar historia';
             option2.onclick = function() {
-                window.location.href = url;
+                window.location.href = fullUrl;
             };
             break;
     }

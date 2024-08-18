@@ -64,6 +64,8 @@ public class AdminUsersServlet extends HttpServlet {
                     int endIndex = Math.min(startIndex + usuariosPorPagina, usuarios.size());
                     List<User> usuariosPaginados = usuarios.subList(startIndex, endIndex);
                     session.setAttribute("usuarios", usuariosPaginados);
+                    session.setAttribute("totalPaginas", (int) Math.ceil((double) usuarios.size() / usuariosPorPagina));
+                    session.setAttribute("paginaActual", paginaActual);
                     request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
                 } else {
                     request.setAttribute("message", "No existen usuarios que cumplan las condiciones.");
