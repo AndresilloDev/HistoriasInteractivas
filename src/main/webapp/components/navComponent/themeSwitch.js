@@ -60,3 +60,49 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+// CODIGO PARA EL MODAL DE CREAR HISTORIA
+function openCreateStoryModal() {
+    // Verificar si la página actual es index.jsp
+    if (window.location.pathname.includes('index.jsp')) {
+        // Si ya estamos en index.jsp, simplemente abrir el modal
+        document.getElementById('storyModal').classList.add('show');
+    } else {
+        // Si no estamos en index.jsp, redirigir a index.jsp con un parámetro de consulta
+        localStorage.setItem('openModal', 'true');
+        window.location.href = 'index.jsp';
+    }
+}
+
+// Función para verificar y abrir el modal cuando la página se carga
+function checkAndOpenModal() {
+    if (localStorage.getItem('openModal') === 'true') {
+        // Limpiar el estado del modal en localStorage
+        localStorage.removeItem('openModal');
+        // Abrir el modal
+        document.getElementById('storyModal').classList.add('show');
+    }
+}
+
+// Llamar a la función cuando la página se carga
+document.addEventListener('DOMContentLoaded', checkAndOpenModal);
+
+function closeStoryModal() {
+    document.getElementById('storyModal').classList.remove('show');
+}
+
+function previewImage() {
+    const input = document.getElementById('coverImage');
+    const preview = document.getElementById('thumbnailPreview');
+    
+    const file = input.files[0];
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        preview.src = e.target.result;
+    }
+    
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}

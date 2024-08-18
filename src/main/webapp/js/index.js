@@ -19,30 +19,3 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('resize', checkConditions);
     window.addEventListener('load', checkConditions);
 });
-
-// CODIGO PARA EL MODAL DE CREAR HISTORIA
-
-document.getElementById('openCreateStoryModal').addEventListener('click', function(event) {
-    event.preventDefault(); // Evita el comportamiento predeterminado del enlace
-    document.getElementById('storyModal').classList.add('show'); // Muestra el modal
-});
-
-function closeStoryModal() {
-    document.getElementById('storyModal').classList.remove('show');
-}
-
-function previewImage() {
-    const input = document.getElementById('coverImage');
-    const preview = document.getElementById('thumbnailPreview');
-
-    const file = input.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-        preview.src = e.target.result;
-    }
-
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-}
