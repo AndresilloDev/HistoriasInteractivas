@@ -286,7 +286,7 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2002;
     font-family: 'Noto Sans JP', sans-serif;
     opacity: 0;
     visibility: hidden;
@@ -456,4 +456,65 @@ textarea {
     text-align: center;
     font-size: 1.2rem;
     width: 100%;
+}
+
+
+
+
+
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2003;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: var(--mode-card-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    opacity: 0; /* Oculto al inicio */
+    transform: translateY(-20%); /* Empujado hacia arriba */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    opacity: 1;
+    transform: translateY(0); /* En posición original */
+}
+
+.copyBtn {
+    width: 200px;
+    margin: .5rem auto;
+}
+
+.alertContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001; /* Debe ser menor que el overlay y el modal */
+    padding: 10px;
+    pointer-events: none;
 }

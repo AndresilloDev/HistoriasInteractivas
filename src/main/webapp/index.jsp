@@ -256,6 +256,20 @@
     </div>
 </div>
 
+<div id="shareModal" class="modal">
+    <div class="modal-content">
+        <div class="row justify-content-end">
+            <button  id="closeShareModal" class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <h3>Compartir historia</h3>
+        <button id="copyIdBtn" class="button copyBtn">Copiar ID</button>
+        <button id="copyLinkBtn" class="button copyBtn">Copiar Enlace</button>
+    </div>
+</div>
+
+<div id="alertContainer" class="alertContainer"></div>
 
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="js/searchStory.js"></script>

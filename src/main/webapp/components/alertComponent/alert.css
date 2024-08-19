@@ -5,9 +5,10 @@
     padding: 16px;
     background-color: var(--mode-card-color);
     color: var(--mode-text-color);
+    border-color: var(--mode-text-color);
     box-shadow: var(--mode-shadow-color);
     border-radius: 5px;
-    z-index: 2001;
+    z-index: 1001;
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-out;
     transform: translateX(100%);
     opacity: 0;
