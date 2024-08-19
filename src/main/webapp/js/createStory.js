@@ -374,6 +374,35 @@ function saveNodeData() {
 		closeModal();
 	}
 }
+function clearFileUpload() {
+	var node = window.currentNode;
+	var formData = new FormData(document.getElementById('editForm'));
+	var fileInput = document.getElementById('fileUpload');
+
+	fetch('deleteFiles', {
+		method: 'POST',
+		body: formData
+	})
+		.then(response => response.text())
+		.then(result => {
+			console.log("Archivos eliminados:", result);
+
+			// Limpiar el input de archivos y las vistas previas
+			fileInput.value = "";
+			storyDiagram.model.setDataProperty(node.data, 'image', );
+			storyDiagram.model.setDataProperty(node.data, 'audio', );
+			storyDiagram.model.setDataProperty(node.data, 'video', );
+
+		})
+		.catch(error => {
+			console.error('Error al eliminar los archivos:', error);
+		});
+
+	// Opcional: Limpiar las vistas previas de imágenes, audios y videos
+	document.getElementById ('fileUpload').value = ''; // Limpiar archivo cargado
+	clearPreviews();
+	saveNodeData();
+}
 
 // Configuración de arrastrar y soltar
 document.getElementById ('dropArea').addEventListener ('dragover', function (event) {
