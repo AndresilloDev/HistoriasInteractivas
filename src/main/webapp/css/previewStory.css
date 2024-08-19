@@ -1,24 +1,24 @@
 .container-custom {
-    height: 80vh; /* 80% de la altura de la pantalla */
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 .image-container {
-    height: 40%; /* 40% de la altura del contenedor */
+    height: 50vh;
     overflow: hidden;
 }
 .image-container img {
     height: 100%;
     width: 100%;
-    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin deformarla */
+    object-fit: cover;
 }
 .audio-container {
-    height: 10%; /* 10% de la altura del contenedor */
+    height: 10%;
 }
 .text-container {
-    height: 80%; /* 40% de la altura del contenedor */
-    overflow-y: auto; /* Añade scroll si el texto es muy largo */
+    height: 80%;
+    overflow-y: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +29,7 @@
     font-size: 2.6rem;
 }
 .buttons-container {
-    height: 10%; /* 10% de la altura del contenedor */
+    height: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,4 +38,68 @@
 
 .btn-custom {
     flex: 1;
+}
+
+.img-fluid {
+    max-height: 60vh;
+    min-height: 60vh;
+    border-radius: 10px;
+}
+
+
+
+
+.cta {
+    font-family: Avenir, sans-serif;
+    position: relative;
+    margin: auto;
+    padding: 15px 22px;
+    transition: all 0.2s ease;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    color: inherit;
+}
+.cta span {
+    position: relative;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+.cta .svg1 {
+    position: relative;
+    top: 0;
+    margin-right: 12px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #111;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+}
+.cta .svg2 {
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #111;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+}
+.cta:hover:before {
+    width: 100%;
+    background: #ad6af4;
+}
+.cta:hover svg {
+    transform: translateX(0);
+}
+.cta:active {
+    transform: scale(0.96);
 }

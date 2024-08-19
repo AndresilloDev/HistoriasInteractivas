@@ -8,10 +8,10 @@ import java.sql.SQLException;
 public class DatabaseConnectionManager {
     private static final String JDBC_URL = "jdbc:mysql://127.0.0.1/historiasInteractivas";
     private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    //private static final String PASSWORD = "root";
 
     //Para la DB en AWS
-    //private static final String PASSWORD = "StrongPassw0rd!";
+    private static final String PASSWORD = "StrongPassw0rd!";
 
     private static final HikariConfig config = new HikariConfig();
     private static final HikariDataSource dataSource;

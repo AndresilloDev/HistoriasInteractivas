@@ -17,7 +17,6 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
     // Actualizar las opciones del menú según la sección
     var option1 = document.getElementById('option1');
     var option2 = document.getElementById('option2');
-    console.log(fullUrl)
     switch (seccion) {
         case 'publica':
             document.getElementById('date').innerText = date;

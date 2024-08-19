@@ -337,7 +337,6 @@ function saveNodeData() {
 		})
 			.then(response => response.text())  // Obtener la ruta del archivo
 			.then(filePaths => {
-				console.log("Respuestas del servidor:", filePaths);
 				var text = document.getElementById('nodeText').value;
 				var description = document.getElementById('nodeDescription').value;
 
@@ -361,10 +360,8 @@ function saveNodeData() {
 				closeModal();
 			})
 			.catch(error => {
-				console.error('Error al subir el archivo:', error);
 			});
 	} else {
-		console.log("me ejecuto hasta aqui V2")
 		// Si no hay archivo, solo actualiza los demás datos
 		var text = document.getElementById('nodeText').value;
 		var description = document.getElementById('nodeDescription').value;
@@ -508,10 +505,8 @@ function saveStory(idStory) {
 		.then(response => response.json())  // Esperar una respuesta JSON del servlet
 		.then(data => {
 			// Procesar la respuesta del servlet
-			console.log("Respuesta del servidor:", data);
 		})
 		.catch(error => {
-			console.error("Error al guardar la historia:", error);
 		});
 }
 

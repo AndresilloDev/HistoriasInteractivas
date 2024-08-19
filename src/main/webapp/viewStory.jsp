@@ -86,7 +86,12 @@
                         <input type="hidden" name="id_story" value="<%=id_story%>">
                         <input type="hidden" name="event_id" value="<%=event_id%>">
                         <input type="hidden" name="option" value="option1">
-                        <button type="submit" class="btn btn-primary btn-custom"><%=option1%></button>
+                        <button href="#" class="cta" type="submit">
+                            <svg class="svg1" width="13px" height="10px" viewBox="0 0 13 10" style="rotate: 180deg">
+                                <polyline points="8 1 12 5 8 9"></polyline>
+                            </svg>
+                            <span><%=option1%></span>
+                        </button>
                     </form>
                 </c:if>
                 <c:if test="${option2 != null}">
@@ -94,12 +99,17 @@
                         <input type="hidden" name="id_story" value="<%=id_story%>">
                         <input type="hidden" name="event_id" value="<%=event_id%>">
                         <input type="hidden" name="option" value="option2">
-                        <button type="submit" class="btn btn-secondary btn-custom"><%=option2%></button>
+                        <button href="#" class="cta" type="submit">
+                            <span><%=option2%></span>
+                            <svg class="svg2" width="13px" height="10px" viewBox="0 0 13 10">
+                                <polyline points="8 1 12 5 8 9"></polyline>
+                            </svg>
+                        </button>
                     </form>
                 </c:if>
                 <c:if test="${option1 == null and option2 == null}">
                     <a href="index.jsp">
-                        <button class="btn btn-primary btn-custom">Volver a la página principal</button>
+                        <button class="btn btn-primary btn-custom button">Volver a la página principal</button>
                     </a>
                 </c:if>
             </div>

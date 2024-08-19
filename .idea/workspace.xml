@@ -10,14 +10,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="Agregue la funcion de poder compartir tanto enlace como Id, tambien quite las molestas alertas por mensajes de error bien hechos">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2024_07_58_p__m___Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2024_07_58_p_ m__[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="e12b53b1-9cd2-4fbb-9ad5-f2ef45217fcb" name="Changes" comment="La id de las historias ya se muestra siempre">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/utez/historiasinteractivas/utils/DatabaseConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/indexLayout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/createStory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/previewStory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/previewStory.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/createStory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/js/overlayInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/overlayInformation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/previewStory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/previewStory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/viewStory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/viewStory.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +63,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -349,7 +351,7 @@
       <workItem from="1723790585162" duration="1014000" />
       <workItem from="1723832988532" duration="8512000" />
       <workItem from="1723926292515" duration="1811000" />
-      <workItem from="1724043786388" duration="1468000" />
+      <workItem from="1724043786388" duration="11440000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -559,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723975374601</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="La id de las historias ya se muestra siempre">
+      <option name="closed" value="true" />
+      <created>1724047124129</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1724047124129</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +588,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Erikitirijiyo commit, aun no funciona la bd, pero en teoria ya estan todos los datos necesarios :D" />
     <MESSAGE value="Erikitirijiyo commit, ya esta conectada a la base de datos, algo bien, se termino lo de inicio de sesión y se modifico el jsp de login (email), faltaria la pagina para redirigir cuando el inicio de sesión es exitoso.&#10;// nota // como la base de datos, no tiene datos, no tendria que redirigir a ninguna otra pagina." />
     <MESSAGE value="Login corregido" />
     <MESSAGE value="Frontend actualizado + nuevas paginas en jsp" />
@@ -603,7 +612,8 @@
     <MESSAGE value="Agregue nuevas funciones en Javascript para que poder crear una historia desde cualquier pagina, agrege el codigo en el themeSwitch.js para no tener que importar el script en todas las vistas de nuevo" />
     <MESSAGE value="Agrege funciones con JS para que se cierren los modales al dar click fuera de ellos" />
     <MESSAGE value="Agregue la funcion de poder compartir tanto enlace como Id, tambien quite las molestas alertas por mensajes de error bien hechos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregue la funcion de poder compartir tanto enlace como Id, tambien quite las molestas alertas por mensajes de error bien hechos" />
+    <MESSAGE value="La id de las historias ya se muestra siempre" />
+    <option name="LAST_COMMIT_MESSAGE" value="La id de las historias ya se muestra siempre" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

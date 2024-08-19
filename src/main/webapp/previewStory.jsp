@@ -52,22 +52,29 @@
             <div class="row">
                 <a href="createStory.jsp?id_story=<%=id_story%>">Ir a la edición de historia</a>
             </div>
+
             <c:if test="${image != null}">
-                <img src="${image}" alt="Scene Image" class="img-fluid">
+                <div class="image-container">
+                    <img src="${image}" alt="Scene Image" class="img-fluid">
+                </div>
             </c:if>
 
             <c:if test="${audio != null}">
-                <audio controls>
-                    <source src="${audio}" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
+                <div class="audio-container">
+                    <audio controls>
+                        <source src="${audio}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
             </c:if>
 
             <c:if test="${video != null}">
-                <video width="100%" controls>
-                    <source src="${video}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <div class="video-container">
+                    <video width="100%" controls>
+                        <source src="${video}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </c:if>
 
             <c:if test="${link != null}">
@@ -81,15 +88,18 @@
             </div>
 
             <!-- Contenedor de Botones -->
-
-
             <div class="buttons-container">
                 <c:if test="${option1 != null}">
                     <form action="previewStory" method="get">
                         <input type="hidden" name="id_story" value="<%=id_story%>">
                         <input type="hidden" name="event_id" value="<%=event_id%>">
                         <input type="hidden" name="option" value="option1">
-                        <button type="submit" class="btn btn-primary btn-custom"><%=option1%></button>
+                        <button href="#" class="cta" type="submit">
+                            <svg class="svg1" width="13px" height="10px" viewBox="0 0 13 10px" style="rotate: 180deg">
+                                <polyline points="8 1 12 5 8 9"></polyline>
+                            </svg>
+                            <span><%=option1%></span>
+                        </button>
                     </form>
                 </c:if>
                 <c:if test="${option2 != null}">
@@ -97,10 +107,15 @@
                         <input type="hidden" name="id_story" value="<%=id_story%>">
                         <input type="hidden" name="event_id" value="<%=event_id%>">
                         <input type="hidden" name="option" value="option2">
-                        <button type="submit" class="btn btn-secondary btn-custom"><%=option2%></button>
+                        <button href="#" class="cta" type="submit">
+                            <span><%=option2%></span>
+                            <svg class="svg2" width="13px" height="10px" viewBox="0 0 13 10px">
+                                <polyline points="8 1 12 5 8 9"></polyline>
+                            </svg>
+                        </button>
                     </form>
                 </c:if>
-                <c:if test="${option1 == null and option2 == null}">
+                <c:if test="${option1 == null && option2 == null}">
                     <a href="index.jsp">
                         <button class="btn btn-primary btn-custom">Volver a la página principal</button>
                     </a>
@@ -110,7 +125,6 @@
     </div>
 </div>
 
-
 <section class="waves-container1">
     <div class="wave wave1" style="position: fixed"></div>
     <div class="wave wave2" style="position: fixed"></div>
@@ -119,13 +133,6 @@
 
 <script src="components/navComponent/themeSwitch.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script>
-    window.onpageshow = function(event) {
-        if (event.persisted) {
-            window.location.reload();
-        }
-    };
-</script>
 <script src="js/autoScroller.js"></script>
 </body>
 </html>
