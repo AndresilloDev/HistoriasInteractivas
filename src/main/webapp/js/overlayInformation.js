@@ -4,20 +4,20 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
     
     // Mostrar el overlay
     overlay.classList.add('show');
-    console.log(date)
-    
+
     // Actualizar el contenido de la historia
     document.getElementById('story-title').innerText = title;
     document.getElementById('thumbnail').src = thumbnail;
     document.getElementById('description').innerText = description;
-    
+
     var basePath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-    var fullUrl = basePath + "/createStory.jsp?id_story=" + id_story;
+    var fullUrl = basePath + url;
+    var storyUrl = basePath + "/viewStory?id_story=" + id_story;
 
     // Actualizar las opciones del menú según la sección
     var option1 = document.getElementById('option1');
     var option2 = document.getElementById('option2');
-    
+    console.log(fullUrl)
     switch (seccion) {
         case 'publica':
             document.getElementById('date').innerText = date;
@@ -27,7 +27,7 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
             };
             option2.textContent = 'Compartir historia';
             option2.onclick = function() {
-                openShareModal(id_story, fullUrl);
+                openShareModal(id_story, storyUrl);
             };
             break;
         case 'restringida':
@@ -66,7 +66,6 @@ function updateStoryStatus(id_story, action) {
             if (xhr.status === 200) {
                 // Estado de la historia actualizado correctamente
                 location.reload();
-                showAlert('Error al actualizar el estado de la historia.', false);
             } else {
                 // Error al actualizar el estado de la historia
                 showAlert('Error al actualizar el estado de la historia.', true);
@@ -125,7 +124,7 @@ function showAlert(message, isError = false) {
 }
 
 // Función para abrir el modal de compartir
-function openShareModal(id_story, fullUrl) {
+function openShareModal(id_story, storyUrl) {
     var shareModal = document.getElementById('shareModal');
     shareModal.style.display = 'block';
     
@@ -143,7 +142,7 @@ function openShareModal(id_story, fullUrl) {
     
     // Botón para copiar el enlace completo
     document.getElementById('copyLinkBtn').onclick = function() {
-        navigator.clipboard.writeText(fullUrl)
+        navigator.clipboard.writeText(storyUrl)
             .then(() => showAlert('Enlace completo copiado al portapapeles'))
             .catch(err => showAlert('Error al copiar el enlace: ' + err, true));
     };
