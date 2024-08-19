@@ -12,7 +12,7 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
     document.getElementById('description').innerText = description;
     
     var basePath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-    var fullUrl = basePath + "/createStory?id_story=" + id_story;
+    var fullUrl = basePath + "/createStory.jsp?id_story=" + id_story;
 
     // Actualizar las opciones del menú según la sección
     var option1 = document.getElementById('option1');
