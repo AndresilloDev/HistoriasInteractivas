@@ -207,12 +207,17 @@ public class StoryDao {
         }
         return false;
     }
-    public boolean updateStoryStatus(String id_story, int newStatus) throws SQLException {
-        String sql = "UPDATE historiasInteractivas.Stories SET story_type = ? WHERE id_story = ?";
+    public boolean updateStoryStatus(String id_story, int newStatus, java.sql.Date release_date) throws SQLException {
+        String sql = "UPDATE historiasInteractivas.Stories SET story_type = ?, release_date = ? WHERE id_story = ?";
         try (Connection connection = DatabaseConnectionManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, newStatus);
-            statement.setString(2, id_story);
+            if (release_date != null) {
+                statement.setDate(2, release_date);
+            } else {
+                statement.setNull(2, java.sql.Types.DATE);
+            }
+            statement.setString(3, id_story);
 
             return statement.executeUpdate() > 0;
         }

@@ -87,9 +87,15 @@ public class Story {
     public void setStory_type(int story_type) {
         this.story_type = story_type;
     }
+
+    public Date getLast_update() {
+        return last_update;
+    }
+
     public void setLast_update(Date last_update) {
         this.last_update = last_update;
     }
+
     public GraphLinksModel getModel() {
         return model;
     }

@@ -4,23 +4,23 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
     
     // Mostrar el overlay
     overlay.classList.add('show');
+    console.log(date)
     
     // Actualizar el contenido de la historia
     document.getElementById('story-title').innerText = title;
     document.getElementById('thumbnail').src = thumbnail;
-    document.getElementById('date').innerText = date;
     document.getElementById('description').innerText = description;
     
     var basePath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-    var fullUrl = basePath + "/viewStory?id_story=" + id_story;
-    console.log(fullUrl);
-    
+    var fullUrl = basePath + "/createStory?id_story=" + id_story;
+
     // Actualizar las opciones del menú según la sección
     var option1 = document.getElementById('option1');
     var option2 = document.getElementById('option2');
     
     switch (seccion) {
         case 'publica':
+            document.getElementById('date').innerText = date;
             option1.textContent = 'Restringir historia';
             option1.onclick = function() {
                 updateStoryStatus(id_story, 'restringir');
@@ -31,6 +31,7 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
             };
             break;
         case 'restringida':
+            document.getElementById('date-p').innerText = "";
             option1.textContent = 'Publicar historia';
             option1.onclick = function() {
                 updateStoryStatus(id_story, 'publicar');
@@ -41,6 +42,7 @@ function openMenu(seccion, title, date, description, thumbnail, url, id_story) {
             };
             break;
         case 'borrador':
+            document.getElementById('date-p').innerText = "";
             option1.textContent = 'Publicar historia';
             option1.onclick = function() {
                 updateStoryStatus(id_story, 'publicar');

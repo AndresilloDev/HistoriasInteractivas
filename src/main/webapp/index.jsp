@@ -196,7 +196,7 @@
                 <h6 class="text-md-start text-center mt-2"><strong>Título</strong></h6>
                     <h2 id="story-title" class="text-md-start text-center">Titulo</h2>
 
-                <p class="text-md-end text-center"><strong>Fecha de publicación</strong><br><span id="date"></span></p>
+                <p class="text-md-end text-center"><strong id="date-p">Fecha de publicación</strong><br><span id="date"></span></p>
             </div>
         </div>
         <div class="row mt-4 p3">
