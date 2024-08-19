@@ -19,7 +19,7 @@ public class ChangePasswordServlet extends HttpServlet {
 
         req.setAttribute("email", email);
         req.setAttribute("token", tokenGiven);
-        resp.sendRedirect("changePassword.jsp");
+        req.getRequestDispatcher("changePassword.jsp").forward(req,resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,14 +34,13 @@ public class ChangePasswordServlet extends HttpServlet {
         String token = dao.getPasswordToken(user);
 
         if (tokenGiven.equals(token)) {
-
             dao.updatePassword(user, newPassword);
             session.setAttribute("message", "Contraseña actualizada correctamente.");
             resp.sendRedirect("login.jsp");
             // Redirige a la página de inicio de sesión
         } else {
-            session.setAttribute("errorMessage", "Token no válido.");
-            resp.sendRedirect("changePassword.jsp");
+            req.setAttribute("errorMessage", "Token no válido.");
+            req.getRequestDispatcher("changePassword.jsp").forward(req,resp);
             // Vuelve a la página de cambio de contraseña
         }
     }
