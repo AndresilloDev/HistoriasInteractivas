@@ -45,10 +45,10 @@ public class CreateStoryServlet extends HttpServlet {
         Story story = new Story(id_story, email, storyTitle, storyDescription, storyThumbnail, json);
 
         if (dao.insertStory(story)) {
-            request.setAttribute("message", "¡Historia creada correctamente!");
+            session.setAttribute("message", "¡Historia creada correctamente!");
             response.sendRedirect("createStory.jsp?id_story="+id_story);
         } else {
-            request.setAttribute("errorMessage", "¡Error al crear la historia!");
+            session.setAttribute("errorMessage", "¡Error al crear la historia!");
             response.sendRedirect("index.jsp");
         }
     }

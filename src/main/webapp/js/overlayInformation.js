@@ -68,10 +68,9 @@ function updateStoryStatus(id_story, action) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                alert('Estado de la historia actualizado correctamente.');
                 location.reload();
             } else {
-                alert('Error al actualizar el estado de la historia.');
+                location.reload();
             }
         }
     };

@@ -6,9 +6,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DatabaseConnectionManager {
-    private static final String JDBC_URL = "jdbc:mysql://localhost/historiasInteractivas";
-    private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String JDBC_URL = "jdbc:mysql://44.211.159.14/historiasInteractivas";
+    private static final String USER = "elegidokawai";
+    private static final String PASSWORD = "Elegidokawai323*";
 
     //Para la DB en AWS
     //private static final String PASSWORD = "StrongPassw0rd!";

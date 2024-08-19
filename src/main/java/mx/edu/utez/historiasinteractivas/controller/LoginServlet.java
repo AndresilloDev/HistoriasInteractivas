@@ -19,10 +19,11 @@ public class LoginServlet extends HttpServlet {
         // Obtener los parámetros del formulario
         String emailOrUser = req.getParameter("user");
         String password = req.getParameter("password");
+        HttpSession session = req.getSession();
 
         if(emailOrUser.length()>50 || password.length() > 256){
-            req.setAttribute("errorMessage", "Ha sobrepasado el límite de carácteres");
-            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            session.setAttribute("errorMessage", "Ha sobrepasado el límite de carácteres");
+            resp.sendRedirect("register.jsp");
             return;
         }
 
@@ -31,22 +32,22 @@ public class LoginServlet extends HttpServlet {
         User usuario = dao.getUser(emailOrUser, password);
 
         if (usuario == null) { // El usuario no existe
-            req.setAttribute("errorMessage", "¡El usuario o la contraseña son incorrectos!");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            session.setAttribute("errorMessage", "¡El usuario o la contraseña son incorrectos!");
+            resp.sendRedirect("login.jsp");
             return;
         }
 
         if (!usuario.isStatus()) { // El usuario no está activo
-            req.setAttribute("errorMessage",
+            session.setAttribute("errorMessage",
                     "El usuario está deshabilitado." +
                        "<br>" +
                        "Por favor, contactanos para más información: historiasinteractivasutez@gmail.com");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            resp.sendRedirect("login.jsp");
             return;
         }
 
         // Guardar usuario en la sesión
-        HttpSession session = req.getSession();
+        session = req.getSession();
         session.setAttribute("user", usuario);
 
         // Dentro de tu servlet o filtro

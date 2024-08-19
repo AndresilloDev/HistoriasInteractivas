@@ -38,16 +38,16 @@ public class VerifyServlet extends HttpServlet {
                     session.setAttribute("user", user);
                     resp.sendRedirect("index.jsp"); // Redirigir a index
                 } else {
-                    req.setAttribute("errorMessage", "¡Error al registrar el usuario!");
-                    req.getRequestDispatcher("verifyAccount.jsp").forward(req, resp);
+                    session.setAttribute("errorMessage", "¡Error al registrar el usuario!");
+                    resp.sendRedirect("verifyAccount.jsp");
                 }
             } catch (Exception e) {
-                req.setAttribute("errorMessage", "Ha ocurrido un error, vuelva a intentarlo más tarde");
-                req.getRequestDispatcher("verifyAccount.jsp").forward(req, resp);
+                session.setAttribute("errorMessage", "Ha ocurrido un error, vuelva a intentarlo más tarde");
+                resp.sendRedirect("verifyAccount.jsp");
             }
         } else {
-            req.setAttribute("errorMessage", "Código de verificación incorrecto");
-            req.getRequestDispatcher("verifyAccount.jsp").forward(req, resp);
+            session.setAttribute("errorMessage", "Código de verificación incorrecto");
+            resp.sendRedirect("verifyAccount.jsp");
         }
     }
 }

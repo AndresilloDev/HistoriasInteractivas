@@ -2,8 +2,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    String message = (String) request.getAttribute("message");
-    String errorMessage = (String) request.getAttribute("errorMessage");
+    String message;
+    String errorMessage;
+    session = request.getSession();
+    if ((String) session.getAttribute("message") == null) {
+        message = (String) request.getAttribute("message");
+    } else {
+        message = (String) session.getAttribute("message");
+    }
+    if ((String) session.getAttribute("errorMessage") == null) {
+        errorMessage = (String) request.getAttribute("errorMessage");
+    } else {
+        errorMessage = (String) session.getAttribute("errorMessage");
+    }
 %>
 <head>
     <link rel="stylesheet" type="text/css" href="components/alertComponent/alert.css">
@@ -26,4 +37,8 @@
         </div>
     </c:when>
 </c:choose>
+<%
+    session.removeAttribute("message");
+    session.removeAttribute("errorMessage");
+%>
 <script src="components/alertComponent/alert.js"></script>

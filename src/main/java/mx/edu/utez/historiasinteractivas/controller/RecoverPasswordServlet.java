@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
 import mx.edu.utez.historiasinteractivas.utils.GmailSender;
 import mx.edu.utez.historiasinteractivas.utils.RandomStringGenerator;
@@ -18,10 +19,11 @@ public class RecoverPasswordServlet extends HttpServlet {
         String email = req.getParameter("email");
 
         UsuarioDao dao = new UsuarioDao();
+        HttpSession session = req.getSession();
 
         if (dao.findUserByEmail(email) == null) {
-            req.setAttribute("errorMessage", "No existe el usuario " + email);
-            req.getRequestDispatcher("recoverPassword.jsp").forward(req, resp);
+            session.setAttribute("errorMessage", "No existe el usuario " + email);
+            resp.sendRedirect("recoverPassword.jsp");
         } else {
             //Generar el token aleatorio y crear un link en base a eso
             String token = RandomStringGenerator.generateRandomString(20);
@@ -29,14 +31,14 @@ public class RecoverPasswordServlet extends HttpServlet {
 
             //Guardar el token en la base de datos para su posterior verificado
             if(!dao.saveChangePasswordToken(email, token)){
-                req.setAttribute("errorMessage", "Error al cambiar la contraseña, inténtelo de nuevo en unos momentos" + email);
-                req.getRequestDispatcher("recoverPassword.jsp").forward(req, resp);
+                session.setAttribute("errorMessage", "Error al cambiar la contraseña, inténtelo de nuevo en unos momentos" + email);
+                resp.sendRedirect("recoverPassword.jsp");
             }
             try {
                 GmailSender gs = new GmailSender();
                 gs.sendEmailRecoverPassword(email, resetLink);
-                req.setAttribute("message", "Favor de revisar su correo para cambiar la contraseña.");
-                req.getRequestDispatcher("recoverPassword.jsp").forward(req, resp);
+                session.setAttribute("message", "Favor de revisar su correo para cambiar la contraseña.");
+                resp.sendRedirect("recoverPassword.jsp");
 
             } catch (Exception e) {
                 throw new RuntimeException(e);

@@ -40,7 +40,7 @@ public class AdminUsersServlet extends HttpServlet {
         session.setAttribute("totalPaginas", (int) Math.ceil((double) todosLosUsuarios.size() / usuariosPorPagina));
         session.setAttribute("paginaActual", paginaActual);
 
-        request.getRequestDispatcher("/adminUsers.jsp").forward(request, response);
+        response.sendRedirect("adminUsers.jsp");
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

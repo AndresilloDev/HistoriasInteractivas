@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.StoryDao;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class UpdateStoryStatusServlet extends HttpServlet {
         // Obtener parámetros de la solicitud
         String id_story = req.getParameter("id_story");
         String action = req.getParameter("action");
+        HttpSession session = req.getSession();
 
         // Determinar el nuevo estado de la historia
         int newStatus = 3; // Por defecto, establecer como borrador
@@ -32,9 +34,9 @@ public class UpdateStoryStatusServlet extends HttpServlet {
         try {
             // Actualizar el estado de la historia en la base de datos
             if (storyDao.updateStoryStatus(id_story, newStatus)) {
-                req.setAttribute("message", "Estado de la historia actualizado correctamente.");
+                session.setAttribute("message", "Estado de la historia actualizado correctamente.");
             } else {
-                req.setAttribute("errorMessage", "No se pudo actualizar el estado de la historia.");
+                session.setAttribute("errorMessage", "No se pudo actualizar el estado de la historia.");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

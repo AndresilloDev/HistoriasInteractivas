@@ -23,14 +23,15 @@ public class EditUserServlet extends HttpServlet {
         String paternalName = request.getParameter("paternalName");
         String maternalName = request.getParameter("maternalName");
         Part filePart = request.getPart("userPicture");
+        HttpSession session = request.getSession();
 
         if(email.length()>50 ||
                 user_name.length() > 50 ||
                 name.length() > 40 ||
                 paternalName.length() > 20 ||
                 maternalName.length() > 20){
-            request.setAttribute("errorMessage", "Ha sobrepasado el límite de carácteres");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            session.setAttribute("errorMessage", "Ha sobrepasado el límite de carácteres");
+            response.sendRedirect("register.jsp");
             return;
         }
 
@@ -39,8 +40,8 @@ public class EditUserServlet extends HttpServlet {
 
         // Verificar si el usuario fue encontrado
         if (usuario == null) {
-            request.setAttribute("message", "Ha ocurrido un error al actualizar los datos");
-            request.getRequestDispatcher("editUser.jsp").forward(request, response);
+            session.setAttribute("message", "Ha ocurrido un error al actualizar los datos");
+            response.sendRedirect("editUser.jsp");
             return;
         }
 
@@ -67,13 +68,12 @@ public class EditUserServlet extends HttpServlet {
 
         // Actualización en la base de datos
         if (dao.updateUser(usuario)) {
-            HttpSession session = request.getSession();
             session.setAttribute("user", usuario);
-            request.setAttribute("message", "Datos actualizados correctamente");
-            request.getRequestDispatcher("editUser.jsp").forward(request, response);
+            session.setAttribute("message", "Datos actualizados correctamente");
+            response.sendRedirect("editUser.jsp");
         } else {
-            request.setAttribute("message", "Ha ocurrido un error al actualizar los datos");
-            request.getRequestDispatcher("editUser.jsp").forward(request, response);
+            session.setAttribute("message", "Ha ocurrido un error al actualizar los datos");
+            response.sendRedirect("editUser.jsp");
         }
     }
 

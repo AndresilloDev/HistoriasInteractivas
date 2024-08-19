@@ -60,13 +60,6 @@ public class ViewStoryServlet extends HttpServlet {
                     return;
                 }
 
-                int storyType = story.getStory_type();
-                if (storyType == 2 || storyType == 3) {
-                    req.setAttribute("message", "La historia está restringida o es un borrador.");
-                    req.getRequestDispatcher("index.jsp").forward(req, resp);
-                    return;
-                }
-
                 session.removeAttribute("story");
                 session.setAttribute("story", story);
                 session.setAttribute("story_name", story.getStory_title());

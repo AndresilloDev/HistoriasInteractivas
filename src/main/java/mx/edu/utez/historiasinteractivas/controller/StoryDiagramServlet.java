@@ -31,7 +31,6 @@ public class StoryDiagramServlet extends HttpServlet {
             String title = jsonObject.getString("title");
             String diagram = jsonObject.getString("diagram");
 
-
             Story story = new Story(idStory, title, diagram);
             StoryDao dao = new StoryDao();
 

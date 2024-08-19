@@ -21,17 +21,18 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String confirmPassword = req.getParameter("confirmPassword");
+        HttpSession session = req.getSession();
 
         // Verificar que las contraseñas coincidan
         if (!password.equals(confirmPassword)) {
-            req.setAttribute("errorMessage", "¡Las contraseñas no coinciden!");
-            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            session.setAttribute("errorMessage", "¡Las contraseñas no coinciden!");
+            resp.sendRedirect("register.jsp");
             return;
         }
 
         if(email.length()>50 || password.length() > 256){
-            req.setAttribute("errorMessage", "Ha sobrepasado el límite de carácteres");
-            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            session.setAttribute("errorMessage", "Ha sobrepasado el límite de carácteres");
+            resp.sendRedirect("register.jsp");
             return;
         }
 
@@ -46,18 +47,18 @@ public class RegisterServlet extends HttpServlet {
                 verification.sendVerificationEmail(email, verificationCode);
 
                 // Guardar el usuario y el código de verificación en la sesión
-                HttpSession session = req.getSession();
+                session = req.getSession();
                 session.setAttribute("registerUser", usuario);
                 session.setAttribute("verificationCode", verificationCode);
 
                 resp.sendRedirect("verifyAccount.jsp");
             } catch (Exception e) {
-                req.setAttribute("errorMessage", "¡Error al enviar el correo de verificación!");
-                req.getRequestDispatcher("register.jsp").forward(req, resp);
+                session.setAttribute("errorMessage", "¡Error al enviar el correo de verificación!");
+                resp.sendRedirect("register.jsp");
             }
         } else {
             try {
-                req.setAttribute("errorMessage", "¡El usuario ya existe!");
+                session.setAttribute("errorMessage", "¡El usuario ya existe!");
                 resp.sendRedirect("register.jsp");
 
             } catch (Exception e){

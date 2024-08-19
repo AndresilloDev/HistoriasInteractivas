@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.historiasinteractivas.dao.UsuarioDao;
 import mx.edu.utez.historiasinteractivas.model.User;
 
@@ -18,7 +19,7 @@ public class ChangePasswordServlet extends HttpServlet {
 
         req.setAttribute("email", email);
         req.setAttribute("token", tokenGiven);
-        req.getRequestDispatcher("changePassword.jsp").forward(req, resp);
+        resp.sendRedirect("changePassword.jsp");
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,17 +29,19 @@ public class ChangePasswordServlet extends HttpServlet {
 
         UsuarioDao dao = new UsuarioDao();
         User user = new User(email);
+        HttpSession session = req.getSession();
 
         String token = dao.getPasswordToken(user);
 
         if (tokenGiven.equals(token)) {
+
             dao.updatePassword(user, newPassword);
-            req.setAttribute("message", "Contraseña actualizada correctamente.");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            session.setAttribute("message", "Contraseña actualizada correctamente.");
+            resp.sendRedirect("login.jsp");
             // Redirige a la página de inicio de sesión
         } else {
-            req.setAttribute("errorMessage", "Token no válido.");
-            req.getRequestDispatcher("changePassword.jsp").forward(req, resp);
+            session.setAttribute("errorMessage", "Token no válido.");
+            resp.sendRedirect("changePassword.jsp");
             // Vuelve a la página de cambio de contraseña
         }
     }

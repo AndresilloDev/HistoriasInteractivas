@@ -484,8 +484,6 @@ function saveStory(idStory) {
 		.catch(error => {
 			console.error("Error al guardar la historia:", error);
 		});
-
-	console.log (storyDiagram.model.toJson ());
 }
 
 // Función para cargar el modelo guardado en JSON
