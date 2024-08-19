@@ -264,6 +264,7 @@
             </button>
         </div>
         <h3>Compartir historia</h3>
+        <p>ID de la historia: <span id="storyIdDisplay"></span></p>
         <button id="copyIdBtn" class="button copyBtn">Copiar ID</button>
         <button id="copyLinkBtn" class="button copyBtn">Copiar Enlace</button>
     </div>

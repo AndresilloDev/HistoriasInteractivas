@@ -126,13 +126,17 @@ function showAlert(message, isError = false) {
 // Función para abrir el modal de compartir
 function openShareModal(id_story, storyUrl) {
     var shareModal = document.getElementById('shareModal');
+    var storyIdDisplay = document.getElementById('storyIdDisplay')
     shareModal.style.display = 'block';
     
     // Añadir clase para animación
     setTimeout(() => {
         shareModal.classList.add('show');
     }, 10);
-    
+
+    //mostrar el codigo siempre
+    storyIdDisplay.textContent = id_story;
+
     // Botón para copiar el ID
     document.getElementById('copyIdBtn').onclick = function() {
         navigator.clipboard.writeText(id_story)
