@@ -87,6 +87,7 @@
                 <textarea name="nodeDescription" id="nodeDescription" type="text" placeholder=" " class="input input-group mb-3 fs-6" style="height: 60px" required></textarea>
                 <span class="labelName fs-6">Descripción:</span>
             </label>
+            <button class="button" type="button" onclick="clearFileUpload()">Borrar Archivos</button>
             <button class="button" type="button" onclick="saveNodeData()">Aceptar</button>
         </form>
     </div>
